@@ -353,11 +353,6 @@ button{
   display:flex;
   flex-direction:column;
 
-  /*
-    Lebar mengikuti grid / layar.
-    Tinggi dibuat compact.
-  */
-
   height:270px;
   min-height:270px;
 
@@ -4228,6 +4223,18 @@ let currentMode = "opname";
 
 let masterData = [];
 
+/*
+  Promise preload MASTER.
+
+  Tujuannya supaya:
+  1. MASTER cukup request sekali.
+  2. Kalau login sedang preload dan user
+     langsung membuka Stock Loss/Opname,
+     request yang sama dipakai.
+  3. Tidak ada request MASTER kedua.
+*/
+let masterLoadingPromise = null;
+
 
 let selectedHistoryItem = null;
 
@@ -5011,6 +5018,16 @@ async function(){
 
     showDashboard();
 
+
+    /*
+      MASTER MULAI DI-PRELOAD
+      SETELAH LOGIN BERHASIL.
+
+      Tidak di-await supaya dashboard
+      langsung tampil.
+    */
+    preloadMasterData();
+
   }
   catch(error){
 
@@ -5048,6 +5065,13 @@ onAuthStateChanged(
 
     if(!user){
 
+      /*
+        Jika benar-benar tidak ada
+        user login, bersihkan MASTER.
+      */
+      masterData = [];
+      masterLoadingPromise = null;
+
       showLogin();
 
       return;
@@ -5065,6 +5089,9 @@ onAuthStateChanged(
       ){
 
         await signOut(auth);
+
+        masterData = [];
+        masterLoadingPromise = null;
 
         showLogin();
 
@@ -5089,6 +5116,9 @@ onAuthStateChanged(
 
         await signOut(auth);
 
+        masterData = [];
+        masterLoadingPromise = null;
+
         showLogin();
 
         return;
@@ -5107,6 +5137,9 @@ onAuthStateChanged(
 
         await signOut(auth);
 
+        masterData = [];
+        masterLoadingPromise = null;
+
         showLogin();
 
         return;
@@ -5123,12 +5156,22 @@ onAuthStateChanged(
 
       showDashboard();
 
+
+      /*
+        Auto-login / refresh halaman juga
+        langsung memulai preload MASTER.
+      */
+      preloadMasterData();
+
     }
     catch(error){
 
       console.error(error);
 
       await signOut(auth);
+
+      masterData = [];
+      masterLoadingPromise = null;
 
       showLogin();
 
@@ -5238,6 +5281,18 @@ async function(){
     currentUser = null;
 
     currentProfile = null;
+
+
+    /*
+      MASTER DIHAPUS SAAT LOGOUT.
+
+      Jadi login berikutnya akan preload
+      MASTER dari awal lagi.
+    */
+    masterData = [];
+
+    masterLoadingPromise = null;
+
 
     showLogin();
 
@@ -5719,13 +5774,20 @@ async function(mode){
 
 
   /*
-    Load master dan history
-    tetap dilakukan saat membuka
-    halaman inventory.
+    MASTER TIDAK FETCH ULANG.
+
+    preloadMasterData():
+    - langsung selesai jika MASTER sudah ada
+    - menunggu Promise yang sedang berjalan
+    - hanya fetch jika memang belum pernah dimuat
   */
+  await preloadMasterData();
 
-  await loadMasterData();
 
+  /*
+    History tetap di-load setiap kali
+    membuka menu inventory.
+  */
   await loadHistory();
 
 
@@ -5771,94 +5833,184 @@ function(){
 
 
 /* =====================================================
-   MASTER DATA
+   MASTER DATA PRELOAD
 ===================================================== */
 
-async function loadMasterData(){
+/*
+  Fungsi ini adalah SATU-SATUNYA pintu
+  untuk mengambil MASTER dari server.
+
+  Setelah MASTER berhasil masuk:
+  masterData disimpan di memory.
+
+  Selama request masih berjalan:
+  masterLoadingPromise dipakai bersama.
+
+  Jadi tidak mungkin Stock Loss dan
+  Stock Opname membuat request MASTER
+  terpisah secara bersamaan.
+*/
+
+function preloadMasterData(){
 
   if(
     masterData.length
-  )
-    return;
+  ){
 
-
-  try{
-
-    const response =
-      await fetch(
-        URL_SCRIPT,
-        {
-
-          method:"POST",
-
-          body:
-            JSON.stringify({
-              action:
-                "getAllBarcode"
-            })
-
-        }
-      );
-
-
-    const data =
-      await response.json();
-
-
-    if(
-      Array.isArray(data)
-    ){
-
-      masterData =
-        data.map(
-          item => ({
-
-            barcode:
-              normalizeBarcode(
-                item.barcode
-              ),
-
-            nama:
-              String(
-                item.nama || ""
-              )
-
-          })
-        );
-
-    }
-    else if(
-      Array.isArray(data.data)
-    ){
-
-      masterData =
-        data.data.map(
-          item => ({
-
-            barcode:
-              normalizeBarcode(
-                item.barcode
-              ),
-
-            nama:
-              String(
-                item.nama || ""
-              )
-
-          })
-        );
-
-    }
-
-  }
-  catch(error){
-
-    console.error(
-      "Master error:",
-      error
+    return Promise.resolve(
+      masterData
     );
 
   }
+
+
+  if(
+    masterLoadingPromise
+  ){
+
+    return masterLoadingPromise;
+
+  }
+
+
+  masterLoadingPromise =
+    fetch(
+      URL_SCRIPT,
+      {
+
+        method:"POST",
+
+        body:
+          JSON.stringify({
+            action:
+              "getAllBarcode"
+          })
+
+      }
+    )
+    .then(
+      async response => {
+
+        if(
+          !response.ok
+        ){
+
+          throw new Error(
+            "HTTP " +
+            response.status
+          );
+
+        }
+
+
+        return response.json();
+
+      }
+    )
+    .then(
+      data => {
+
+        let rows = [];
+
+
+        if(
+          Array.isArray(data)
+        ){
+
+          rows =
+            data;
+
+        }
+        else if(
+          Array.isArray(data?.data)
+        ){
+
+          rows =
+            data.data;
+
+        }
+
+
+        masterData =
+          rows
+            .map(
+              item => ({
+
+                barcode:
+                  normalizeBarcode(
+                    item?.barcode
+                  ),
+
+                nama:
+                  String(
+                    item?.nama ?? ""
+                  )
+
+              })
+            )
+            .filter(
+              item =>
+                item.barcode
+            );
+
+
+        console.log(
+          "MASTER loaded:",
+          masterData.length,
+          "data"
+        );
+
+
+        return masterData;
+
+      }
+    )
+    .catch(
+      error => {
+
+        console.error(
+          "Master error:",
+          error
+        );
+
+
+        /*
+          Jangan menyimpan Promise
+          rejected selamanya.
+
+          Jika gagal, request berikutnya
+          masih boleh mencoba lagi.
+        */
+        masterData = [];
+
+        return [];
+
+      }
+    )
+    .finally(
+      () => {
+
+        masterLoadingPromise =
+          null;
+
+      }
+    );
+
+
+  return masterLoadingPromise;
+
+}
+
+
+/*
+  Alias kompatibilitas.
+
+  Kalau ada bagian lama yang masih
+  memanggil loadMasterData(), tetap aman.
+*/
+async function loadMasterData(){
+
+  return preloadMasterData();
 
 }
 
@@ -5922,32 +6074,186 @@ $("barcode")
       }
 
 
-      const search =
-        barcodeKey(
-          value
-        );
+      /*
+        =================================================
+        SEARCH MULTI-WORD
+        =================================================
+
+        Contoh:
+
+        "ayam"
+        -> AYAM KAMPUNG SUPER
+
+        "ayam k"
+        -> AYAM KAMPUNG SUPER
+
+        "ayam ka"
+        -> AYAM KAMPUNG SUPER
+
+        "ayam kampung"
+        -> AYAM KAMPUNG SUPER
+
+        "kampung super"
+        -> AYAM KAMPUNG SUPER
+
+        Setiap kata yang diketik harus
+        ditemukan di nama atau barcode.
+      */
+
+      const searchText =
+        String(
+          value || ""
+        )
+          .trim()
+          .toLowerCase();
+
+
+      const searchTokens =
+        searchText
+          .split(/\s+/)
+          .filter(Boolean);
+
+
+      if(!searchTokens.length){
+
+        $("suggestions")
+          .style
+          .display = "none";
+
+        clearProductName();
+
+        return;
+
+      }
 
 
       const result =
         masterData
-          .filter(
-            item =>
+          .map(
+            item => {
 
-              barcodeKey(
-                item.barcode
-              ).includes(search)
+              const code =
+                barcodeKey(
+                  item.barcode
+                );
 
-              ||
 
-              String(
-                item.nama || ""
-              )
-                .toLowerCase()
-                .includes(
-                  search
+              const name =
+                String(
+                  item.nama || ""
                 )
+                  .trim()
+                  .toLowerCase();
+
+
+              const combined =
+                name +
+                " " +
+                code;
+
+
+              /*
+                SEMUA TOKEN harus
+                ditemukan.
+              */
+              const allTokensMatch =
+                searchTokens.every(
+                  token =>
+                    combined.includes(
+                      token
+                    )
+                );
+
+
+              if(
+                !allTokensMatch
+              ){
+
+                return null;
+
+              }
+
+
+              /*
+                Ranking sederhana supaya
+                hasil yang paling relevan
+                muncul lebih dahulu.
+              */
+
+              let score = 0;
+
+
+              if(
+                name.startsWith(
+                  searchText
+                )
+              ){
+
+                score += 100;
+
+              }
+
+
+              if(
+                code.startsWith(
+                  searchText
+                )
+              ){
+
+                score += 80;
+
+              }
+
+
+              if(
+                name.includes(
+                  searchText
+                )
+              ){
+
+                score += 40;
+
+              }
+
+
+              searchTokens.forEach(
+                token => {
+
+                  if(
+                    name.includes(
+                      token
+                    )
+                  ){
+
+                    score += 5;
+
+                  }
+
+                }
+              );
+
+
+              return {
+                item,
+                score
+              };
+
+            }
           )
-          .slice(0,20);
+          .filter(Boolean)
+          .sort(
+            (a,b) =>
+              b.score -
+              a.score
+          )
+          .slice(
+            0,
+            100
+          )
+          .map(
+            result =>
+              result.item
+          );
 
 
       if(!result.length){
@@ -6005,7 +6311,7 @@ $("barcode")
 
       document
         .querySelectorAll(
-          ".suggestion-item"
+          "#suggestions .suggestion-item"
         )
         .forEach(
           el => {
@@ -6280,12 +6586,21 @@ function parseQty(value){
 /* =====================================================
    SAVE INVENTORY
    CEPAT:
-   LANGSUNG KEMBALI DASHBOARD.
+   FORM LANGSUNG RESET.
+   TETAP DI HALAMAN SCAN.
    FETCH BERJALAN DI BACKGROUND.
 ===================================================== */
 
 window.saveInventory =
 function(){
+
+  /*
+    CAPTURE SEMUA DATA TERLEBIH DAHULU.
+
+    Ini penting karena setelah form
+    dikosongkan user bisa langsung
+    memasukkan barcode berikutnya.
+  */
 
   const barcode =
     normalizeBarcode(
@@ -6346,13 +6661,23 @@ function(){
 
 
   /*
-    SIMPAN MODE SEBELUM
-    KEMBALI DASHBOARD.
+    CAPTURE MODE.
+
+    Mode ini tidak lagi mengambil
+    currentMode setelah fetch selesai.
   */
 
   const sendingMode =
     currentMode;
 
+
+  /*
+    OBJECT INI KHUSUS UNTUK REQUEST INI.
+
+    Jadi request #1 tidak akan berubah
+    walaupun user langsung mengisi
+    request #2, #3, dan seterusnya.
+  */
 
   const sendData = {
 
@@ -6372,7 +6697,9 @@ function(){
 
 
   /*
-    BERSIHKAN FORM SECEPATNYA.
+    =================================================
+    LANGSUNG KOSONGKAN FORM
+    =================================================
   */
 
   $("barcode").value = "";
@@ -6387,24 +6714,56 @@ function(){
 
 
   /*
-    LANGSUNG KEMBALI DASHBOARD.
-    TIDAK MENUNGGU FETCH.
+    =================================================
+    TETAP DI HALAMAN INVENTORY
+    =================================================
+
+    Tidak kembali dashboard.
+
+    User langsung bisa:
+      scan barcode berikutnya
+      isi quantity
+      KIRIM DATA lagi
+
+    walaupun fetch sebelumnya
+    masih loading.
   */
 
   $("inventoryPage")
     .classList
-    .remove("show");
+    .add("show");
 
   $("dashboard")
     .classList
-    .remove("hidden");
-
-  updateOnlineStatus();
+    .add("hidden");
 
 
   /*
-    KIRIM DI BACKGROUND.
-    USER SUDAH BOLEH LANJUT.
+    Fokus langsung ke barcode.
+  */
+
+  setTimeout(
+    () => {
+
+      $("barcode").focus();
+
+    },
+    0
+  );
+
+
+  /*
+    =================================================
+    FETCH BACKGROUND
+    =================================================
+
+    TIDAK ADA await.
+
+    TIDAK ADA isSending.
+
+    TIDAK ADA disable button.
+
+    User bebas kirim berkali-kali.
   */
 
   fetch(
@@ -6429,7 +6788,12 @@ function(){
 
       console.log(
         "Save response:",
-        text
+        {
+          barcode,
+          qty,
+          mode:sendingMode,
+          response:text
+        }
       );
 
 
@@ -6450,7 +6814,9 @@ function(){
               ? "Stock Loss"
               : "Stock Opname"
           ) +
-          " berhasil disimpan."
+          " berhasil disimpan:",
+          barcode,
+          qty
         );
 
       }
@@ -6462,7 +6828,9 @@ function(){
         );
 
         showToast(
-          "Data gagal disimpan.",
+          "Data " +
+          barcode +
+          " gagal disimpan.",
           "error"
         );
 
@@ -6475,11 +6843,17 @@ function(){
 
       console.error(
         "Save error:",
-        error
+        {
+          barcode,
+          qty,
+          mode:sendingMode,
+          error
+        }
       );
 
       showToast(
-        "Gagal mengirim data.",
+        "Gagal mengirim data " +
+        barcode + ".",
         "error"
       );
 
