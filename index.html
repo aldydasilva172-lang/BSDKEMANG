@@ -225,11 +225,12 @@ button{
 /* =====================================================  
    DASHBOARD — MODERN COMPACT  
 ===================================================== */  
-  
-#dashboard{  
-  min-height:100vh;  
-  padding:10px;  
-}  
+
+  #dashboard{
+  min-height:100vh;
+  padding:10px;
+}
+
 .dashboard-layout{
   width:100%;
   max-width:1200px;
@@ -300,241 +301,246 @@ button{
     );
 
   pointer-events:none;
-}  
-  
-/* =====================================================  
-   TOPBAR  
-===================================================== */  
-  
-.topbar{  
-  position:relative;  
-  z-index:5;  
-  
-  width:100%;  
-  
-  display:flex;  
-  align-items:center;  
-  justify-content:space-between;  
-  
-  gap:8px;  
-}  
-  
-.top-brand,  
-.user-area{  
-  display:flex;  
-  align-items:center;  
-}  
-  
-.top-brand{  
-  gap:7px;  
-}  
-  
-.top-brand-icon{  
-  width:29px;  
-  height:29px;  
-  
-  flex:none;  
-  
-  display:flex;  
-  align-items:center;  
-  justify-content:center;  
-  
-  border-radius:8px;  
-  
-  font-size:9px;  
-  font-weight:950;  
-  
-  background:  
-    linear-gradient(  
-      135deg,  
-      var(--orange),  
-      #ff4700  
-    );  
-  
-  box-shadow:  
-    0 6px 15px rgba(255,122,0,.16);  
-}  
-  
-.top-brand-text strong{  
-  display:block;  
-  
-  font-size:10px;  
-  
-  letter-spacing:.7px;  
-}  
-  
-.top-brand-text span{  
-  display:block;  
-  
-  margin-top:1px;  
-  
-  font-size:6px;  
-  
-  color:#727984;  
-  
-  letter-spacing:.7px;  
-}  
-  
-.user-area{  
-  gap:5px;  
-  
-  min-width:0;  
-}  
-  
-/* =====================================================  
-   ONLINE  
-===================================================== */  
-  
-.system-status{  
-  display:inline-flex;  
-  
-  align-items:center;  
-  justify-content:center;  
-  
-  gap:4px;  
-  
-  padding:5px 7px;  
-  
-  border-radius:999px;  
-  
-  background:  
-    rgba(53,232,137,.055);  
-  
-  border:  
-    1px solid rgba(53,232,137,.15);  
-  
-  color:#70eda8;  
-  
-  font-size:6px;  
-  
-  font-weight:800;  
-  
-  white-space:nowrap;  
-}  
-  
-.status-dot{  
-  width:4px;  
-  height:4px;  
-  
-  flex:none;  
-  
-  border-radius:50%;  
-  
-  background:var(--green);  
-  
-  box-shadow:  
-    0 0 7px var(--green);  
-}  
-  
-.system-status.offline{  
-  background:  
-    rgba(255,59,48,.055);  
-  
-  border-color:  
-    rgba(255,59,48,.18);  
-  
-  color:#ff6b61;  
-}  
-  
-.system-status.offline .status-dot{  
-  background:var(--red);  
-  
-  box-shadow:  
-    0 0 7px var(--red);  
-}  
-  
-/* =====================================================  
-   USER  
-===================================================== */  
-  
-.avatar{  
-  width:25px;  
-  height:25px;  
-  
-  flex:none;  
-  
-  border-radius:50%;  
-  
-  display:flex;  
-  align-items:center;  
-  justify-content:center;  
-  
-  background:  
-    linear-gradient(  
-      135deg,  
-      #373b43,  
-      #181a1f  
-    );  
-  
-  border:  
-    1px solid var(--border);  
-  
-  font-size:7px;  
-  
-  font-weight:900;  
-}  
-  
-.user-name{  
-  max-width:70px;  
-  
-  white-space:nowrap;  
-  overflow:hidden;  
-  text-overflow:ellipsis;  
-  
-  font-size:7px;  
-  
-  font-weight:800;  
-}  
-  
-.icon-button{  
-  width:25px;  
-  height:25px;  
-  
-  flex:none;  
-  
-  border-radius:7px;  
-  
-  border:  
-    1px solid var(--border);  
-  
-  background:  
-    rgba(255,255,255,.045);  
-  
-  color:#fff;  
-  
-  display:flex;  
-  align-items:center;  
-  justify-content:center;  
-  
-  font-size:9px;  
-  
-  transition:.2s;  
-}  
-  
-.icon-button:hover{  
-  border-color:  
-    rgba(255,122,0,.35);  
-  
-  background:  
-    rgba(255,122,0,.07);  
-  
-  transform:translateY(-1px);  
-}  
-  
-/* =====================================================  
-   WELCOME  
-===================================================== */  
-  
-.welcome-block{  
-  position:relative;  
-  z-index:2;  
-  
-  width:100%;  
-  
-  margin:auto 0;  
-  
-  text-align:center;  
-}  
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar{
+  position:relative;
+  z-index:5;
+
+  width:100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:8px;
+}
+
+.top-brand,
+.user-area{
+  display:flex;
+  align-items:center;
+}
+
+.top-brand{
+  gap:7px;
+}
+
+.top-brand-icon{
+  width:29px;
+  height:29px;
+
+  flex:none;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:8px;
+
+  font-size:9px;
+  font-weight:950;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      #ff4700
+    );
+
+  box-shadow:
+    0 6px 15px rgba(255,122,0,.16);
+}
+
+.top-brand-text strong{
+  display:block;
+
+  font-size:10px;
+
+  letter-spacing:.7px;
+}
+
+.top-brand-text span{
+  display:block;
+
+  margin-top:1px;
+
+  font-size:6px;
+
+  color:#727984;
+
+  letter-spacing:.7px;
+}
+
+.user-area{
+  gap:5px;
+
+  min-width:0;
+}
+
+
+/* =====================================================
+   ONLINE
+===================================================== */
+
+.system-status{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:4px;
+
+  padding:5px 7px;
+
+  border-radius:999px;
+
+  background:
+    rgba(53,232,137,.055);
+
+  border:
+    1px solid rgba(53,232,137,.15);
+
+  color:#70eda8;
+
+  font-size:6px;
+
+  font-weight:800;
+
+  white-space:nowrap;
+}
+
+.status-dot{
+  width:4px;
+  height:4px;
+
+  flex:none;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:
+    0 0 7px var(--green);
+}
+
+.system-status.offline{
+  background:
+    rgba(255,59,48,.055);
+
+  border-color:
+    rgba(255,59,48,.18);
+
+  color:#ff6b61;
+}
+
+.system-status.offline .status-dot{
+  background:var(--red);
+
+  box-shadow:
+    0 0 7px var(--red);
+}
+
+
+/* =====================================================
+   USER
+===================================================== */
+
+.avatar{
+  width:25px;
+  height:25px;
+
+  flex:none;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #373b43,
+      #181a1f
+    );
+
+  border:
+    1px solid var(--border);
+
+  font-size:7px;
+
+  font-weight:900;
+}
+
+.user-name{
+  max-width:70px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+
+  font-size:7px;
+
+  font-weight:800;
+}
+
+.icon-button{
+  width:25px;
+  height:25px;
+
+  flex:none;
+
+  border-radius:7px;
+
+  border:
+    1px solid var(--border);
+
+  background:
+    rgba(255,255,255,.045);
+
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:9px;
+
+  transition:.2s;
+}
+
+.icon-button:hover{
+  border-color:
+    rgba(255,122,0,.35);
+
+  background:
+    rgba(255,122,0,.07);
+
+  transform:translateY(-1px);
+}
+
+
+/* =====================================================
+   WELCOME
+===================================================== */
+
+.welcome-block{
+  position:relative;
+  z-index:2;
+
+  width:100%;
+
+  margin:auto 0;
+
+  text-align:center;
+}
+
 .welcome-title{
   font-size:31px;
 
@@ -572,373 +578,410 @@ button{
 
   line-height:1.4;
 }
-  
-/* =====================================================  
-   FOOTER  
-===================================================== */  
-  
-.dashboard-footer{  
-  position:relative;  
-  z-index:2;  
-  
-  display:flex;  
-  
-  justify-content:center;  
-  align-items:center;  
-  
-  gap:15px;  
-  
-  padding-top:5px;  
-  
-  margin-top:auto;  
-  
-  border-top:  
-    1px solid rgba(255,255,255,.06);  
-  
-  color:#626974;  
-  
-  font-size:7px;  
-  
-  text-align:center;  
-}  
-  
-/* =====================================================  
-   OPERATIONS  
-===================================================== */  
-  
-.operations-panel{  
-  display:flex;  
-  
-  flex-direction:column;  
-  
-  gap:6px;  
-  
-  min-width:0;  
-}  
-  
-.operations-heading{  
-  height:20px;  
-  
-  display:flex;  
-  
-  align-items:center;  
-  
-  justify-content:space-between;  
-  
-  padding:0 2px;  
-}  
-  
-.operations-heading h2{  
-  font-size:10px;  
-  
-  font-weight:950;  
-  
-  letter-spacing:.5px;  
-}  
-  
-.operations-heading span{  
-  font-size:6px;  
-  
-  color:#656c77;  
-}  
-  
-/* =====================================================  
-   OPERATION CARD  
-===================================================== */  
-  
-.operation-card{  
-  position:relative;  
-  
-  min-height:36px;  
-  
-  padding:  
-    7px  
-    27px  
-    7px  
-    38px;  
-  
-  border-radius:10px;  
-  
-  border:  
-    1px solid var(--border);  
-  
-  background:  
-    linear-gradient(  
-      145deg,  
-      rgba(255,255,255,.065),  
-      rgba(255,255,255,.022)  
-    );  
-  
-  box-shadow:  
-    0 8px 20px rgba(0,0,0,.20);  
-  
-  overflow:hidden;  
-  
-  cursor:pointer;  
-  
-  transition:  
-    transform .2s ease,  
-    border-color .2s ease,  
-    background .2s ease;  
-}  
-  
-.operation-card:hover{  
-  transform:translateX(-3px);  
-  
-  border-color:  
-    rgba(255,122,0,.4);  
-  
-  background:  
-    linear-gradient(  
-      145deg,  
-      rgba(255,122,0,.09),  
-      rgba(255,255,255,.025)  
-    );  
-}  
-  
-.operation-card:after{  
-  content:"";  
-  
-  position:absolute;  
-  
-  width:80px;  
-  height:80px;  
-  
-  right:-45px;  
-  bottom:-50px;  
-  
-  border-radius:50%;  
-  
-  background:  
-    radial-gradient(  
-      circle,  
-      rgba(255,122,0,.13),  
-      transparent 70%  
-    );  
-}  
-  
-/* ICON */  
-  
-.operation-icon{  
-  position:absolute;  
-  
-  left:7px;  
-  top:50%;  
-  
-  transform:translateY(-50%);  
-  
-  width:24px;  
-  height:24px;  
-  
-  display:flex;  
-  
-  align-items:center;  
-  justify-content:center;  
-  
-  border-radius:7px;  
-  
-  margin:0;  
-  
-  font-size:11px;  
-  
-  background:  
-    rgba(255,122,0,.10);  
-  
-  border:  
-    1px solid rgba(255,122,0,.17);  
-}  
-  
-.operation-card.opname .operation-icon{  
-  background:  
-    rgba(75,145,255,.10);  
-  
-  border-color:  
-    rgba(75,145,255,.17);  
-}  
-  
-.operation-card.data .operation-icon{  
-  background:  
-    rgba(53,232,137,.08);  
-  
-  border-color:  
-    rgba(53,232,137,.16);  
-}  
-  
-/* TEXT */  
-  
-.operation-title{  
-  font-size:8px;  
-  
-  font-weight:950;  
-  
-  line-height:1.1;  
-}  
-  
-.operation-desc{  
-  margin-top:2px;  
-  
-  color:#747c88;  
-  
-  font-size:6px;  
-  
-  line-height:1.15;  
-  
-  white-space:nowrap;  
-  
-  overflow:hidden;  
-  
-  text-overflow:ellipsis;  
-}  
-  
-/* ARROW */  
-  
-.operation-arrow{  
-  position:absolute;  
-  
-  right:6px;  
-  top:50%;  
-  
-  transform:translateY(-50%);  
-  
-  width:17px;  
-  height:17px;  
-  
-  display:flex;  
-  
-  align-items:center;  
-  justify-content:center;  
-  
-  border-radius:5px;  
-  
-  background:  
-    rgba(255,255,255,.04);  
-  
-  color:#999;  
-  
-  font-size:8px;  
-}  
-  
-/* =====================================================  
-   DASHBOARD TABLET  
-===================================================== */  
-  
-@media(max-width:900px){  
-  
-  #dashboard{  
-    padding:8px;  
-  }  
-  
-  .dashboard-layout{  
-    grid-template-columns:1fr;  
-    gap:7px;  
-  }  
-  
-  .dashboard-main{  
-    height:120px;  
-    min-height:120px;  
-  
-    padding:9px 11px;  
-  
-    border-radius:13px;  
-  }  
-  
-  .welcome-title{  
-    font-size:23px;  
-  }  
-  
-  .welcome-sub{  
-    font-size:9px;  
-    max-width:550px;  
-  }  
-  
-  .operations-panel{  
-    display:grid;  
-  
-    grid-template-columns:  
-      repeat(3,minmax(0,1fr));  
-  
-    gap:6px;  
-  }  
-  
-  .operations-heading{  
-    grid-column:1/-1;  
-  
-    height:19px;  
-  }  
-  
-  .operation-card{
-  min-height:44px;
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.dashboard-footer{
+  position:relative;
+  z-index:2;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:15px;
+
+  padding-top:5px;
+
+  margin-top:auto;
+
+  border-top:
+    1px solid rgba(255,255,255,.06);
+
+  color:#626974;
+
+  font-size:7px;
+
+  text-align:center;
+}
+
+
+/* =====================================================
+   OPERATIONS
+===================================================== */
+
+.operations-panel{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:6px;
+
+  min-width:0;
+}
+
+.operations-heading{
+  height:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 2px;
+}
+
+.operations-heading h2{
+  font-size:10px;
+
+  font-weight:950;
+
+  letter-spacing:.5px;
+}
+
+.operations-heading span{
+  font-size:6px;
+
+  color:#656c77;
+}
+
+
+/* =====================================================
+   OPERATION CARD
+===================================================== */
+
+.operation-card{
+  position:relative;
+
+  min-height:36px;
 
   padding:
-    9px
-    32px
-    9px
-    47px;
+    7px
+    27px
+    7px
+    38px;
 
-  border-radius:11px;
+  border-radius:10px;
+
+  border:
+    1px solid var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.065),
+      rgba(255,255,255,.022)
+    );
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.20);
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    background .2s ease;
 }
+
+.operation-card:hover{
+  transform:translateX(-3px);
+
+  border-color:
+    rgba(255,122,0,.4);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,122,0,.09),
+      rgba(255,255,255,.025)
+    );
+}
+
+.operation-card:after{
+  content:"";
+
+  position:absolute;
+
+  width:80px;
+  height:80px;
+
+  right:-45px;
+  bottom:-50px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,122,0,.13),
+      transparent 70%
+    );
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
 
 .operation-icon{
-  left:9px;
+  position:absolute;
 
-  width:29px;
-  height:29px;
+  left:7px;
+  top:50%;
 
-  border-radius:8px;
+  transform:translateY(-50%);
 
-  font-size:13px;
+  width:24px;
+  height:24px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:7px;
+
+  margin:0;
+
+  font-size:11px;
+
+  background:
+    rgba(255,122,0,.10);
+
+  border:
+    1px solid rgba(255,122,0,.17);
 }
 
+.operation-card.opname .operation-icon{
+  background:
+    rgba(75,145,255,.10);
+
+  border-color:
+    rgba(75,145,255,.17);
+}
+
+.operation-card.data .operation-icon{
+  background:
+    rgba(53,232,137,.08);
+
+  border-color:
+    rgba(53,232,137,.16);
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
 .operation-title{
-  font-size:9px;
+  font-size:8px;
+
+  font-weight:950;
+
+  line-height:1.1;
 }
 
 .operation-desc{
-  margin-top:3px;
-  font-size:7px;
+  margin-top:2px;
+
+  color:#747c88;
+
+  font-size:6px;
+
+  line-height:1.15;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 }
 
+
+/* =====================================================
+   ARROW
+===================================================== */
+
 .operation-arrow{
-  right:8px;
+  position:absolute;
 
-  width:19px;
-  height:19px;
+  right:6px;
+  top:50%;
 
-  font-size:9px;
-}  
-  
-  /*  
-    ONLINE TETAP MUNCUL  
-  */  
-  
-  .topbar .system-status{  
-    display:inline-flex;  
-  }  
-}  
-  
-/* =====================================================  
-   PHONE  
-   PORTRAIT & LANDSCAPE SAMA  
-===================================================== */  
-  
-@media(max-width:600px){
+  transform:translateY(-50%);
+
+  width:17px;
+  height:17px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:5px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  color:#999;
+
+  font-size:8px;
+}
+
+
+/* =====================================================
+   DASHBOARD TABLET
+===================================================== */
+
+@media(max-width:900px){
+
+  #dashboard{
+    padding:8px;
+  }
+
+  .dashboard-layout{
+    grid-template-columns:1fr;
+
+    gap:7px;
+  }
+
+  .dashboard-main{
+    height:120px;
+    min-height:120px;
+
+    padding:9px 11px;
+
+    border-radius:13px;
+  }
+
+  .welcome-title{
+    font-size:23px;
+  }
+
+  .welcome-sub{
+    font-size:9px;
+
+    max-width:550px;
+  }
+
+  .operations-panel{
+    display:grid;
+
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+
+    gap:6px;
+  }
+
+  .operations-heading{
+    grid-column:1/-1;
+
+    height:19px;
+  }
+
+  .operation-card{
+    min-height:44px;
+
+    padding:
+      9px
+      32px
+      9px
+      47px;
+
+    border-radius:11px;
+  }
+
+  .operation-icon{
+    left:9px;
+
+    width:29px;
+    height:29px;
+
+    border-radius:8px;
+
+    font-size:13px;
+  }
+
+  .operation-title{
+    font-size:9px;
+  }
+
+  .operation-desc{
+    margin-top:3px;
+
+    font-size:7px;
+  }
+
+  .operation-arrow{
+    right:8px;
+
+    width:19px;
+    height:19px;
+
+    font-size:9px;
+  }
+
+  /*
+     ONLINE TETAP MUNCUL
+  */
+
+  .topbar .system-status{
+    display:inline-flex;
+  }
+}
+
+
+/* =====================================================
+   📱 PHONE PORTRAIT
+   KHUSUS MODE TEGAK
+===================================================== */
+
+@media(max-width:600px) and (orientation:portrait){
 
   #dashboard{
     padding:7px;
   }
 
   .dashboard-layout{
-    gap:6px;
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
   }
 
+
+  /* ===================================================
+     WELCOME CARD
+  =================================================== */
+
   .dashboard-main{
-    height:115px;
-    min-height:115px;
+    width:100%;
+
+    height:125px;
+    min-height:125px;
 
     padding:8px 10px;
 
     border-radius:12px;
+
+    box-sizing:border-box;
   }
+
+
+  /* ===================================================
+     TOP BRAND
+  =================================================== */
 
   .top-brand{
     gap:6px;
@@ -961,7 +1004,10 @@ button{
     font-size:5.5px;
   }
 
-  /* SYSTEM ONLINE TETAP ADA */
+
+  /* ===================================================
+     ONLINE
+  =================================================== */
 
   .topbar .system-status{
     display:inline-flex;
@@ -977,6 +1023,11 @@ button{
     width:4px;
     height:4px;
   }
+
+
+  /* ===================================================
+     USER
+  =================================================== */
 
   .user-name{
     display:none;
@@ -996,6 +1047,11 @@ button{
     font-size:7.5px;
   }
 
+
+  /* ===================================================
+     WELCOME
+  =================================================== */
+
   .welcome-block{
     margin:auto 0;
   }
@@ -1003,11 +1059,15 @@ button{
   .welcome-title{
     font-size:21px;
 
+    line-height:1;
+
     letter-spacing:-.9px;
   }
 
   .welcome-sub{
     margin-top:4px;
+
+    width:100%;
 
     max-width:360px;
 
@@ -1015,6 +1075,11 @@ button{
 
     line-height:1.35;
   }
+
+
+  /* ===================================================
+     FOOTER
+  =================================================== */
 
   .dashboard-footer{
     padding-top:4px;
@@ -1024,11 +1089,14 @@ button{
     gap:9px;
   }
 
-  /* =========================
+
+  /* ===================================================
      OPERATIONS
-  ========================= */
+  =================================================== */
 
   .operations-panel{
+    width:100%;
+
     display:grid;
 
     grid-template-columns:
@@ -1038,6 +1106,8 @@ button{
   }
 
   .operations-heading{
+    grid-column:1/-1;
+
     height:18px;
   }
 
@@ -1049,39 +1119,95 @@ button{
     font-size:6px;
   }
 
+
+  /* ===================================================
+     OPERATION CARD
+  =================================================== */
+
   .operation-card{
-    min-height:62px;
+    width:100%;
+
+    min-width:0;
+
+    min-height:68px;
 
     padding:
       31px
       4px
-      4px;
+      5px;
 
     border-radius:9px;
+
+    box-sizing:border-box;
   }
 
+
   .operation-icon{
+    left:7px;
+    top:7px;
+
+    transform:none;
+
     width:23px;
     height:23px;
 
-    margin-bottom:4px;
+    margin:0;
+
+    border-radius:7px;
 
     font-size:10px;
   }
 
+
   .operation-title{
+    width:100%;
+
     font-size:6.5px;
+
+    line-height:1.15;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
   }
+
 
   .operation-desc{
-    margin-top:2px;
+    width:100%;
+
+    margin-top:3px;
 
     font-size:5px;
+
+    line-height:1.2;
+
+    white-space:normal;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:2;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
   }
 
+
   .operation-arrow{
+    right:5px;
+
+    bottom:5px;
+
+    top:auto;
+
+    transform:none;
+
     width:15px;
     height:15px;
+
+    border-radius:5px;
 
     font-size:7px;
   }
@@ -1089,14 +1215,22 @@ button{
 
 
 /* =====================================================
-   EXTRA SMALL PHONE
+   📱 EXTRA SMALL PHONE PORTRAIT
 ===================================================== */
 
-@media(max-width:380px){
+@media(max-width:380px) and (orientation:portrait){
+
+  #dashboard{
+    padding:6px;
+  }
+
+  .dashboard-layout{
+    gap:6px;
+  }
 
   .dashboard-main{
-    height:108px;
-    min-height:108px;
+    height:116px;
+    min-height:116px;
 
     padding:7px 8px;
   }
@@ -1110,15 +1244,18 @@ button{
   }
 
   .operation-card{
-    min-height:58px;
+    min-height:62px;
 
     padding:
       29px
       3px
-      3px;
+      4px;
   }
 
   .operation-icon{
+    left:6px;
+    top:6px;
+
     width:21px;
     height:21px;
 
@@ -1131,6 +1268,291 @@ button{
 
   .operation-desc{
     font-size:4.5px;
+  }
+
+  .operation-arrow{
+    right:4px;
+    bottom:4px;
+
+    width:14px;
+    height:14px;
+
+    font-size:6px;
+  }
+}
+
+
+/* =====================================================
+   📱 PHONE LANDSCAPE
+   MODEL HORIZONTAL SEPERTI DESKTOP
+===================================================== */
+
+@media(max-width:900px) and (orientation:landscape){
+
+  #dashboard{
+    padding:8px 10px;
+  }
+
+
+  /* ===================================================
+     LAYOUT HORIZONTAL
+  =================================================== */
+
+  .dashboard-layout{
+    width:100%;
+
+    max-width:1200px;
+
+    display:grid;
+
+    grid-template-columns:
+      minmax(0,1fr)
+      280px;
+
+    gap:10px;
+
+    align-items:stretch;
+  }
+
+
+  /* ===================================================
+     WELCOME CARD
+  =================================================== */
+
+  .dashboard-main{
+    width:auto;
+
+    height:145px;
+    min-height:145px;
+
+    padding:11px 14px;
+
+    border-radius:16px;
+  }
+
+
+  /* ===================================================
+     TOPBAR
+  =================================================== */
+
+  .topbar{
+    gap:7px;
+  }
+
+  .top-brand{
+    gap:6px;
+  }
+
+  .top-brand-icon{
+    width:26px;
+    height:26px;
+
+    border-radius:7px;
+
+    font-size:8px;
+  }
+
+  .top-brand-text strong{
+    font-size:9px;
+  }
+
+  .top-brand-text span{
+    font-size:5.5px;
+  }
+
+
+  /* ===================================================
+     USER
+  =================================================== */
+
+  .user-area{
+    gap:5px;
+  }
+
+  .user-name{
+    display:block;
+
+    max-width:70px;
+
+    font-size:7px;
+  }
+
+  .avatar,
+  .icon-button{
+    width:25px;
+    height:25px;
+  }
+
+  .avatar{
+    font-size:7px;
+  }
+
+  .icon-button{
+    font-size:9px;
+  }
+
+
+  /* ===================================================
+     ONLINE
+  =================================================== */
+
+  .topbar .system-status{
+    display:inline-flex;
+
+    padding:5px 7px;
+
+    font-size:6px;
+
+    gap:4px;
+  }
+
+  .topbar .status-dot{
+    width:4px;
+    height:4px;
+  }
+
+
+  /* ===================================================
+     WELCOME
+  =================================================== */
+
+  .welcome-block{
+    margin:auto 0;
+  }
+
+  .welcome-title{
+    font-size:27px;
+
+    line-height:1;
+
+    letter-spacing:-1.2px;
+  }
+
+  .welcome-sub{
+    margin-top:6px;
+
+    max-width:600px;
+
+    font-size:9px;
+
+    line-height:1.35;
+  }
+
+
+  /* ===================================================
+     FOOTER
+  =================================================== */
+
+  .dashboard-footer{
+    padding-top:5px;
+
+    font-size:6px;
+
+    gap:12px;
+  }
+
+
+  /* ===================================================
+     OPERATIONS
+  =================================================== */
+
+  .operations-panel{
+    width:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+  }
+
+  .operations-heading{
+    height:20px;
+
+    grid-column:auto;
+  }
+
+  .operations-heading h2{
+    font-size:10px;
+  }
+
+  .operations-heading span{
+    font-size:6px;
+  }
+
+
+  /* ===================================================
+     OPERATION CARD
+  =================================================== */
+
+  .operation-card{
+    width:auto;
+
+    min-height:36px;
+
+    padding:
+      7px
+      27px
+      7px
+      38px;
+
+    border-radius:10px;
+  }
+
+
+  .operation-icon{
+    left:7px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:24px;
+    height:24px;
+
+    margin:0;
+
+    border-radius:7px;
+
+    font-size:11px;
+  }
+
+
+  .operation-title{
+    font-size:8px;
+
+    line-height:1.1;
+
+    white-space:nowrap;
+  }
+
+
+  .operation-desc{
+    margin-top:2px;
+
+    font-size:6px;
+
+    line-height:1.15;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+  }
+
+
+  .operation-arrow{
+    right:6px;
+
+    top:50%;
+    bottom:auto;
+
+    transform:translateY(-50%);
+
+    width:17px;
+    height:17px;
+
+    font-size:8px;
   }
 }
   
