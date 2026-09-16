@@ -543,6 +543,59 @@ button{cursor:pointer}
 @media(max-width:650px){  
   input,select,textarea{font-size:16px!important}  
 }  
+/* =====================================================
+   ACTION LOADING
+===================================================== */
+
+.action-loading{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+.action-spinner{
+  width:14px;
+  height:14px;
+  border:2px solid rgba(255,255,255,.20);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:actionSpin .7s linear infinite;
+  flex:none;
+}
+
+@keyframes actionSpin{
+  to{transform:rotate(360deg)}
+}
+
+.reset-button.loading,
+.history-delete.loading{
+  pointer-events:none;
+  opacity:.75;
+}
+
+.history-delete.loading{
+  display:inline-flex!important;
+}
+
+.history-item.deleting{
+  pointer-events:none;
+  border-color:rgba(255,59,48,.35);
+  background:rgba(255,59,48,.06);
+  animation:deletePulse 1s ease-in-out infinite;
+}
+
+@keyframes deletePulse{
+  0%,100%{opacity:1}
+  50%{opacity:.55}
+}
+
+.reset-button.loading{
+  color:#fff;
+  border-color:rgba(255,122,0,.35);
+  background:rgba(255,122,0,.08);
+}
+
 </style>  </head>  <body>  <!-- LOGIN -->  <section id="loginPage">  
   <div class="login-card">  
     <div class="brand">  
@@ -2965,186 +3018,258 @@ async function retryHistoryItem(index){
   );  
 }  
   
-/* =====================================================  
-   DELETE HISTORY  
-===================================================== */  
-  
-async function deleteHistoryItem(index){  
-  
-  const item=  
-    historyRows[index];  
-  
-  if(!item)return;  
-  
-  if(item.__status==="pending"){  
-  
-    showToast(  
-      "Data masih sedang dikirim.",  
-      "error"  
-    );  
-  
-    return;  
-  }  
-  
-  /*  
-    Kalau gagal, belum ada data server.  
-    Hapus lokal saja.  
-  */  
-  
-  if(  
-    item.__status==="failed" &&  
-    item.__localId  
-  ){  
-  
-    historyRows.splice(index,1);  
-  
-    selectedHistoryItem=null;  
-  
-    saveHistoryCache();  
-    renderHistory();  
-  
-    showToast(  
-      "Data gagal dihapus dari antrean.",  
-      "success"  
-    );  
-  
-    return;  
-  }  
-  
-  const barcode=  
-    item.barcode||  
-    item.kode||  
-    item.article||  
-    "";  
-  
-  const qty=  
-    historyQty(item);  
-  
-  const row=item.row;  
-  
-  if(!Number.isInteger(Number(row))){  
-  
-    showToast(  
-      "Nomor baris data tidak ditemukan.",  
-      "error"  
-    );  
-  
-    return;  
-  }  
-  
-  const confirmed=  
-    confirm(  
-      "Hapus data ini?\n\n"+  
-      "Barcode: "+barcode+  
-      "\nQuantity: "+qty+  
-      (historyUnit(item)  
-        ? " "+historyUnit(item)  
-        : "")  
-    );  
-  
-  if(!confirmed)return;  
-  
-  const password=  
-    prompt(  
-      "Masukkan password admin untuk menghapus data:"  
-    );  
-  
-  if(password===null)return;  
-  
-  if(!password){  
-  
-    showToast(  
-      "Password wajib diisi.",  
-      "error"  
-    );  
-  
-    return;  
-  }  
-  
-  /*  
-    Tandai sedang dihapus supaya tidak  
-    disentuh oleh render.  
-  */  
-  
-  item.__tempDeleting=true;  
-  renderHistory();  
-  
-  try{  
-  
-    const response=  
-      await fetch(  
-        URL_SCRIPT,  
-        {  
-          method:"POST",  
-          body:JSON.stringify({  
-  
-            action:"deleteData",  
-  
-            mode:currentMode,  
-  
-            row:Number(row),  
-  
-            barcode,  
-  
-            qty,  
-  
-            password  
-  
-          })  
-        }  
-      );  
-  
-    const text=  
-      await response.text();  
-  
-    const lower=  
-      text.toLowerCase();  
-  
-    if(  
-      lower.includes("delete berhasil")||  
-      lower.includes("berhasil")||  
-      lower.includes("success")  
-    ){  
-  
-      historyRows.splice(index,1);  
-  
-      selectedHistoryItem=null;  
-  
-      saveHistoryCache();  
-      renderHistory();  
-  
-      showToast(  
-        "Data berhasil dihapus.",  
-        "success"  
-      );  
-  
-    }else{  
-  
-      item.__tempDeleting=false;  
-  
-      renderHistory();  
-  
-      showToast(  
-        text||"Gagal menghapus data.",  
-        "error"  
-      );  
-    }  
-  
-  }catch(error){  
-  
-    console.error(error);  
-  
-    item.__tempDeleting=false;  
-  
-    renderHistory();  
-  
-    showToast(  
-      "Gagal menghapus data.",  
-      "error"  
-    );  
-  }  
+/* =====================================================
+   DELETE HISTORY
+===================================================== */
+
+async function deleteHistoryItem(index){
+
+  const item=
+    historyRows[index];
+
+  if(!item)return;
+
+  if(item.__status==="pending"){
+
+    showToast(
+      "Data masih sedang dikirim.",
+      "error"
+    );
+
+    return;
+  }
+
+  /*
+    FAILED LOCAL
+  */
+
+  if(
+    item.__status==="failed" &&
+    item.__localId
+  ){
+
+    const itemElement=
+      document.querySelector(
+        `[data-history-index="${index}"]`
+      );
+
+    if(itemElement){
+
+      itemElement.classList.add("deleting");
+
+    }
+
+    await new Promise(
+      resolve=>setTimeout(resolve,350)
+    );
+
+    historyRows.splice(index,1);
+
+    selectedHistoryItem=null;
+
+    saveHistoryCache();
+    renderHistory();
+
+    showToast(
+      "Data gagal dihapus dari antrean.",
+      "success"
+    );
+
+    return;
+  }
+
+  const barcode=
+    item.barcode||
+    item.kode||
+    item.article||
+    "";
+
+  const qty=
+    historyQty(item);
+
+  const row=item.row;
+
+  if(!Number.isInteger(Number(row))){
+
+    showToast(
+      "Nomor baris data tidak ditemukan.",
+      "error"
+    );
+
+    return;
+  }
+
+  const confirmed=
+    confirm(
+      "Hapus data ini?\n\n"+
+      "Barcode: "+barcode+
+      "\nQuantity: "+qty+
+      (
+        historyUnit(item)
+          ? " "+historyUnit(item)
+          : ""
+      )
+    );
+
+  if(!confirmed)return;
+
+  const password=
+    prompt(
+      "Masukkan password admin untuk menghapus data:"
+    );
+
+  if(password===null)return;
+
+  if(!password){
+
+    showToast(
+      "Password wajib diisi.",
+      "error"
+    );
+
+    return;
+  }
+
+  /*
+    CARI ELEMENT YANG SEDANG DIHAPUS
+  */
+
+  const itemElement=
+    document.querySelector(
+      `[data-history-index="${index}"]`
+    );
+
+  const deleteButton=
+    itemElement?.querySelector(
+      ".history-delete"
+    );
+
+  /*
+    ANIMASI DELETE
+  */
+
+  if(itemElement){
+
+    itemElement.classList.add("deleting");
+
+  }
+
+  if(deleteButton){
+
+    deleteButton.disabled=true;
+    deleteButton.classList.add("loading");
+
+    deleteButton.innerHTML=`
+      <span class="action-loading">
+        <span class="action-spinner"></span>
+        MENGHAPUS...
+      </span>
+    `;
+
+  }
+
+  /*
+    TANDAI SEDANG DIHAPUS
+  */
+
+  item.__tempDeleting=true;
+
+  try{
+
+    const response=
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
+          body:JSON.stringify({
+
+            action:"deleteData",
+
+            mode:currentMode,
+
+            row:Number(row),
+
+            barcode,
+
+            qty,
+
+            password
+
+          })
+        }
+      );
+
+    const text=
+      await response.text();
+
+    const lower=
+      text.toLowerCase();
+
+    if(
+      lower.includes("delete berhasil")||
+      lower.includes("berhasil")||
+      lower.includes("success")
+    ){
+
+      /*
+        HILANGKAN DATA DENGAN ANIMASI
+      */
+
+      if(itemElement){
+
+        itemElement.style.transition=
+          "opacity .3s ease, transform .3s ease";
+
+        itemElement.style.opacity="0";
+        itemElement.style.transform=
+          "translateX(20px)";
+
+        await new Promise(
+          resolve=>setTimeout(resolve,300)
+        );
+
+      }
+
+      historyRows.splice(index,1);
+
+      selectedHistoryItem=null;
+
+      saveHistoryCache();
+      renderHistory();
+
+      showToast(
+        "Data berhasil dihapus.",
+        "success"
+      );
+
+    }else{
+
+      item.__tempDeleting=false;
+
+      if(itemElement)
+        itemElement.classList.remove("deleting");
+
+      showToast(
+        text||"Gagal menghapus data.",
+        "error"
+      );
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    item.__tempDeleting=false;
+
+    if(itemElement)
+      itemElement.classList.remove("deleting");
+
+    showToast(
+      "Gagal menghapus data.",
+      "error"
+    );
+  }
 }  
-  
 /* =====================================================  
    CLICK FAILED = RETRY  
 ===================================================== */  
@@ -3170,102 +3295,152 @@ document.addEventListener(
   }  
 );  
   
-/* =====================================================  
-   RESET  
-===================================================== */  
-  
-window.resetInventory=async function(){  
-  
-  const confirmation=  
-    prompt(  
-      "Masukkan password reset:"  
-    );  
-  
-  if(confirmation===null)return;  
-  
-  if(!confirmation){  
-  
-    showToast(  
-      "Password wajib diisi.",  
-      "error"  
-    );  
-  
-    return;  
-  }  
-  
-  try{  
-  
-    const response=  
-      await fetch(  
-        URL_SCRIPT,  
-        {  
-          method:"POST",  
-          body:JSON.stringify({  
-  
-            action:"reset",  
-  
-            password:confirmation,  
-  
-            mode:currentMode  
-  
-          })  
-        }  
-      );  
-  
-    const text=  
-      await response.text();  
-  
-    if(  
-      text.toLowerCase().includes("berhasil")||  
-      text.toLowerCase().includes("success")  
-    ){  
-  
-      historyRows=[];  
-  
-      localStorage.removeItem(  
-        historyCacheKey(currentMode)  
-      );  
-  
-      selectedHistoryItem=null;  
-  
-      renderHistory();  
-  
-      $("barcode").value="";  
-      $("qty").value="";  
-  
-      clearProductName();  
-  
-      $("suggestions").style.display="none";  
-  
-      showToast(  
-        "Data berhasil di-reset.",  
-        "success"  
-      );  
-  
-      setTimeout(  
-        ()=>$("barcode").focus(),  
-        50  
-      );  
-  
-    }else{  
-  
-      showToast(  
-        "Reset gagal. Password mungkin salah.",  
-        "error"  
-      );  
-    }  
-  
-  }catch(error){  
-  
-    console.error(error);  
-  
-    showToast(  
-      "Gagal melakukan reset.",  
-      "error"  
-    );  
-  }  
+/* =====================================================
+   RESET
+===================================================== */
+
+window.resetInventory=async function(){
+
+  const confirmation=
+    prompt(
+      "Masukkan password reset:"
+    );
+
+  if(confirmation===null)return;
+
+  if(!confirmation){
+
+    showToast(
+      "Password wajib diisi.",
+      "error"
+    );
+
+    return;
+  }
+
+  const resetButton=
+    document.querySelector(".reset-button");
+
+  /*
+    LOCK BUTTON + LOADING
+  */
+
+  const originalText=
+    resetButton.innerHTML;
+
+  resetButton.disabled=true;
+  resetButton.classList.add("loading");
+
+  resetButton.innerHTML=`
+    <span class="action-loading">
+      <span class="action-spinner"></span>
+      RESETTING...
+    </span>
+  `;
+
+  try{
+
+    const response=
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
+          body:JSON.stringify({
+
+            action:"reset",
+
+            password:confirmation,
+
+            mode:currentMode
+
+          })
+        }
+      );
+
+    const text=
+      await response.text();
+
+    const lower=
+      text.toLowerCase();
+
+    if(
+      lower.includes("berhasil")||
+      lower.includes("success")
+    ){
+
+      /*
+        HAPUS HISTORY
+      */
+
+      historyRows=[];
+
+      localStorage.removeItem(
+        historyCacheKey(currentMode)
+      );
+
+      selectedHistoryItem=null;
+
+      renderHistory();
+
+      /*
+        RESET FORM
+      */
+
+      $("barcode").value="";
+      $("qty").value="";
+
+      clearProductName();
+
+      $("suggestions").innerHTML="";
+      $("suggestions").style.display="none";
+
+      /*
+        SUCCESS
+      */
+
+      showToast(
+        "Data berhasil di-reset.",
+        "success"
+      );
+
+      /*
+        FOCUS BARCODE
+      */
+
+      setTimeout(
+        ()=>$("barcode").focus(),
+        100
+      );
+
+    }else{
+
+      showToast(
+        "Reset gagal. Password mungkin salah.",
+        "error"
+      );
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast(
+      "Gagal melakukan reset.",
+      "error"
+    );
+
+  }finally{
+
+    /*
+      KEMBALIKAN BUTTON
+    */
+
+    resetButton.disabled=false;
+    resetButton.classList.remove("loading");
+    resetButton.innerHTML=originalText;
+
+  }
 };  
-  
 /* =====================================================  
    DATA BSD  
 ===================================================== */  
