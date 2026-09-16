@@ -3,7 +3,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
 <title>THE BUTCHER</title>
 
@@ -344,17 +348,18 @@ button{
   position:relative;
 
   min-width:0;
+  width:100%;
 
   display:flex;
   flex-direction:column;
 
   /*
-    COMPACT
-    Lebar tidak berubah.
-    Hanya tinggi diperkecil.
+    Lebar mengikuti grid / layar.
+    Tinggi dibuat compact.
   */
-  height:340px;
-  min-height:0;
+
+  height:270px;
+  min-height:270px;
 
   padding:20px 22px;
 
@@ -416,7 +421,7 @@ button{
 
   gap:15px;
 
-  margin-bottom:8px;
+  margin-bottom:5px;
 }
 
 .top-brand{
@@ -481,7 +486,9 @@ button{
 }
 
 
-/* SYSTEM ONLINE DI TOPBAR */
+/* =====================================================
+   SYSTEM ONLINE DI TOPBAR
+===================================================== */
 
 .topbar .system-status{
 
@@ -501,7 +508,6 @@ button{
   width:6px;
   height:6px;
 }
-
 
 .avatar{
 
@@ -617,9 +623,6 @@ button{
   transition:.25s ease;
 }
 
-
-/* OFFLINE */
-
 .system-status.offline{
 
   background:
@@ -639,9 +642,6 @@ button{
   box-shadow:
     0 0 12px var(--red);
 }
-
-
-/* CHECKING */
 
 .system-status.checking{
 
@@ -697,24 +697,19 @@ button{
 
   max-width:760px;
 
-  /*
-    Tidak lagi menggunakan
-    margin auto yang membuat
-    area terlalu tinggi.
-  */
   margin:auto 0;
 }
 
 .welcome-title{
 
   font-size:
-    clamp(38px,4.7vw,62px);
+    clamp(34px,4.2vw,54px);
 
   line-height:.94;
 
   font-weight:950;
 
-  letter-spacing:-4px;
+  letter-spacing:-3px;
 }
 
 .welcome-title span{
@@ -736,13 +731,13 @@ button{
 
   max-width:620px;
 
-  margin-top:10px;
+  margin-top:8px;
 
   color:#858c98;
 
-  font-size:11px;
+  font-size:10px;
 
-  line-height:1.5;
+  line-height:1.45;
 }
 
 
@@ -759,9 +754,9 @@ button{
 
   justify-content:space-between;
 
-  padding-top:9px;
+  padding-top:8px;
 
-  margin-top:8px;
+  margin-top:7px;
 
   border-top:
     1px solid
@@ -1225,10 +1220,6 @@ button{
 
   color:#fff;
 
-  /*
-    16px mencegah browser mobile
-    melakukan auto zoom saat focus.
-  */
   font-size:16px!important;
 
   line-height:1.2;
@@ -1341,6 +1332,12 @@ button{
   box-shadow:
     0 14px 32px
     rgba(255,122,0,.18);
+
+  transition:.18s;
+}
+
+.send-button:active{
+  transform:scale(.985);
 }
 
 .send-button:disabled{
@@ -1483,11 +1480,6 @@ button{
   gap:6px;
 }
 
-
-/*
-  History sekarang clickable.
-*/
-
 .history-item{
 
   position:relative;
@@ -1560,12 +1552,6 @@ button{
 
   text-overflow:ellipsis;
 }
-
-
-/*
-  Tombol delete hanya muncul
-  pada item yang sedang dipilih.
-*/
 
 .history-delete{
 
@@ -1690,6 +1676,195 @@ button{
 
   background:
     rgba(255,59,48,.07);
+}
+
+.reset-button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+
+/* =====================================================
+   RESET LOADING OVERLAY
+===================================================== */
+
+#resetOverlay{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:900;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    rgba(5,6,9,.78);
+
+  backdrop-filter:blur(12px);
+}
+
+#resetOverlay.show{
+
+  display:flex;
+
+  animation:
+    resetOverlayIn .18s ease;
+}
+
+@keyframes resetOverlayIn{
+
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+
+}
+
+.reset-loading-card{
+
+  width:min(300px,100%);
+
+  padding:28px 22px;
+
+  text-align:center;
+
+  border-radius:22px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.10);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(30,32,38,.98),
+      rgba(12,14,18,.98)
+    );
+
+  box-shadow:
+    0 30px 90px
+    rgba(0,0,0,.65);
+
+  animation:
+    resetCardIn .25s ease;
+}
+
+@keyframes resetCardIn{
+
+  from{
+    opacity:0;
+    transform:translateY(12px) scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+
+}
+
+.reset-spinner{
+
+  width:42px;
+  height:42px;
+
+  margin:0 auto 15px;
+
+  border-radius:50%;
+
+  border:
+    3px solid
+    rgba(255,255,255,.10);
+
+  border-top-color:
+    var(--orange);
+
+  animation:
+    resetSpin .75s linear infinite;
+}
+
+@keyframes resetSpin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+.reset-success-icon{
+
+  width:48px;
+  height:48px;
+
+  margin:0 auto 14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+    rgba(53,232,137,.10);
+
+  border:
+    1px solid
+    rgba(53,232,137,.25);
+
+  color:var(--green);
+
+  font-size:23px;
+  font-weight:950;
+
+  animation:
+    resetSuccess .3s ease;
+}
+
+@keyframes resetSuccess{
+
+  from{
+    opacity:0;
+    transform:scale(.6);
+  }
+
+  70%{
+    transform:scale(1.12);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+
+}
+
+.reset-loading-title{
+
+  font-size:14px;
+
+  font-weight:950;
+
+  letter-spacing:.4px;
+}
+
+.reset-loading-sub{
+
+  margin-top:6px;
+
+  color:#737b86;
+
+  font-size:9px;
+
+  line-height:1.4;
 }
 
 
@@ -1861,6 +2036,13 @@ button{
   font-size:10px;
 
   font-weight:800;
+}
+
+.data-bsd-refresh:disabled{
+
+  opacity:.55;
+
+  cursor:not-allowed;
 }
 
 .data-bsd-body{
@@ -2543,6 +2725,23 @@ button{
   font-size:10px;
 
   font-weight:800;
+
+  animation:
+    toastIn .2s ease;
+}
+
+@keyframes toastIn{
+
+  from{
+    opacity:0;
+    transform:translateY(7px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+
 }
 
 .toast.success{
@@ -2583,9 +2782,9 @@ button{
 
   .dashboard-main{
 
-    height:340px;
+    height:280px;
 
-    min-height:340px;
+    min-height:280px;
 
     padding:18px;
 
@@ -2595,7 +2794,7 @@ button{
   .welcome-title{
 
     font-size:
-      clamp(40px,11vw,64px);
+      clamp(34px,10vw,54px);
   }
 
   .operations-panel{
@@ -2679,10 +2878,16 @@ button{
     font-size:8px;
   }
 
+  .topbar .status-dot{
+
+    width:6px;
+    height:6px;
+  }
+
   .dashboard-main{
 
-    min-height:325px;
-    height:325px;
+    min-height:270px;
+    height:270px;
   }
 
   .operations-panel{
@@ -2777,8 +2982,8 @@ button{
   }
 
   .dashboard-main{
-    min-height:315px;
-    height:315px;
+    min-height:260px;
+    height:260px;
   }
 
   .top-brand-icon{
@@ -2960,8 +3165,6 @@ button{
   <div class="dashboard-layout">
 
 
-    <!-- LEFT -->
-
     <main class="dashboard-main">
 
       <div class="topbar">
@@ -2986,9 +3189,6 @@ button{
 
 
         <div class="user-area">
-
-
-          <!-- SYSTEM ONLINE SEKARANG DI TOPBAR -->
 
           <div
             id="connectionStatus"
@@ -3038,8 +3238,6 @@ button{
       </div>
 
 
-      <!-- WELCOME COMPACT -->
-
       <div class="welcome-block">
 
         <h1
@@ -3073,8 +3271,6 @@ button{
     </main>
 
 
-    <!-- RIGHT -->
-
     <aside class="operations-panel">
 
       <div class="operations-heading">
@@ -3085,8 +3281,6 @@ button{
 
       </div>
 
-
-      <!-- STOCK LOSS -->
 
       <div
         class="operation-card"
@@ -3114,8 +3308,6 @@ button{
       </div>
 
 
-      <!-- STOCK OPNAME -->
-
       <div
         class="operation-card opname"
         onclick="openInventory('opname')"
@@ -3140,8 +3332,6 @@ button{
 
       </div>
 
-
-      <!-- DATA BSD -->
 
       <div
         class="operation-card data"
@@ -3182,7 +3372,6 @@ button{
 <section id="inventoryPage">
 
   <div class="inventory-center">
-
 
     <div class="inventory-top">
 
@@ -3235,8 +3424,6 @@ button{
       </div>
 
 
-      <!-- BARCODE -->
-
       <div class="inventory-input-group">
 
         <label>
@@ -3267,8 +3454,6 @@ button{
 
       </div>
 
-
-      <!-- QUANTITY -->
 
       <div class="inventory-input-group">
 
@@ -3303,8 +3488,6 @@ button{
       ></div>
 
 
-      <!-- HISTORY -->
-
       <div class="history-section">
 
         <div class="history-header">
@@ -3335,6 +3518,7 @@ button{
         <div class="reset-row">
 
           <button
+            id="resetButton"
             class="reset-button"
             onclick="resetInventory()"
           >
@@ -3350,6 +3534,49 @@ button{
   </div>
 
 </section>
+
+
+<!-- =====================================================
+     RESET OVERLAY
+===================================================== -->
+
+<div
+  id="resetOverlay"
+  aria-live="polite"
+  aria-busy="false"
+>
+
+  <div class="reset-loading-card">
+
+    <div
+      id="resetSpinner"
+      class="reset-spinner"
+    ></div>
+
+    <div
+      id="resetSuccessIcon"
+      class="reset-success-icon hidden"
+    >
+      ✓
+    </div>
+
+    <div
+      id="resetLoadingTitle"
+      class="reset-loading-title"
+    >
+      RESETTING DATA...
+    </div>
+
+    <div
+      id="resetLoadingSub"
+      class="reset-loading-sub"
+    >
+      Sedang menghapus data. Jangan tutup halaman.
+    </div>
+
+  </div>
+
+</div>
 
 
 <!-- =====================================================
@@ -4002,10 +4229,6 @@ let currentMode = "opname";
 let masterData = [];
 
 
-/*
-  History state
-*/
-
 let selectedHistoryItem = null;
 
 let historyRows = [];
@@ -4143,6 +4366,9 @@ function showToast(
 
   const container =
     $("toastContainer");
+
+  if(!container)
+    return;
 
   const toast =
     document.createElement(
@@ -5492,6 +5718,12 @@ async function(mode){
     .add("show");
 
 
+  /*
+    Load master dan history
+    tetap dilakukan saat membuka
+    halaman inventory.
+  */
+
   await loadMasterData();
 
   await loadHistory();
@@ -5659,10 +5891,6 @@ $("barcode")
       }
 
 
-      /*
-        WEIGHT BARCODE
-      */
-
       if(
         value.length === 13 &&
         /^20\d{11}$/.test(value)
@@ -5676,10 +5904,6 @@ $("barcode")
 
       }
 
-
-      /*
-        EXACT
-      */
 
       const exactProduct =
         updateProductName(
@@ -5697,10 +5921,6 @@ $("barcode")
 
       }
 
-
-      /*
-        SUGGESTION
-      */
 
       const search =
         barcodeKey(
@@ -6059,10 +6279,13 @@ function parseQty(value){
 
 /* =====================================================
    SAVE INVENTORY
+   CEPAT:
+   LANGSUNG KEMBALI DASHBOARD.
+   FETCH BERJALAN DI BACKGROUND.
 ===================================================== */
 
 window.saveInventory =
-async function(){
+function(){
 
   const barcode =
     normalizeBarcode(
@@ -6078,10 +6301,6 @@ async function(){
 
   const message =
     $("inventoryMessage");
-
-
-  const button =
-    $("sendButton");
 
 
   message.className =
@@ -6126,160 +6345,146 @@ async function(){
   }
 
 
-  button.disabled = true;
+  /*
+    SIMPAN MODE SEBELUM
+    KEMBALI DASHBOARD.
+  */
 
-  button.textContent =
-    "MENGIRIM...";
+  const sendingMode =
+    currentMode;
 
 
-  try{
+  const sendData = {
 
-    const response =
-      await fetch(
-        URL_SCRIPT,
-        {
+    action:
+      "saveData",
 
-          method:"POST",
+    barcode:
+      barcode,
 
-          body:
-            JSON.stringify({
+    qty:
+      qty,
 
-              action:
-                "saveData",
+    mode:
+      sendingMode
 
-              barcode:
-                barcode,
+  };
 
-              qty:
-                qty,
 
-              mode:
-                currentMode
+  /*
+    BERSIHKAN FORM SECEPATNYA.
+  */
 
-            })
+  $("barcode").value = "";
 
-        }
+  $("qty").value = "";
+
+  clearProductName();
+
+  $("suggestions")
+    .style
+    .display = "none";
+
+
+  /*
+    LANGSUNG KEMBALI DASHBOARD.
+    TIDAK MENUNGGU FETCH.
+  */
+
+  $("inventoryPage")
+    .classList
+    .remove("show");
+
+  $("dashboard")
+    .classList
+    .remove("hidden");
+
+  updateOnlineStatus();
+
+
+  /*
+    KIRIM DI BACKGROUND.
+    USER SUDAH BOLEH LANJUT.
+  */
+
+  fetch(
+    URL_SCRIPT,
+    {
+
+      method:"POST",
+
+      body:
+        JSON.stringify(
+          sendData
+        )
+
+    }
+  )
+  .then(
+    async response => {
+
+      const text =
+        await response.text();
+
+
+      console.log(
+        "Save response:",
+        text
       );
 
 
-    const text =
-      await response.text();
+      const lower =
+        text.toLowerCase();
 
 
-    console.log(
-      "Save response:",
-      text
-    );
+      if(
+        lower.includes("success") ||
+        lower.includes("berhasil")
+      ){
 
+        console.log(
+          "Data " +
+          (
+            sendingMode ===
+            "stockloss"
+              ? "Stock Loss"
+              : "Stock Opname"
+          ) +
+          " berhasil disimpan."
+        );
 
-    const lower =
-      text.toLowerCase();
+      }
+      else{
 
+        console.error(
+          "Gagal menyimpan data:",
+          text
+        );
 
-    if(
-      lower.includes("success") ||
-      lower.includes("berhasil")
-    ){
+        showToast(
+          "Data gagal disimpan.",
+          "error"
+        );
 
-      message.classList.add(
-        "success"
+      }
+
+    }
+  )
+  .catch(
+    error => {
+
+      console.error(
+        "Save error:",
+        error
       );
-
-      message.textContent =
-        "Data berhasil dikirim.";
-
 
       showToast(
-        "Data " +
-        (
-          currentMode ===
-          "stockloss"
-            ? "Stock Loss"
-            : "Stock Opname"
-        ) +
-        " berhasil disimpan.",
-        "success"
-      );
-
-
-      /*
-        BERSIHKAN FORM
-      */
-
-      $("barcode").value = "";
-
-      $("qty").value = "";
-
-      clearProductName();
-
-      $("suggestions")
-        .style
-        .display = "none";
-
-
-      /*
-        History refresh.
-        Selection otomatis hilang.
-      */
-
-      selectedHistoryItem =
-        null;
-
-
-      await loadHistory();
-
-
-      /*
-        KEMBALI KE BARCODE
-        supaya langsung bisa scan
-        barang berikutnya.
-      */
-
-      setTimeout(
-        () => {
-
-          $("barcode").focus();
-
-        },
-        50
+        "Gagal mengirim data.",
+        "error"
       );
 
     }
-    else{
-
-      throw new Error(
-        text ||
-        "Gagal menyimpan data."
-      );
-
-    }
-
-  }
-  catch(error){
-
-    console.error(error);
-
-    message.classList.add(
-      "error"
-    );
-
-    message.textContent =
-      "Gagal mengirim data.";
-
-    showToast(
-      "Gagal mengirim data.",
-      "error"
-    );
-
-  }
-  finally{
-
-    button.disabled = false;
-
-    button.textContent =
-      "KIRIM DATA";
-
-  }
+  );
 
 };
 
@@ -6356,11 +6561,8 @@ async function loadHistory(){
 
 
     /*
-      Backend sudah mengirim
-      terbaru -> terlama.
-
-      Jadi ambil 30 pertama,
-      jangan dibalik lagi.
+      Backend mengirim terbaru
+      terlebih dahulu.
     */
 
     historyRows =
@@ -6504,10 +6706,6 @@ function renderHistory(){
       .join("");
 
 
-  /*
-    Klik history.
-  */
-
   list
     .querySelectorAll(
       ".history-item"
@@ -6550,10 +6748,6 @@ function renderHistory(){
       }
     );
 
-
-  /*
-    Tombol delete.
-  */
 
   list
     .querySelectorAll(
@@ -6653,10 +6847,6 @@ async function deleteHistoryItem(
     return;
 
 
-  /*
-    Password admin untuk delete.
-  */
-
   const password =
     prompt(
       "Masukkan password admin untuk menghapus data:"
@@ -6682,11 +6872,6 @@ async function deleteHistoryItem(
 
 
   try{
-
-    /*
-      Tombol dibuat disable
-      supaya tidak double click.
-    */
 
     const deleteButtons =
       document.querySelectorAll(
@@ -6795,10 +6980,15 @@ async function deleteHistoryItem(
 
 /* =====================================================
    RESET
+   DENGAN ANIMASI LOADING
 ===================================================== */
 
 window.resetInventory =
 async function(){
+
+  /*
+    Password tetap diminta terlebih dahulu.
+  */
 
   const confirmation =
     prompt(
@@ -6822,6 +7012,57 @@ async function(){
     return;
 
   }
+
+
+  const overlay =
+    $("resetOverlay");
+
+  const spinner =
+    $("resetSpinner");
+
+  const successIcon =
+    $("resetSuccessIcon");
+
+  const title =
+    $("resetLoadingTitle");
+
+  const sub =
+    $("resetLoadingSub");
+
+  const resetButton =
+    $("resetButton");
+
+
+  /*
+    TAMPILKAN LOADING
+    SEBELUM REQUEST DIMULAI.
+  */
+
+  spinner.classList.remove(
+    "hidden"
+  );
+
+  successIcon.classList.add(
+    "hidden"
+  );
+
+  title.textContent =
+    "RESETTING DATA...";
+
+  sub.textContent =
+    "Sedang menghapus data. Jangan tutup halaman.";
+
+  overlay.setAttribute(
+    "aria-busy",
+    "true"
+  );
+
+  overlay.classList.add(
+    "show"
+  );
+
+  resetButton.disabled =
+    true;
 
 
   try{
@@ -6855,11 +7096,89 @@ async function(){
       await response.text();
 
 
-    if(
+    console.log(
+      "Reset response:",
       text
-        .toLowerCase()
-        .includes("berhasil")
+    );
+
+
+    const lower =
+      text.toLowerCase();
+
+
+    if(
+      lower.includes("berhasil")
     ){
+
+      /*
+        DATA RESET BERHASIL.
+      */
+
+      spinner.classList.add(
+        "hidden"
+      );
+
+      successIcon.classList.remove(
+        "hidden"
+      );
+
+      title.textContent =
+        "RESET BERHASIL";
+
+      sub.textContent =
+        "Semua data berhasil dikosongkan.";
+
+
+      /*
+        Tidak perlu request
+        loadHistory lagi.
+        Langsung kosongkan UI.
+      */
+
+      $("barcode").value = "";
+
+      $("qty").value = "";
+
+      clearProductName();
+
+      $("suggestions")
+        .style
+        .display = "none";
+
+
+      selectedHistoryItem =
+        null;
+
+      historyRows =
+        [];
+
+      renderHistory();
+
+
+      /*
+        Tampilkan sukses sebentar
+        agar user benar-benar
+        melihat proses selesai.
+      */
+
+      await new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            650
+          )
+      );
+
+
+      overlay.classList.remove(
+        "show"
+      );
+
+      overlay.setAttribute(
+        "aria-busy",
+        "false"
+      );
+
 
       showToast(
         "Data berhasil di-reset.",
@@ -6867,24 +7186,19 @@ async function(){
       );
 
 
-      $("barcode").value = "";
-
-      $("qty").value = "";
-
-
-      clearProductName();
-
-
-      selectedHistoryItem =
-        null;
-
-
-      await loadHistory();
-
-
       setTimeout(
         () => {
-          $("barcode").focus();
+
+          if(
+            $("inventoryPage")
+              .classList
+              .contains("show")
+          ){
+
+            $("barcode").focus();
+
+          }
+
         },
         50
       );
@@ -6892,9 +7206,13 @@ async function(){
     }
     else{
 
-      showToast(
-        "Reset gagal. Password mungkin salah.",
-        "error"
+      /*
+        RESET GAGAL.
+      */
+
+      throw new Error(
+        text ||
+        "Reset gagal."
       );
 
     }
@@ -6902,12 +7220,96 @@ async function(){
   }
   catch(error){
 
-    console.error(error);
+    console.error(
+      "Reset error:",
+      error
+    );
+
+
+    spinner.classList.add(
+      "hidden"
+    );
+
+    successIcon.classList.remove(
+      "hidden"
+    );
+
+    successIcon.textContent =
+      "×";
+
+    successIcon.style.color =
+      "#ff6b61";
+
+    successIcon.style.borderColor =
+      "rgba(255,59,48,.25)";
+
+    successIcon.style.background =
+      "rgba(255,59,48,.10)";
+
+
+    title.textContent =
+      "RESET GAGAL";
+
+    sub.textContent =
+      error.message ||
+      "Password salah atau server bermasalah.";
+
+
+    await new Promise(
+      resolve =>
+        setTimeout(
+          resolve,
+          900
+        )
+    );
+
+
+    overlay.classList.remove(
+      "show"
+    );
+
+    overlay.setAttribute(
+      "aria-busy",
+      "false"
+    );
+
+
+    /*
+      Kembalikan icon sukses
+      ke kondisi normal untuk
+      reset berikutnya.
+    */
+
+    setTimeout(
+      () => {
+
+        successIcon.textContent =
+          "✓";
+
+        successIcon.style.color =
+          "";
+
+        successIcon.style.borderColor =
+          "";
+
+        successIcon.style.background =
+          "";
+
+      },
+      200
+    );
+
 
     showToast(
-      "Gagal melakukan reset.",
+      "Reset gagal.",
       "error"
     );
+
+  }
+  finally{
+
+    resetButton.disabled =
+      false;
 
   }
 
