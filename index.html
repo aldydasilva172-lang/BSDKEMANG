@@ -2086,97 +2086,103 @@ async function loadMasterData(background=false){
    BARCODE INPUT
 ===================================================== */
 
-$("barcode").addEventListener(
-  "input",
-  function(){
+$("barcode").addEventListener("input",function(){
 
-    const value=
-      normalizeBarcode(this.value);
+  const value=normalizeBarcode(this.value);
 
-    if(!value){
+  if(!value){
+    $("suggestions").innerHTML="";
+    $("suggestions").style.display="none";
+    clearProductName();
+    return;
+  }
 
-      $("suggestions").style.display="none";
-      clearProductName();
+  if(value.length===13 && /^20\d{11}$/.test(value)){
+    processWeighedBarcode(value);
+    return;
+  }
 
-      return;
-    }
+  if(!masterData.length){
+    $("suggestions").innerHTML="";
+    $("suggestions").style.display="none";
+    clearProductName();
+    return;
+  }
 
-    if(
-      value.length===13 &&
-      /^20\d{11}$/.test(value)
-    ){
+  const search=value.toLowerCase();
 
-      processWeighedBarcode(value);
-      return;
-    }
+  const result=masterData
+    .filter(item=>{
+      const barcode=barcodeKey(item.barcode);
+      const nama=String(item.nama||"").toLowerCase();
 
-    const exactProduct=
-      updateProductName(value);
+      return barcode.includes(search)||nama.includes(search);
+    })
+    .slice(0,20);
 
-    if(exactProduct){
+  if(!result.length){
+    $("suggestions").innerHTML="";
+    $("suggestions").style.display="none";
+    updateProductName(value);
+    return;
+  }
 
-      $("suggestions").style.display="none";
-      return;
-    }
+  const exact=result.find(item=>
+    barcodeKey(item.barcode)===barcodeKey(value)
+  );
 
-    const search=barcodeKey(value);
+  if(exact){
+    updateProductName(exact.barcode);
+  }else{
+    clearProductName();
+  }
 
-    if(!masterData.length){
+  $("suggestions").innerHTML=result.map(item=>`
+    <div
+      class="suggestion-item"
+      data-barcode="${escapeHtml(item.barcode)}"
+    >
+      <div class="suggestion-barcode">
+        ${escapeHtml(item.barcode)}
+      </div>
 
-      $("suggestions").style.display="none";
-      return;
-    }
+      <div class="suggestion-name">
+        ${escapeHtml(item.nama)}
+        ${
+          getProductUnit(item)
+            ? ` • ${escapeHtml(
+                normalizeUnit(getProductUnit(item))
+              )}`
+            : ""
+        }
+      </div>
+    </div>
+  `).join("");
 
-    const result=
-      masterData
-        .filter(item=>
-          barcodeKey(item.barcode).includes(search)||
-          String(item.nama||"")
-            .toLowerCase()
-            .includes(search)
-        )
-        .slice(0,20);
+  $("suggestions").style.display="block";
 
-    if(!result.length){
-
-      $("suggestions").style.display="none";
-      clearProductName();
-      return;
-    }
-
-    $("suggestions").innerHTML=
-      result.map(item=>`
-        <div class="suggestion-item" data-barcode="${escapeHtml(item.barcode)}">
-          <div class="suggestion-barcode">${escapeHtml(item.barcode)}</div>
-          <div class="suggestion-name">
-            ${escapeHtml(item.nama)}
-            ${getProductUnit(item)?` • ${escapeHtml(normalizeUnit(getProductUnit(item)))}`:""}
-          </div>
-        </div>
-      `).join("");
-
-    $("suggestions").style.display="block";
-
-    document.querySelectorAll(".suggestion-item").forEach(el=>{
+  $("suggestions")
+    .querySelectorAll(".suggestion-item")
+    .forEach(el=>{
 
       el.addEventListener("click",()=>{
 
-        const selectedBarcode=
-          el.dataset.barcode;
+        const selectedBarcode=el.dataset.barcode;
 
-        $("barcode").value=
-          selectedBarcode;
+        $("barcode").value=selectedBarcode;
 
+        $("suggestions").innerHTML="";
         $("suggestions").style.display="none";
 
         updateProductName(selectedBarcode);
 
         $("qty").focus();
-      });
-    });
-  }
-);
 
+      });
+
+    });
+
+});
 /* =====================================================
    BARCODE ENTER
 ===================================================== */
