@@ -98,35 +98,35 @@ button{cursor:pointer}
 
 #dashboard{
   min-height:100vh;
-  padding:14px;
+  padding:8px;
 }
 
 .dashboard-layout{
   width:100%;
-  max-width:1250px;
+  max-width:1050px;
   margin:auto;
 
   display:grid;
-  grid-template-columns:minmax(0,1fr) 300px;
+  grid-template-columns:minmax(0,1fr) 230px;
 
-  gap:12px;
+  gap:7px;
   align-items:stretch;
 }
 
 /* =========================
-   MAIN DASHBOARD
+   MAIN CARD
 ========================= */
 
 .dashboard-main{
   position:relative;
   min-width:0;
 
-  height:170px;
-  min-height:170px;
+  height:105px;
+  min-height:105px;
 
-  padding:15px 17px;
+  padding:8px 10px;
 
-  border-radius:18px;
+  border-radius:11px;
   border:1px solid var(--border);
 
   background:
@@ -137,7 +137,7 @@ button{cursor:pointer}
     );
 
   box-shadow:
-    0 18px 55px rgba(0,0,0,.34);
+    0 10px 30px rgba(0,0,0,.30);
 
   overflow:hidden;
 
@@ -149,18 +149,18 @@ button{cursor:pointer}
   content:"";
 
   position:absolute;
-  right:-100px;
-  bottom:-130px;
+  right:-70px;
+  bottom:-80px;
 
-  width:260px;
-  height:260px;
+  width:150px;
+  height:150px;
 
   border-radius:50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(255,122,0,.13),
+      rgba(255,122,0,.11),
       transparent 70%
     );
 
@@ -179,8 +179,8 @@ button{cursor:pointer}
   align-items:center;
   justify-content:space-between;
 
-  gap:10px;
-  margin-bottom:4px;
+  gap:5px;
+  margin-bottom:0;
 }
 
 .top-brand,
@@ -190,20 +190,20 @@ button{cursor:pointer}
 }
 
 .top-brand{
-  gap:8px;
+  gap:5px;
 }
 
 .top-brand-icon{
-  width:32px;
-  height:32px;
+  width:23px;
+  height:23px;
 
-  border-radius:9px;
+  border-radius:6px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:10px;
+  font-size:7px;
   font-weight:950;
 
   background:
@@ -216,30 +216,37 @@ button{cursor:pointer}
 
 .top-brand-text strong{
   display:block;
-  font-size:11px;
-  letter-spacing:.8px;
+
+  font-size:8px;
+  letter-spacing:.5px;
 }
 
 .top-brand-text span{
   display:block;
-  margin-top:1px;
 
-  font-size:7px;
+  margin-top:0;
+
+  font-size:5px;
+
   color:#727984;
-  letter-spacing:.8px;
+  letter-spacing:.5px;
 }
 
 .user-area{
-  gap:6px;
+  gap:4px;
 }
+
+/* ONLINE */
 
 .system-status{
   display:inline-flex;
+
   align-items:center;
+  justify-content:center;
 
-  gap:6px;
+  gap:4px;
 
-  padding:6px 9px;
+  padding:4px 6px;
 
   border-radius:999px;
 
@@ -251,7 +258,7 @@ button{cursor:pointer}
 
   color:#70eda8;
 
-  font-size:8px;
+  font-size:6px;
   font-weight:800;
 
   white-space:nowrap;
@@ -262,8 +269,8 @@ button{cursor:pointer}
 }
 
 .status-dot{
-  width:5px;
-  height:5px;
+  width:4px;
+  height:4px;
 
   flex:none;
 
@@ -272,7 +279,7 @@ button{cursor:pointer}
   background:var(--green);
 
   box-shadow:
-    0 0 9px var(--green);
+    0 0 6px var(--green);
 }
 
 .system-status.offline{
@@ -289,12 +296,14 @@ button{cursor:pointer}
   background:var(--red);
 
   box-shadow:
-    0 0 9px var(--red);
+    0 0 6px var(--red);
 }
 
+/* USER */
+
 .avatar{
-  width:29px;
-  height:29px;
+  width:22px;
+  height:22px;
 
   border-radius:50%;
 
@@ -312,26 +321,26 @@ button{cursor:pointer}
   border:
     1px solid var(--border);
 
-  font-size:8px;
+  font-size:6px;
   font-weight:900;
 }
 
 .user-name{
-  max-width:90px;
+  max-width:65px;
 
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 
-  font-size:9px;
+  font-size:6px;
   font-weight:800;
 }
 
 .icon-button{
-  width:29px;
-  height:29px;
+  width:22px;
+  height:22px;
 
-  border-radius:8px;
+  border-radius:6px;
 
   border:
     1px solid var(--border);
@@ -345,7 +354,7 @@ button{cursor:pointer}
   align-items:center;
   justify-content:center;
 
-  font-size:11px;
+  font-size:8px;
 
   transition:.2s;
 }
@@ -366,19 +375,19 @@ button{cursor:pointer}
   position:relative;
   z-index:2;
 
-  max-width:600px;
+  max-width:450px;
 
   margin:auto 0;
 }
 
 .welcome-title{
-  font-size:26px;
+  font-size:17px;
 
   line-height:1;
 
   font-weight:950;
 
-  letter-spacing:-1.5px;
+  letter-spacing:-.8px;
 }
 
 .welcome-title span{
@@ -396,15 +405,15 @@ button{cursor:pointer}
 }
 
 .welcome-sub{
-  max-width:500px;
+  max-width:380px;
 
-  margin-top:6px;
+  margin-top:3px;
 
   color:#858c98;
 
-  font-size:9px;
+  font-size:6px;
 
-  line-height:1.4;
+  line-height:1.35;
 }
 
 /* =========================
@@ -418,7 +427,8 @@ button{cursor:pointer}
   display:flex;
   justify-content:space-between;
 
-  padding-top:6px;
+  padding-top:3px;
+
   margin-top:auto;
 
   border-top:
@@ -426,41 +436,46 @@ button{cursor:pointer}
 
   color:#626974;
 
-  font-size:7px;
+  font-size:5px;
 }
 
-/* =========================
+
+/* =====================================================
    OPERATIONS
-========================= */
+===================================================== */
 
 .operations-panel{
   display:flex;
+
   flex-direction:column;
 
-  gap:7px;
+  gap:4px;
 
   min-width:0;
 }
 
 .operations-heading{
-  height:25px;
+  height:17px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  padding:0 2px;
+  padding:0 1px;
 }
 
 .operations-heading h2{
-  font-size:12px;
+  font-size:8px;
   font-weight:950;
 }
 
 .operations-heading span{
-  font-size:7px;
+  font-size:5px;
   color:#656c77;
 }
+
 
 /* =========================
    OPERATION CARD
@@ -469,15 +484,15 @@ button{cursor:pointer}
 .operation-card{
   position:relative;
 
-  min-height:44px;
+  min-height:27px;
 
   padding:
-    9px
-    34px
-    9px
-    43px;
+    5px
+    24px
+    5px
+    32px;
 
-  border-radius:12px;
+  border-radius:7px;
 
   border:
     1px solid var(--border);
@@ -490,7 +505,7 @@ button{cursor:pointer}
     );
 
   box-shadow:
-    0 10px 25px rgba(0,0,0,.20);
+    0 6px 15px rgba(0,0,0,.18);
 
   overflow:hidden;
 
@@ -500,7 +515,7 @@ button{cursor:pointer}
 }
 
 .operation-card:hover{
-  transform:translateX(-3px);
+  transform:translateX(-2px);
 
   border-color:
     rgba(255,122,0,.4);
@@ -518,18 +533,18 @@ button{cursor:pointer}
 
   position:absolute;
 
-  width:90px;
-  height:90px;
+  width:60px;
+  height:60px;
 
-  right:-50px;
-  bottom:-55px;
+  right:-35px;
+  bottom:-40px;
 
   border-radius:50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(255,122,0,.14),
+      rgba(255,122,0,.12),
       transparent 70%
     );
 }
@@ -539,23 +554,23 @@ button{cursor:pointer}
 .operation-icon{
   position:absolute;
 
-  left:9px;
+  left:6px;
   top:50%;
 
   transform:translateY(-50%);
 
-  width:27px;
-  height:27px;
+  width:20px;
+  height:20px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:8px;
+  border-radius:6px;
 
   margin:0;
 
-  font-size:13px;
+  font-size:9px;
 
   background:
     rgba(255,122,0,.10);
@@ -583,7 +598,8 @@ button{cursor:pointer}
 /* TEXT */
 
 .operation-title{
-  font-size:10px;
+  font-size:7px;
+
   font-weight:950;
 
   line-height:1.1;
@@ -592,16 +608,18 @@ button{cursor:pointer}
 .operation-desc{
   max-width:none;
 
-  margin-top:2px;
+  margin-top:1px;
 
   color:#747c88;
 
-  font-size:7px;
+  font-size:5px;
 
-  line-height:1.2;
+  line-height:1.1;
 
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
 }
 
@@ -610,60 +628,60 @@ button{cursor:pointer}
 .operation-arrow{
   position:absolute;
 
-  right:8px;
+  right:5px;
   top:50%;
 
   transform:translateY(-50%);
 
-  width:21px;
-  height:21px;
+  width:15px;
+  height:15px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:6px;
+  border-radius:5px;
 
   background:
     rgba(255,255,255,.04);
 
   color:#999;
 
-  font-size:10px;
+  font-size:7px;
 }
 
 
 /* =====================================================
-   MOBILE
+   TABLET / MOBILE
 ===================================================== */
 
 @media(max-width:900px){
 
   #dashboard{
-    padding:12px;
+    padding:7px;
   }
 
   .dashboard-layout{
     grid-template-columns:1fr;
-    gap:9px;
+
+    gap:6px;
   }
 
   .dashboard-main{
-    height:135px;
-    min-height:135px;
+    height:92px;
+    min-height:92px;
 
-    padding:12px 14px;
+    padding:7px 9px;
 
-    border-radius:15px;
+    border-radius:10px;
   }
 
   .welcome-title{
-    font-size:23px;
+    font-size:16px;
   }
 
   .welcome-sub{
-    font-size:8px;
-    max-width:500px;
+    font-size:6px;
   }
 
   .operations-panel{
@@ -672,23 +690,24 @@ button{cursor:pointer}
     grid-template-columns:
       repeat(3,minmax(0,1fr));
 
-    gap:6px;
+    gap:4px;
   }
 
   .operations-heading{
     grid-column:1/-1;
-    height:22px;
+
+    height:16px;
   }
 
   .operation-card{
-    min-height:75px;
+    min-height:52px;
 
     padding:
-      38px
-      7px
-      7px;
+      26px
+      4px
+      4px;
 
-    border-radius:11px;
+    border-radius:7px;
 
     text-align:center;
   }
@@ -699,14 +718,16 @@ button{cursor:pointer}
     transform:none;
 
     margin:
-      0 auto 5px;
+      0 auto 3px;
 
-    width:27px;
-    height:27px;
+    width:19px;
+    height:19px;
+
+    font-size:9px;
   }
 
   .operation-title{
-    font-size:8px;
+    font-size:6px;
   }
 
   .operation-desc{
@@ -714,136 +735,163 @@ button{cursor:pointer}
   }
 
   .operation-arrow{
-    top:7px;
-    right:7px;
+    top:4px;
+    right:4px;
 
     transform:none;
 
-    width:19px;
-    height:19px;
+    width:14px;
+    height:14px;
 
-    font-size:9px;
+    font-size:7px;
   }
 }
 
 
 /* =====================================================
-   SMALL PHONE
+   PHONE
 ===================================================== */
 
 @media(max-width:500px){
 
   #dashboard{
-    padding:10px;
+    padding:6px;
   }
 
   .dashboard-layout{
-    gap:7px;
+    gap:5px;
   }
 
   .dashboard-main{
-    height:118px;
-    min-height:118px;
+    height:82px;
+    min-height:82px;
 
-    padding:10px 11px;
+    padding:6px 7px;
 
-    border-radius:14px;
+    border-radius:9px;
   }
 
   .top-brand{
-    gap:6px;
+    gap:4px;
   }
 
   .top-brand-icon{
-    width:28px;
-    height:28px;
+    width:21px;
+    height:21px;
 
-    border-radius:8px;
+    border-radius:6px;
 
-    font-size:9px;
+    font-size:6px;
   }
 
   .top-brand-text strong{
-    font-size:10px;
+    font-size:7px;
   }
 
   .top-brand-text span{
-    font-size:6px;
+    font-size:4px;
+  }
+
+  /* SYSTEM ONLINE TETAP MUNCUL */
+
+  .topbar .system-status{
+    display:inline-flex;
+
+    padding:3px 5px;
+
+    gap:3px;
+
+    font-size:5px;
+  }
+
+  .topbar .status-dot{
+    width:3px;
+    height:3px;
   }
 
   .user-name{
     display:none;
   }
 
-  .topbar .system-status{
-    display:none;
-  }
-
   .avatar,
   .icon-button{
-    width:27px;
-    height:27px;
+    width:21px;
+    height:21px;
+  }
+
+  .avatar{
+    font-size:6px;
+  }
+
+  .icon-button{
+    font-size:7px;
   }
 
   .welcome-title{
-    font-size:21px;
-    letter-spacing:-1px;
+    font-size:14px;
+
+    letter-spacing:-.5px;
   }
 
   .welcome-sub{
-    margin-top:4px;
-    font-size:7px;
-    max-width:360px;
+    margin-top:3px;
+
+    font-size:5px;
+
+    max-width:300px;
   }
 
   .dashboard-footer{
-    padding-top:5px;
-    font-size:6px;
+    padding-top:3px;
+
+    font-size:4px;
   }
 
   .operations-panel{
-    gap:5px;
+    gap:4px;
   }
 
   .operations-heading{
-    height:20px;
+    height:15px;
   }
 
   .operations-heading h2{
-    font-size:10px;
+    font-size:8px;
   }
 
   .operations-heading span{
-    font-size:6px;
+    font-size:5px;
   }
 
   .operation-card{
-    min-height:68px;
+    min-height:48px;
 
     padding:
-      34px
-      5px
-      6px;
+      24px
+      3px
+      3px;
 
-    border-radius:10px;
+    border-radius:7px;
   }
 
   .operation-icon{
-    width:25px;
-    height:25px;
-    font-size:12px;
+    width:18px;
+    height:18px;
+
+    font-size:8px;
   }
 
   .operation-title{
-    font-size:7px;
+    font-size:6px;
   }
 
   .operation-arrow{
-    width:17px;
-    height:17px;
-    font-size:8px;
+    width:13px;
+    height:13px;
+
+    font-size:6px;
   }
-}  
+}
   
 /* INVENTORY */  
 #inventoryPage{  
