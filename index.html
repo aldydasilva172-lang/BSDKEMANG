@@ -19,13 +19,14 @@
   --green:#35e889;
   --blue:#4b91ff;
   --bg:#08090c;
-  --card:rgba(255,255,255,.065);
-  --border:rgba(255,255,255,.11);
+  --card:rgba(255,255,255,.055);
+  --border:rgba(255,255,255,.095);
   --text:#fff;
-  --muted:rgba(255,255,255,.58);
+  --muted:rgba(255,255,255,.52);
 }
 
-html,body{
+html,
+body{
   width:100%;
   min-height:100%;
   font-family:Inter,Segoe UI,Arial,sans-serif;
@@ -37,7 +38,8 @@ body{
   overflow-x:hidden;
 }
 
-button,input{
+button,
+input{
   font:inherit;
 }
 
@@ -45,9 +47,9 @@ button{
   cursor:pointer;
 }
 
-/* =========================
+/* ==========================================
    BACKGROUND
-========================= */
+========================================== */
 
 body:before{
   content:"";
@@ -58,18 +60,18 @@ body:before{
   background:
     radial-gradient(
       circle at 10% 10%,
-      rgba(255,122,0,.15),
-      transparent 27%
+      rgba(255,122,0,.13),
+      transparent 28%
     ),
     radial-gradient(
       circle at 90% 80%,
-      rgba(255,59,48,.08),
+      rgba(255,59,48,.06),
       transparent 30%
     ),
     linear-gradient(
       135deg,
       #06070a,
-      #11141a 55%,
+      #101319 55%,
       #07080b
     );
 
@@ -87,11 +89,11 @@ body:after{
     linear-gradient(
       115deg,
       transparent 38%,
-      rgba(255,255,255,.025) 50%,
+      rgba(255,255,255,.02) 50%,
       transparent 62%
     );
 
-  animation:shine 12s ease-in-out infinite;
+  animation:shine 14s ease-in-out infinite;
 }
 
 @keyframes shine{
@@ -107,8 +109,8 @@ body:after{
 @keyframes pageIn{
   from{
     opacity:0;
-    transform:translateY(20px) scale(.98);
-    filter:blur(5px);
+    transform:translateY(14px) scale(.985);
+    filter:blur(4px);
   }
 
   to{
@@ -121,7 +123,7 @@ body:after{
 @keyframes modalIn{
   from{
     opacity:0;
-    transform:translateY(15px) scale(.96);
+    transform:translateY(12px) scale(.97);
   }
 
   to{
@@ -131,45 +133,48 @@ body:after{
 }
 
 
-/* =========================
+/* ==========================================
    LOGIN
-========================= */
+========================================== */
 
 #loginPage{
   min-height:100vh;
+
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:20px;
+
+  padding:18px;
 }
 
 .login-card{
-  width:min(430px,100%);
-  padding:34px;
+  width:min(400px,100%);
+
+  padding:30px;
 
   border:1px solid var(--border);
-  border-radius:28px;
+  border-radius:23px;
 
-  background:rgba(255,255,255,.065);
+  background:rgba(255,255,255,.055);
 
   backdrop-filter:blur(26px);
   -webkit-backdrop-filter:blur(26px);
 
   box-shadow:
-    0 35px 110px rgba(0,0,0,.6),
-    inset 0 1px rgba(255,255,255,.08);
+    0 30px 90px rgba(0,0,0,.6),
+    inset 0 1px rgba(255,255,255,.07);
 
-  animation:pageIn .7s ease;
+  animation:pageIn .55s ease;
 }
 
 .logo{
-  width:64px;
-  height:64px;
+  width:58px;
+  height:58px;
 
   display:grid;
   place-items:center;
 
-  border-radius:20px;
+  border-radius:17px;
 
   background:
     linear-gradient(
@@ -179,49 +184,57 @@ body:after{
     );
 
   color:#17100a;
-  font-size:23px;
+
+  font-size:21px;
   font-weight:950;
 
   box-shadow:
-    0 12px 40px rgba(255,122,0,.28);
+    0 12px 35px rgba(255,122,0,.25);
 
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .eyebrow{
   color:var(--orange2);
-  font-size:11px;
+
+  font-size:10px;
   font-weight:850;
-  letter-spacing:2.4px;
+
+  letter-spacing:2.2px;
 }
 
 h1{
-  font-size:35px;
-  letter-spacing:-1.7px;
-  margin-top:6px;
+  font-size:32px;
+  letter-spacing:-1.5px;
+
+  margin-top:5px;
 }
 
 .subtitle{
   color:var(--muted);
-  font-size:13px;
+
+  font-size:12px;
   line-height:1.6;
-  margin-top:7px;
-  margin-bottom:27px;
+
+  margin-top:6px;
+  margin-bottom:23px;
 }
 
 .field{
-  margin-bottom:16px;
+  margin-bottom:14px;
 }
 
 .field label{
   display:block;
-  margin:0 0 8px 3px;
 
-  color:rgba(255,255,255,.7);
+  margin:0 0 7px 3px;
 
-  font-size:10px;
+  color:rgba(255,255,255,.66);
+
+  font-size:9px;
   font-weight:850;
-  letter-spacing:1.4px;
+
+  letter-spacing:1.3px;
 }
 
 .input-wrap{
@@ -230,46 +243,52 @@ h1{
 
 .input-wrap input{
   width:100%;
-  height:54px;
+  height:51px;
 
   border:1px solid var(--border);
-  border-radius:15px;
+  border-radius:13px;
 
-  background:rgba(0,0,0,.24);
+  background:rgba(0,0,0,.23);
+
   color:#fff;
 
-  padding:0 16px;
+  padding:0 15px;
+
   outline:none;
 
-  transition:.25s;
+  transition:.22s;
 }
 
 .input-wrap input:focus{
   border-color:#ff9b45;
+
   box-shadow:
-    0 0 0 4px rgba(255,122,0,.1);
+    0 0 0 4px rgba(255,122,0,.09);
 }
 
 .eye{
   position:absolute;
-  right:8px;
+
+  right:7px;
   top:50%;
+
   transform:translateY(-50%);
 
   border:0;
   background:none;
-  color:rgba(255,255,255,.55);
 
-  padding:9px;
+  color:rgba(255,255,255,.5);
+
+  padding:8px;
 }
 
 .options{
   display:flex;
   justify-content:flex-end;
 
-  margin:4px 2px 20px;
+  margin:3px 2px 17px;
 
-  font-size:12px;
+  font-size:11px;
 }
 
 .options a{
@@ -280,10 +299,10 @@ h1{
 .login-btn,
 .primary-btn{
   width:100%;
-  height:54px;
+  height:51px;
 
   border:0;
-  border-radius:16px;
+  border-radius:14px;
 
   background:
     linear-gradient(
@@ -293,12 +312,13 @@ h1{
     );
 
   color:#17100a;
+
   font-weight:950;
 
   box-shadow:
-    0 14px 35px rgba(255,122,0,.22);
+    0 12px 30px rgba(255,122,0,.2);
 
-  transition:.25s;
+  transition:.22s;
 }
 
 .login-btn:hover,
@@ -306,7 +326,7 @@ h1{
   transform:translateY(-2px);
 
   box-shadow:
-    0 18px 42px rgba(255,122,0,.32);
+    0 17px 37px rgba(255,122,0,.3);
 }
 
 .login-btn:disabled{
@@ -316,11 +336,13 @@ h1{
 }
 
 .message{
-  min-height:20px;
-  margin-top:13px;
+  min-height:18px;
+
+  margin-top:11px;
 
   text-align:center;
-  font-size:12px;
+
+  font-size:11px;
 }
 
 .error{
@@ -334,25 +356,28 @@ h1{
 .auth-links{
   display:flex;
   justify-content:center;
-  gap:7px;
+  gap:6px;
 
-  margin-top:20px;
+  margin-top:17px;
 
-  font-size:12px;
+  font-size:11px;
+
   color:var(--muted);
 }
 
 .auth-links button{
   border:0;
   background:none;
+
   color:var(--orange2);
+
   font-weight:800;
 }
 
 
-/* =========================
+/* ==========================================
    DASHBOARD
-========================= */
+========================================== */
 
 #dashboard{
   display:none;
@@ -361,47 +386,50 @@ h1{
 
 #dashboard.show{
   display:block;
-  animation:pageIn .5s ease;
+  animation:pageIn .45s ease;
 }
 
 .topbar{
-  height:72px;
+  height:62px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  padding:0 24px;
+  padding:0 20px;
 
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.07);
 
-  background:rgba(8,9,12,.82);
+  background:rgba(8,9,12,.84);
 
   backdrop-filter:blur(22px);
   -webkit-backdrop-filter:blur(22px);
 
   position:sticky;
   top:0;
+
   z-index:50;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:9px;
 
+  font-size:12px;
   font-weight:950;
-  letter-spacing:1.3px;
+
+  letter-spacing:1px;
 }
 
 .brand-logo{
-  width:40px;
-  height:40px;
+  width:34px;
+  height:34px;
 
   display:grid;
   place-items:center;
 
-  border-radius:12px;
+  border-radius:10px;
 
   background:
     linear-gradient(
@@ -411,56 +439,63 @@ h1{
     );
 
   color:#17100a;
+
+  font-size:11px;
   font-weight:950;
 }
 
 .user-area{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:8px;
 }
 
 .avatar{
-  width:37px;
-  height:37px;
+  width:32px;
+  height:32px;
 
   display:grid;
   place-items:center;
 
   border-radius:50%;
 
-  background:rgba(255,122,0,.16);
-  border:1px solid rgba(255,122,0,.4);
+  background:rgba(255,122,0,.14);
+
+  border:1px solid rgba(255,122,0,.35);
 
   color:var(--orange2);
+
+  font-size:11px;
   font-weight:900;
 }
 
 .user-name{
-  font-size:12px;
+  font-size:10px;
   font-weight:700;
 }
 
 .top-btn{
-  height:37px;
+  height:32px;
 
-  padding:0 12px;
+  padding:0 10px;
 
   border:1px solid var(--border);
-  border-radius:10px;
+  border-radius:9px;
 
-  background:rgba(255,255,255,.055);
+  background:rgba(255,255,255,.045);
+
   color:#fff;
 
-  font-size:10px;
+  font-size:8px;
   font-weight:800;
 
   transition:.2s;
 }
 
 .top-btn:hover{
-  background:rgba(255,255,255,.1);
-  border-color:rgba(255,122,0,.4);
+  background:rgba(255,255,255,.09);
+
+  border-color:rgba(255,122,0,.38);
 }
 
 .settings-btn{
@@ -471,36 +506,79 @@ h1{
   color:#fff;
 }
 
+
+/* ==========================================
+   MAIN DASHBOARD LAYOUT
+========================================== */
+
 .container{
-  width:min(1160px,94%);
+  width:min(1040px,94%);
+
   margin:auto;
-  padding:24px 0 45px;
+
+  padding:18px 0 35px;
 }
 
 
-/* =========================
-   DASHBOARD HERO
-========================= */
+/*
+   DESKTOP:
+
+   ┌──────────────────────┬──────────────┐
+   │                      │ Stock Loss   │
+   │       MAIN           │ Stock Opname │
+   │                      │              │
+   └──────────────────────┴──────────────┘
+*/
+
+.dashboard-layout{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    250px;
+
+  gap:13px;
+
+  align-items:start;
+}
+
+
+/* ==========================================
+   MAIN PANEL
+========================================== */
+
+.main-dashboard-panel{
+  min-width:0;
+}
+
+
+/* ==========================================
+   HERO COMPACT
+========================================== */
 
 .hero{
   position:relative;
+
+  min-height:128px;
+
   overflow:hidden;
 
-  padding:27px;
+  padding:22px;
 
   border:1px solid var(--border);
-  border-radius:25px;
+
+  border-radius:19px;
 
   background:
     linear-gradient(
       135deg,
-      rgba(255,122,0,.13),
+      rgba(255,122,0,.12),
       rgba(255,255,255,.035) 60%,
       rgba(255,255,255,.015)
     );
 
   box-shadow:
-    inset 0 1px rgba(255,255,255,.06);
+    inset 0 1px rgba(255,255,255,.05);
 }
 
 .hero:after{
@@ -508,127 +586,221 @@ h1{
 
   position:absolute;
 
-  width:260px;
-  height:260px;
+  width:200px;
+  height:200px;
 
-  right:-100px;
-  top:-130px;
+  right:-90px;
+  top:-100px;
 
   border-radius:50%;
 
-  background:rgba(255,122,0,.09);
+  background:rgba(255,122,0,.07);
 
-  filter:blur(8px);
+  filter:blur(7px);
 }
 
 .hero-top{
+  position:relative;
+  z-index:2;
+
   display:flex;
+
   align-items:flex-start;
+
   justify-content:space-between;
 
-  gap:15px;
+  gap:12px;
 }
 
 .hero small{
   color:var(--orange2);
 
-  font-size:9px;
+  font-size:8px;
   font-weight:850;
 
-  letter-spacing:2.3px;
+  letter-spacing:1.9px;
 }
 
 .hero h2{
-  margin-top:7px;
+  margin-top:5px;
 
-  font-size:31px;
-  letter-spacing:-1.4px;
+  font-size:25px;
+
+  letter-spacing:-1.1px;
 }
 
 .hero p{
-  margin-top:6px;
+  margin-top:5px;
 
   color:var(--muted);
 
-  font-size:12px;
+  font-size:10px;
+  line-height:1.45;
+
+  max-width:440px;
 }
 
 .status{
   display:flex;
+
   align-items:center;
-  gap:6px;
 
-  padding:7px 10px;
+  gap:5px;
 
-  border:1px solid rgba(53,232,137,.18);
+  padding:6px 8px;
+
+  border:1px solid rgba(53,232,137,.16);
+
   border-radius:999px;
 
-  background:rgba(53,232,137,.045);
+  background:rgba(53,232,137,.04);
 
   color:#7df2b1;
 
-  font-size:9px;
+  font-size:7px;
   font-weight:850;
 
   white-space:nowrap;
 }
 
 .dot{
-  width:6px;
-  height:6px;
+  width:5px;
+  height:5px;
 
   border-radius:50%;
 
   background:var(--green);
 
-  box-shadow:0 0 10px var(--green);
+  box-shadow:0 0 8px var(--green);
 }
 
 
-/* =========================
-   OPERATIONS
-========================= */
+/* ==========================================
+   SYSTEM STATUS
+========================================== */
 
 .section-label{
-  margin:23px 2px 10px;
+  margin:15px 1px 8px;
 
-  color:rgba(255,255,255,.38);
+  color:rgba(255,255,255,.32);
 
-  font-size:9px;
+  font-size:7px;
   font-weight:850;
-  letter-spacing:2px;
+
+  letter-spacing:1.8px;
 }
 
-.cards{
+.status-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:8px;
 }
+
+.mini{
+  min-width:0;
+
+  padding:11px;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  background:rgba(255,255,255,.022);
+}
+
+.mini-head{
+  color:rgba(255,255,255,.3);
+
+  font-size:7px;
+  font-weight:850;
+
+  letter-spacing:1.2px;
+}
+
+.mini-value{
+  margin-top:5px;
+
+  font-size:11px;
+  font-weight:900;
+
+  white-space:nowrap;
+}
+
+.mini-sub{
+  margin-top:2px;
+
+  color:rgba(255,255,255,.3);
+
+  font-size:7px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+
+/* ==========================================
+   OPERATIONS DESKTOP
+========================================== */
+
+.operations-panel{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:7px;
+}
+
+.operations-label{
+  margin:1px 1px 2px;
+
+  color:rgba(255,255,255,.32);
+
+  font-size:7px;
+  font-weight:850;
+
+  letter-spacing:1.8px;
+}
+
+
+/* ==========================================
+   MINI OPERATION CARD
+========================================== */
 
 .dashboard-card{
   position:relative;
+
+  width:100%;
+
+  height:112px;
+  min-height:112px;
+
   overflow:hidden;
 
-  min-height:185px;
+  padding:14px;
 
-  padding:23px;
+  border:1px solid rgba(255,255,255,.09);
 
-  border:1px solid var(--border);
-  border-radius:22px;
+  border-radius:15px;
 
   background:
     linear-gradient(
       145deg,
       rgba(255,255,255,.065),
-      rgba(255,255,255,.025)
+      rgba(255,255,255,.022)
     );
 
   cursor:pointer;
 
-  transition:.3s;
-
-  box-shadow:
-    0 16px 50px rgba(0,0,0,.2);
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
 }
 
 .dashboard-card:before{
@@ -636,94 +808,140 @@ h1{
 
   position:absolute;
 
-  width:150px;
-  height:150px;
+  width:90px;
+  height:90px;
 
-  right:-50px;
-  top:-55px;
+  right:-38px;
+  top:-40px;
 
   border-radius:50%;
 
-  background:rgba(255,122,0,.08);
+  background:rgba(255,122,0,.085);
+
+  filter:blur(1px);
 }
 
 .dashboard-card.opname:before{
-  background:rgba(65,130,255,.09);
+  background:rgba(75,145,255,.085);
+}
+
+.dashboard-card:after{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 30%,
+      rgba(255,255,255,.035) 50%,
+      transparent 70%
+    );
+
+  transform:translateX(-120%);
+
+  transition:.55s;
+
+  pointer-events:none;
+}
+
+.dashboard-card:hover:after{
+  transform:translateX(120%);
 }
 
 .dashboard-card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-3px);
 
-  border-color:rgba(255,122,0,.45);
+  border-color:rgba(255,122,0,.38);
 
   box-shadow:
-    0 23px 60px rgba(0,0,0,.45);
+    0 13px 32px rgba(0,0,0,.34);
 }
 
 .dashboard-card.opname:hover{
-  border-color:rgba(75,145,255,.45);
+  border-color:rgba(75,145,255,.38);
 }
+
+
+/* ==========================================
+   CARD CONTENT
+========================================== */
 
 .card-number{
   position:absolute;
 
-  right:20px;
-  top:19px;
+  right:13px;
+  top:12px;
 
-  color:rgba(255,255,255,.17);
+  color:rgba(255,255,255,.15);
 
-  font-size:10px;
+  font-size:7px;
+
   font-weight:900;
 }
 
 .card-icon{
-  width:46px;
-  height:46px;
+  width:29px;
+  height:29px;
 
   display:grid;
   place-items:center;
 
-  border-radius:14px;
+  border-radius:9px;
 
-  background:rgba(255,122,0,.12);
-  border:1px solid rgba(255,122,0,.24);
+  background:rgba(255,122,0,.11);
 
-  font-size:20px;
+  border:1px solid rgba(255,122,0,.2);
+
+  font-size:13px;
 }
 
 .opname .card-icon{
-  background:rgba(75,145,255,.11);
-  border-color:rgba(75,145,255,.23);
+  background:rgba(75,145,255,.1);
+
+  border-color:rgba(75,145,255,.2);
 }
 
 .dashboard-card h3{
-  margin-top:24px;
+  position:relative;
+  z-index:2;
 
-  font-size:22px;
-  letter-spacing:-.5px;
+  margin-top:7px;
+
+  font-size:14px;
+
+  letter-spacing:-.2px;
 }
 
 .dashboard-card p{
-  margin-top:7px;
+  position:relative;
+  z-index:2;
 
-  color:var(--muted);
+  margin-top:3px;
 
-  font-size:11px;
-  line-height:1.55;
+  color:rgba(255,255,255,.4);
 
-  max-width:310px;
+  font-size:7px;
+
+  line-height:1.35;
+
+  max-width:190px;
 }
 
 .open-link{
   position:absolute;
 
-  left:23px;
-  bottom:19px;
+  left:14px;
+  bottom:10px;
 
   color:#ffb56c;
 
-  font-size:9px;
-  font-weight:850;
+  font-size:6px;
+
+  font-weight:900;
+
   letter-spacing:.5px;
 }
 
@@ -734,249 +952,238 @@ h1{
 .arrow{
   position:absolute;
 
-  right:20px;
-  bottom:16px;
+  right:11px;
+  bottom:9px;
 
-  width:34px;
-  height:34px;
+  width:22px;
+  height:22px;
 
   display:grid;
   place-items:center;
 
-  border-radius:10px;
+  border-radius:7px;
 
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
 
-  font-size:18px;
+  border:1px solid rgba(255,255,255,.07);
+
+  font-size:12px;
+
+  transition:.22s;
 }
 
 .dashboard-card:hover .arrow{
-  transform:translateX(4px);
+  transform:translateX(3px);
 }
 
 
-/* =========================
-   SYSTEM STATUS
-========================= */
-
-.status-grid{
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:10px;
-}
-
-.mini{
-  padding:14px;
-
-  border:1px solid var(--border);
-  border-radius:16px;
-
-  background:rgba(255,255,255,.025);
-}
-
-.mini-head{
-  color:rgba(255,255,255,.35);
-
-  font-size:8px;
-  font-weight:850;
-
-  letter-spacing:1.4px;
-}
-
-.mini-value{
-  margin-top:6px;
-
-  font-size:14px;
-  font-weight:900;
-}
-
-.mini-sub{
-  margin-top:3px;
-
-  color:rgba(255,255,255,.35);
-
-  font-size:9px;
-}
-
-
-/* =========================
+/* ==========================================
    INVENTORY PAGE
-========================= */
+========================================== */
 
 #inventoryPage{
   display:none;
+
   min-height:100vh;
 }
 
 #inventoryPage.show{
   display:block;
-  animation:pageIn .45s ease;
+
+  animation:pageIn .4s ease;
 }
 
 .inventory-topbar{
-  height:72px;
+  height:62px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  padding:0 24px;
+  padding:0 20px;
 
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.07);
 
   background:rgba(8,9,12,.88);
 
   backdrop-filter:blur(22px);
+
   -webkit-backdrop-filter:blur(22px);
 
   position:sticky;
+
   top:0;
+
   z-index:50;
 }
 
 .inventory-brand{
   display:flex;
-  align-items:center;
-  gap:10px;
 
-  font-size:12px;
+  align-items:center;
+
+  gap:8px;
+
+  font-size:10px;
+
   font-weight:900;
 }
 
 .inventory-brand-icon{
-  width:38px;
-  height:38px;
+  width:33px;
+  height:33px;
 
   display:grid;
   place-items:center;
 
-  border-radius:11px;
+  border-radius:9px;
 
-  background:rgba(255,122,0,.13);
-  border:1px solid rgba(255,122,0,.25);
+  background:rgba(255,122,0,.12);
+
+  border:1px solid rgba(255,122,0,.22);
 }
 
 .back-dashboard{
   display:inline-flex;
+
   align-items:center;
-  gap:7px;
 
-  height:37px;
+  gap:6px;
 
-  padding:0 13px;
+  height:32px;
+
+  padding:0 10px;
 
   border:1px solid var(--border);
-  border-radius:10px;
 
-  background:rgba(255,255,255,.055);
+  border-radius:9px;
+
+  background:rgba(255,255,255,.045);
+
   color:#fff;
 
-  font-size:10px;
+  font-size:8px;
+
   font-weight:850;
 
   transition:.2s;
 }
 
 .back-dashboard:hover{
-  background:rgba(255,122,0,.1);
-  border-color:rgba(255,122,0,.4);
+  background:rgba(255,122,0,.09);
+
+  border-color:rgba(255,122,0,.38);
+
   transform:translateX(-2px);
 }
 
 .inventory-container{
-  width:min(1000px,94%);
+  width:min(900px,94%);
+
   margin:auto;
 
-  padding:25px 0 45px;
+  padding:20px 0 35px;
 }
 
 .inventory-panel{
-  padding:23px;
+  padding:20px;
 
   border:1px solid var(--border);
-  border-radius:24px;
+
+  border-radius:19px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.055),
-      rgba(255,255,255,.02)
+      rgba(255,255,255,.05),
+      rgba(255,255,255,.018)
     );
 
   box-shadow:
-    0 20px 70px rgba(0,0,0,.25);
+    0 18px 60px rgba(0,0,0,.24);
 }
 
 .inventory-head{
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
-  gap:15px;
+  gap:12px;
 
-  margin-bottom:18px;
+  margin-bottom:15px;
 }
 
 .inventory-title{
   display:flex;
+
   align-items:center;
-  gap:11px;
+
+  gap:9px;
 }
 
 .inventory-icon{
-  width:42px;
-  height:42px;
+  width:36px;
+  height:36px;
 
   display:grid;
   place-items:center;
 
-  border-radius:13px;
+  border-radius:10px;
 
-  background:rgba(255,122,0,.12);
-  border:1px solid rgba(255,122,0,.25);
+  background:rgba(255,122,0,.11);
+
+  border:1px solid rgba(255,122,0,.22);
+
+  font-size:15px;
 }
 
 .inventory-title h3{
-  font-size:20px;
+  font-size:17px;
 }
 
 .inventory-title p{
-  margin-top:3px;
+  margin-top:2px;
 
   color:var(--muted);
 
-  font-size:9px;
+  font-size:8px;
 }
 
 .mode{
   display:flex;
-  gap:4px;
 
-  padding:4px;
+  gap:3px;
 
-  border-radius:11px;
+  padding:3px;
+
+  border-radius:9px;
 
   background:rgba(0,0,0,.25);
 }
 
 .mode button{
   border:0;
-  border-radius:8px;
 
-  padding:8px 10px;
+  border-radius:7px;
+
+  padding:7px 8px;
 
   background:transparent;
+
   color:var(--muted);
 
-  font-size:9px;
+  font-size:7px;
+
   font-weight:750;
 }
 
 .mode button.active{
   background:var(--orange);
+
   color:#111;
 }
 
@@ -986,19 +1193,24 @@ h1{
 
 .barcode-area input{
   width:100%;
-  height:54px;
+
+  height:50px;
 
   border:1px solid var(--border);
-  border-radius:14px;
+
+  border-radius:12px;
 
   background:rgba(0,0,0,.22);
+
   color:#fff;
 
-  padding:0 15px;
+  padding:0 14px;
 
   outline:none;
 
   transition:.2s;
+
+  font-size:11px;
 }
 
 .barcode-area input:focus,
@@ -1006,7 +1218,7 @@ h1{
   border-color:rgba(255,145,45,.75);
 
   box-shadow:
-    0 0 0 4px rgba(255,122,0,.08);
+    0 0 0 4px rgba(255,122,0,.07);
 }
 
 .suggestions{
@@ -1014,29 +1226,31 @@ h1{
 
   left:0;
   right:0;
-  top:62px;
+
+  top:58px;
 
   z-index:80;
 
-  max-height:260px;
+  max-height:250px;
 
   overflow:auto;
 
   border:1px solid var(--border);
-  border-radius:14px;
+
+  border-radius:12px;
 
   background:#14171c;
 
   box-shadow:
-    0 25px 65px rgba(0,0,0,.7);
+    0 20px 55px rgba(0,0,0,.7);
 }
 
 .suggestion{
-  padding:11px 13px;
+  padding:10px 12px;
 
   cursor:pointer;
 
-  border-bottom:1px solid rgba(255,255,255,.055);
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
 
 .suggestion:hover{
@@ -1046,17 +1260,17 @@ h1{
 .suggestion strong{
   display:block;
 
-  font-size:11px;
+  font-size:10px;
 }
 
 .suggestion span{
   display:block;
 
-  margin-top:3px;
+  margin-top:2px;
 
   color:var(--muted);
 
-  font-size:10px;
+  font-size:8px;
 }
 
 .qty-row{
@@ -1064,30 +1278,35 @@ h1{
 
   grid-template-columns:1fr auto;
 
-  gap:9px;
+  gap:8px;
 
-  margin-top:10px;
+  margin-top:8px;
 }
 
 .qty-row input{
-  height:51px;
+  height:48px;
 
   border:1px solid var(--border);
-  border-radius:13px;
+
+  border-radius:11px;
 
   background:rgba(0,0,0,.22);
+
   color:#fff;
 
-  padding:0 14px;
+  padding:0 13px;
 
   outline:none;
+
+  font-size:11px;
 }
 
 .save-btn{
-  min-width:120px;
+  min-width:110px;
 
   border:0;
-  border-radius:13px;
+
+  border-radius:11px;
 
   background:
     linear-gradient(
@@ -1098,57 +1317,65 @@ h1{
 
   color:#17100a;
 
-  font-size:11px;
+  font-size:9px;
+
   font-weight:950;
 }
 
 .history{
-  margin-top:23px;
+  margin-top:20px;
 }
 
 .history-title{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  margin-bottom:9px;
+  margin-bottom:8px;
 }
 
 .history-title h4{
-  font-size:12px;
+  font-size:10px;
 }
 
 .reset-btn{
   border:1px solid rgba(255,59,48,.28);
-  border-radius:9px;
+
+  border-radius:8px;
 
   background:rgba(255,59,48,.07);
+
   color:#ff8179;
 
-  padding:7px 10px;
+  padding:6px 8px;
 
-  font-size:9px;
+  font-size:7px;
+
   font-weight:800;
 }
 
 .history-list{
-  max-height:320px;
+  max-height:300px;
 
   overflow:auto;
 
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);
+
+  border-radius:12px;
 }
 
 .history-item{
   display:flex;
+
   justify-content:space-between;
 
-  gap:15px;
+  gap:12px;
 
-  padding:12px 13px;
+  padding:10px 12px;
 
-  border-bottom:1px solid rgba(255,255,255,.055);
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
 
 .history-item:last-child{
@@ -1156,13 +1383,14 @@ h1{
 }
 
 .history-name{
-  font-size:11px;
+  font-size:9px;
 }
 
 .history-qty{
   color:var(--orange2);
 
-  font-size:11px;
+  font-size:9px;
+
   font-weight:900;
 
   white-space:nowrap;
@@ -1173,18 +1401,19 @@ h1{
 
   color:var(--muted);
 
-  padding:20px;
+  padding:17px;
 
-  font-size:11px;
+  font-size:9px;
 }
 
 
-/* =========================
-   SETTINGS MODAL
-========================= */
+/* ==========================================
+   MODALS
+========================================== */
 
 .modal{
   position:fixed;
+
   inset:0;
 
   z-index:100;
@@ -1192,14 +1421,16 @@ h1{
   display:none;
 
   align-items:center;
+
   justify-content:center;
 
-  padding:18px;
+  padding:16px;
 
   background:rgba(0,0,0,.72);
 
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(13px);
+
+  -webkit-backdrop-filter:blur(13px);
 }
 
 .modal.show{
@@ -1207,98 +1438,111 @@ h1{
 }
 
 .modal-card{
-  width:min(510px,100%);
+  width:min(480px,100%);
 
   max-height:90vh;
 
   overflow:auto;
 
-  padding:25px;
+  padding:22px;
 
   border:1px solid var(--border);
-  border-radius:23px;
+
+  border-radius:19px;
 
   background:#111419;
 
   box-shadow:
-    0 35px 100px rgba(0,0,0,.75);
+    0 30px 90px rgba(0,0,0,.75);
 
-  animation:modalIn .3s ease;
+  animation:modalIn .28s ease;
 }
 
 .modal-head{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  margin-bottom:19px;
+  margin-bottom:16px;
 }
 
 .modal-head h2{
-  font-size:20px;
+  font-size:17px;
 }
 
 .close{
-  width:34px;
-  height:34px;
+  width:31px;
+  height:31px;
 
   border:1px solid var(--border);
-  border-radius:9px;
+
+  border-radius:8px;
 
   background:rgba(255,255,255,.05);
+
   color:#fff;
 
-  font-size:19px;
+  font-size:17px;
 }
 
 .setting-block{
-  padding:15px;
+  padding:13px;
 
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:15px;
+  border:1px solid rgba(255,255,255,.065);
 
-  background:rgba(255,255,255,.025);
+  border-radius:12px;
 
-  margin-bottom:10px;
+  background:rgba(255,255,255,.022);
+
+  margin-bottom:8px;
 }
 
 .setting-label{
-  margin-bottom:8px;
+  margin-bottom:7px;
 
-  color:rgba(255,255,255,.35);
+  color:rgba(255,255,255,.32);
 
-  font-size:8px;
+  font-size:7px;
+
   font-weight:850;
 
-  letter-spacing:1.5px;
+  letter-spacing:1.3px;
 }
 
 .profile-row{
   display:flex;
+
   align-items:center;
-  gap:11px;
+
+  gap:9px;
 }
 
 .profile-big{
-  width:43px;
-  height:43px;
+  width:38px;
+  height:38px;
 
   display:grid;
   place-items:center;
 
-  border-radius:13px;
+  border-radius:11px;
 
-  background:rgba(255,122,0,.12);
-  border:1px solid rgba(255,122,0,.25);
+  background:rgba(255,122,0,.11);
+
+  border:1px solid rgba(255,122,0,.22);
 
   color:#ffbd7c;
+
+  font-size:11px;
 
   font-weight:900;
 }
 
 .profile-row strong{
   display:block;
-  font-size:12px;
+
+  font-size:10px;
 }
 
 .profile-row span{
@@ -1306,58 +1550,67 @@ h1{
 
   color:var(--muted);
 
-  font-size:9px;
+  font-size:8px;
 
-  margin-top:3px;
+  margin-top:2px;
 }
 
 .section-head{
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
-  margin-bottom:9px;
+  margin-bottom:8px;
 }
 
 .section-head h3{
-  font-size:13px;
+  font-size:11px;
 }
 
 .refresh-btn{
   border:1px solid var(--border);
-  border-radius:8px;
+
+  border-radius:7px;
 
   background:rgba(255,255,255,.04);
+
   color:#fff;
 
-  padding:6px 9px;
+  padding:5px 7px;
 
-  font-size:9px;
+  font-size:7px;
 }
 
 .pending-list{
   display:grid;
-  gap:8px;
+
+  gap:6px;
 }
 
 .pending-user{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  gap:10px;
+  gap:8px;
 
-  padding:11px;
+  padding:9px;
 
   border:1px solid var(--border);
-  border-radius:12px;
+
+  border-radius:10px;
 
   background:rgba(255,255,255,.025);
 }
 
 .pending-info strong{
   display:block;
-  font-size:11px;
+
+  font-size:9px;
 }
 
 .pending-info span{
@@ -1365,49 +1618,162 @@ h1{
 
   color:var(--muted);
 
-  font-size:9px;
+  font-size:7px;
 
-  margin-top:3px;
+  margin-top:2px;
 }
 
 .approval-actions{
   display:flex;
-  gap:5px;
+
+  gap:4px;
 }
 
 .approve,
 .reject{
   border:0;
-  border-radius:8px;
 
-  padding:7px 9px;
+  border-radius:6px;
 
-  font-size:8px;
+  padding:6px 7px;
+
+  font-size:7px;
+
   font-weight:850;
 }
 
 .approve{
   background:var(--green);
+
   color:#07140d;
 }
 
 .reject{
   background:rgba(255,59,48,.12);
+
   color:#ff8179;
 
   border:1px solid rgba(255,59,48,.3);
 }
 
 
-/* =========================
+/* ==========================================
    MOBILE
-========================= */
+========================================== */
 
-@media(max-width:700px){
+@media(max-width:899px){
 
-  .topbar,
-  .inventory-topbar{
-    padding:0 14px;
+  .container{
+    width:94%;
+
+    padding-top:15px;
+  }
+
+  /*
+    HP:
+    Hero di atas
+    Operations di bawah
+    2 kartu tetap berdampingan
+  */
+
+  .dashboard-layout{
+    display:block;
+  }
+
+  .operations-panel{
+    margin-top:13px;
+
+    display:grid;
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+    gap:8px;
+  }
+
+  .operations-label{
+    grid-column:1/-1;
+
+    margin-bottom:-1px;
+  }
+
+  .dashboard-card{
+    height:105px;
+    min-height:105px;
+
+    padding:12px;
+
+    border-radius:13px;
+  }
+
+  .card-icon{
+    width:27px;
+    height:27px;
+
+    font-size:12px;
+  }
+
+  .dashboard-card h3{
+    font-size:12px;
+
+    margin-top:6px;
+  }
+
+  .dashboard-card p{
+    font-size:6.5px;
+
+    max-width:130px;
+  }
+
+  .open-link{
+    left:12px;
+    bottom:9px;
+
+    font-size:5.5px;
+  }
+
+  .arrow{
+    right:9px;
+    bottom:8px;
+
+    width:20px;
+    height:20px;
+
+    font-size:11px;
+  }
+
+  .card-number{
+    top:10px;
+    right:11px;
+
+    font-size:6px;
+  }
+
+  .status-grid{
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+  }
+
+}
+
+
+/* ==========================================
+   SMALL PHONE
+========================================== */
+
+@media(max-width:500px){
+
+  .topbar{
+    height:56px;
+
+    padding:0 11px;
+  }
+
+  .brand-logo{
+    width:30px;
+    height:30px;
+
+    border-radius:9px;
   }
 
   .brand span{
@@ -1418,52 +1784,156 @@ h1{
     display:none;
   }
 
-  .top-btn{
-    padding:0 9px;
+  .avatar{
+    width:29px;
+    height:29px;
   }
 
-  .container,
-  .inventory-container{
-    width:94%;
-    padding-top:19px;
+  .top-btn{
+    height:29px;
+
+    padding:0 7px;
+
+    font-size:7px;
+  }
+
+  .container{
+    width:93%;
+
+    padding-top:12px;
   }
 
   .hero{
-    padding:22px;
-    border-radius:22px;
+    min-height:108px;
+
+    padding:16px;
+
+    border-radius:16px;
   }
 
-  .hero-top{
-    display:block;
+  .hero small{
+    font-size:6.5px;
+
+    letter-spacing:1.5px;
+  }
+
+  .hero h2{
+    font-size:20px;
+
+    margin-top:4px;
+  }
+
+  .hero p{
+    font-size:8px;
+
+    max-width:250px;
   }
 
   .status{
-    display:inline-flex;
-    margin-top:13px;
-  }
+    padding:5px 6px;
 
-  .cards{
-    grid-template-columns:1fr;
-  }
-
-  .dashboard-card{
-    min-height:175px;
+    font-size:6px;
   }
 
   .status-grid{
-    grid-template-columns:1fr 1fr;
+    gap:5px;
   }
 
-  .status-grid .mini:last-child{
-    grid-column:1/-1;
+  .mini{
+    padding:8px;
+
+    border-radius:9px;
+  }
+
+  .mini-head{
+    font-size:5.5px;
+  }
+
+  .mini-value{
+    font-size:8px;
+
+    margin-top:3px;
+  }
+
+  .mini-sub{
+    font-size:5.5px;
+  }
+
+  .operations-panel{
+    margin-top:10px;
+
+    gap:6px;
+  }
+
+  .dashboard-card{
+    height:94px;
+    min-height:94px;
+
+    padding:10px;
+
+    border-radius:12px;
+  }
+
+  .card-icon{
+    width:25px;
+    height:25px;
+
+    font-size:11px;
+
+    border-radius:8px;
+  }
+
+  .dashboard-card h3{
+    font-size:11px;
+
+    margin-top:5px;
+  }
+
+  .dashboard-card p{
+    font-size:6px;
+
+    line-height:1.3;
+  }
+
+  .open-link{
+    left:10px;
+    bottom:8px;
+
+    font-size:5px;
+  }
+
+  .arrow{
+    right:8px;
+    bottom:7px;
+
+    width:19px;
+    height:19px;
+
+    font-size:10px;
+  }
+
+  .card-number{
+    top:9px;
+    right:9px;
+
+    font-size:5.5px;
+  }
+
+  .inventory-container{
+    width:94%;
+
+    padding-top:12px;
   }
 
   .inventory-panel{
-    padding:18px;
+    padding:15px;
+
+    border-radius:15px;
   }
 
   .inventory-head{
     flex-direction:column;
+
     align-items:flex-start;
   }
 
@@ -1472,11 +1942,12 @@ h1{
   }
 
   .save-btn{
-    height:51px;
+    height:48px;
   }
 
   .pending-user{
     flex-direction:column;
+
     align-items:flex-start;
   }
 
@@ -1488,39 +1959,45 @@ h1{
   .reject{
     flex:1;
   }
+
 }
 
-@media(max-width:430px){
 
-  .login-card{
-    padding:27px 22px;
+/* ==========================================
+   VERY SMALL PHONE
+========================================== */
+
+@media(max-width:360px){
+
+  .dashboard-card{
+    height:88px;
+    min-height:88px;
+
+    padding:9px;
   }
 
-  .status-grid{
-    grid-template-columns:1fr;
+  .dashboard-card h3{
+    font-size:10px;
   }
 
-  .status-grid .mini:last-child{
-    grid-column:auto;
-  }
-
-  .inventory-brand span{
+  .dashboard-card p{
     display:none;
   }
 
-  .inventory-topbar{
-    gap:5px;
+  .open-link{
+    bottom:7px;
   }
 
-  .user-area{
-    gap:5px;
+  .hero{
+    min-height:103px;
+
+    padding:14px;
   }
 
-  .settings-btn,
-  .logout-btn{
-    font-size:9px;
-    padding:0 8px;
+  .hero h2{
+    font-size:18px;
   }
+
 }
 </style>
 </head>
@@ -1703,188 +2180,204 @@ h1{
   <main class="container">
 
 
-    <section class="hero">
+    <div class="dashboard-layout">
 
-      <div class="hero-top">
 
-        <div>
+      <!-- ==========================================
+           MAIN
+      =========================================== -->
 
-          <small>
-            INVENTORY CONTROL CENTER
-          </small>
+      <div class="main-dashboard-panel">
 
-          <h2>
 
-            Halo,
-            <span id="welcomeName">
-              User
-            </span>
-            👋
+        <section class="hero">
 
-          </h2>
+          <div class="hero-top">
+
+            <div>
+
+              <small>
+                INVENTORY CONTROL CENTER
+              </small>
+
+              <h2>
+                Halo,
+                <span id="welcomeName">
+                  User
+                </span>
+                👋
+              </h2>
+
+              <p>
+                Kelola Stock Loss dan Stock Opname
+                dalam satu workspace.
+              </p>
+
+            </div>
+
+
+            <div class="status">
+
+              <i class="dot"></i>
+
+              SYSTEM ONLINE
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <div class="section-label">
+          SYSTEM STATUS
+        </div>
+
+
+        <section class="status-grid">
+
+
+          <div class="mini">
+
+            <div class="mini-head">
+              SYSTEM
+            </div>
+
+            <div class="mini-value">
+              ● ONLINE
+            </div>
+
+            <div class="mini-sub">
+              Firebase connected
+            </div>
+
+          </div>
+
+
+          <div class="mini">
+
+            <div class="mini-head">
+              MASTER DATA
+            </div>
+
+            <div
+              class="mini-value"
+              id="masterStatus">
+              LOADING
+            </div>
+
+            <div
+              class="mini-sub"
+              id="masterCount">
+              Menyiapkan acuan...
+            </div>
+
+          </div>
+
+
+          <div class="mini">
+
+            <div class="mini-head">
+              SESSION
+            </div>
+
+            <div class="mini-value">
+              ACTIVE
+            </div>
+
+            <div class="mini-sub">
+              User terautentikasi
+            </div>
+
+          </div>
+
+
+        </section>
+
+
+      </div>
+
+
+      <!-- ==========================================
+           OPERATIONS SIDE
+      =========================================== -->
+
+      <aside class="operations-panel">
+
+
+        <div class="operations-label">
+          OPERATIONS
+        </div>
+
+
+        <div
+          class="dashboard-card"
+          onclick="openInventory('stockloss')">
+
+          <div class="card-number">
+            01
+          </div>
+
+          <div class="card-icon">
+            📉
+          </div>
+
+          <h3>
+            Stock Loss
+          </h3>
 
           <p>
-            Kelola Stock Loss dan Stock Opname
-            dalam satu workspace.
+            Catat kehilangan atau selisih stock
+            dengan cepat.
           </p>
 
+          <div class="open-link">
+            OPEN STOCK LOSS →
+          </div>
+
+          <div class="arrow">
+            ›
+          </div>
+
         </div>
 
 
-        <div class="status">
+        <div
+          class="dashboard-card opname"
+          onclick="openInventory('opname')">
 
-          <i class="dot"></i>
+          <div class="card-number">
+            02
+          </div>
 
-          SYSTEM ONLINE
+          <div class="card-icon">
+            📦
+          </div>
+
+          <h3>
+            Stock Opname
+          </h3>
+
+          <p>
+            Catat hasil pengecekan stock aktual
+            secara terstruktur.
+          </p>
+
+          <div class="open-link">
+            OPEN STOCK OPNAME →
+          </div>
+
+          <div class="arrow">
+            ›
+          </div>
 
         </div>
 
-      </div>
 
-    </section>
+      </aside>
 
 
-    <div class="section-label">
-      OPERATIONS
     </div>
-
-
-    <section class="cards">
-
-
-      <div
-        class="dashboard-card"
-        onclick="openInventory('stockloss')">
-
-        <div class="card-number">
-          01
-        </div>
-
-        <div class="card-icon">
-          📉
-        </div>
-
-        <h3>
-          Stock Loss
-        </h3>
-
-        <p>
-          Catat kehilangan atau selisih stock
-          dengan cepat menggunakan barcode
-          dan quantity.
-        </p>
-
-        <div class="open-link">
-          OPEN STOCK LOSS →
-        </div>
-
-        <div class="arrow">
-          ›
-        </div>
-
-      </div>
-
-
-      <div
-        class="dashboard-card opname"
-        onclick="openInventory('opname')">
-
-        <div class="card-number">
-          02
-        </div>
-
-        <div class="card-icon">
-          📦
-        </div>
-
-        <h3>
-          Stock Opname
-        </h3>
-
-        <p>
-          Lakukan pencatatan hasil pengecekan
-          stock aktual secara terstruktur.
-        </p>
-
-        <div class="open-link">
-          OPEN STOCK OPNAME →
-        </div>
-
-        <div class="arrow">
-          ›
-        </div>
-
-      </div>
-
-
-    </section>
-
-
-    <div class="section-label">
-      SYSTEM STATUS
-    </div>
-
-
-    <section class="status-grid">
-
-
-      <div class="mini">
-
-        <div class="mini-head">
-          SYSTEM
-        </div>
-
-        <div class="mini-value">
-          ● ONLINE
-        </div>
-
-        <div class="mini-sub">
-          Firebase connected
-        </div>
-
-      </div>
-
-
-      <div class="mini">
-
-        <div
-          class="mini-head">
-          MASTER DATA
-        </div>
-
-        <div
-          class="mini-value"
-          id="masterStatus">
-          LOADING
-        </div>
-
-        <div
-          class="mini-sub"
-          id="masterCount">
-          Menyiapkan acuan...
-        </div>
-
-      </div>
-
-
-      <div class="mini">
-
-        <div class="mini-head">
-          SESSION
-        </div>
-
-        <div class="mini-value">
-          ACTIVE
-        </div>
-
-        <div class="mini-sub">
-          User terautentikasi
-        </div>
-
-      </div>
-
-
-    </section>
 
   </main>
 
@@ -2305,8 +2798,6 @@ h1{
     </div>
 
 
-    <!-- ACCOUNT -->
-
     <div class="setting-block">
 
       <div class="setting-label">
@@ -2342,8 +2833,6 @@ h1{
     </div>
 
 
-    <!-- PASSWORD -->
-
     <div class="setting-block">
 
       <div class="setting-label">
@@ -2353,10 +2842,10 @@ h1{
 
       <p
         style="
-        font-size:11px;
+        font-size:9px;
         color:rgba(255,255,255,.58);
         line-height:1.5;
-        margin-bottom:10px">
+        margin-bottom:9px">
 
         Reset password dilakukan melalui
         email asli akun.
@@ -2366,7 +2855,7 @@ h1{
 
       <button
         class="primary-btn"
-        style="height:43px"
+        style="height:40px"
         onclick="resetOwnPassword()">
 
         🔐 KIRIM LINK RESET PASSWORD
@@ -2381,8 +2870,6 @@ h1{
 
     </div>
 
-
-    <!-- USER MANAGEMENT -->
 
     <div
       class="setting-block"
@@ -2481,7 +2968,6 @@ from
 
 /* =====================================================
    FIREBASE CONFIG
-   SAMA SEPERTI VERSI YANG TADI BISA LOGIN
 ===================================================== */
 
 const firebaseConfig = {
@@ -2725,7 +3211,6 @@ async function usernameExists(username){
 
 /* =====================================================
    SIGNUP
-   DIKEMBALIKAN SEPERTI VERSI YANG BISA LOGIN
 ===================================================== */
 
 window.signup=async function(){
@@ -2902,11 +3387,6 @@ window.signup=async function(){
     );
 
 
-    /*
-      SAMA SEPERTI VERSI LAMA:
-      usernames hanya menyimpan UID.
-    */
-
     await setDoc(
       doc(
         db,
@@ -3006,7 +3486,6 @@ window.signup=async function(){
 
 /* =====================================================
    LOGIN
-   PERSIS MENGIKUTI VERSI YANG TADI BISA LOGIN
 ===================================================== */
 
 window.login=async function(){
@@ -3063,20 +3542,6 @@ window.login=async function(){
 
     let email=identity;
 
-
-    /*
-      USERNAME
-      ↓
-      usernames/{username}
-      ↓
-      UID
-      ↓
-      users/{uid}
-      ↓
-      EMAIL
-      ↓
-      FIREBASE AUTH
-    */
 
     if(!identity.includes("@")){
 
@@ -3441,11 +3906,6 @@ function showDashboard(){
       .toUpperCase();
 
 
-  /*
-    MASTER dijalankan di background.
-    Tidak menghambat dashboard.
-  */
-
   loadMaster();
 
 }
@@ -3741,23 +4201,14 @@ async function rejectUser(uid){
 
 /* =====================================================
    OPEN INVENTORY
-   DASHBOARD BENAR-BENAR DITUTUP
 ===================================================== */
 
 window.openInventory=function(mode){
-
-  /*
-    Tutup dashboard sepenuhnya.
-  */
 
   $("dashboard")
     .classList
     .remove("show");
 
-
-  /*
-    Tampilkan halaman inventory.
-  */
 
   $("inventoryPage")
     .classList
@@ -4374,12 +4825,6 @@ window.saveInventory=async function(){
     : "stockloss";
 
 
-  /*
-    OPTIMISTIC UI
-    History langsung muncul.
-    Input langsung dikosongkan.
-  */
-
   addLocalHistory(
     barcode,
     qtyText
@@ -4462,11 +4907,6 @@ window.saveInventory=async function(){
       "error"
     );
 
-
-    /*
-      Ambil ulang history server
-      apabila gagal.
-    */
 
     loadHistory();
 
