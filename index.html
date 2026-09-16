@@ -2088,17 +2088,24 @@ async function loadMasterData(background=false){
 
 $("barcode").addEventListener("input",function(){
 
-  const value=normalizeBarcode(this.value);
+  const rawValue=String(this.value||"").trim();
 
-  if(!value){
+  if(!rawValue){
     $("suggestions").innerHTML="";
     $("suggestions").style.display="none";
     clearProductName();
     return;
   }
 
-  if(value.length===13 && /^20\d{11}$/.test(value)){
-    processWeighedBarcode(value);
+  /* BARCODE TANPA SPASI */
+  const barcodeValue=normalizeBarcode(rawValue);
+
+  /* BARCODE TIMBANG */
+  if(
+    barcodeValue.length===13 &&
+    /^20\d{11}$/.test(barcodeValue)
+  ){
+    processWeighedBarcode(barcodeValue);
     return;
   }
 
@@ -2109,57 +2116,116 @@ $("barcode").addEventListener("input",function(){
     return;
   }
 
-  const search=value.toLowerCase();
+  /*
+    PENTING:
+    Untuk NAMA PRODUK, SPASI JANGAN DIHAPUS.
+  */
+
+  const searchName=rawValue
+    .toLowerCase()
+    .replace(/\s+/g," ")
+    .trim();
+
+  /* Untuk barcode, spasi boleh dihapus */
+  const searchBarcode=barcodeKey(barcodeValue);
+
+  /*
+    Cari dari SELURUH MASTER setiap kali mengetik.
+  */
 
   const result=masterData
     .filter(item=>{
-      const barcode=barcodeKey(item.barcode);
-      const nama=String(item.nama||"").toLowerCase();
 
-      return barcode.includes(search)||nama.includes(search);
+      const itemBarcode=
+        barcodeKey(item.barcode);
+
+      const itemName=
+        String(item.nama||"")
+          .toLowerCase()
+          .replace(/\s+/g," ")
+          .trim();
+
+      return(
+        itemBarcode.includes(searchBarcode) ||
+        itemName.includes(searchName)
+      );
+
     })
     .slice(0,20);
 
+  /*
+    TIDAK ADA HASIL
+  */
+
   if(!result.length){
+
     $("suggestions").innerHTML="";
     $("suggestions").style.display="none";
-    updateProductName(value);
+
+    /*
+      Tetap cek exact barcode
+    */
+    updateProductName(barcodeValue);
+
     return;
   }
 
+  /*
+    EXACT BARCODE
+  */
+
   const exact=result.find(item=>
-    barcodeKey(item.barcode)===barcodeKey(value)
+    barcodeKey(item.barcode)===searchBarcode
   );
 
   if(exact){
+
     updateProductName(exact.barcode);
+
   }else{
+
     clearProductName();
+
   }
 
-  $("suggestions").innerHTML=result.map(item=>`
-    <div
-      class="suggestion-item"
-      data-barcode="${escapeHtml(item.barcode)}"
-    >
-      <div class="suggestion-barcode">
-        ${escapeHtml(item.barcode)}
+  /*
+    TAMPILKAN HASIL
+  */
+
+  $("suggestions").innerHTML=
+    result.map(item=>`
+
+      <div
+        class="suggestion-item"
+        data-barcode="${escapeHtml(item.barcode)}"
+      >
+
+        <div class="suggestion-barcode">
+          ${escapeHtml(item.barcode)}
+        </div>
+
+        <div class="suggestion-name">
+          ${escapeHtml(item.nama)}
+          ${
+            getProductUnit(item)
+              ? ` • ${escapeHtml(
+                  normalizeUnit(
+                    getProductUnit(item)
+                  )
+                )}`
+              : ""
+          }
+        </div>
+
       </div>
 
-      <div class="suggestion-name">
-        ${escapeHtml(item.nama)}
-        ${
-          getProductUnit(item)
-            ? ` • ${escapeHtml(
-                normalizeUnit(getProductUnit(item))
-              )}`
-            : ""
-        }
-      </div>
-    </div>
-  `).join("");
+    `).join("");
 
   $("suggestions").style.display="block";
+
+  /*
+    KLIK PRODUK
+  */
 
   $("suggestions")
     .querySelectorAll(".suggestion-item")
@@ -2167,14 +2233,18 @@ $("barcode").addEventListener("input",function(){
 
       el.addEventListener("click",()=>{
 
-        const selectedBarcode=el.dataset.barcode;
+        const selectedBarcode=
+          el.dataset.barcode;
 
-        $("barcode").value=selectedBarcode;
+        $("barcode").value=
+          selectedBarcode;
 
         $("suggestions").innerHTML="";
         $("suggestions").style.display="none";
 
-        updateProductName(selectedBarcode);
+        updateProductName(
+          selectedBarcode
+        );
 
         $("qty").focus();
 
@@ -2183,6 +2253,7 @@ $("barcode").addEventListener("input",function(){
     });
 
 });
+  
 /* =====================================================
    BARCODE ENTER
 ===================================================== */
