@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,20 +17,11 @@
   --blue:#4b91ff;
 
   --bg:#08090c;
-  --bg2:#101217;
-
   --card:rgba(255,255,255,.065);
-  --card2:rgba(255,255,255,.035);
-
   --border:rgba(255,255,255,.11);
 
-  --text:#ffffff;
-  --muted:#9ca3af;
-
-  --shadow:
-    0 25px 80px rgba(0,0,0,.45);
-
-  --radius:24px;
+  --text:#fff;
+  --muted:#858c98;
 }
 
 *{
@@ -45,21 +37,6 @@ body{
 }
 
 body{
-  background:
-    radial-gradient(
-      circle at 15% 20%,
-      rgba(255,122,0,.10),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 90% 80%,
-      rgba(75,145,255,.08),
-      transparent 30%
-    ),
-    var(--bg);
-
-  color:var(--text);
-
   font-family:
     Inter,
     system-ui,
@@ -68,34 +45,23 @@ body{
     "Segoe UI",
     sans-serif;
 
-  overflow-x:hidden;
-}
-
-/* =========================
-   BACKGROUND
-========================= */
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-
-  pointer-events:none;
+  color:var(--text);
 
   background:
-    linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255,255,255,.018) 50%,
-      transparent 100%
-    );
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(255,122,0,.10),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(75,145,255,.08),
+      transparent 30%
+    ),
+    var(--bg);
 
-  z-index:-1;
+  overflow-x:hidden;
 }
-
-/* =========================
-   GENERAL
-========================= */
 
 button,
 input{
@@ -107,17 +73,13 @@ button{
 }
 
 .hidden{
-  display:none !important;
+  display:none!important;
 }
 
-/* =========================
+
+/* =====================================================
    LOGIN
-========================= */
-
-.page{
-  width:100%;
-  min-height:100vh;
-}
+===================================================== */
 
 #loginPage{
   min-height:100vh;
@@ -126,14 +88,18 @@ button{
   align-items:center;
   justify-content:center;
 
-  padding:24px;
+  padding:20px;
 }
 
 .login-card{
   width:100%;
-  max-width:430px;
+  max-width:420px;
 
-  padding:38px;
+  padding:36px;
+
+  border-radius:28px;
+
+  border:1px solid var(--border);
 
   background:
     linear-gradient(
@@ -142,19 +108,17 @@ button{
       rgba(255,255,255,.025)
     );
 
-  border:1px solid var(--border);
-
-  border-radius:28px;
-
-  box-shadow:var(--shadow);
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.5);
 
   backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
 
-  animation:cardIn .5s ease;
+  animation:
+    loginIn .45s ease;
 }
 
-@keyframes cardIn{
+@keyframes loginIn{
+
   from{
     opacity:0;
     transform:translateY(20px) scale(.98);
@@ -164,18 +128,19 @@ button{
     opacity:1;
     transform:none;
   }
+
 }
 
 .brand{
   text-align:center;
-  margin-bottom:32px;
+  margin-bottom:30px;
 }
 
 .brand-logo{
-  width:78px;
-  height:78px;
+  width:76px;
+  height:76px;
 
-  margin:0 auto 16px;
+  margin:0 auto 15px;
 
   border-radius:22px;
 
@@ -185,101 +150,96 @@ button{
 
   background:
     linear-gradient(
-      145deg,
+      135deg,
       var(--orange),
-      #ff4d00
+      #ff4700
     );
 
   box-shadow:
-    0 15px 40px rgba(255,122,0,.25);
+    0 15px 40px
+    rgba(255,122,0,.25);
 }
 
 .brand-logo span{
-  font-size:28px;
-  font-weight:900;
+  font-size:27px;
+  font-weight:950;
   letter-spacing:-2px;
 }
 
 .brand h1{
-  font-size:27px;
-  font-weight:900;
+  font-size:26px;
+  font-weight:950;
   letter-spacing:2px;
 }
 
 .brand p{
-  margin-top:7px;
+  margin-top:6px;
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
 }
 
 .input-group{
-  margin-bottom:16px;
+  margin-bottom:15px;
 }
 
 .input-group label{
   display:block;
-  margin-bottom:8px;
 
-  font-size:12px;
-  font-weight:700;
+  margin-bottom:7px;
 
-  color:#c9cdd4;
-}
+  font-size:10px;
+  font-weight:800;
 
-.input-wrap{
-  position:relative;
+  color:#bdc1c8;
+
+  letter-spacing:.7px;
 }
 
 .input{
   width:100%;
-
   height:50px;
 
-  padding:0 15px;
+  padding:0 14px;
 
   border-radius:14px;
 
   border:1px solid var(--border);
 
-  background:rgba(0,0,0,.25);
+  outline:none;
+
+  background:
+    rgba(0,0,0,.25);
 
   color:#fff;
-
-  outline:none;
 
   transition:.2s;
 }
 
 .input:focus{
-  border-color:rgba(255,122,0,.7);
+  border-color:
+    rgba(255,122,0,.7);
 
   box-shadow:
-    0 0 0 3px rgba(255,122,0,.09);
+    0 0 0 3px
+    rgba(255,122,0,.08);
 }
 
 .btn{
   width:100%;
-
   min-height:50px;
-
-  border:0;
 
   border-radius:14px;
 
-  font-weight:800;
+  font-size:12px;
+  font-weight:900;
 
-  transition:
-    transform .18s,
-    box-shadow .18s,
-    opacity .18s;
+  border:0;
+
+  transition:.2s;
 }
 
 .btn:hover{
   transform:translateY(-1px);
-}
-
-.btn:active{
-  transform:translateY(1px);
 }
 
 .btn-primary{
@@ -289,65 +249,53 @@ button{
     linear-gradient(
       135deg,
       var(--orange),
-      #ff4d00
+      #ff4700
     );
 
   box-shadow:
-    0 12px 28px rgba(255,122,0,.18);
+    0 12px 30px
+    rgba(255,122,0,.18);
 }
 
 .btn-secondary{
   color:#fff;
 
-  background:rgba(255,255,255,.07);
-
-  border:1px solid var(--border);
-}
-
-.btn-danger{
   background:
-    linear-gradient(
-      135deg,
-      #ff453a,
-      #c91f18
-    );
+    rgba(255,255,255,.06);
 
-  color:#fff;
+  border:
+    1px solid var(--border);
 }
 
 .login-actions{
-  margin-top:18px;
-
   display:flex;
   justify-content:space-between;
 
-  gap:12px;
+  gap:10px;
+
+  margin-top:16px;
 }
 
 .text-button{
-  background:none;
   border:0;
+  background:none;
 
-  color:#ff9b3d;
+  color:#ff9c45;
 
-  font-size:12px;
-  font-weight:700;
-}
-
-.text-button:hover{
-  color:#ffc078;
+  font-size:11px;
+  font-weight:800;
 }
 
 .message{
-  min-height:20px;
+  min-height:18px;
 
-  margin-top:14px;
-
-  font-size:12px;
+  margin-top:12px;
 
   text-align:center;
 
   color:var(--muted);
+
+  font-size:11px;
 }
 
 .message.error{
@@ -358,22 +306,25 @@ button{
   color:#52e99a;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
+
+/* =====================================================
+   MAIN DASHBOARD
+===================================================== */
 
 #dashboard{
   min-height:100vh;
-  padding:24px;
+  padding:22px;
 }
 
 .dashboard-layout{
+
   width:100%;
   max-width:1450px;
 
-  min-height:calc(100vh - 48px);
+  min-height:
+    calc(100vh - 44px);
 
-  margin:0 auto;
+  margin:auto;
 
   display:grid;
 
@@ -381,22 +332,26 @@ button{
     minmax(0,1fr)
     minmax(280px,350px);
 
-  gap:22px;
-
-  align-items:stretch;
+  gap:20px;
 }
 
-/* LEFT SIDE */
+
+/* LEFT */
 
 .dashboard-main{
+
+  position:relative;
+
   min-width:0;
 
   display:flex;
   flex-direction:column;
 
-  padding:26px;
+  padding:25px;
 
-  border-radius:28px;
+  border-radius:27px;
+
+  border:1px solid var(--border);
 
   background:
     linear-gradient(
@@ -405,63 +360,64 @@ button{
       rgba(255,255,255,.018)
     );
 
-  border:1px solid var(--border);
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.42);
 
-  box-shadow:var(--shadow);
-
-  position:relative;
   overflow:hidden;
 }
 
 .dashboard-main::after{
+
   content:"";
 
   position:absolute;
 
-  width:300px;
-  height:300px;
+  right:-130px;
+  bottom:-160px;
 
-  right:-120px;
-  bottom:-150px;
+  width:330px;
+  height:330px;
 
   border-radius:50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(255,122,0,.15),
+      rgba(255,122,0,.16),
       transparent 70%
     );
 
   pointer-events:none;
 }
 
-/* TOPBAR */
+
+/* TOP */
 
 .topbar{
-  width:100%;
+
+  position:relative;
+  z-index:2;
 
   display:flex;
 
   align-items:center;
-
   justify-content:space-between;
 
   gap:15px;
 
-  margin-bottom:45px;
-
-  position:relative;
-  z-index:2;
+  margin-bottom:35px;
 }
 
 .top-brand{
+
   display:flex;
   align-items:center;
-  gap:12px;
+
+  gap:11px;
 }
 
 .top-brand-icon{
+
   width:43px;
   height:43px;
 
@@ -471,51 +427,52 @@ button{
   align-items:center;
   justify-content:center;
 
-  font-weight:900;
+  font-size:13px;
+  font-weight:950;
 
   background:
     linear-gradient(
       135deg,
       var(--orange),
-      #ff4b00
+      #ff4700
     );
-
-  box-shadow:
-    0 8px 22px rgba(255,122,0,.18);
-}
-
-.top-brand-text{
-  line-height:1.1;
 }
 
 .top-brand-text strong{
+
   display:block;
 
-  font-size:15px;
+  font-size:14px;
+
   letter-spacing:1px;
 }
 
 .top-brand-text span{
+
   display:block;
 
-  margin-top:4px;
+  margin-top:3px;
 
-  color:#858b96;
+  font-size:9px;
 
-  font-size:10px;
+  color:#727984;
 
   letter-spacing:1px;
 }
 
 .user-area{
+
   display:flex;
+
   align-items:center;
-  gap:9px;
+
+  gap:8px;
 }
 
 .avatar{
-  width:38px;
-  height:38px;
+
+  width:37px;
+  height:37px;
 
   border-radius:50%;
 
@@ -526,82 +483,78 @@ button{
   background:
     linear-gradient(
       135deg,
-      #343840,
-      #181a20
+      #373b43,
+      #181a1f
     );
 
   border:1px solid var(--border);
 
-  font-size:12px;
+  font-size:11px;
   font-weight:900;
 }
 
 .user-name{
-  max-width:130px;
 
-  overflow:hidden;
+  max-width:120px;
+
   white-space:nowrap;
+  overflow:hidden;
   text-overflow:ellipsis;
 
-  font-size:12px;
-  font-weight:700;
+  font-size:11px;
+  font-weight:800;
 }
 
 .icon-button{
-  width:38px;
-  height:38px;
 
-  border-radius:12px;
+  width:37px;
+  height:37px;
+
+  border-radius:11px;
 
   border:1px solid var(--border);
 
-  background:rgba(255,255,255,.045);
+  background:
+    rgba(255,255,255,.045);
 
   color:#fff;
 
   display:flex;
   align-items:center;
   justify-content:center;
-
-  font-size:16px;
-
-  transition:.2s;
 }
 
-.icon-button:hover{
-  background:rgba(255,255,255,.09);
-}
 
 /* WELCOME */
 
 .welcome-block{
+
   position:relative;
   z-index:2;
 
-  margin-top:auto;
-  margin-bottom:auto;
-
   max-width:760px;
+
+  margin:auto 0;
 }
 
 .welcome-small{
+
   color:var(--orange);
 
-  font-size:12px;
-  font-weight:800;
+  font-size:11px;
+  font-weight:900;
 
   letter-spacing:2px;
 
-  text-transform:uppercase;
-
-  margin-bottom:12px;
+  margin-bottom:11px;
 }
 
 .welcome-title{
-  font-size:
-    clamp(42px,6vw,82px);
 
-  line-height:.95;
+  font-size:
+    clamp(42px,6vw,78px);
+
+  line-height:.94;
 
   font-weight:950;
 
@@ -609,6 +562,7 @@ button{
 }
 
 .welcome-title span{
+
   background:
     linear-gradient(
       135deg,
@@ -616,48 +570,53 @@ button{
       var(--orange2)
     );
 
+  color:transparent;
+
   -webkit-background-clip:text;
   background-clip:text;
-
-  color:transparent;
 }
 
 .welcome-sub{
-  margin-top:20px;
 
-  max-width:650px;
+  max-width:620px;
 
-  color:#8f96a2;
+  margin-top:18px;
 
-  font-size:14px;
+  color:#858c98;
+
+  font-size:13px;
 
   line-height:1.7;
 }
 
 .system-status{
+
   display:inline-flex;
 
   align-items:center;
   gap:8px;
 
-  margin-top:25px;
+  margin-top:22px;
 
-  padding:9px 13px;
+  padding:8px 12px;
 
   border-radius:999px;
 
-  background:rgba(53,232,137,.06);
+  background:
+    rgba(53,232,137,.055);
 
-  border:1px solid rgba(53,232,137,.15);
+  border:
+    1px solid
+    rgba(53,232,137,.15);
 
-  color:#71efa9;
+  color:#70eda8;
 
-  font-size:11px;
-
-  font-weight:700;
+  font-size:10px;
+  font-weight:800;
 }
 
 .status-dot{
+
   width:7px;
   height:7px;
 
@@ -669,73 +628,77 @@ button{
     0 0 12px var(--green);
 }
 
-/* FOOTER */
-
 .dashboard-footer{
+
   position:relative;
   z-index:2;
 
   display:flex;
 
-  align-items:center;
   justify-content:space-between;
 
-  gap:20px;
+  padding-top:17px;
 
-  margin-top:35px;
+  margin-top:30px;
 
-  padding-top:18px;
+  border-top:
+    1px solid
+    rgba(255,255,255,.06);
 
-  border-top:1px solid rgba(255,255,255,.06);
+  color:#626974;
 
-  color:#666d78;
-
-  font-size:10px;
+  font-size:9px;
 }
 
-/* =========================
-   OPERATIONS RIGHT PANEL
-========================= */
+
+/* =====================================================
+   OPERATION PANEL
+===================================================== */
 
 .operations-panel{
+
   display:flex;
 
   flex-direction:column;
 
-  gap:14px;
-
-  min-width:0;
+  gap:12px;
 }
 
 .operations-heading{
-  padding:5px 4px 3px;
 
   display:flex;
 
+  align-items:end;
   justify-content:space-between;
 
-  align-items:end;
+  padding:
+    4px 3px;
 }
 
 .operations-heading h2{
-  font-size:17px;
-  font-weight:900;
+
+  font-size:16px;
+  font-weight:950;
 }
 
 .operations-heading span{
-  color:#6d737e;
 
-  font-size:10px;
+  font-size:9px;
+
+  color:#656c77;
 }
 
 .operation-card{
+
+  position:relative;
+
   flex:1;
 
-  min-height:180px;
+  min-height:175px;
 
-  padding:22px;
+  padding:21px;
 
-  border-radius:22px;
+  border-radius:21px;
 
   border:1px solid var(--border);
 
@@ -743,25 +706,22 @@ button{
     linear-gradient(
       145deg,
       rgba(255,255,255,.065),
-      rgba(255,255,255,.025)
+      rgba(255,255,255,.022)
     );
 
   box-shadow:
-    0 18px 45px rgba(0,0,0,.25);
-
-  position:relative;
+    0 18px 45px
+    rgba(0,0,0,.25);
 
   overflow:hidden;
 
   cursor:pointer;
 
-  transition:
-    transform .2s,
-    border-color .2s,
-    background .2s;
+  transition:.22s;
 }
 
 .operation-card:hover{
+
   transform:translateX(-4px);
 
   border-color:
@@ -770,12 +730,13 @@ button{
   background:
     linear-gradient(
       145deg,
-      rgba(255,122,0,.10),
-      rgba(255,255,255,.035)
+      rgba(255,122,0,.09),
+      rgba(255,255,255,.025)
     );
 }
 
 .operation-card::after{
+
   content:"";
 
   position:absolute;
@@ -783,8 +744,8 @@ button{
   width:170px;
   height:170px;
 
-  right:-70px;
-  bottom:-80px;
+  right:-75px;
+  bottom:-90px;
 
   border-radius:50%;
 
@@ -797,27 +758,30 @@ button{
 }
 
 .operation-icon{
-  width:55px;
-  height:55px;
 
-  border-radius:17px;
+  width:52px;
+  height:52px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  margin-bottom:18px;
+  border-radius:16px;
 
-  font-size:25px;
+  margin-bottom:16px;
+
+  font-size:23px;
 
   background:
     rgba(255,122,0,.10);
 
   border:
-    1px solid rgba(255,122,0,.16);
+    1px solid
+    rgba(255,122,0,.17);
 }
 
 .operation-card.opname .operation-icon{
+
   background:
     rgba(75,145,255,.10);
 
@@ -825,53 +789,66 @@ button{
     rgba(75,145,255,.17);
 }
 
+.operation-card.data .operation-icon{
+
+  background:
+    rgba(53,232,137,.08);
+
+  border-color:
+    rgba(53,232,137,.16);
+}
+
 .operation-title{
-  font-size:18px;
 
-  font-weight:900;
+  font-size:17px;
 
-  letter-spacing:.2px;
+  font-weight:950;
 }
 
 .operation-desc{
-  margin-top:7px;
-
-  color:#777f8c;
-
-  font-size:11px;
-
-  line-height:1.5;
 
   max-width:220px;
+
+  margin-top:6px;
+
+  color:#747c88;
+
+  font-size:10px;
+
+  line-height:1.55;
 }
 
 .operation-arrow{
+
   position:absolute;
 
-  right:20px;
-  top:20px;
+  right:18px;
+  top:18px;
 
-  width:30px;
-  height:30px;
-
-  border-radius:10px;
+  width:29px;
+  height:29px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  color:#aaa;
+  border-radius:9px;
 
-  background:rgba(255,255,255,.04);
+  background:
+    rgba(255,255,255,.04);
 
-  font-size:14px;
+  color:#999;
+
+  font-size:13px;
 }
 
-/* =========================
+
+/* =====================================================
    INVENTORY PAGE
-========================= */
+===================================================== */
 
 #inventoryPage{
+
   position:fixed;
 
   inset:0;
@@ -880,32 +857,33 @@ button{
 
   display:none;
 
+  align-items:center;
+  justify-content:center;
+
   min-height:100vh;
 
-  padding:24px;
+  padding:18px;
 
   overflow:auto;
 
   background:
     radial-gradient(
-      circle at 50% 30%,
+      circle at 50% 25%,
       rgba(255,122,0,.09),
       transparent 35%
     ),
     rgba(8,9,12,.97);
 
   backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
 }
 
 #inventoryPage.show{
-  display:flex;
 
-  align-items:center;
-  justify-content:center;
+  display:flex;
 }
 
 .inventory-center{
+
   width:100%;
 
   max-width:560px;
@@ -913,10 +891,11 @@ button{
   margin:auto;
 
   animation:
-    inventoryIn .35s ease;
+    inventoryIn .3s ease;
 }
 
 @keyframes inventoryIn{
+
   from{
     opacity:0;
     transform:
@@ -931,88 +910,93 @@ button{
 }
 
 .inventory-top{
+
   display:flex;
 
   align-items:center;
   justify-content:space-between;
 
-  gap:12px;
-
-  margin-bottom:18px;
+  margin-bottom:13px;
 }
 
 .inventory-brand{
+
   display:flex;
   align-items:center;
-  gap:10px;
+
+  gap:9px;
 }
 
 .inventory-logo{
-  width:42px;
-  height:42px;
 
-  border-radius:13px;
+  width:40px;
+  height:40px;
+
+  border-radius:12px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-weight:900;
-
   background:
     linear-gradient(
       135deg,
       var(--orange),
-      #ff4b00
+      #ff4700
     );
+
+  font-size:12px;
+  font-weight:950;
 }
 
 .inventory-brand strong{
+
   display:block;
 
-  font-size:13px;
+  font-size:12px;
 
   letter-spacing:1px;
 }
 
 .inventory-brand span{
+
   display:block;
 
-  color:#777e89;
+  margin-top:2px;
 
-  font-size:9px;
+  color:#6f7681;
 
-  margin-top:3px;
+  font-size:8px;
+
+  letter-spacing:1px;
 }
 
 .back-button{
-  height:40px;
 
-  padding:0 14px;
+  height:38px;
 
-  border-radius:12px;
+  padding:0 13px;
+
+  border-radius:11px;
 
   border:1px solid var(--border);
 
-  background:rgba(255,255,255,.05);
+  background:
+    rgba(255,255,255,.05);
 
   color:#fff;
 
-  font-size:11px;
-
+  font-size:10px;
   font-weight:800;
 }
 
-.back-button:hover{
-  background:rgba(255,255,255,.09);
-}
-
-/* INVENTORY CARD */
-
 .inventory-card{
-  padding:28px;
 
-  border-radius:28px;
+  position:relative;
+
+  padding:26px;
+
+  border-radius:27px;
 
   border:1px solid var(--border);
 
@@ -1023,113 +1007,102 @@ button{
       rgba(255,255,255,.025)
     );
 
-  box-shadow:var(--shadow);
-
-  position:relative;
-
-  overflow:visible;
+  box-shadow:
+    0 30px 90px
+    rgba(0,0,0,.48);
 }
 
 .inventory-heading{
+
   text-align:center;
 
-  margin-bottom:25px;
+  margin-bottom:23px;
 }
 
 .inventory-heading-icon{
-  width:66px;
-  height:66px;
 
-  margin:0 auto 15px;
+  width:62px;
+  height:62px;
 
-  border-radius:20px;
+  margin:
+    0 auto 13px;
+
+  border-radius:19px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:28px;
+  font-size:26px;
 
   background:
     rgba(255,122,0,.10);
 
   border:
-    1px solid rgba(255,122,0,.17);
-}
-
-.inventory-card.opname-card
-.inventory-heading-icon{
-  background:
-    rgba(75,145,255,.10);
+    1px solid
+    rgba(255,122,0,.17);
 }
 
 .inventory-heading h1{
-  font-size:27px;
+
+  font-size:25px;
 
   font-weight:950;
-
-  letter-spacing:-1px;
 }
 
 .inventory-heading p{
-  margin-top:6px;
 
-  color:#777e89;
+  margin-top:5px;
 
-  font-size:11px;
-}
+  color:#747b86;
 
-/* FORM */
-
-.inventory-form{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:15px;
+  font-size:10px;
 }
 
 .inventory-input-group{
+
   position:relative;
+
+  margin-bottom:14px;
 }
 
 .inventory-input-group label{
+
   display:block;
 
-  margin-bottom:8px;
+  margin-bottom:7px;
 
-  color:#b9bec6;
+  color:#b7bcc4;
 
-  font-size:11px;
+  font-size:10px;
 
   font-weight:800;
 }
 
 .inventory-input{
+
   width:100%;
 
-  height:54px;
+  height:53px;
 
-  padding:
-    0 15px;
+  padding:0 14px;
 
-  border-radius:15px;
+  border-radius:14px;
 
   border:1px solid var(--border);
+
+  outline:none;
 
   background:
     rgba(0,0,0,.25);
 
   color:#fff;
 
-  outline:none;
-
-  font-size:15px;
-
-  transition:.2s;
+  font-size:14px;
 }
 
 .inventory-input:focus{
+
   border-color:
     rgba(255,122,0,.7);
 
@@ -1139,230 +1112,323 @@ button{
 }
 
 .inventory-input::placeholder{
-  color:#565d68;
+  color:#555c67;
 }
 
 .qty-row{
+
   display:grid;
 
   grid-template-columns:
-    1fr 150px;
+    1fr 100px;
 
-  gap:12px;
+  gap:10px;
 }
 
 .qty-unit{
-  height:54px;
+
+  height:53px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
-  border-radius:15px;
+  border-radius:14px;
 
   border:1px solid var(--border);
 
   background:
     rgba(255,255,255,.035);
 
-  color:#999faa;
+  color:#9198a3;
 
-  font-size:12px;
+  font-size:11px;
 
-  font-weight:800;
+  font-weight:900;
 }
 
 .send-button{
+
   width:100%;
 
-  height:55px;
-
-  margin-top:3px;
+  height:54px;
 
   border:0;
 
-  border-radius:16px;
-
-  color:#fff;
+  border-radius:15px;
 
   background:
     linear-gradient(
       135deg,
       var(--orange),
-      #ff4b00
+      #ff4700
     );
 
+  color:#fff;
+
+  font-size:12px;
+
+  font-weight:950;
+
   box-shadow:
-    0 13px 30px
+    0 14px 32px
     rgba(255,122,0,.18);
-
-  font-size:13px;
-
-  font-weight:900;
-
-  letter-spacing:.4px;
-
-  transition:.2s;
-}
-
-.send-button:hover{
-  transform:translateY(-1px);
-
-  box-shadow:
-    0 17px 35px
-    rgba(255,122,0,.24);
 }
 
 .send-button:disabled{
+
   opacity:.5;
 
   cursor:not-allowed;
-
-  transform:none;
 }
 
 .inventory-message{
-  min-height:18px;
+
+  min-height:17px;
+
+  margin-top:10px;
 
   text-align:center;
 
-  margin-top:12px;
+  color:#737b86;
 
-  font-size:11px;
-
-  color:#7f8792;
+  font-size:10px;
 }
 
 .inventory-message.error{
-  color:#ff6961;
+  color:#ff6b61;
 }
 
 .inventory-message.success{
-  color:#50e89a;
+  color:#52e99a;
 }
 
-/* =========================
-   SUGGESTIONS
-========================= */
+
+/* SUGGESTIONS */
 
 .suggestions{
-  display:none;
 
   position:absolute;
 
   left:0;
   right:0;
 
-  top:82px;
+  top:77px;
 
-  z-index:50;
+  z-index:100;
 
-  max-height:240px;
+  display:none;
+
+  max-height:220px;
 
   overflow-y:auto;
 
   padding:5px;
 
-  border-radius:15px;
+  border-radius:14px;
+
+  border:1px solid var(--border);
 
   background:
     rgba(18,20,25,.98);
 
-  border:
-    1px solid var(--border);
-
   box-shadow:
-    0 20px 50px rgba(0,0,0,.5);
+    0 20px 50px
+    rgba(0,0,0,.5);
 }
 
 .suggestion-item{
-  padding:10px 11px;
 
-  border-radius:11px;
+  padding:10px;
+
+  border-radius:10px;
 
   cursor:pointer;
-
-  transition:.15s;
 }
 
 .suggestion-item:hover{
+
   background:
     rgba(255,122,0,.10);
 }
 
 .suggestion-barcode{
-  font-size:12px;
 
-  font-weight:800;
-
-  color:#fff;
+  font-size:11px;
+  font-weight:900;
 }
 
 .suggestion-name{
+
   margin-top:3px;
 
-  font-size:10px;
+  color:#747c88;
 
-  color:#777f8b;
-
-  white-space:nowrap;
+  font-size:9px;
 
   overflow:hidden;
-
+  white-space:nowrap;
   text-overflow:ellipsis;
 }
 
-/* =========================
-   HISTORY
-========================= */
+
+/* HISTORY */
 
 .history-section{
-  margin-top:22px;
+
+  margin-top:20px;
 }
 
 .history-header{
+
   display:flex;
 
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 .history-header strong{
-  font-size:12px;
+
+  font-size:11px;
 }
 
 .history-header span{
-  color:#646b75;
 
-  font-size:9px;
+  color:#626974;
+
+  font-size:8px;
 }
 
 .history-list{
-  max-height:180px;
+
+  max-height:170px;
 
   overflow-y:auto;
 
   display:flex;
-
   flex-direction:column;
 
-  gap:7px;
+  gap:6px;
 }
 
 .history-item{
-  padding:11px 12px;
 
-  border-radius:12px;
+  padding:9px 11px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  border-radius:11px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.05);
 
   background:
     rgba(255,255,255,.035);
+}
 
-  border:
-    1px solid rgba(255,255,255,.055);
+.history-code{
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.history-name{
+
+  margin-top:2px;
+
+  color:#707783;
+
+  font-size:8px;
+}
+
+.history-qty{
+
+  color:var(--orange2);
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.history-empty{
+
+  padding:17px;
+
+  text-align:center;
+
+  color:#626974;
+
+  font-size:9px;
+}
+
+.reset-row{
+
+  margin-top:9px;
+
+  text-align:right;
+}
+
+.reset-button{
+
+  border:0;
+
+  background:none;
+
+  color:#666d78;
+
+  font-size:9px;
+
+  font-weight:800;
+}
+
+
+/* =====================================================
+   DATA BSD PAGE
+===================================================== */
+
+#dataBsdPage{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:120;
+
+  display:none;
+
+  flex-direction:column;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(0,140,255,.10),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(0,255,180,.06),
+      transparent 30%
+    ),
+    #070b12;
+}
+
+#dataBsdPage.show{
+
+  display:flex;
+}
+
+.data-bsd-topbar{
+
+  flex:none;
+
+  height:64px;
 
   display:flex;
 
@@ -1371,120 +1437,572 @@ button{
   justify-content:space-between;
 
   gap:12px;
+
+  padding:
+    0 18px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+  background:
+    rgba(7,11,18,.88);
+
+  backdrop-filter:blur(20px);
+
+  z-index:10;
 }
 
-.history-left{
-  min-width:0;
+.data-bsd-brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
 }
 
-.history-code{
+.data-bsd-logo{
+
+  width:38px;
+  height:38px;
+
+  border-radius:11px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      #ff4700
+    );
+
   font-size:11px;
+  font-weight:950;
+}
+
+.data-bsd-brand strong{
+
+  display:block;
+
+  font-size:13px;
+
+  letter-spacing:1px;
+}
+
+.data-bsd-brand span{
+
+  display:block;
+
+  margin-top:2px;
+
+  color:#6d7480;
+
+  font-size:8px;
+
+  letter-spacing:1px;
+}
+
+.data-bsd-actions{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+}
+
+.data-bsd-back{
+
+  height:36px;
+
+  padding:
+    0 12px;
+
+  border-radius:10px;
+
+  border:1px solid
+    rgba(255,255,255,.10);
+
+  background:
+    rgba(255,255,255,.05);
+
+  color:#fff;
+
+  font-size:10px;
 
   font-weight:800;
 }
 
-.history-name{
-  margin-top:3px;
+.data-bsd-refresh{
 
-  font-size:9px;
+  height:36px;
 
-  color:#737b87;
+  padding:
+    0 12px;
 
-  overflow:hidden;
+  border-radius:10px;
 
-  white-space:nowrap;
+  border:1px solid
+    rgba(255,255,255,.10);
 
-  text-overflow:ellipsis;
+  background:
+    rgba(255,255,255,.05);
+
+  color:#fff;
+
+  font-size:10px;
+
+  font-weight:800;
 }
 
-.history-qty{
-  flex:none;
+.data-bsd-body{
 
-  font-size:11px;
+  flex:1;
+
+  min-height:0;
+
+  overflow:auto;
+
+  padding:18px;
+}
+
+.data-dashboard{
+
+  width:100%;
+
+  max-width:1500px;
+
+  margin:auto;
+}
+
+.data-page-heading{
+
+  margin-bottom:17px;
+}
+
+.data-page-title{
+
+  font-size:25px;
 
   font-weight:900;
 
-  color:var(--orange2);
+  letter-spacing:-.5px;
 }
 
-.history-empty{
-  padding:18px;
+.data-page-subtitle{
 
-  text-align:center;
+  margin-top:4px;
 
-  color:#626975;
+  color:
+    rgba(255,255,255,.42);
 
-  font-size:10px;
+  font-size:11px;
 }
 
-/* RESET */
 
-.reset-row{
-  margin-top:13px;
+/* DATA STATS */
+
+.data-stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:12px;
+
+  margin-bottom:15px;
+}
+
+.data-stat{
+
+  position:relative;
+
+  min-height:95px;
+
+  padding:15px;
+
+  border-radius:15px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.018)
+    );
+
+  overflow:hidden;
+}
+
+.data-stat.clickable{
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.data-stat.clickable:hover{
+
+  transform:translateY(-2px);
+
+  border-color:
+    rgba(255,255,255,.17);
+}
+
+.data-stat.selected{
+
+  border-color:
+    rgba(0,180,255,.45);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(0,150,255,.13),
+      rgba(0,220,180,.04)
+    );
+}
+
+.data-stat-label{
+
+  color:
+    rgba(255,255,255,.43);
+
+  font-size:9px;
+
+  font-weight:900;
+
+  letter-spacing:1.1px;
+}
+
+.data-stat-value{
+
+  margin-top:8px;
+
+  font-size:25px;
+
+  line-height:1;
+
+  font-weight:900;
+}
+
+.data-stat-desc{
+
+  margin-top:7px;
+
+  color:
+    rgba(255,255,255,.32);
+
+  font-size:9px;
+}
+
+#bsdNegativeValue{
+
+  color:#ff6666;
+}
+
+#bsdLowValue{
+
+  color:#f4d35e;
+}
+
+
+/* DATA TABLE */
+
+.data-table-container{
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  border-radius:15px;
+
+  background:
+    rgba(8,13,21,.72);
+
+  backdrop-filter:blur(18px);
+
+  overflow:hidden;
+
+  box-shadow:
+    0 18px 45px
+    rgba(0,0,0,.18);
+}
+
+.data-table-header{
 
   display:flex;
 
-  justify-content:flex-end;
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  padding:
+    15px 16px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.07);
 }
 
-.reset-button{
-  background:none;
+.data-table-title{
 
-  border:0;
+  font-size:14px;
 
-  color:#686f7b;
+  font-weight:900;
+}
+
+.data-info{
+
+  margin-top:3px;
+
+  color:
+    rgba(255,255,255,.36);
+
+  font-size:9px;
+}
+
+.data-table-actions{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+}
+
+.bsd-all-btn{
+
+  display:none;
+
+  padding:
+    8px 10px;
+
+  border-radius:8px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  background:
+    rgba(255,255,255,.05);
+
+  color:
+    rgba(255,255,255,.75);
+
+  font-size:9px;
+
+  font-weight:800;
+}
+
+.bsd-search{
+
+  width:220px;
+
+  height:34px;
+
+  padding:
+    0 11px;
+
+  border-radius:8px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.10);
+
+  outline:none;
+
+  background:
+    rgba(255,255,255,.045);
+
+  color:#fff;
 
   font-size:10px;
-
-  font-weight:700;
 }
 
-.reset-button:hover{
-  color:#ff6961;
+.bsd-search::placeholder{
+
+  color:
+    rgba(255,255,255,.28);
 }
 
-/* =========================
+.data-table-scroll{
+
+  width:100%;
+
+  overflow:auto;
+}
+
+.data-table{
+
+  width:100%;
+
+  min-width:850px;
+
+  border-collapse:collapse;
+}
+
+.data-table thead{
+
+  background:
+    rgba(255,255,255,.035);
+}
+
+.data-table th{
+
+  padding:
+    11px 13px;
+
+  text-align:left;
+
+  white-space:nowrap;
+
+  color:
+    rgba(255,255,255,.40);
+
+  font-size:9px;
+
+  font-weight:900;
+
+  letter-spacing:.7px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.07);
+}
+
+.data-table td{
+
+  padding:
+    11px 13px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.045);
+
+  color:
+    rgba(255,255,255,.80);
+
+  font-size:11px;
+
+  white-space:nowrap;
+}
+
+.data-table tbody tr:hover{
+
+  background:
+    rgba(255,255,255,.035);
+}
+
+.bsd-row-number{
+
+  color:
+    rgba(255,255,255,.22);
+
+  font-size:9px;
+}
+
+.bsd-low-row{
+
+  background:
+    rgba(245,211,94,.025);
+}
+
+.bsd-low-value{
+
+  color:#f1d96a!important;
+
+  font-weight:900;
+
+  background:
+    rgba(245,211,94,.055);
+}
+
+.bsd-negative-row{
+
+  background:
+    rgba(255,70,70,.035);
+}
+
+.bsd-negative-value{
+
+  color:#ff5c5c!important;
+
+  font-weight:950;
+
+  background:
+    rgba(255,70,70,.085);
+}
+
+.bsd-empty{
+
+  padding:45px 20px!important;
+
+  text-align:center;
+
+  color:
+    rgba(255,255,255,.28)!important;
+
+  font-size:11px!important;
+}
+
+
+/* =====================================================
    MODALS
-========================= */
+===================================================== */
 
 .modal{
+
   position:fixed;
 
   inset:0;
 
-  z-index:200;
+  z-index:500;
 
   display:none;
 
   align-items:center;
   justify-content:center;
 
-  padding:20px;
+  padding:18px;
 
   background:
     rgba(0,0,0,.72);
 
   backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
 }
 
 .modal.show{
+
   display:flex;
 }
 
 .modal-card{
+
   width:100%;
 
   max-width:450px;
 
   max-height:
-    calc(100vh - 40px);
+    calc(100vh - 36px);
 
-  overflow-y:auto;
+  overflow:auto;
 
-  padding:26px;
+  padding:25px;
 
-  border-radius:24px;
+  border-radius:23px;
+
+  border:
+    1px solid var(--border);
 
   background:
     linear-gradient(
@@ -1493,80 +2011,68 @@ button{
       rgba(13,14,18,.98)
     );
 
-  border:1px solid var(--border);
-
   box-shadow:
-    0 30px 100px rgba(0,0,0,.65);
-
-  animation:
-    modalIn .25s ease;
-}
-
-@keyframes modalIn{
-  from{
-    opacity:0;
-    transform:scale(.96) translateY(10px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+    0 30px 100px
+    rgba(0,0,0,.65);
 }
 
 .modal-head{
+
   display:flex;
 
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 
-  margin-bottom:22px;
+  margin-bottom:20px;
 }
 
 .modal-head h2{
-  font-size:19px;
+
+  font-size:18px;
 
   font-weight:900;
 }
 
 .modal-close{
+
   width:34px;
   height:34px;
 
-  border-radius:10px;
+  border-radius:9px;
 
   border:1px solid var(--border);
 
-  background:rgba(255,255,255,.04);
+  background:
+    rgba(255,255,255,.04);
 
   color:#fff;
 }
 
-/* =========================
-   SETTINGS
-========================= */
-
 .profile-box{
-  padding:15px;
 
-  border-radius:16px;
+  padding:14px;
+
+  margin-bottom:16px;
+
+  border-radius:15px;
 
   background:
     rgba(255,255,255,.035);
 
-  border:1px solid rgba(255,255,255,.06);
-
-  margin-bottom:18px;
+  border:
+    1px solid
+    rgba(255,255,255,.06);
 }
 
 .profile-row{
+
   display:flex;
 
   justify-content:space-between;
 
   gap:15px;
 
-  margin-bottom:9px;
+  margin-bottom:8px;
 }
 
 .profile-row:last-child{
@@ -1574,125 +2080,137 @@ button{
 }
 
 .profile-label{
-  color:#707783;
 
-  font-size:10px;
+  color:#6e7580;
+
+  font-size:9px;
 }
 
 .profile-value{
-  color:#e9ebef;
 
-  font-size:11px;
+  color:#e8eaed;
 
-  font-weight:700;
+  font-size:10px;
+
+  font-weight:800;
 
   text-align:right;
 }
 
 .admin-section{
-  margin-top:22px;
 
-  padding-top:20px;
+  margin-top:20px;
 
-  border-top:1px solid rgba(255,255,255,.06);
+  padding-top:18px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.06);
 }
 
 .admin-section h3{
-  font-size:13px;
 
-  margin-bottom:10px;
+  margin-bottom:9px;
+
+  font-size:12px;
 }
 
 .pending-list{
-  display:flex;
 
+  display:flex;
   flex-direction:column;
 
-  gap:8px;
+  gap:7px;
 
   max-height:220px;
 
-  overflow-y:auto;
+  overflow:auto;
 }
 
 .pending-user{
-  padding:11px;
 
-  border-radius:13px;
+  padding:10px;
+
+  border-radius:12px;
 
   background:
     rgba(255,255,255,.035);
 
-  border:1px solid rgba(255,255,255,.05);
-}
-
-.pending-user-top{
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:10px;
+  border:
+    1px solid
+    rgba(255,255,255,.05);
 }
 
 .pending-user-name{
-  font-size:11px;
 
-  font-weight:800;
+  font-size:10px;
+
+  font-weight:900;
 }
 
 .pending-user-email{
-  margin-top:4px;
 
-  color:#707783;
+  margin-top:3px;
 
-  font-size:9px;
+  color:#6f7782;
+
+  font-size:8px;
 }
 
 .pending-actions{
+
   display:flex;
 
-  gap:6px;
+  gap:5px;
 
-  margin-top:9px;
+  margin-top:8px;
 }
 
 .small-btn{
-  padding:7px 10px;
 
-  border-radius:9px;
+  padding:
+    6px 9px;
 
   border:0;
 
-  font-size:9px;
+  border-radius:8px;
 
-  font-weight:800;
+  font-size:8px;
+
+  font-weight:900;
 }
 
 .approve-btn{
-  background:rgba(53,232,137,.12);
 
   color:#52e99a;
+
+  background:
+    rgba(53,232,137,.12);
 }
 
 .reject-btn{
-  background:rgba(255,59,48,.12);
 
   color:#ff7169;
+
+  background:
+    rgba(255,59,48,.12);
 }
 
-/* =========================
+
+/* =====================================================
    TOAST
-========================= */
+===================================================== */
 
 #toastContainer{
+
   position:fixed;
 
   left:50%;
-  bottom:22px;
+  bottom:20px;
 
   transform:translateX(-50%);
 
-  z-index:500;
+  z-index:1000;
 
   width:
     min(420px,calc(100% - 30px));
@@ -1701,9 +2219,11 @@ button{
 }
 
 .toast{
-  padding:12px 15px;
 
-  border-radius:13px;
+  padding:
+    11px 14px;
+
+  border-radius:12px;
 
   background:
     rgba(25,27,32,.97);
@@ -1711,249 +2231,279 @@ button{
   border:1px solid var(--border);
 
   box-shadow:
-    0 15px 40px rgba(0,0,0,.4);
+    0 15px 40px
+    rgba(0,0,0,.4);
 
   text-align:center;
 
-  font-size:11px;
+  font-size:10px;
 
-  font-weight:700;
-
-  animation:
-    toastIn .25s ease;
+  font-weight:800;
 }
 
 .toast.success{
-  border-color:
-    rgba(53,232,137,.2);
 
   color:#65eca7;
+
+  border-color:
+    rgba(53,232,137,.2);
 }
 
 .toast.error{
-  border-color:
-    rgba(255,59,48,.2);
 
   color:#ff726b;
+
+  border-color:
+    rgba(255,59,48,.2);
 }
 
-@keyframes toastIn{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
 
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* =====================================================
+   RESPONSIVE DASHBOARD
+===================================================== */
 
 @media(max-width:900px){
 
   #dashboard{
-    padding:16px;
-  }
-
-  .dashboard-layout{
-    min-height:
-      calc(100vh - 32px);
-
-    grid-template-columns:1fr;
-
-    gap:14px;
-  }
-
-  .dashboard-main{
-    min-height:480px;
-
-    padding:21px;
-
-    border-radius:23px;
-  }
-
-  .topbar{
-    margin-bottom:25px;
-  }
-
-  .welcome-block{
-    margin-top:35px;
-    margin-bottom:35px;
-  }
-
-  .welcome-title{
-    font-size:
-      clamp(42px,11vw,65px);
-  }
-
-  .operations-panel{
-    display:grid;
-
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-
-    gap:10px;
-
-    align-items:stretch;
-  }
-
-  .operations-heading{
-    grid-column:1 / -1;
-  }
-
-  .operation-card{
-    min-height:145px;
-
-    padding:17px;
-
-    border-radius:18px;
-  }
-
-  .operation-icon{
-    width:45px;
-    height:45px;
-
-    border-radius:14px;
-
-    margin-bottom:12px;
-
-    font-size:20px;
-  }
-
-  .operation-title{
-    font-size:14px;
-  }
-
-  .operation-desc{
-    font-size:9px;
-  }
-
-  .operation-arrow{
-    width:25px;
-    height:25px;
-
-    top:13px;
-    right:13px;
-  }
-}
-
-@media(max-width:600px){
-
-  #loginPage{
-    padding:16px;
-  }
-
-  .login-card{
-    padding:25px 20px;
-
-    border-radius:22px;
-  }
-
-  #inventoryPage{
     padding:15px;
   }
 
-  .inventory-center{
-    max-width:100%;
+  .dashboard-layout{
+
+    min-height:
+      calc(100vh - 30px);
+
+    grid-template-columns:1fr;
+
+    gap:12px;
   }
 
-  .inventory-card{
-    padding:20px 17px;
+  .dashboard-main{
+
+    min-height:470px;
+
+    padding:20px;
 
     border-radius:22px;
   }
 
-  .inventory-top{
-    margin-bottom:12px;
+  .welcome-title{
+
+    font-size:
+      clamp(42px,11vw,64px);
   }
 
-  .inventory-brand strong{
-    font-size:11px;
+  .operations-panel{
+
+    display:grid;
+
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+
+    gap:8px;
   }
 
-  .back-button{
-    height:36px;
+  .operations-heading{
 
-    padding:0 11px;
-
-    font-size:9px;
+    grid-column:
+      1 / -1;
   }
 
-  .inventory-heading{
-    margin-bottom:20px;
+  .operation-card{
+
+    min-height:135px;
+
+    padding:15px;
+
+    border-radius:17px;
   }
 
-  .inventory-heading-icon{
-    width:58px;
-    height:58px;
+  .operation-icon{
 
-    font-size:24px;
+    width:43px;
+    height:43px;
+
+    border-radius:13px;
+
+    margin-bottom:11px;
+
+    font-size:19px;
   }
 
-  .inventory-heading h1{
-    font-size:23px;
+  .operation-title{
+
+    font-size:12px;
   }
 
-  .qty-row{
-    grid-template-columns:1fr 75px;
+  .operation-desc{
+
+    font-size:8px;
   }
 
-  .qty-unit{
-    font-size:10px;
+  .operation-arrow{
+
+    top:10px;
+    right:10px;
+
+    width:23px;
+    height:23px;
   }
 
-  .dashboard-footer{
-    flex-direction:column;
+  .data-stats{
 
-    align-items:flex-start;
-
-    gap:6px;
+    grid-template-columns:
+      repeat(2,1fr);
   }
+
+}
+
+@media(max-width:650px){
 
   .user-name{
     display:none;
   }
-}
 
-@media(max-width:380px){
+  .topbar{
+    margin-bottom:20px;
+  }
+
+  .dashboard-main{
+    min-height:440px;
+  }
 
   .operations-panel{
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
   }
 
   .operation-card{
-    min-height:135px;
 
-    padding:14px;
+    min-height:120px;
+
+    padding:12px;
+  }
+
+  .operation-icon{
+
+    width:37px;
+    height:37px;
+
+    margin-bottom:8px;
+
+    font-size:17px;
   }
 
   .operation-title{
-    font-size:13px;
+    font-size:10px;
   }
 
   .operation-desc{
     display:none;
   }
 
-  .welcome-title{
-    font-size:39px;
+  .data-bsd-topbar{
+
+    height:58px;
+
+    padding:
+      0 10px;
   }
+
+  .data-bsd-back,
+  .data-bsd-refresh{
+
+    padding:
+      0 9px;
+
+    font-size:9px;
+  }
+
+  .data-bsd-body{
+
+    padding:12px;
+  }
+
+  .data-page-title{
+
+    font-size:21px;
+  }
+
+  .data-table-header{
+
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+  .data-table-actions{
+
+    width:100%;
+  }
+
+  .bsd-search{
+
+    flex:1;
+
+    width:auto;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .login-card{
+    padding:26px 20px;
+  }
+
+  .inventory-card{
+    padding:20px 16px;
+
+    border-radius:21px;
+  }
+
+  .qty-row{
+
+    grid-template-columns:
+      1fr 72px;
+  }
+
+  .inventory-heading h1{
+
+    font-size:22px;
+  }
+
+  .data-stats{
+
+    gap:8px;
+  }
+
+  .data-stat{
+
+    min-height:88px;
+
+    padding:13px;
+  }
+
+  .data-stat-value{
+
+    font-size:21px;
+  }
+
 }
 
 </style>
+
 </head>
 
 <body>
+
 
 <!-- =====================================================
      LOGIN
 ===================================================== -->
 
-<section id="loginPage" class="page">
+<section id="loginPage">
 
   <div class="login-card">
 
@@ -2001,8 +2551,8 @@ button{
 
 
     <button
-      class="btn btn-primary"
       id="loginButton"
+      class="btn btn-primary"
       onclick="login()"
     >
       LOGIN
@@ -2039,12 +2589,12 @@ button{
 
 
 <!-- =====================================================
-     DASHBOARD
+     MAIN DASHBOARD
 ===================================================== -->
 
 <section
   id="dashboard"
-  class="page hidden"
+  class="hidden"
 >
 
   <div class="dashboard-layout">
@@ -2094,7 +2644,6 @@ button{
           <button
             class="icon-button"
             onclick="openSettings()"
-            title="Settings"
           >
             ⚙
           </button>
@@ -2102,7 +2651,6 @@ button{
           <button
             class="icon-button"
             onclick="logout()"
-            title="Logout"
           >
             ↪
           </button>
@@ -2126,11 +2674,10 @@ button{
         </h1>
 
         <p class="welcome-sub">
-          Kelola pencatatan stock loss dan
-          stock opname dengan cepat,
-          akurat, dan terintegrasi.
+          Kelola stock loss, stock opname,
+          dan monitoring data stock BSD
+          melalui satu sistem.
         </p>
-
 
         <div class="system-status">
 
@@ -2158,7 +2705,7 @@ button{
     </main>
 
 
-    <!-- RIGHT OPERATIONS -->
+    <!-- RIGHT -->
 
     <aside class="operations-panel">
 
@@ -2166,9 +2713,7 @@ button{
 
         <h2>OPERATIONS</h2>
 
-        <span>
-          PILIH MENU
-        </span>
+        <span>PILIH MENU</span>
 
       </div>
 
@@ -2189,7 +2734,7 @@ button{
         </div>
 
         <div class="operation-title">
-          STOCK LOSS
+          STOCK LOSS BSD
         </div>
 
         <div class="operation-desc">
@@ -2217,12 +2762,40 @@ button{
         </div>
 
         <div class="operation-title">
-          STOCK OPNAME
+          STOCK OPNAME BSD
         </div>
 
         <div class="operation-desc">
           Catat hasil perhitungan
           stock aktual produk.
+        </div>
+
+      </div>
+
+
+      <!-- DATA BSD -->
+
+      <div
+        class="operation-card data"
+        onclick="openDataBSD()"
+      >
+
+        <div class="operation-arrow">
+          →
+        </div>
+
+        <div class="operation-icon">
+          📊
+        </div>
+
+        <div class="operation-title">
+          DATA BSD
+        </div>
+
+        <div class="operation-desc">
+          Monitoring data stock
+          MEAT, SEAFOOD,
+          dan DELICATE.
         </div>
 
       </div>
@@ -2238,9 +2811,7 @@ button{
      INVENTORY PAGE
 ===================================================== -->
 
-<section
-  id="inventoryPage"
->
+<section id="inventoryPage">
 
   <div class="inventory-center">
 
@@ -2255,13 +2826,9 @@ button{
 
         <div>
 
-          <strong>
-            THE BUTCHER
-          </strong>
+          <strong>THE BUTCHER</strong>
 
-          <span>
-            INVENTORY SYSTEM
-          </span>
+          <span>INVENTORY SYSTEM</span>
 
         </div>
 
@@ -2278,11 +2845,7 @@ button{
     </div>
 
 
-    <div
-      id="inventoryCard"
-      class="inventory-card"
-    >
-
+    <div class="inventory-card">
 
       <div class="inventory-heading">
 
@@ -2304,84 +2867,68 @@ button{
       </div>
 
 
-      <div class="inventory-form">
+      <div class="inventory-input-group">
 
+        <label>
+          BARCODE / ARTICLE
+        </label>
 
-        <!-- BARCODE -->
-
-        <div
-          class="inventory-input-group"
+        <input
+          id="barcode"
+          class="inventory-input"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="Scan atau masukkan barcode"
         >
 
-          <label>
-            BARCODE / ARTICLE
-          </label>
-
-          <input
-            id="barcode"
-            class="inventory-input"
-            type="text"
-            inputmode="numeric"
-            autocomplete="off"
-            placeholder="Scan atau masukkan barcode"
-          >
-
-          <div
-            id="suggestions"
-            class="suggestions"
-          ></div>
-
-        </div>
-
-
-        <!-- QTY -->
-
         <div
-          class="inventory-input-group"
-        >
-
-          <label>
-            QUANTITY
-          </label>
-
-          <div class="qty-row">
-
-            <input
-              id="qty"
-              class="inventory-input"
-              type="text"
-              inputmode="decimal"
-              placeholder="0"
-            >
-
-            <div class="qty-unit">
-              KG
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <button
-          id="sendButton"
-          class="send-button"
-          onclick="saveInventory()"
-        >
-          KIRIM DATA
-        </button>
-
-
-        <div
-          id="inventoryMessage"
-          class="inventory-message"
+          id="suggestions"
+          class="suggestions"
         ></div>
-
 
       </div>
 
 
-      <!-- HISTORY -->
+      <div class="inventory-input-group">
+
+        <label>
+          QUANTITY
+        </label>
+
+        <div class="qty-row">
+
+          <input
+            id="qty"
+            class="inventory-input"
+            type="text"
+            inputmode="decimal"
+            placeholder="0"
+          >
+
+          <div class="qty-unit">
+            KG
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        id="sendButton"
+        class="send-button"
+        onclick="saveInventory()"
+      >
+        KIRIM DATA
+      </button>
+
+
+      <div
+        id="inventoryMessage"
+        class="inventory-message"
+      ></div>
+
 
       <div class="history-section">
 
@@ -2423,6 +2970,274 @@ button{
 
       </div>
 
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     DATA BSD PAGE
+===================================================== -->
+
+<section id="dataBsdPage">
+
+
+  <div class="data-bsd-topbar">
+
+    <div class="data-bsd-brand">
+
+      <div class="data-bsd-logo">
+        TB
+      </div>
+
+      <div>
+
+        <strong>
+          DATA BSD
+        </strong>
+
+        <span>
+          STOCK MONITORING
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="data-bsd-actions">
+
+      <button
+        class="data-bsd-refresh"
+        id="bsdRefreshButton"
+        onclick="refreshBSD()"
+      >
+        ↻ Refresh
+      </button>
+
+      <button
+        class="data-bsd-back"
+        onclick="closeDataBSD()"
+      >
+        ← Dashboard
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="data-bsd-body">
+
+    <div class="data-dashboard">
+
+
+      <div class="data-page-heading">
+
+        <div
+          class="data-page-title"
+          id="bsdPageTitle"
+        >
+          MEAT
+        </div>
+
+        <div class="data-page-subtitle">
+          Monitoring stock BSD
+        </div>
+
+      </div>
+
+
+      <!-- DATA STATS -->
+
+      <section class="data-stats">
+
+
+        <div class="data-stat">
+
+          <div class="data-stat-label">
+            SHEET
+          </div>
+
+          <div
+            class="data-stat-value"
+            id="bsdSheetValue"
+          >
+            MEAT
+          </div>
+
+          <div class="data-stat-desc">
+            Sheet aktif
+          </div>
+
+        </div>
+
+
+        <div
+          id="bsdNegativeCard"
+          class="data-stat clickable"
+          onclick="bsdShowNegative()"
+        >
+
+          <div class="data-stat-label">
+            NEGATIVE STOCK
+          </div>
+
+          <div
+            class="data-stat-value"
+            id="bsdNegativeValue"
+          >
+            0
+          </div>
+
+          <div class="data-stat-desc">
+            Klik untuk melihat
+          </div>
+
+        </div>
+
+
+        <div class="data-stat">
+
+          <div class="data-stat-label">
+            UPDATE
+          </div>
+
+          <div
+            class="data-stat-value"
+            id="bsdUpdateValue"
+            style="font-size:10px;"
+          >
+            —
+          </div>
+
+          <div class="data-stat-desc">
+            Informasi update
+          </div>
+
+        </div>
+
+
+        <div
+          id="bsdLowCard"
+          class="data-stat clickable"
+          onclick="bsdShowLow()"
+        >
+
+          <div class="data-stat-label">
+            LOW STOCK
+          </div>
+
+          <div
+            class="data-stat-value"
+            id="bsdLowValue"
+          >
+            0
+          </div>
+
+          <div class="data-stat-desc">
+            Klik untuk melihat
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- DATA TABLE -->
+
+      <section class="data-table-container">
+
+
+        <div class="data-table-header">
+
+          <div>
+
+            <div
+              class="data-table-title"
+              id="bsdTableTitle"
+            >
+              Semua Barang
+            </div>
+
+            <div
+              class="data-info"
+              id="bsdDataInfo"
+            >
+              0 data
+            </div>
+
+          </div>
+
+
+          <div class="data-table-actions">
+
+            <button
+              id="bsdAllBtn"
+              class="bsd-all-btn"
+              onclick="bsdShowAll()"
+            >
+              ← Semua Barang
+            </button>
+
+
+            <input
+              id="bsdSearch"
+              class="bsd-search"
+              type="text"
+              placeholder="Cari barang..."
+              oninput="bsdFilter()"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="data-table-scroll">
+
+          <table class="data-table">
+
+            <thead>
+
+              <tr id="bsdTableHead">
+
+                <th>#</th>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>E</th>
+                <th>F</th>
+                <th>G</th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="bsdTableBody">
+
+              <tr>
+
+                <td
+                  colspan="8"
+                  class="bsd-empty"
+                >
+                  Memuat data...
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
 
     </div>
 
@@ -2432,7 +3247,7 @@ button{
 
 
 <!-- =====================================================
-     SIGNUP MODAL
+     SIGNUP
 ===================================================== -->
 
 <div
@@ -2533,7 +3348,7 @@ button{
 
 
 <!-- =====================================================
-     FORGOT PASSWORD
+     FORGOT
 ===================================================== -->
 
 <div
@@ -2678,8 +3493,6 @@ button{
     </button>
 
 
-    <!-- ADMIN -->
-
     <div
       id="adminSection"
       class="admin-section hidden"
@@ -2702,21 +3515,18 @@ button{
 
     </div>
 
-
   </div>
 
 </div>
 
 
-<!-- =====================================================
-     TOAST
-===================================================== -->
+<!-- TOAST -->
 
 <div id="toastContainer"></div>
 
 
 <!-- =====================================================
-     FIREBASE + APPLICATION
+     FIREBASE
 ===================================================== -->
 
 <script type="module">
@@ -2797,11 +3607,30 @@ const db =
 
 
 /* =====================================================
-   GOOGLE APPS SCRIPT API
+   API STOCK LOSS / OPNAME
 ===================================================== */
 
 const URL_SCRIPT =
 "https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";
+
+
+/* =====================================================
+   API DATA BSD
+===================================================== */
+
+const DATA_BSD_API =
+"https://script.google.com/macros/s/AKfycbyjRNaLlSbZZRlvf59Ctzro9NloalUdkP4ML8-VdxfJ5PmS9hpanUEo_NwqT8jB07s/exec";
+
+
+/*
+   Jika API DATA BSD yang bos kirim
+   ternyata menggunakan URL berikut:
+   
+   AKfycbyjRNa...
+
+   URL di atas sengaja dipisahkan
+   dari API inventory.
+*/
 
 
 /* =====================================================
@@ -2868,16 +3697,7 @@ function showToast(
 
   setTimeout(() => {
 
-    toast.style.opacity = "0";
-
-    toast.style.transform =
-      "translateY(10px)";
-
-    setTimeout(() => {
-
-      toast.remove();
-
-    },250);
+    toast.remove();
 
   },2800);
 
@@ -2891,7 +3711,9 @@ function showToast(
 window.openModal =
 function(id){
 
-  $(id).classList.add("show");
+  $(id)
+    .classList
+    .add("show");
 
 };
 
@@ -2899,12 +3721,12 @@ function(id){
 window.closeModal =
 function(id){
 
-  $(id).classList.remove("show");
+  $(id)
+    .classList
+    .remove("show");
 
 };
 
-
-/* close modal clicking outside */
 
 document
   .querySelectorAll(".modal")
@@ -2916,7 +3738,9 @@ document
 
         if(e.target === modal){
 
-          modal.classList.remove("show");
+          modal.classList.remove(
+            "show"
+          );
 
         }
 
@@ -2924,6 +3748,45 @@ document
     );
 
   });
+
+
+/* =====================================================
+   FIREBASE ERROR
+===================================================== */
+
+function firebaseErrorMessage(error){
+
+  const code =
+    error?.code || "";
+
+  if(
+    code.includes(
+      "email-already-in-use"
+    )
+  )
+    return "Email sudah digunakan.";
+
+  if(
+    code.includes("invalid-email")
+  )
+    return "Format email tidak valid.";
+
+  if(
+    code.includes("weak-password")
+  )
+    return "Password terlalu lemah.";
+
+  if(
+    code.includes("network")
+  )
+    return "Koneksi internet bermasalah.";
+
+  return (
+    error?.message ||
+    "Terjadi kesalahan."
+  );
+
+}
 
 
 /* =====================================================
@@ -2962,9 +3825,7 @@ async function(){
     "";
 
 
-  if(
-    username.length < 3
-  ){
+  if(username.length < 3){
 
     message.classList.add("error");
 
@@ -2977,7 +3838,9 @@ async function(){
 
 
   if(
-    !/^[a-z0-9._-]+$/.test(username)
+    !/^[a-z0-9._-]+$/.test(
+      username
+    )
   ){
 
     message.classList.add("error");
@@ -3035,8 +3898,11 @@ async function(){
         username
       );
 
+
     const usernameSnap =
-      await getDoc(usernameRef);
+      await getDoc(
+        usernameRef
+      );
 
 
     if(usernameSnap.exists()){
@@ -3095,13 +3961,17 @@ async function(){
     );
 
 
-    await sendEmailVerification(user);
+    await sendEmailVerification(
+      user
+    );
 
 
     await signOut(auth);
 
 
-    message.classList.add("success");
+    message.classList.add(
+      "success"
+    );
 
     message.textContent =
       "Akun berhasil dibuat. Verifikasi email dan tunggu persetujuan admin.";
@@ -3118,51 +3988,18 @@ async function(){
 
     console.error(error);
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
-      firebaseErrorMessage(error);
+      firebaseErrorMessage(
+        error
+      );
 
   }
 
 };
-
-
-/* =====================================================
-   FIREBASE ERROR
-===================================================== */
-
-function firebaseErrorMessage(error){
-
-  const code =
-    error?.code || "";
-
-  if(
-    code.includes("email-already-in-use")
-  )
-    return "Email sudah digunakan.";
-
-  if(
-    code.includes("invalid-email")
-  )
-    return "Format email tidak valid.";
-
-  if(
-    code.includes("weak-password")
-  )
-    return "Password terlalu lemah.";
-
-  if(
-    code.includes("network")
-  )
-    return "Koneksi internet bermasalah.";
-
-  return (
-    error?.message ||
-    "Terjadi kesalahan."
-  );
-
-}
 
 
 /* =====================================================
@@ -3197,7 +4034,9 @@ async function(){
 
   if(!identity || !password){
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
       "Username/email dan password wajib diisi.";
@@ -3215,25 +4054,20 @@ async function(){
 
   try{
 
-    let email = identity;
+    let email =
+      identity;
 
-
-    /*
-      Kalau login menggunakan username,
-      cari email melalui collection usernames.
-    */
 
     if(!identity.includes("@")){
 
-      const usernameRef =
-        doc(
-          db,
-          "usernames",
-          identity
-        );
-
       const usernameSnap =
-        await getDoc(usernameRef);
+        await getDoc(
+          doc(
+            db,
+            "usernames",
+            identity
+          )
+        );
 
 
       if(!usernameSnap.exists()){
@@ -3249,15 +4083,14 @@ async function(){
         usernameSnap.data();
 
 
-      const userRef =
-        doc(
-          db,
-          "users",
-          usernameData.uid
-        );
-
       const userSnap =
-        await getDoc(userRef);
+        await getDoc(
+          doc(
+            db,
+            "users",
+            usernameData.uid
+          )
+        );
 
 
       if(!userSnap.exists()){
@@ -3294,7 +4127,9 @@ async function(){
 
       await signOut(auth);
 
-      message.classList.add("error");
+      message.classList.add(
+        "error"
+      );
 
       message.textContent =
         "Email belum diverifikasi. Cek inbox email Anda.";
@@ -3333,7 +4168,9 @@ async function(){
 
       await signOut(auth);
 
-      message.classList.add("error");
+      message.classList.add(
+        "error"
+      );
 
       message.textContent =
         "Akun belum disetujui admin.";
@@ -3352,16 +4189,19 @@ async function(){
 
     showDashboard();
 
-
   }
   catch(error){
 
     console.error(error);
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
-      firebaseErrorMessage(error);
+      firebaseErrorMessage(
+        error
+      );
 
   }
   finally{
@@ -3434,10 +4274,7 @@ onAuthStateChanged(
         snap.data();
 
 
-      if(
-        profile.status !==
-        "approved"
-      ){
+      if(profile.status !== "approved"){
 
         await signOut(auth);
 
@@ -3456,7 +4293,6 @@ onAuthStateChanged(
 
 
       showDashboard();
-
 
     }
     catch(error){
@@ -3491,6 +4327,10 @@ function showLogin(){
     .classList
     .remove("show");
 
+  $("dataBsdPage")
+    .classList
+    .remove("show");
+
 }
 
 
@@ -3512,6 +4352,10 @@ function showDashboard(){
     .classList
     .remove("show");
 
+  $("dataBsdPage")
+    .classList
+    .remove("show");
+
 
   const username =
     currentProfile?.username ||
@@ -3524,7 +4368,10 @@ function showDashboard(){
 
 
   $("welcomeName").innerHTML =
-    `WELCOME<br><span>${escapeHtml(username)}</span>`;
+    `WELCOME<br>
+     <span>
+       ${escapeHtml(username)}
+     </span>`;
 
 
   const initials =
@@ -3532,7 +4379,9 @@ function showDashboard(){
       .split(/[ ._-]+/)
       .filter(Boolean)
       .slice(0,2)
-      .map(x => x[0])
+      .map(
+        x => x[0]
+      )
       .join("")
       .toUpperCase();
 
@@ -3560,11 +4409,6 @@ async function(){
 
     showLogin();
 
-    showToast(
-      "Berhasil logout.",
-      "success"
-    );
-
   }
   catch(error){
 
@@ -3586,25 +4430,29 @@ function(){
     return;
 
 
-  $("settingsUsername").textContent =
+  $("settingsUsername")
+    .textContent =
     currentProfile?.username ||
     "-";
 
-  $("settingsEmail").textContent =
+
+  $("settingsEmail")
+    .textContent =
     currentProfile?.email ||
     currentUser.email ||
     "-";
 
-  $("settingsRole").textContent =
+
+  $("settingsRole")
+    .textContent =
     currentProfile?.role ||
     "user";
 
 
-  const isAdmin =
-    currentProfile?.role === "admin";
-
-
-  if(isAdmin){
+  if(
+    currentProfile?.role ===
+    "admin"
+  ){
 
     $("adminSection")
       .classList
@@ -3630,7 +4478,7 @@ function(){
 
 
 /* =====================================================
-   RESET OWN PASSWORD
+   RESET PASSWORD
 ===================================================== */
 
 window.resetOwnPassword =
@@ -3649,7 +4497,7 @@ async function(){
 
 
     showToast(
-      "Link reset password dikirim ke email.",
+      "Link reset password dikirim.",
       "success"
     );
 
@@ -3657,7 +4505,9 @@ async function(){
   catch(error){
 
     showToast(
-      firebaseErrorMessage(error),
+      firebaseErrorMessage(
+        error
+      ),
       "error"
     );
 
@@ -3667,7 +4517,7 @@ async function(){
 
 
 /* =====================================================
-   ADMIN - PENDING USERS
+   PENDING USERS
 ===================================================== */
 
 async function loadPendingUsers(){
@@ -3729,7 +4579,9 @@ async function loadPendingUsers(){
 
 
         const div =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
 
         div.className =
@@ -3738,24 +4590,16 @@ async function loadPendingUsers(){
 
         div.innerHTML = `
 
-          <div class="pending-user-top">
+          <div class="pending-user-name">
+            ${escapeHtml(
+              data.username || "-"
+            )}
+          </div>
 
-            <div>
-
-              <div class="pending-user-name">
-                ${escapeHtml(
-                  data.username || "-"
-                )}
-              </div>
-
-              <div class="pending-user-email">
-                ${escapeHtml(
-                  data.email || "-"
-                )}
-              </div>
-
-            </div>
-
+          <div class="pending-user-email">
+            ${escapeHtml(
+              data.email || "-"
+            )}
           </div>
 
           <div class="pending-actions">
@@ -3777,6 +4621,7 @@ async function loadPendingUsers(){
             </button>
 
           </div>
+
         `;
 
 
@@ -3824,7 +4669,7 @@ async function loadPendingUsers(){
 
 
 /* =====================================================
-   ADMIN UPDATE STATUS
+   UPDATE USER STATUS
 ===================================================== */
 
 async function updateUserStatus(
@@ -3835,11 +4680,8 @@ async function updateUserStatus(
   if(
     currentProfile?.role !==
     "admin"
-  ){
-
+  )
     return;
-
-  }
 
 
   try{
@@ -3885,7 +4727,7 @@ async function updateUserStatus(
 
 
 /* =====================================================
-   FORGOT PASSWORD
+   FORGOT
 ===================================================== */
 
 window.forgotPassword =
@@ -3897,6 +4739,7 @@ async function(){
       .trim()
       .toLowerCase();
 
+
   const message =
     $("forgotMessage");
 
@@ -3907,7 +4750,9 @@ async function(){
 
   if(!email){
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
       "Email wajib diisi.";
@@ -3925,7 +4770,9 @@ async function(){
     );
 
 
-    message.classList.add("success");
+    message.classList.add(
+      "success"
+    );
 
     message.textContent =
       "Link reset password sudah dikirim.";
@@ -3933,10 +4780,14 @@ async function(){
   }
   catch(error){
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
-      firebaseErrorMessage(error);
+      firebaseErrorMessage(
+        error
+      );
 
   }
 
@@ -3944,7 +4795,7 @@ async function(){
 
 
 /* =====================================================
-   INVENTORY
+   INVENTORY OPEN
 ===================================================== */
 
 window.openInventory =
@@ -3956,11 +4807,10 @@ async function(mode){
       : "opname";
 
 
-  /*
-    TITLE OTOMATIS
-  */
-
-  if(currentMode === "stockloss"){
+  if(
+    currentMode ===
+    "stockloss"
+  ){
 
     $("inventoryTitle")
       .textContent =
@@ -3999,8 +4849,18 @@ async function(mode){
       : "STOCK OPNAME";
 
 
-  $("inventoryMessage").textContent =
-    "";
+  $("inventoryMessage")
+    .textContent = "";
+
+
+  $("barcode").value = "";
+
+  $("qty").value = "";
+
+
+  $("suggestions")
+    .style
+    .display = "none";
 
 
   $("inventoryPage")
@@ -4008,30 +4868,23 @@ async function(mode){
     .add("show");
 
 
-  $("barcode").value = "";
-
-  $("qty").value = "";
-
-  $("suggestions").style.display =
-    "none";
-
-
   await loadMasterData();
 
   await loadHistory();
 
 
-  setTimeout(() => {
-
-    $("barcode").focus();
-
-  },150);
+  setTimeout(
+    () => {
+      $("barcode").focus();
+    },
+    120
+  );
 
 };
 
 
 /* =====================================================
-   BACK DASHBOARD
+   BACK
 ===================================================== */
 
 window.backToDashboard =
@@ -4064,6 +4917,7 @@ async function loadMasterData(){
       await fetch(
         URL_SCRIPT,
         {
+
           method:"POST",
 
           body:
@@ -4071,6 +4925,7 @@ async function loadMasterData(){
               action:
                 "getAllBarcode"
             })
+
         }
       );
 
@@ -4082,19 +4937,21 @@ async function loadMasterData(){
     if(Array.isArray(data)){
 
       masterData =
-        data.map(item => ({
+        data.map(
+          item => ({
 
-          barcode:
-            normalizeBarcode(
-              item.barcode
-            ),
+            barcode:
+              normalizeBarcode(
+                item.barcode
+              ),
 
-          nama:
-            String(
-              item.nama || ""
-            )
+            nama:
+              String(
+                item.nama || ""
+              )
 
-        }));
+          })
+        );
 
     }
     else if(
@@ -4102,22 +4959,23 @@ async function loadMasterData(){
     ){
 
       masterData =
-        data.data.map(item => ({
+        data.data.map(
+          item => ({
 
-          barcode:
-            normalizeBarcode(
-              item.barcode
-            ),
+            barcode:
+              normalizeBarcode(
+                item.barcode
+              ),
 
-          nama:
-            String(
-              item.nama || ""
-            )
+            nama:
+              String(
+                item.nama || ""
+              )
 
-        }));
+          })
+        );
 
     }
-
 
   }
   catch(error){
@@ -4136,191 +4994,199 @@ async function loadMasterData(){
    BARCODE INPUT
 ===================================================== */
 
-$("barcode").addEventListener(
-  "input",
-  function(){
+$("barcode")
+  .addEventListener(
+    "input",
+    function(){
 
-    const value =
-      this.value.trim();
-
-
-    if(!value){
-
-      $("suggestions")
-        .style
-        .display = "none";
-
-      return;
-
-    }
+      const value =
+        this.value.trim();
 
 
-    /*
-      WEIGHT BARCODE
-      13 DIGIT
-      AWAL 20
-    */
+      if(!value){
 
-    if(
-      value.length === 13 &&
-      /^20\d{11}$/.test(value)
-    ){
+        $("suggestions")
+          .style
+          .display = "none";
 
-      processWeighedBarcode(value);
+        return;
 
-      return;
-
-    }
+      }
 
 
-    const search =
-      value.toLowerCase();
+      /*
+        BARCODE TIMBANGAN
 
+        13 DIGIT
+        DIAWALI 20
+      */
 
-    const result =
-      masterData
-        .filter(item =>
+      if(
+        value.length === 13 &&
+        /^20\d{11}$/.test(value)
+      ){
 
-          item.barcode
-            .toLowerCase()
-            .includes(search)
-
-          ||
-
-          item.nama
-            .toLowerCase()
-            .includes(search)
-
-        )
-        .slice(0,20);
-
-
-    if(!result.length){
-
-      $("suggestions")
-        .style
-        .display = "none";
-
-      return;
-
-    }
-
-
-    $("suggestions").innerHTML =
-
-      result
-        .map(item => `
-
-          <div
-            class="suggestion-item"
-            data-barcode="${escapeHtml(
-              item.barcode
-            )}"
-          >
-
-            <div class="suggestion-barcode">
-
-              ${escapeHtml(
-                item.barcode
-              )}
-
-            </div>
-
-            <div class="suggestion-name">
-
-              ${escapeHtml(
-                item.nama
-              )}
-
-            </div>
-
-          </div>
-
-        `)
-        .join("");
-
-
-    $("suggestions")
-      .style
-      .display = "block";
-
-
-    document
-      .querySelectorAll(
-        ".suggestion-item"
-      )
-      .forEach(el => {
-
-        el.addEventListener(
-          "click",
-          () => {
-
-            $("barcode").value =
-              el.dataset.barcode;
-
-            $("suggestions")
-              .style
-              .display = "none";
-
-            $("qty").focus();
-
-          }
+        processWeighedBarcode(
+          value
         );
 
-      });
+        return;
 
-  }
-);
+      }
+
+
+      const search =
+        value.toLowerCase();
+
+
+      const result =
+        masterData
+          .filter(
+            item =>
+              item.barcode
+                .toLowerCase()
+                .includes(search)
+
+              ||
+
+              item.nama
+                .toLowerCase()
+                .includes(search)
+          )
+          .slice(0,20);
+
+
+      if(!result.length){
+
+        $("suggestions")
+          .style
+          .display = "none";
+
+        return;
+
+      }
+
+
+      $("suggestions").innerHTML =
+        result
+          .map(
+            item => `
+
+              <div
+                class="suggestion-item"
+                data-barcode="${escapeHtml(
+                  item.barcode
+                )}"
+              >
+
+                <div
+                  class="suggestion-barcode"
+                >
+                  ${escapeHtml(
+                    item.barcode
+                  )}
+                </div>
+
+                <div
+                  class="suggestion-name"
+                >
+                  ${escapeHtml(
+                    item.nama
+                  )}
+                </div>
+
+              </div>
+
+            `
+          )
+          .join("");
+
+
+      $("suggestions")
+        .style
+        .display = "block";
+
+
+      document
+        .querySelectorAll(
+          ".suggestion-item"
+        )
+        .forEach(el => {
+
+          el.addEventListener(
+            "click",
+            () => {
+
+              $("barcode").value =
+                el.dataset.barcode;
+
+              $("suggestions")
+                .style
+                .display = "none";
+
+              $("qty").focus();
+
+            }
+          );
+
+        });
+
+    }
+  );
 
 
 /* =====================================================
    BARCODE ENTER
 ===================================================== */
 
-$("barcode").addEventListener(
-  "keydown",
-  function(e){
+$("barcode")
+  .addEventListener(
+    "keydown",
+    function(e){
 
-    if(e.key !== "Enter")
-      return;
-
-
-    e.preventDefault();
+      if(e.key !== "Enter")
+        return;
 
 
-    const value =
-      this.value.trim();
+      e.preventDefault();
 
 
-    if(
-      value.length === 13 &&
-      /^20\d{11}$/.test(value)
-    ){
-
-      processWeighedBarcode(value);
+      const value =
+        this.value.trim();
 
 
-      setTimeout(() => {
+      if(
+        value.length === 13 &&
+        /^20\d{11}$/.test(value)
+      ){
 
-        $("qty").focus();
+        processWeighedBarcode(
+          value
+        );
 
-      },50);
+
+        setTimeout(
+          () => {
+            $("qty").focus();
+          },
+          50
+        );
 
 
-      return;
+        return;
+
+      }
+
+
+      $("suggestions")
+        .style
+        .display = "none";
+
+
+      $("qty").focus();
 
     }
-
-
-    $("suggestions")
-      .style
-      .display = "none";
-
-
-    $("qty").focus();
-
-  }
-);
+  );
 
 
 /* =====================================================
@@ -4344,14 +5210,14 @@ function processWeighedBarcode(
 
 
   /*
-    FORMAT:
+    FORMAT
 
     20
     XXXXX
     XXXXX
     X
 
-    contoh:
+    Contoh:
 
     2012345001250
 
@@ -4359,6 +5225,13 @@ function processWeighedBarcode(
     12345
     00125
     0
+
+    Product:
+    12345
+
+    Weight:
+    125 gram
+    = 0.125 KG
   */
 
 
@@ -4388,17 +5261,9 @@ function processWeighedBarcode(
     grams / 1000;
 
 
-  /*
-    Masukkan kode produk
-  */
-
   $("barcode").value =
     productBarcode;
 
-
-  /*
-    Tampilkan qty KG
-  */
 
   let qtyDisplay =
     qty.toFixed(3);
@@ -4418,10 +5283,6 @@ function processWeighedBarcode(
     .style
     .display = "none";
 
-
-  /*
-    Cari nama produk
-  */
 
   const product =
     masterData.find(
@@ -4462,7 +5323,7 @@ function processWeighedBarcode(
 
 
 /* =====================================================
-   QUANTITY NORMALIZATION
+   QTY PARSER
 ===================================================== */
 
 function parseQty(value){
@@ -4477,25 +5338,10 @@ function parseQty(value){
     return NaN;
 
 
-  /*
-    Support:
-
-    1
-    1.5
-    1,5
-    0.125
-    0,125
-  */
-
-
   if(
     text.includes(",") &&
     text.includes(".")
   ){
-
-    /*
-      Jika format 1.234,56
-    */
 
     if(
       text.lastIndexOf(",") >
@@ -4526,17 +5372,13 @@ function parseQty(value){
   }
 
 
-  const number =
-    Number(text);
-
-
-  return number;
+  return Number(text);
 
 }
 
 
 /* =====================================================
-   SAVE INVENTORY
+   SAVE
 ===================================================== */
 
 window.saveInventory =
@@ -4557,12 +5399,14 @@ async function(){
   const message =
     $("inventoryMessage");
 
+
   const button =
     $("sendButton");
 
 
   message.className =
     "inventory-message";
+
 
   message.textContent =
     "";
@@ -4683,10 +5527,6 @@ async function(){
 
       $("qty").value = "";
 
-      $("suggestions")
-        .style
-        .display = "none";
-
 
       await loadHistory();
 
@@ -4697,7 +5537,8 @@ async function(){
     else{
 
       throw new Error(
-        text || "Gagal menyimpan data."
+        text ||
+        "Gagal menyimpan data."
       );
 
     }
@@ -4810,10 +5651,6 @@ async function loadHistory(){
     }
 
 
-    /*
-      Ambil maksimal 30 history
-    */
-
     rows =
       rows
         .slice(-30)
@@ -4822,59 +5659,62 @@ async function loadHistory(){
 
     list.innerHTML =
       rows
-        .map(item => {
+        .map(
+          item => {
 
-          const barcode =
-            item.barcode ??
-            item.kode ??
-            item.article ??
-            "-";
-
-
-          const qty =
-            item.qty ??
-            item.quantity ??
-            item.Qty ??
-            "-";
+            const barcode =
+              item.barcode ??
+              item.kode ??
+              item.article ??
+              "-";
 
 
-          const name =
-            item.nama ??
-            item.name ??
-            "";
+            const qty =
+              item.qty ??
+              item.quantity ??
+              item.Qty ??
+              "-";
 
 
-          return `
+            const name =
+              item.nama ??
+              item.name ??
+              "";
 
-            <div class="history-item">
 
-              <div class="history-left">
+            return `
 
-                <div class="history-code">
-                  ${escapeHtml(
-                    barcode
-                  )}
+              <div class="history-item">
+
+                <div>
+
+                  <div class="history-code">
+                    ${escapeHtml(
+                      barcode
+                    )}
+                  </div>
+
+                  <div class="history-name">
+                    ${escapeHtml(
+                      name
+                    )}
+                  </div>
+
                 </div>
 
-                <div class="history-name">
+                <div class="history-qty">
                   ${escapeHtml(
-                    name
+                    String(qty)
                   )}
+                  KG
                 </div>
 
               </div>
 
-              <div class="history-qty">
-                ${escapeHtml(
-                  String(qty)
-                )} KG
-              </div>
+            `;
 
-            </div>
-
-          `;
-
-        })
+          }
+        )
         .join("");
 
 
@@ -4900,7 +5740,7 @@ async function loadHistory(){
 
 
 /* =====================================================
-   RESET INVENTORY
+   RESET
 ===================================================== */
 
 window.resetInventory =
@@ -4961,12 +5801,6 @@ async function(){
       await response.text();
 
 
-    console.log(
-      "Reset response:",
-      text
-    );
-
-
     if(
       text
         .toLowerCase()
@@ -5012,7 +5846,1174 @@ async function(){
 
 
 /* =====================================================
-   ENTER LOGIN
+   DATA BSD
+===================================================== */
+
+let bsdCurrentSheet =
+  "MEAT";
+
+
+let bsdData = {
+
+  MEAT:null,
+
+  SEAFOOD:null,
+
+  DELICATE:null
+
+};
+
+
+let bsdHeaders = [];
+
+
+let bsdTableMode =
+  "all";
+
+
+let bsdLoaded =
+  false;
+
+
+/* =====================================================
+   OPEN DATA BSD
+===================================================== */
+
+window.openDataBSD =
+async function(){
+
+  $("dashboard")
+    .classList
+    .add("hidden");
+
+
+  $("inventoryPage")
+    .classList
+    .remove("show");
+
+
+  $("dataBsdPage")
+    .classList
+    .add("show");
+
+
+  if(!bsdLoaded){
+
+    await bsdLoadAll();
+
+  }
+  else{
+
+    bsdDisplayCurrent();
+
+  }
+
+};
+
+
+/* =====================================================
+   CLOSE DATA BSD
+===================================================== */
+
+window.closeDataBSD =
+function(){
+
+  $("dataBsdPage")
+    .classList
+    .remove("show");
+
+
+  $("dashboard")
+    .classList
+    .remove("hidden");
+
+};
+
+
+/* =====================================================
+   BSD LOAD ALL
+===================================================== */
+
+async function bsdLoadAll(){
+
+  const body =
+    $("bsdTableBody");
+
+
+  body.innerHTML =
+    `
+      <tr>
+        <td
+          colspan="8"
+          class="bsd-empty"
+        >
+          Memuat data...
+        </td>
+      </tr>
+    `;
+
+
+  try{
+
+    const response =
+      await fetch(
+        DATA_BSD_API +
+        "?all=true&t=" +
+        Date.now()
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " +
+        response.status
+      );
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    if(!result.success){
+
+      throw new Error(
+        result.message ||
+        "Gagal mengambil data"
+      );
+
+    }
+
+
+    bsdData.MEAT =
+      result.sheets.MEAT;
+
+
+    bsdData.SEAFOOD =
+      result.sheets.SEAFOOD;
+
+
+    bsdData.DELICATE =
+      result.sheets.DELICATE;
+
+
+    bsdLoaded =
+      true;
+
+
+    bsdDisplayCurrent();
+
+  }
+  catch(error){
+
+    console.error(
+      "DATA BSD:",
+      error
+    );
+
+
+    body.innerHTML =
+      `
+        <tr>
+
+          <td
+            colspan="8"
+            class="bsd-empty"
+          >
+
+            Gagal memuat DATA BSD.<br><br>
+
+            ${escapeHtml(
+              error.message
+            )}
+
+          </td>
+
+        </tr>
+      `;
+
+  }
+
+}
+
+
+/* =====================================================
+   BSD DISPLAY
+===================================================== */
+
+function bsdDisplayCurrent(){
+
+  const sheetData =
+    bsdData[
+      bsdCurrentSheet
+    ];
+
+
+  if(!sheetData)
+    return;
+
+
+  bsdHeaders =
+    sheetData.headers ||
+    [];
+
+
+  bsdTableMode =
+    "all";
+
+
+  $("bsdSearch").value =
+    "";
+
+
+  $("bsdPageTitle")
+    .textContent =
+    bsdCurrentSheet;
+
+
+  $("bsdSheetValue")
+    .textContent =
+    bsdCurrentSheet;
+
+
+  $("bsdUpdateValue")
+    .textContent =
+    sheetData.update ||
+    "—";
+
+
+  const data =
+    sheetData.data ||
+    [];
+
+
+  const low =
+    bsdGetLow(
+      data
+    );
+
+
+  const negative =
+    bsdGetNegative(
+      data
+    );
+
+
+  $("bsdLowValue")
+    .textContent =
+    low.length;
+
+
+  $("bsdNegativeValue")
+    .textContent =
+    negative.length;
+
+
+  bsdUpdateCards();
+
+  bsdRenderHeader();
+
+  bsdRenderTable();
+
+}
+
+
+/* =====================================================
+   BSD LOW STOCK
+===================================================== */
+
+function bsdIsLow(item){
+
+  const rawStock =
+    String(
+      item.D ?? ""
+    )
+      .replace(",", ".")
+      .trim();
+
+
+  const unit =
+    String(
+      item.E ?? ""
+    )
+      .trim()
+      .toLowerCase();
+
+
+  const stock =
+    parseFloat(
+      rawStock
+    );
+
+
+  if(isNaN(stock))
+    return false;
+
+
+  if(unit === "kg")
+    return stock <= 1.8;
+
+
+  if(
+    unit === "ea" ||
+    unit === "e.a"
+  )
+    return stock <= 10;
+
+
+  return false;
+
+}
+
+
+/* =====================================================
+   BSD NEGATIVE
+===================================================== */
+
+function bsdIsNegative(item){
+
+  const stock =
+    parseFloat(
+      String(
+        item.D ?? ""
+      )
+        .replace(",", ".")
+        .trim()
+    );
+
+
+  if(isNaN(stock))
+    return false;
+
+
+  return stock < 0;
+
+}
+
+
+/* =====================================================
+   BSD GET
+===================================================== */
+
+function bsdGetLow(data){
+
+  return data.filter(
+    item =>
+      bsdIsLow(item)
+  );
+
+}
+
+
+function bsdGetNegative(data){
+
+  return data.filter(
+    item =>
+      bsdIsNegative(item)
+  );
+
+}
+
+
+/* =====================================================
+   BSD LOW BUTTON
+===================================================== */
+
+window.bsdShowLow =
+function(){
+
+  bsdTableMode =
+    "low";
+
+
+  $("bsdSearch").value =
+    "";
+
+
+  $("bsdAllBtn")
+    .style
+    .display =
+    "inline-block";
+
+
+  $("bsdTableTitle")
+    .textContent =
+    "Stock Menipis";
+
+
+  bsdUpdateCards();
+
+  bsdRenderTable();
+
+};
+
+
+/* =====================================================
+   BSD NEGATIVE BUTTON
+===================================================== */
+
+window.bsdShowNegative =
+function(){
+
+  bsdTableMode =
+    "negative";
+
+
+  $("bsdSearch").value =
+    "";
+
+
+  $("bsdAllBtn")
+    .style
+    .display =
+    "inline-block";
+
+
+  $("bsdTableTitle")
+    .textContent =
+    "Negative Stock";
+
+
+  bsdUpdateCards();
+
+  bsdRenderTable();
+
+};
+
+
+/* =====================================================
+   BSD ALL
+===================================================== */
+
+window.bsdShowAll =
+function(){
+
+  bsdTableMode =
+    "all";
+
+
+  $("bsdSearch").value =
+    "";
+
+
+  $("bsdAllBtn")
+    .style
+    .display =
+    "none";
+
+
+  $("bsdTableTitle")
+    .textContent =
+    "Semua Barang";
+
+
+  bsdUpdateCards();
+
+  bsdRenderTable();
+
+};
+
+
+/* =====================================================
+   BSD CARD STATE
+===================================================== */
+
+function bsdUpdateCards(){
+
+  $("bsdNegativeCard")
+    .classList
+    .remove("selected");
+
+
+  $("bsdLowCard")
+    .classList
+    .remove("selected");
+
+
+  if(
+    bsdTableMode ===
+    "negative"
+  ){
+
+    $("bsdNegativeCard")
+      .classList
+      .add("selected");
+
+  }
+
+
+  if(
+    bsdTableMode ===
+    "low"
+  ){
+
+    $("bsdLowCard")
+      .classList
+      .add("selected");
+
+  }
+
+}
+
+
+/* =====================================================
+   BSD TABLE HEADER
+===================================================== */
+
+function bsdRenderHeader(){
+
+  const head =
+    $("bsdTableHead");
+
+
+  let html =
+    `<th>#</th>`;
+
+
+  bsdHeaders
+    .forEach(
+      header => {
+
+        html +=
+          `
+            <th>
+              ${escapeHtml(
+                header || "—"
+              )}
+            </th>
+          `;
+
+      }
+    );
+
+
+  head.innerHTML =
+    html;
+
+}
+
+
+/* =====================================================
+   BSD RENDER TABLE
+===================================================== */
+
+function bsdRenderTable(){
+
+  const sheetData =
+    bsdData[
+      bsdCurrentSheet
+    ];
+
+
+  if(!sheetData)
+    return;
+
+
+  let data =
+    sheetData.data ||
+    [];
+
+
+  if(
+    bsdTableMode ===
+    "low"
+  ){
+
+    data =
+      bsdGetLow(data);
+
+  }
+
+
+  if(
+    bsdTableMode ===
+    "negative"
+  ){
+
+    data =
+      bsdGetNegative(data);
+
+  }
+
+
+  const search =
+    $("bsdSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  if(search){
+
+    data =
+      data.filter(
+        item => {
+
+          return [
+
+            item.A,
+            item.B,
+            item.C,
+            item.D,
+            item.E,
+            item.F,
+            item.G
+
+          ].some(
+            value =>
+              String(
+                value ?? ""
+              )
+                .toLowerCase()
+                .includes(search)
+          );
+
+        }
+      );
+
+  }
+
+
+  $("bsdDataInfo")
+    .textContent =
+    data.length +
+    " data";
+
+
+  const body =
+    $("bsdTableBody");
+
+
+  if(!data.length){
+
+    body.innerHTML =
+      `
+        <tr>
+
+          <td
+            colspan="8"
+            class="bsd-empty"
+          >
+            Tidak ada data.
+          </td>
+
+        </tr>
+      `;
+
+    return;
+
+  }
+
+
+  body.innerHTML =
+    data
+      .map(
+        item => {
+
+          const negative =
+            bsdIsNegative(item);
+
+
+          const low =
+            bsdIsLow(item);
+
+
+          let rowClass =
+            "";
+
+
+          let qtyClass =
+            "";
+
+
+          /*
+            NEGATIVE SELALU
+            PRIORITAS MERAH
+          */
+
+          if(negative){
+
+            rowClass =
+              "bsd-negative-row";
+
+            qtyClass =
+              "bsd-negative-value";
+
+          }
+          else if(low){
+
+            rowClass =
+              "bsd-low-row";
+
+            qtyClass =
+              "bsd-low-value";
+
+          }
+
+
+          return `
+
+            <tr
+              class="${rowClass}"
+            >
+
+              <td
+                class="bsd-row-number"
+              >
+                ${escapeHtml(
+                  item.row
+                )}
+              </td>
+
+              <td>
+                ${bsdValue(
+                  item.A
+                )}
+              </td>
+
+              <td>
+                ${bsdValue(
+                  item.B
+                )}
+              </td>
+
+              <td>
+                ${bsdValue(
+                  item.C
+                )}
+              </td>
+
+              <td
+                class="${qtyClass}"
+              >
+                ${bsdValue(
+                  item.D
+                )}
+              </td>
+
+              <td>
+                ${bsdValue(
+                  item.E
+                )}
+              </td>
+
+              <td>
+                ${bsdValue(
+                  item.F
+                )}
+              </td>
+
+              <td>
+                ${bsdValue(
+                  item.G
+                )}
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   BSD VALUE
+===================================================== */
+
+function bsdValue(value){
+
+  const text =
+    String(
+      value ?? ""
+    ).trim();
+
+
+  if(text === "")
+    return "—";
+
+
+  return escapeHtml(
+    text
+  );
+
+}
+
+
+/* =====================================================
+   BSD SEARCH
+===================================================== */
+
+window.bsdFilter =
+function(){
+
+  bsdRenderTable();
+
+};
+
+
+/* =====================================================
+   BSD CHANGE SHEET
+===================================================== */
+
+window.bsdChangeSheet =
+function(sheet){
+
+  if(
+    !bsdData[sheet]
+  )
+    return;
+
+
+  bsdCurrentSheet =
+    sheet;
+
+
+  bsdDisplayCurrent();
+
+};
+
+
+/* =====================================================
+   DATA BSD NAV CLICK
+===================================================== */
+
+document.addEventListener(
+  "click",
+  function(e){
+
+    const target =
+      e.target.closest(
+        "[data-bsd-sheet]"
+      );
+
+
+    if(!target)
+      return;
+
+
+    bsdChangeSheet(
+      target.dataset.bsdSheet
+    );
+
+  }
+);
+
+
+/*
+  Karena navigasi MEAT,
+  SEAFOOD, DELICATE berasal
+  dari data dashboard, dibuat
+  shortcut keyboard/gesture
+  melalui fungsi global berikut.
+*/
+
+window.changeBSDSheet =
+function(sheet){
+
+  bsdChangeSheet(
+    sheet
+  );
+
+};
+
+
+/* =====================================================
+   DATA BSD NAVIGATION
+===================================================== */
+
+function createBSDNavigation(){
+
+  /*
+    Tambahkan navigasi kecil
+    di bawah heading secara
+    otomatis.
+  */
+
+  if(
+    document.getElementById(
+      "bsdNavigation"
+    )
+  )
+    return;
+
+
+  const heading =
+    document.querySelector(
+      ".data-page-heading"
+    );
+
+
+  if(!heading)
+    return;
+
+
+  const nav =
+    document.createElement(
+      "div"
+    );
+
+
+  nav.id =
+    "bsdNavigation";
+
+
+  nav.style.cssText = `
+
+    display:flex;
+    gap:6px;
+    margin-top:12px;
+    flex-wrap:wrap;
+
+  `;
+
+
+  [
+    "MEAT",
+    "SEAFOOD",
+    "DELICATE"
+  ]
+  .forEach(
+    sheet => {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.textContent =
+        sheet;
+
+
+      button.dataset.bsdSheet =
+        sheet;
+
+
+      button.style.cssText = `
+
+        border:1px solid
+          rgba(255,255,255,.09);
+
+        border-radius:8px;
+
+        padding:7px 11px;
+
+        background:
+          rgba(255,255,255,.045);
+
+        color:
+          rgba(255,255,255,.65);
+
+        font-size:9px;
+
+        font-weight:800;
+
+      `;
+
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          bsdCurrentSheet =
+            sheet;
+
+          bsdDisplayCurrent();
+
+          document
+            .querySelectorAll(
+              "#bsdNavigation button"
+            )
+            .forEach(
+              b => {
+
+                b.style.background =
+                  b.dataset.bsdSheet ===
+                  sheet
+
+                    ? "rgba(0,150,255,.16)"
+
+                    : "rgba(255,255,255,.045)";
+
+                b.style.color =
+                  b.dataset.bsdSheet ===
+                  sheet
+
+                    ? "#fff"
+
+                    : "rgba(255,255,255,.65)";
+
+              }
+            );
+
+        }
+      );
+
+
+      nav.appendChild(
+        button
+      );
+
+    }
+  );
+
+
+  heading.appendChild(
+    nav
+  );
+
+
+  nav
+    .querySelector(
+      `[data-bsd-sheet="${bsdCurrentSheet}"]`
+    )
+    ?.click();
+
+}
+
+
+/* =====================================================
+   PATCH OPEN DATA BSD
+===================================================== */
+
+const originalOpenDataBSD =
+  window.openDataBSD;
+
+
+window.openDataBSD =
+async function(){
+
+  $("dashboard")
+    .classList
+    .add("hidden");
+
+
+  $("inventoryPage")
+    .classList
+    .remove("show");
+
+
+  $("dataBsdPage")
+    .classList
+    .add("show");
+
+
+  createBSDNavigation();
+
+
+  if(!bsdLoaded){
+
+    await bsdLoadAll();
+
+  }
+  else{
+
+    bsdDisplayCurrent();
+
+  }
+
+
+  setTimeout(
+    () => {
+
+      const nav =
+        $("bsdNavigation");
+
+
+      if(nav){
+
+        nav
+          .querySelectorAll(
+            "button"
+          )
+          .forEach(
+            button => {
+
+              const active =
+                button.dataset.bsdSheet ===
+                bsdCurrentSheet;
+
+
+              button.style.background =
+                active
+                  ? "rgba(0,150,255,.16)"
+                  : "rgba(255,255,255,.045)";
+
+
+              button.style.color =
+                active
+                  ? "#fff"
+                  : "rgba(255,255,255,.65)";
+
+            }
+          );
+
+      }
+
+    },
+    50
+  );
+
+};
+
+
+/* =====================================================
+   BSD REFRESH
+===================================================== */
+
+window.refreshBSD =
+async function(){
+
+  const button =
+    $("bsdRefreshButton");
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "Loading...";
+
+
+  try{
+
+    bsdLoaded =
+      false;
+
+
+    await bsdLoadAll();
+
+
+    showToast(
+      "DATA BSD berhasil diperbarui.",
+      "success"
+    );
+
+  }
+  catch(error){
+
+    console.error(error);
+
+  }
+  finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "↻ Refresh";
+
+  }
+
+};
+
+
+/* =====================================================
+   LOGIN ENTER
 ===================================================== */
 
 $("loginPassword")
@@ -5031,7 +7032,7 @@ $("loginPassword")
 
 
 /* =====================================================
-   ENTER QTY
+   QTY ENTER
 ===================================================== */
 
 $("qty")
@@ -5052,6 +7053,36 @@ $("qty")
 
 
 /* =====================================================
+   ESCAPE
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  e => {
+
+    if(e.key !== "Escape")
+      return;
+
+
+    document
+      .querySelectorAll(
+        ".modal.show"
+      )
+      .forEach(
+        modal => {
+
+          modal.classList.remove(
+            "show"
+          );
+
+        }
+      );
+
+  }
+);
+
+
+/* =====================================================
    CLOSE SUGGESTIONS
 ===================================================== */
 
@@ -5061,7 +7092,10 @@ document.addEventListener(
 
     if(
       !e.target.closest(
-        ".inventory-input-group"
+        "#barcode"
+      ) &&
+      !e.target.closest(
+        "#suggestions"
       )
     ){
 
@@ -5076,39 +7110,11 @@ document.addEventListener(
 
 
 /* =====================================================
-   PREVENT ACCIDENTAL FORM SUBMISSION
-===================================================== */
-
-document.addEventListener(
-  "keydown",
-  e => {
-
-    if(
-      e.key === "Escape"
-    ){
-
-      document
-        .querySelectorAll(".modal.show")
-        .forEach(modal => {
-
-          modal.classList.remove(
-            "show"
-          );
-
-        });
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   INITIAL
+   READY
 ===================================================== */
 
 console.log(
-  "THE BUTCHER Inventory System ready."
+  "THE BUTCHER + DATA BSD READY"
 );
 
 </script>
