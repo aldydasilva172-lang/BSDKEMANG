@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>THE BUTCHER</title>
 
@@ -335,7 +335,9 @@ button{
 }
 
 
-/* LEFT */
+/* =====================================================
+   LEFT DASHBOARD
+===================================================== */
 
 .dashboard-main{
 
@@ -347,15 +349,16 @@ button{
   flex-direction:column;
 
   /*
-    Tinggi dibuat compact.
-    Lebar tetap mengikuti dashboard.
+    COMPACT
+    Lebar tidak berubah.
+    Hanya tinggi diperkecil.
   */
-  height:500px;
+  height:340px;
   min-height:0;
 
-  padding:25px;
+  padding:20px 22px;
 
-  border-radius:27px;
+  border-radius:24px;
 
   border:1px solid var(--border);
 
@@ -397,12 +400,14 @@ button{
 }
 
 
-/* TOP */
+/* =====================================================
+   TOPBAR
+===================================================== */
 
 .topbar{
 
   position:relative;
-  z-index:2;
+  z-index:5;
 
   display:flex;
 
@@ -411,7 +416,7 @@ button{
 
   gap:15px;
 
-  margin-bottom:20px;
+  margin-bottom:8px;
 }
 
 .top-brand{
@@ -419,21 +424,21 @@ button{
   display:flex;
   align-items:center;
 
-  gap:11px;
+  gap:9px;
 }
 
 .top-brand-icon{
 
-  width:43px;
-  height:43px;
+  width:40px;
+  height:40px;
 
-  border-radius:13px;
+  border-radius:12px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:13px;
+  font-size:12px;
   font-weight:950;
 
   background:
@@ -448,7 +453,7 @@ button{
 
   display:block;
 
-  font-size:14px;
+  font-size:13px;
 
   letter-spacing:1px;
 }
@@ -457,9 +462,9 @@ button{
 
   display:block;
 
-  margin-top:3px;
+  margin-top:2px;
 
-  font-size:9px;
+  font-size:8px;
 
   color:#727984;
 
@@ -472,13 +477,36 @@ button{
 
   align-items:center;
 
-  gap:8px;
+  gap:7px;
 }
+
+
+/* SYSTEM ONLINE DI TOPBAR */
+
+.topbar .system-status{
+
+  margin-top:0;
+
+  padding:7px 10px;
+
+  gap:7px;
+
+  font-size:9px;
+
+  white-space:nowrap;
+}
+
+.topbar .status-dot{
+
+  width:6px;
+  height:6px;
+}
+
 
 .avatar{
 
-  width:37px;
-  height:37px;
+  width:35px;
+  height:35px;
 
   border-radius:50%;
 
@@ -495,7 +523,7 @@ button{
 
   border:1px solid var(--border);
 
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
 }
 
@@ -507,16 +535,16 @@ button{
   overflow:hidden;
   text-overflow:ellipsis;
 
-  font-size:11px;
+  font-size:10px;
   font-weight:800;
 }
 
 .icon-button{
 
-  width:37px;
-  height:37px;
+  width:35px;
+  height:35px;
 
-  border-radius:11px;
+  border-radius:10px;
 
   border:1px solid var(--border);
 
@@ -528,75 +556,23 @@ button{
   display:flex;
   align-items:center;
   justify-content:center;
+
+  transition:.2s;
 }
 
+.icon-button:hover{
 
-/* WELCOME */
-
-.welcome-block{
-
-  position:relative;
-  z-index:2;
-
-  max-width:760px;
-
-  margin:auto 0;
-}
-
-.welcome-small{
-
-  color:var(--orange);
-
-  font-size:11px;
-  font-weight:900;
-
-  letter-spacing:2px;
-
-  margin-bottom:8px;
-}
-
-.welcome-title{
-
-  font-size:
-    clamp(40px,5vw,68px);
-
-  line-height:.94;
-
-  font-weight:950;
-
-  letter-spacing:-4px;
-}
-
-.welcome-title span{
+  border-color:
+    rgba(255,122,0,.35);
 
   background:
-    linear-gradient(
-      135deg,
-      #fff,
-      var(--orange2)
-    );
-
-  color:transparent;
-
-  -webkit-background-clip:text;
-  background-clip:text;
-}
-
-.welcome-sub{
-
-  max-width:620px;
-
-  margin-top:13px;
-
-  color:#858c98;
-
-  font-size:12px;
-
-  line-height:1.55;
+    rgba(255,122,0,.07);
 }
 
 
-/* SYSTEM CONNECTION STATUS */
+/* =====================================================
+   SYSTEM STATUS
+===================================================== */
 
 .system-status{
 
@@ -604,8 +580,6 @@ button{
 
   align-items:center;
   gap:8px;
-
-  margin-top:15px;
 
   padding:8px 12px;
 
@@ -623,8 +597,7 @@ button{
   font-size:10px;
   font-weight:800;
 
-  transition:
-    .25s ease;
+  transition:.25s ease;
 }
 
 .status-dot{
@@ -641,8 +614,7 @@ button{
   box-shadow:
     0 0 12px var(--green);
 
-  transition:
-    .25s ease;
+  transition:.25s ease;
 }
 
 
@@ -714,6 +686,70 @@ button{
 }
 
 
+/* =====================================================
+   WELCOME
+===================================================== */
+
+.welcome-block{
+
+  position:relative;
+  z-index:2;
+
+  max-width:760px;
+
+  /*
+    Tidak lagi menggunakan
+    margin auto yang membuat
+    area terlalu tinggi.
+  */
+  margin:auto 0;
+}
+
+.welcome-title{
+
+  font-size:
+    clamp(38px,4.7vw,62px);
+
+  line-height:.94;
+
+  font-weight:950;
+
+  letter-spacing:-4px;
+}
+
+.welcome-title span{
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      var(--orange2)
+    );
+
+  color:transparent;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+}
+
+.welcome-sub{
+
+  max-width:620px;
+
+  margin-top:10px;
+
+  color:#858c98;
+
+  font-size:11px;
+
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
 .dashboard-footer{
 
   position:relative;
@@ -723,9 +759,9 @@ button{
 
   justify-content:space-between;
 
-  padding-top:13px;
+  padding-top:9px;
 
-  margin-top:20px;
+  margin-top:8px;
 
   border-top:
     1px solid
@@ -733,7 +769,7 @@ button{
 
   color:#626974;
 
-  font-size:9px;
+  font-size:8px;
 }
 
 
@@ -747,7 +783,7 @@ button{
 
   flex-direction:column;
 
-  gap:12px;
+  gap:10px;
 }
 
 .operations-heading{
@@ -758,18 +794,18 @@ button{
   justify-content:space-between;
 
   padding:
-    4px 3px;
+    2px 3px;
 }
 
 .operations-heading h2{
 
-  font-size:16px;
+  font-size:15px;
   font-weight:950;
 }
 
 .operations-heading span{
 
-  font-size:9px;
+  font-size:8px;
 
   color:#656c77;
 }
@@ -780,11 +816,11 @@ button{
 
   flex:1;
 
-  min-height:145px;
+  min-height:100px;
 
-  padding:21px;
+  padding:15px;
 
-  border-radius:21px;
+  border-radius:18px;
 
   border:1px solid var(--border);
 
@@ -827,8 +863,8 @@ button{
 
   position:absolute;
 
-  width:170px;
-  height:170px;
+  width:150px;
+  height:150px;
 
   right:-75px;
   bottom:-90px;
@@ -845,18 +881,18 @@ button{
 
 .operation-icon{
 
-  width:52px;
-  height:52px;
+  width:42px;
+  height:42px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:16px;
+  border-radius:13px;
 
-  margin-bottom:16px;
+  margin-bottom:9px;
 
-  font-size:23px;
+  font-size:19px;
 
   background:
     rgba(255,122,0,.10);
@@ -886,7 +922,7 @@ button{
 
 .operation-title{
 
-  font-size:17px;
+  font-size:14px;
 
   font-weight:950;
 }
@@ -895,37 +931,37 @@ button{
 
   max-width:220px;
 
-  margin-top:6px;
+  margin-top:4px;
 
   color:#747c88;
 
-  font-size:10px;
+  font-size:9px;
 
-  line-height:1.55;
+  line-height:1.45;
 }
 
 .operation-arrow{
 
   position:absolute;
 
-  right:18px;
-  top:18px;
+  right:13px;
+  top:13px;
 
-  width:29px;
-  height:29px;
+  width:26px;
+  height:26px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:9px;
+  border-radius:8px;
 
   background:
     rgba(255,255,255,.04);
 
   color:#999;
 
-  font-size:13px;
+  font-size:12px;
 }
 
 
@@ -1165,6 +1201,11 @@ button{
   font-weight:800;
 }
 
+
+/* =====================================================
+   MOBILE SAFE INPUT
+===================================================== */
+
 .inventory-input{
 
   width:100%;
@@ -1184,7 +1225,20 @@ button{
 
   color:#fff;
 
-  font-size:14px;
+  /*
+    16px mencegah browser mobile
+    melakukan auto zoom saat focus.
+  */
+  font-size:16px!important;
+
+  line-height:1.2;
+
+  touch-action:manipulation;
+}
+
+#barcode,
+#qty{
+  font-size:16px!important;
 }
 
 .inventory-input:focus{
@@ -1386,7 +1440,9 @@ button{
 }
 
 
-/* HISTORY */
+/* =====================================================
+   HISTORY
+===================================================== */
 
 .history-section{
 
@@ -1427,7 +1483,14 @@ button{
   gap:6px;
 }
 
+
+/*
+  History sekarang clickable.
+*/
+
 .history-item{
+
+  position:relative;
 
   padding:9px 11px;
 
@@ -1446,6 +1509,35 @@ button{
 
   background:
     rgba(255,255,255,.035);
+
+  cursor:pointer;
+
+  transition:.18s ease;
+}
+
+.history-item:hover{
+
+  border-color:
+    rgba(255,122,0,.25);
+
+  background:
+    rgba(255,122,0,.055);
+}
+
+.history-item.selected{
+
+  border-color:
+    rgba(255,122,0,.4);
+
+  background:
+    rgba(255,122,0,.075);
+}
+
+.history-main{
+
+  min-width:0;
+
+  flex:1;
 }
 
 .history-code{
@@ -1461,9 +1553,72 @@ button{
   color:#707783;
 
   font-size:8px;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+}
+
+
+/*
+  Tombol delete hanya muncul
+  pada item yang sedang dipilih.
+*/
+
+.history-delete{
+
+  display:none;
+
+  margin-top:8px;
+
+  padding:7px 10px;
+
+  border:0;
+
+  border-radius:8px;
+
+  background:
+    rgba(255,59,48,.12);
+
+  color:#ff7169;
+
+  font-size:9px;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:.18s;
+}
+
+.history-item.selected .history-delete{
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+}
+
+.history-delete:hover{
+
+  background:
+    rgba(255,59,48,.20);
+
+  color:#fff;
+}
+
+.history-delete:disabled{
+
+  opacity:.5;
+
+  cursor:not-allowed;
 }
 
 .history-qty{
+
+  flex:none;
 
   color:var(--orange2);
 
@@ -1482,24 +1637,59 @@ button{
   font-size:9px;
 }
 
+
+/* =====================================================
+   RESET BUTTON
+===================================================== */
+
 .reset-row{
 
-  margin-top:9px;
+  margin-top:14px;
 
-  text-align:right;
+  display:flex;
+
+  justify-content:center;
+
+  text-align:center;
 }
 
 .reset-button{
 
-  border:0;
+  min-width:150px;
 
-  background:none;
+  min-height:40px;
 
-  color:#666d78;
+  padding:0 16px;
 
-  font-size:9px;
+  border:
+    1px solid
+    rgba(255,255,255,.08);
 
-  font-weight:800;
+  border-radius:11px;
+
+  background:
+    rgba(255,255,255,.045);
+
+  color:#858c98;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.reset-button:hover{
+
+  color:#fff;
+
+  border-color:
+    rgba(255,59,48,.25);
+
+  background:
+    rgba(255,59,48,.07);
 }
 
 
@@ -2373,7 +2563,7 @@ button{
 
 
 /* =====================================================
-   RESPONSIVE DASHBOARD
+   RESPONSIVE
 ===================================================== */
 
 @media(max-width:900px){
@@ -2393,11 +2583,11 @@ button{
 
   .dashboard-main{
 
-    height:auto;
+    height:340px;
 
-    min-height:430px;
+    min-height:340px;
 
-    padding:20px;
+    padding:18px;
 
     border-radius:22px;
   }
@@ -2405,7 +2595,7 @@ button{
   .welcome-title{
 
     font-size:
-      clamp(42px,11vw,64px);
+      clamp(40px,11vw,64px);
   }
 
   .operations-panel{
@@ -2426,28 +2616,28 @@ button{
 
   .operation-card{
 
-    min-height:135px;
+    min-height:120px;
 
-    padding:15px;
+    padding:14px;
 
     border-radius:17px;
   }
 
   .operation-icon{
 
-    width:43px;
-    height:43px;
+    width:40px;
+    height:40px;
 
-    border-radius:13px;
+    border-radius:12px;
 
-    margin-bottom:11px;
+    margin-bottom:9px;
 
-    font-size:19px;
+    font-size:18px;
   }
 
   .operation-title{
 
-    font-size:12px;
+    font-size:11px;
   }
 
   .operation-desc{
@@ -2479,11 +2669,20 @@ button{
   }
 
   .topbar{
-    margin-bottom:20px;
+    margin-bottom:5px;
+  }
+
+  .topbar .system-status{
+
+    padding:6px 8px;
+
+    font-size:8px;
   }
 
   .dashboard-main{
-    min-height:400px;
+
+    min-height:325px;
+    height:325px;
   }
 
   .operations-panel{
@@ -2494,23 +2693,23 @@ button{
 
   .operation-card{
 
-    min-height:120px;
+    min-height:115px;
 
-    padding:12px;
+    padding:11px;
   }
 
   .operation-icon{
 
-    width:37px;
-    height:37px;
+    width:36px;
+    height:36px;
 
-    margin-bottom:8px;
+    margin-bottom:7px;
 
-    font-size:17px;
+    font-size:16px;
   }
 
   .operation-title{
-    font-size:10px;
+    font-size:9px;
   }
 
   .operation-desc{
@@ -2578,7 +2777,36 @@ button{
   }
 
   .dashboard-main{
-    min-height:390px;
+    min-height:315px;
+    height:315px;
+  }
+
+  .top-brand-icon{
+
+    width:36px;
+    height:36px;
+
+    border-radius:10px;
+  }
+
+  .top-brand-text strong{
+    font-size:11px;
+  }
+
+  .top-brand-text span{
+    font-size:7px;
+  }
+
+  .avatar,
+  .icon-button{
+
+    width:32px;
+    height:32px;
+  }
+
+  .topbar .system-status{
+
+    display:none;
   }
 
   .inventory-heading h1{
@@ -2601,6 +2829,25 @@ button{
   .data-stat-value{
 
     font-size:21px;
+  }
+
+}
+
+
+/*
+  iOS / mobile:
+  Jangan biarkan browser melakukan
+  zoom pada input.
+*/
+
+@media(max-width:650px){
+
+  input,
+  select,
+  textarea{
+
+    font-size:16px!important;
+
   }
 
 }
@@ -2740,6 +2987,22 @@ button{
 
         <div class="user-area">
 
+
+          <!-- SYSTEM ONLINE SEKARANG DI TOPBAR -->
+
+          <div
+            id="connectionStatus"
+            class="system-status"
+            aria-live="polite"
+          >
+
+            <span class="status-dot"></span>
+
+            SYSTEM ONLINE
+
+          </div>
+
+
           <div
             id="avatar"
             class="avatar"
@@ -2757,6 +3020,7 @@ button{
           <button
             class="icon-button"
             onclick="openSettings()"
+            aria-label="Settings"
           >
             ⚙
           </button>
@@ -2764,6 +3028,7 @@ button{
           <button
             class="icon-button"
             onclick="logout()"
+            aria-label="Logout"
           >
             ↪
           </button>
@@ -2773,14 +3038,9 @@ button{
       </div>
 
 
-      <div class="welcome-block">
+      <!-- WELCOME COMPACT -->
 
-        <div
-          id="welcomeStatusText"
-          class="welcome-small"
-        >
-          SYSTEM ONLINE
-        </div>
+      <div class="welcome-block">
 
         <h1
           id="welcomeName"
@@ -2794,18 +3054,6 @@ button{
           dan monitoring data stock BSD
           melalui satu sistem.
         </p>
-
-        <div
-          id="connectionStatus"
-          class="system-status"
-          aria-live="polite"
-        >
-
-          <span class="status-dot"></span>
-
-          SYSTEM ONLINE
-
-        </div>
 
       </div>
 
@@ -3012,8 +3260,6 @@ button{
         ></div>
 
 
-        <!-- NAMA PRODUK AKAN MUNCUL DI SINI -->
-
         <div
           id="productName"
           class="product-name"
@@ -3057,6 +3303,8 @@ button{
       ></div>
 
 
+      <!-- HISTORY -->
+
       <div class="history-section">
 
         <div class="history-header">
@@ -3090,7 +3338,7 @@ button{
             class="reset-button"
             onclick="resetInventory()"
           >
-            ↻ Reset Data
+            ↻ RESET DATA
           </button>
 
         </div>
@@ -3176,8 +3424,6 @@ button{
 
       </div>
 
-
-      <!-- DATA STATS -->
 
       <section class="data-stats">
 
@@ -3272,8 +3518,6 @@ button{
 
       </section>
 
-
-      <!-- DATA TABLE -->
 
       <section class="data-table-container">
 
@@ -3734,16 +3978,12 @@ const db =
 
 
 /* =====================================================
-   API STOCK LOSS / OPNAME
+   API
 ===================================================== */
 
 const URL_SCRIPT =
 "https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";
 
-
-/* =====================================================
-   API DATA BSD
-===================================================== */
 
 const DATA_BSD_API =
 "https://script.google.com/macros/s/AKfycbyjRNaLlSbZZRlvf59Ctzro9NloalUdkP4ML8-VdxfJ5PmS9hpanUEo_NwqT8jB07s/exec";
@@ -3762,12 +4002,23 @@ let currentMode = "opname";
 let masterData = [];
 
 
+/*
+  History state
+*/
+
+let selectedHistoryItem = null;
+
+let historyRows = [];
+
+
 /* =====================================================
    HELPER
 ===================================================== */
 
 function $(id){
+
   return document.getElementById(id);
+
 }
 
 
@@ -3791,11 +4042,6 @@ function normalizeBarcode(value){
 
 }
 
-
-/*
-  Untuk pencarian barcode:
-  ABC123 = abc123
-*/
 
 function barcodeKey(value){
 
@@ -3879,11 +4125,6 @@ function updateProductName(
   }
 
 
-  /*
-    Kode salah / tidak ditemukan:
-    nama produk langsung dihilangkan.
-  */
-
   clearProductName();
 
   return null;
@@ -3904,7 +4145,9 @@ function showToast(
     $("toastContainer");
 
   const toast =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   toast.className =
     "toast " + type;
@@ -3912,29 +4155,26 @@ function showToast(
   toast.textContent =
     text;
 
-  container.appendChild(toast);
+  container.appendChild(
+    toast
+  );
 
-  setTimeout(() => {
-
-    toast.remove();
-
-  },2800);
+  setTimeout(
+    () => toast.remove(),
+    2800
+  );
 
 }
 
 
 /* =====================================================
-   CONNECTION STATUS
+   ONLINE STATUS
 ===================================================== */
 
 function updateOnlineStatus(){
 
   const status =
     $("connectionStatus");
-
-  const topStatus =
-    $("welcomeStatusText");
-
 
   if(!status)
     return;
@@ -3958,13 +4198,6 @@ function updateOnlineStatus(){
         SYSTEM ONLINE
       `;
 
-    if(topStatus){
-
-      topStatus.textContent =
-        "SYSTEM ONLINE";
-
-    }
-
   }
   else{
 
@@ -3978,48 +4211,21 @@ function updateOnlineStatus(){
         SYSTEM OFFLINE
       `;
 
-    if(topStatus){
-
-      topStatus.textContent =
-        "SYSTEM OFFLINE";
-
-    }
-
   }
 
 }
 
 
-/*
-  Saat browser mendeteksi
-  koneksi terputus / kembali.
-*/
-
 window.addEventListener(
   "online",
-  () => {
-
-    updateOnlineStatus();
-
-  }
+  updateOnlineStatus
 );
 
 
 window.addEventListener(
   "offline",
-  () => {
-
-    updateOnlineStatus();
-
-  }
+  updateOnlineStatus
 );
-
-
-/*
-  Jalankan pertama kali.
-*/
-
-updateOnlineStatus();
 
 
 /* =====================================================
@@ -4048,24 +4254,28 @@ function(id){
 
 document
   .querySelectorAll(".modal")
-  .forEach(modal => {
+  .forEach(
+    modal => {
 
-    modal.addEventListener(
-      "click",
-      e => {
+      modal.addEventListener(
+        "click",
+        e => {
 
-        if(e.target === modal){
+          if(
+            e.target === modal
+          ){
 
-          modal.classList.remove(
-            "show"
-          );
+            modal.classList.remove(
+              "show"
+            );
+
+          }
 
         }
+      );
 
-      }
-    );
-
-  });
+    }
+  );
 
 
 /* =====================================================
@@ -4087,19 +4297,25 @@ function firebaseErrorMessage(error){
 
 
   if(
-    code.includes("invalid-email")
+    code.includes(
+      "invalid-email"
+    )
   )
     return "Format email tidak valid.";
 
 
   if(
-    code.includes("weak-password")
+    code.includes(
+      "weak-password"
+    )
   )
     return "Password terlalu lemah.";
 
 
   if(
-    code.includes("network")
+    code.includes(
+      "network"
+    )
   )
     return "Koneksi internet bermasalah.";
 
@@ -4169,9 +4385,13 @@ async function(){
     "";
 
 
-  if(username.length < 3){
+  if(
+    username.length < 3
+  ){
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
       "Username minimal 3 karakter.";
@@ -4187,7 +4407,9 @@ async function(){
     )
   ){
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
       "Username hanya boleh huruf kecil, angka, titik, underscore, dan strip.";
@@ -4199,7 +4421,9 @@ async function(){
 
   if(!email){
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
       "Email wajib diisi.";
@@ -4209,9 +4433,13 @@ async function(){
   }
 
 
-  if(password.length < 6){
+  if(
+    password.length < 6
+  ){
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
       "Password minimal 6 karakter.";
@@ -4221,9 +4449,13 @@ async function(){
   }
 
 
-  if(password !== confirm){
+  if(
+    password !== confirm
+  ){
 
-    message.classList.add("error");
+    message.classList.add(
+      "error"
+    );
 
     message.textContent =
       "Konfirmasi password tidak sama.";
@@ -4249,9 +4481,13 @@ async function(){
       );
 
 
-    if(usernameSnap.exists()){
+    if(
+      usernameSnap.exists()
+    ){
 
-      message.classList.add("error");
+      message.classList.add(
+        "error"
+      );
 
       message.textContent =
         "Username sudah digunakan.";
@@ -4376,7 +4612,10 @@ async function(){
     "";
 
 
-  if(!identity || !password){
+  if(
+    !identity ||
+    !password
+  ){
 
     message.classList.add(
       "error"
@@ -4402,7 +4641,9 @@ async function(){
       identity;
 
 
-    if(!identity.includes("@")){
+    if(
+      !identity.includes("@")
+    ){
 
       const usernameSnap =
         await getDoc(
@@ -4414,7 +4655,9 @@ async function(){
         );
 
 
-      if(!usernameSnap.exists()){
+      if(
+        !usernameSnap.exists()
+      ){
 
         throw new Error(
           "Username tidak ditemukan."
@@ -4437,7 +4680,9 @@ async function(){
         );
 
 
-      if(!userSnap.exists()){
+      if(
+        !userSnap.exists()
+      ){
 
         throw new Error(
           "Data user tidak ditemukan."
@@ -4467,7 +4712,9 @@ async function(){
     await user.reload();
 
 
-    if(!user.emailVerified){
+    if(
+      !user.emailVerified
+    ){
 
       await signOut(auth);
 
@@ -4493,7 +4740,9 @@ async function(){
       );
 
 
-    if(!profileSnap.exists()){
+    if(
+      !profileSnap.exists()
+    ){
 
       await signOut(auth);
 
@@ -4508,7 +4757,10 @@ async function(){
       profileSnap.data();
 
 
-    if(profile.status !== "approved"){
+    if(
+      profile.status !==
+      "approved"
+    ){
 
       await signOut(auth);
 
@@ -4582,7 +4834,9 @@ onAuthStateChanged(
       await user.reload();
 
 
-      if(!user.emailVerified){
+      if(
+        !user.emailVerified
+      ){
 
         await signOut(auth);
 
@@ -4603,7 +4857,9 @@ onAuthStateChanged(
         );
 
 
-      if(!snap.exists()){
+      if(
+        !snap.exists()
+      ){
 
         await signOut(auth);
 
@@ -4618,7 +4874,10 @@ onAuthStateChanged(
         snap.data();
 
 
-      if(profile.status !== "approved"){
+      if(
+        profile.status !==
+        "approved"
+      ){
 
         await signOut(auth);
 
@@ -4700,12 +4959,6 @@ function showDashboard(){
     .classList
     .remove("show");
 
-
-  /*
-    Pastikan status koneksi
-    selalu mengikuti kondisi
-    browser saat dashboard dibuka.
-  */
 
   updateOnlineStatus();
 
@@ -4907,7 +5160,9 @@ async function loadPendingUsers(){
       await getDocs(q);
 
 
-    if(snapshot.empty){
+    if(
+      snapshot.empty
+    ){
 
       list.innerHTML =
         `
@@ -4978,7 +5233,9 @@ async function loadPendingUsers(){
         `;
 
 
-        list.appendChild(div);
+        list.appendChild(
+          div
+        );
 
       }
     );
@@ -4988,21 +5245,23 @@ async function loadPendingUsers(){
       .querySelectorAll(
         ".small-btn"
       )
-      .forEach(button => {
+      .forEach(
+        button => {
 
-        button.addEventListener(
-          "click",
-          async () => {
+          button.addEventListener(
+            "click",
+            async () => {
 
-            await updateUserStatus(
-              button.dataset.uid,
-              button.dataset.action
-            );
+              await updateUserStatus(
+                button.dataset.uid,
+                button.dataset.action
+              );
 
-          }
-        );
+            }
+          );
 
-      });
+        }
+      );
 
   }
   catch(error){
@@ -5046,10 +5305,12 @@ async function updateUserStatus(
         uid
       ),
       {
+
         status:
           action === "approve"
             ? "approved"
             : "rejected"
+
       }
     );
 
@@ -5160,6 +5421,13 @@ async function(mode){
       : "opname";
 
 
+  selectedHistoryItem =
+    null;
+
+  historyRows =
+    [];
+
+
   if(
     currentMode ===
     "stockloss"
@@ -5226,7 +5494,6 @@ async function(mode){
 
   await loadMasterData();
 
-
   await loadHistory();
 
 
@@ -5253,12 +5520,20 @@ function(){
     .classList
     .remove("show");
 
+
   $("suggestions")
     .style
     .display = "none";
 
 
   clearProductName();
+
+
+  selectedHistoryItem =
+    null;
+
+  historyRows =
+    [];
 
 };
 
@@ -5269,7 +5544,9 @@ function(){
 
 async function loadMasterData(){
 
-  if(masterData.length)
+  if(
+    masterData.length
+  )
     return;
 
 
@@ -5296,7 +5573,9 @@ async function loadMasterData(){
       await response.json();
 
 
-    if(Array.isArray(data)){
+    if(
+      Array.isArray(data)
+    ){
 
       masterData =
         data.map(
@@ -5367,11 +5646,6 @@ $("barcode")
         );
 
 
-      /*
-        Jika kosong:
-        sembunyikan nama dan suggestion.
-      */
-
       if(!value){
 
         $("suggestions")
@@ -5386,10 +5660,7 @@ $("barcode")
 
 
       /*
-        BARCODE TIMBANGAN
-
-        13 DIGIT
-        DIAWALI 20
+        WEIGHT BARCODE
       */
 
       if(
@@ -5407,10 +5678,7 @@ $("barcode")
 
 
       /*
-        Cek EXACT MATCH terlebih dahulu.
-
-        Jika barcode persis ditemukan,
-        langsung tampilkan nama produk.
+        EXACT
       */
 
       const exactProduct =
@@ -5431,8 +5699,7 @@ $("barcode")
 
 
       /*
-        Kalau belum exact,
-        tampilkan suggestion.
+        SUGGESTION
       */
 
       const search =
@@ -5445,6 +5712,7 @@ $("barcode")
         masterData
           .filter(
             item =>
+
               barcodeKey(
                 item.barcode
               ).includes(search)
@@ -5461,12 +5729,6 @@ $("barcode")
           )
           .slice(0,20);
 
-
-      /*
-        Tidak ada hasil:
-        jangan tampilkan apa-apa.
-        Nama produk juga tetap tersembunyi.
-      */
 
       if(!result.length){
 
@@ -5525,41 +5787,38 @@ $("barcode")
         .querySelectorAll(
           ".suggestion-item"
         )
-        .forEach(el => {
+        .forEach(
+          el => {
 
-          el.addEventListener(
-            "click",
-            () => {
+            el.addEventListener(
+              "click",
+              () => {
 
-              const selectedBarcode =
-                el.dataset.barcode;
-
-
-              $("barcode").value =
-                selectedBarcode;
+                const selectedBarcode =
+                  el.dataset.barcode;
 
 
-              $("suggestions")
-                .style
-                .display = "none";
+                $("barcode").value =
+                  selectedBarcode;
 
 
-              /*
-                Saat suggestion dipilih,
-                nama produk langsung muncul.
-              */
-
-              updateProductName(
-                selectedBarcode
-              );
+                $("suggestions")
+                  .style
+                  .display = "none";
 
 
-              $("qty").focus();
+                updateProductName(
+                  selectedBarcode
+                );
 
-            }
-          );
 
-        });
+                $("qty").focus();
+
+              }
+            );
+
+          }
+        );
 
     }
   );
@@ -5574,7 +5833,9 @@ $("barcode")
     "keydown",
     function(e){
 
-      if(e.key !== "Enter")
+      if(
+        e.key !== "Enter"
+      )
         return;
 
 
@@ -5609,14 +5870,6 @@ $("barcode")
 
       }
 
-
-      /*
-        Exact barcode:
-        nama tampil.
-
-        Barcode salah:
-        nama disembunyikan.
-      */
 
       updateProductName(
         value
@@ -5654,34 +5907,6 @@ function processWeighedBarcode(
   }
 
 
-  /*
-    FORMAT
-
-    20
-    XXXXX
-    XXXXX
-    X
-
-    Contoh:
-
-    2012345001250
-
-    20
-    12345
-    00125
-    0
-
-    Product:
-    12345
-
-    Weight:
-    125 gram
-    = 0.125 KG
-
-    Digit terakhir diabaikan.
-  */
-
-
   const productBarcode =
     value.substring(
       2,
@@ -5703,7 +5928,11 @@ function processWeighedBarcode(
     );
 
 
-  if(!Number.isFinite(grams)){
+  if(
+    !Number.isFinite(
+      grams
+    )
+  ){
 
     return false;
 
@@ -5713,12 +5942,6 @@ function processWeighedBarcode(
   const qty =
     grams / 1000;
 
-
-  /*
-    Setelah barcode timbang
-    diproses, field barcode
-    berubah menjadi article.
-  */
 
   $("barcode").value =
     productBarcode;
@@ -5743,11 +5966,6 @@ function processWeighedBarcode(
     .display = "none";
 
 
-  /*
-    LANGSUNG CARI NAMA PRODUK
-    berdasarkan article hasil parsing.
-  */
-
   const product =
     updateProductName(
       productBarcode
@@ -5766,12 +5984,6 @@ function processWeighedBarcode(
 
   }
   else{
-
-    /*
-      Nama produk tidak ditampilkan
-      jika article hasil parsing
-      tidak ditemukan.
-    */
 
     showToast(
       "Kode " +
@@ -5846,7 +6058,7 @@ function parseQty(value){
 
 
 /* =====================================================
-   SAVE
+   SAVE INVENTORY
 ===================================================== */
 
 window.saveInventory =
@@ -5874,7 +6086,6 @@ async function(){
 
   message.className =
     "inventory-message";
-
 
   message.textContent =
     "";
@@ -5991,18 +6202,47 @@ async function(){
       );
 
 
+      /*
+        BERSIHKAN FORM
+      */
+
       $("barcode").value = "";
 
       $("qty").value = "";
 
-
       clearProductName();
+
+      $("suggestions")
+        .style
+        .display = "none";
+
+
+      /*
+        History refresh.
+        Selection otomatis hilang.
+      */
+
+      selectedHistoryItem =
+        null;
 
 
       await loadHistory();
 
 
-      $("barcode").focus();
+      /*
+        KEMBALI KE BARCODE
+        supaya langsung bisa scan
+        barang berikutnya.
+      */
+
+      setTimeout(
+        () => {
+
+          $("barcode").focus();
+
+        },
+        50
+      );
 
     }
     else{
@@ -6045,7 +6285,7 @@ async function(){
 
 
 /* =====================================================
-   HISTORY
+   LOAD HISTORY
 ===================================================== */
 
 async function loadHistory(){
@@ -6060,6 +6300,10 @@ async function loadHistory(){
         Loading...
       </div>
     `;
+
+
+  selectedHistoryItem =
+    null;
 
 
   try{
@@ -6093,9 +6337,12 @@ async function loadHistory(){
     let rows = [];
 
 
-    if(Array.isArray(data)){
+    if(
+      Array.isArray(data)
+    ){
 
-      rows = data;
+      rows =
+        data;
 
     }
     else if(
@@ -6108,86 +6355,22 @@ async function loadHistory(){
     }
 
 
-    if(!rows.length){
+    /*
+      Backend sudah mengirim
+      terbaru -> terlama.
 
-      list.innerHTML =
-        `
-          <div class="history-empty">
-            Belum ada data
-          </div>
-        `;
+      Jadi ambil 30 pertama,
+      jangan dibalik lagi.
+    */
 
-      return;
-
-    }
-
-
-    rows =
-      rows
-        .slice(-30)
-        .reverse();
+    historyRows =
+      rows.slice(
+        0,
+        30
+      );
 
 
-    list.innerHTML =
-      rows
-        .map(
-          item => {
-
-            const barcode =
-              item.barcode ??
-              item.kode ??
-              item.article ??
-              "-";
-
-
-            const qty =
-              item.qty ??
-              item.quantity ??
-              item.Qty ??
-              "-";
-
-
-            const name =
-              item.nama ??
-              item.name ??
-              "";
-
-
-            return `
-
-              <div class="history-item">
-
-                <div>
-
-                  <div class="history-code">
-                    ${escapeHtml(
-                      barcode
-                    )}
-                  </div>
-
-                  <div class="history-name">
-                    ${escapeHtml(
-                      name
-                    )}
-                  </div>
-
-                </div>
-
-                <div class="history-qty">
-                  ${escapeHtml(
-                    String(qty)
-                  )}
-                  KG
-                </div>
-
-              </div>
-
-            `;
-
-          }
-        )
-        .join("");
-
+    renderHistory();
 
   }
   catch(error){
@@ -6198,12 +6381,412 @@ async function loadHistory(){
     );
 
 
+    historyRows =
+      [];
+
+
     list.innerHTML =
       `
         <div class="history-empty">
           Riwayat belum tersedia
         </div>
       `;
+
+  }
+
+}
+
+
+/* =====================================================
+   RENDER HISTORY
+===================================================== */
+
+function renderHistory(){
+
+  const list =
+    $("historyList");
+
+
+  if(
+    !historyRows.length
+  ){
+
+    list.innerHTML =
+      `
+        <div class="history-empty">
+          Belum ada data
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  list.innerHTML =
+    historyRows
+      .map(
+        (item,index) => {
+
+          const barcode =
+            item.barcode ??
+            item.kode ??
+            item.article ??
+            "-";
+
+
+          const qty =
+            item.qty ??
+            item.quantity ??
+            item.Qty ??
+            "-";
+
+
+          const name =
+            item.nama ??
+            item.name ??
+            "";
+
+
+          const selected =
+            selectedHistoryItem ===
+            index
+              ? " selected"
+              : "";
+
+
+          return `
+
+            <div
+              class="history-item${selected}"
+              data-history-index="${index}"
+            >
+
+              <div class="history-main">
+
+                <div class="history-code">
+                  ${escapeHtml(
+                    barcode
+                  )}
+                </div>
+
+                <div class="history-name">
+                  ${escapeHtml(
+                    name
+                  )}
+                </div>
+
+
+                <button
+                  class="history-delete"
+                  type="button"
+                  data-history-index="${index}"
+                >
+                  🗑 HAPUS DATA
+                </button>
+
+              </div>
+
+
+              <div class="history-qty">
+                ${escapeHtml(
+                  String(qty)
+                )}
+                KG
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  /*
+    Klik history.
+  */
+
+  list
+    .querySelectorAll(
+      ".history-item"
+    )
+    .forEach(
+      item => {
+
+        item.addEventListener(
+          "click",
+          () => {
+
+            const index =
+              Number(
+                item.dataset.historyIndex
+              );
+
+
+            if(
+              selectedHistoryItem ===
+              index
+            ){
+
+              selectedHistoryItem =
+                null;
+
+            }
+            else{
+
+              selectedHistoryItem =
+                index;
+
+            }
+
+
+            renderHistory();
+
+          }
+        );
+
+      }
+    );
+
+
+  /*
+    Tombol delete.
+  */
+
+  list
+    .querySelectorAll(
+      ".history-delete"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          async e => {
+
+            e.stopPropagation();
+
+
+            const index =
+              Number(
+                button.dataset.historyIndex
+              );
+
+
+            await deleteHistoryItem(
+              index
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+/* =====================================================
+   DELETE HISTORY ITEM
+===================================================== */
+
+async function deleteHistoryItem(
+  index
+){
+
+  const item =
+    historyRows[index];
+
+
+  if(!item)
+    return;
+
+
+  const barcode =
+    item.barcode ??
+    item.kode ??
+    item.article ??
+    "";
+
+
+  const qty =
+    item.qty ??
+    item.quantity ??
+    item.Qty ??
+    "";
+
+
+  const row =
+    item.row;
+
+
+  if(
+    !Number.isInteger(
+      Number(row)
+    )
+  ){
+
+    showToast(
+      "Nomor baris data tidak ditemukan.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const confirmed =
+    confirm(
+      "Hapus data ini?\n\n" +
+      "Barcode: " +
+      barcode +
+      "\nQuantity: " +
+      qty +
+      " KG"
+    );
+
+
+  if(!confirmed)
+    return;
+
+
+  /*
+    Password admin untuk delete.
+  */
+
+  const password =
+    prompt(
+      "Masukkan password admin untuk menghapus data:"
+    );
+
+
+  if(
+    password === null
+  )
+    return;
+
+
+  if(!password){
+
+    showToast(
+      "Password wajib diisi.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    /*
+      Tombol dibuat disable
+      supaya tidak double click.
+    */
+
+    const deleteButtons =
+      document.querySelectorAll(
+        ".history-delete"
+      );
+
+
+    deleteButtons
+      .forEach(
+        btn => {
+          btn.disabled = true;
+        }
+      );
+
+
+    const response =
+      await fetch(
+        URL_SCRIPT,
+        {
+
+          method:"POST",
+
+          body:
+            JSON.stringify({
+
+              action:
+                "deleteData",
+
+              mode:
+                currentMode,
+
+              row:
+                Number(row),
+
+              barcode:
+                barcode,
+
+              qty:
+                qty,
+
+              password:
+                password
+
+            })
+
+        }
+      );
+
+
+    const text =
+      await response.text();
+
+
+    console.log(
+      "Delete response:",
+      text
+    );
+
+
+    const lower =
+      text.toLowerCase();
+
+
+    if(
+      lower.includes("delete berhasil") ||
+      lower.includes("berhasil")
+    ){
+
+      selectedHistoryItem =
+        null;
+
+
+      showToast(
+        "Data berhasil dihapus.",
+        "success"
+      );
+
+
+      await loadHistory();
+
+    }
+    else{
+
+      showToast(
+        text ||
+        "Gagal menghapus data.",
+        "error"
+      );
+
+    }
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    showToast(
+      "Gagal menghapus data.",
+      "error"
+    );
 
   }
 
@@ -6292,7 +6875,19 @@ async function(){
       clearProductName();
 
 
+      selectedHistoryItem =
+        null;
+
+
       await loadHistory();
+
+
+      setTimeout(
+        () => {
+          $("barcode").focus();
+        },
+        50
+      );
 
     }
     else{
@@ -6374,7 +6969,9 @@ async function(){
   createBSDNavigation();
 
 
-  if(!bsdLoaded){
+  if(
+    !bsdLoaded
+  ){
 
     await bsdLoadAll();
 
@@ -6681,11 +7278,15 @@ function bsdIsLow(item){
     );
 
 
-  if(isNaN(stock))
+  if(
+    isNaN(stock)
+  )
     return false;
 
 
-  if(unit === "kg")
+  if(
+    unit === "kg"
+  )
     return stock <= 1.8;
 
 
@@ -6717,7 +7318,9 @@ function bsdIsNegative(item){
     );
 
 
-  if(isNaN(stock))
+  if(
+    isNaN(stock)
+  )
     return false;
 
 
@@ -6751,7 +7354,7 @@ function bsdGetNegative(data){
 
 
 /* =====================================================
-   BSD LOW BUTTON
+   BSD LOW
 ===================================================== */
 
 window.bsdShowLow =
@@ -6784,7 +7387,7 @@ function(){
 
 
 /* =====================================================
-   BSD NEGATIVE BUTTON
+   BSD NEGATIVE
 ===================================================== */
 
 window.bsdShowNegative =
@@ -6892,7 +7495,7 @@ function bsdUpdateCards(){
 
 
 /* =====================================================
-   BSD TABLE HEADER
+   BSD HEADER
 ===================================================== */
 
 function bsdRenderHeader(){
@@ -6929,7 +7532,7 @@ function bsdRenderHeader(){
 
 
 /* =====================================================
-   BSD RENDER TABLE
+   BSD TABLE
 ===================================================== */
 
 function bsdRenderTable(){
@@ -7000,7 +7603,9 @@ function bsdRenderTable(){
                 value ?? ""
               )
                 .toLowerCase()
-                .includes(search)
+                .includes(
+                  search
+                )
           );
 
         }
@@ -7046,11 +7651,15 @@ function bsdRenderTable(){
         item => {
 
           const negative =
-            bsdIsNegative(item);
+            bsdIsNegative(
+              item
+            );
 
 
           const low =
-            bsdIsLow(item);
+            bsdIsLow(
+              item
+            );
 
 
           let rowClass =
@@ -7162,7 +7771,9 @@ function bsdValue(value){
     ).trim();
 
 
-  if(text === "")
+  if(
+    text === ""
+  )
     return "—";
 
 
@@ -7208,33 +7819,7 @@ function(sheet){
 
 
 /* =====================================================
-   DATA BSD NAV CLICK
-===================================================== */
-
-document.addEventListener(
-  "click",
-  function(e){
-
-    const target =
-      e.target.closest(
-        "[data-bsd-sheet]"
-      );
-
-
-    if(!target)
-      return;
-
-
-    bsdChangeSheet(
-      target.dataset.bsdSheet
-    );
-
-  }
-);
-
-
-/* =====================================================
-   DATA BSD GLOBAL SHEET
+   BSD GLOBAL
 ===================================================== */
 
 window.changeBSDSheet =
@@ -7248,7 +7833,7 @@ function(sheet){
 
 
 /* =====================================================
-   DATA BSD NAVIGATION
+   BSD NAVIGATION
 ===================================================== */
 
 function createBSDNavigation(){
@@ -7454,7 +8039,9 @@ $("loginPassword")
     "keydown",
     e => {
 
-      if(e.key === "Enter"){
+      if(
+        e.key === "Enter"
+      ){
 
         login();
 
@@ -7473,7 +8060,9 @@ $("qty")
     "keydown",
     e => {
 
-      if(e.key === "Enter"){
+      if(
+        e.key === "Enter"
+      ){
 
         e.preventDefault();
 
@@ -7493,7 +8082,9 @@ document.addEventListener(
   "keydown",
   e => {
 
-    if(e.key !== "Escape")
+    if(
+      e.key !== "Escape"
+    )
       return;
 
 
