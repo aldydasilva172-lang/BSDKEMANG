@@ -321,9 +321,6 @@ button{
   width:100%;
   max-width:1450px;
 
-  min-height:
-    calc(100vh - 44px);
-
   margin:auto;
 
   display:grid;
@@ -333,6 +330,8 @@ button{
     minmax(280px,350px);
 
   gap:20px;
+
+  align-items:stretch;
 }
 
 
@@ -346,6 +345,13 @@ button{
 
   display:flex;
   flex-direction:column;
+
+  /*
+    Tinggi dibuat compact.
+    Lebar tetap mengikuti dashboard.
+  */
+  height:500px;
+  min-height:0;
 
   padding:25px;
 
@@ -405,7 +411,7 @@ button{
 
   gap:15px;
 
-  margin-bottom:35px;
+  margin-bottom:20px;
 }
 
 .top-brand{
@@ -546,13 +552,13 @@ button{
 
   letter-spacing:2px;
 
-  margin-bottom:11px;
+  margin-bottom:8px;
 }
 
 .welcome-title{
 
   font-size:
-    clamp(42px,6vw,78px);
+    clamp(40px,5vw,68px);
 
   line-height:.94;
 
@@ -580,14 +586,17 @@ button{
 
   max-width:620px;
 
-  margin-top:18px;
+  margin-top:13px;
 
   color:#858c98;
 
-  font-size:13px;
+  font-size:12px;
 
-  line-height:1.7;
+  line-height:1.55;
 }
+
+
+/* SYSTEM CONNECTION STATUS */
 
 .system-status{
 
@@ -596,7 +605,7 @@ button{
   align-items:center;
   gap:8px;
 
-  margin-top:22px;
+  margin-top:15px;
 
   padding:8px 12px;
 
@@ -613,6 +622,9 @@ button{
 
   font-size:10px;
   font-weight:800;
+
+  transition:
+    .25s ease;
 }
 
 .status-dot{
@@ -620,13 +632,87 @@ button{
   width:7px;
   height:7px;
 
+  flex:none;
+
   border-radius:50%;
 
   background:var(--green);
 
   box-shadow:
     0 0 12px var(--green);
+
+  transition:
+    .25s ease;
 }
+
+
+/* OFFLINE */
+
+.system-status.offline{
+
+  background:
+    rgba(255,59,48,.055);
+
+  border-color:
+    rgba(255,59,48,.18);
+
+  color:#ff6b61;
+}
+
+.system-status.offline .status-dot{
+
+  background:
+    var(--red);
+
+  box-shadow:
+    0 0 12px var(--red);
+}
+
+
+/* CHECKING */
+
+.system-status.checking{
+
+  background:
+    rgba(255,179,71,.055);
+
+  border-color:
+    rgba(255,179,71,.18);
+
+  color:#ffbd69;
+}
+
+.system-status.checking .status-dot{
+
+  background:
+    var(--orange2);
+
+  box-shadow:
+    0 0 12px var(--orange2);
+
+  animation:
+    statusPulse 1s infinite;
+}
+
+@keyframes statusPulse{
+
+  0%{
+    opacity:.4;
+    transform:scale(.8);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1);
+  }
+
+  100%{
+    opacity:.4;
+    transform:scale(.8);
+  }
+
+}
+
 
 .dashboard-footer{
 
@@ -637,9 +723,9 @@ button{
 
   justify-content:space-between;
 
-  padding-top:17px;
+  padding-top:13px;
 
-  margin-top:30px;
+  margin-top:20px;
 
   border-top:
     1px solid
@@ -694,7 +780,7 @@ button{
 
   flex:1;
 
-  min-height:175px;
+  min-height:145px;
 
   padding:21px;
 
@@ -1115,37 +1201,65 @@ button{
   color:#555c67;
 }
 
-.qty-row{
 
-  display:grid;
+/* PRODUCT NAME */
 
-  grid-template-columns:
-    1fr 100px;
+.product-name{
 
-  gap:10px;
-}
+  display:none;
 
-.qty-unit{
+  margin-top:7px;
 
-  height:53px;
+  padding:9px 11px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:14px;
-
-  border:1px solid var(--border);
+  border-radius:10px;
 
   background:
-    rgba(255,255,255,.035);
+    rgba(53,232,137,.055);
 
-  color:#9198a3;
+  border:
+    1px solid
+    rgba(53,232,137,.15);
 
-  font-size:11px;
+  color:#65eca7;
 
-  font-weight:900;
+  font-size:10px;
+
+  font-weight:800;
+
+  line-height:1.4;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
+  animation:
+    productNameIn .18s ease;
 }
+
+.product-name.show{
+
+  display:block;
+}
+
+@keyframes productNameIn{
+
+  from{
+    opacity:0;
+    transform:translateY(-3px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+
+}
+
+
+/* SEND */
 
 .send-button{
 
@@ -2270,8 +2384,7 @@ button{
 
   .dashboard-layout{
 
-    min-height:
-      calc(100vh - 30px);
+    min-height:0;
 
     grid-template-columns:1fr;
 
@@ -2280,7 +2393,9 @@ button{
 
   .dashboard-main{
 
-    min-height:470px;
+    height:auto;
+
+    min-height:430px;
 
     padding:20px;
 
@@ -2368,7 +2483,7 @@ button{
   }
 
   .dashboard-main{
-    min-height:440px;
+    min-height:400px;
   }
 
   .operations-panel{
@@ -2462,10 +2577,8 @@ button{
     border-radius:21px;
   }
 
-  .qty-row{
-
-    grid-template-columns:
-      1fr 72px;
+  .dashboard-main{
+    min-height:390px;
   }
 
   .inventory-heading h1{
@@ -2662,7 +2775,10 @@ button{
 
       <div class="welcome-block">
 
-        <div class="welcome-small">
+        <div
+          id="welcomeStatusText"
+          class="welcome-small"
+        >
           SYSTEM ONLINE
         </div>
 
@@ -2679,11 +2795,15 @@ button{
           melalui satu sistem.
         </p>
 
-        <div class="system-status">
+        <div
+          id="connectionStatus"
+          class="system-status"
+          aria-live="polite"
+        >
 
           <span class="status-dot"></span>
 
-          Inventory system ready
+          SYSTEM ONLINE
 
         </div>
 
@@ -2867,6 +2987,8 @@ button{
       </div>
 
 
+      <!-- BARCODE -->
+
       <div class="inventory-input-group">
 
         <label>
@@ -2877,9 +2999,11 @@ button{
           id="barcode"
           class="inventory-input"
           type="text"
-          inputmode="numeric"
+          inputmode="text"
+          autocapitalize="characters"
           autocomplete="off"
-          placeholder="Scan atau masukkan barcode"
+          spellcheck="false"
+          placeholder="Scan atau masukkan barcode / article"
         >
 
         <div
@@ -2887,8 +3011,18 @@ button{
           class="suggestions"
         ></div>
 
+
+        <!-- NAMA PRODUK AKAN MUNCUL DI SINI -->
+
+        <div
+          id="productName"
+          class="product-name"
+        ></div>
+
       </div>
 
+
+      <!-- QUANTITY -->
 
       <div class="inventory-input-group">
 
@@ -2896,21 +3030,14 @@ button{
           QUANTITY
         </label>
 
-        <div class="qty-row">
-
-          <input
-            id="qty"
-            class="inventory-input"
-            type="text"
-            inputmode="decimal"
-            placeholder="0"
-          >
-
-          <div class="qty-unit">
-            KG
-          </div>
-
-        </div>
+        <input
+          id="qty"
+          class="inventory-input"
+          type="text"
+          inputmode="decimal"
+          autocomplete="off"
+          placeholder="0"
+        >
 
       </div>
 
@@ -3622,17 +3749,6 @@ const DATA_BSD_API =
 "https://script.google.com/macros/s/AKfycbyjRNaLlSbZZRlvf59Ctzro9NloalUdkP4ML8-VdxfJ5PmS9hpanUEo_NwqT8jB07s/exec";
 
 
-/*
-   Jika API DATA BSD yang bos kirim
-   ternyata menggunakan URL berikut:
-   
-   AKfycbyjRNa...
-
-   URL di atas sengaja dipisahkan
-   dari API inventory.
-*/
-
-
 /* =====================================================
    GLOBAL
 ===================================================== */
@@ -3676,6 +3792,109 @@ function normalizeBarcode(value){
 }
 
 
+/*
+  Untuk pencarian barcode:
+  ABC123 = abc123
+*/
+
+function barcodeKey(value){
+
+  return normalizeBarcode(
+    value
+  ).toLowerCase();
+
+}
+
+
+/* =====================================================
+   PRODUCT NAME
+===================================================== */
+
+function clearProductName(){
+
+  const box =
+    $("productName");
+
+  if(!box)
+    return;
+
+  box.textContent = "";
+
+  box.classList.remove(
+    "show"
+  );
+
+}
+
+
+function updateProductName(
+  barcode
+){
+
+  const box =
+    $("productName");
+
+  if(!box)
+    return null;
+
+
+  const code =
+    barcodeKey(
+      barcode
+    );
+
+
+  if(!code){
+
+    clearProductName();
+
+    return null;
+
+  }
+
+
+  const product =
+    masterData.find(
+      item =>
+        barcodeKey(
+          item.barcode
+        ) === code
+    );
+
+
+  if(
+    product &&
+    product.nama
+  ){
+
+    box.textContent =
+      product.nama;
+
+    box.classList.add(
+      "show"
+    );
+
+    return product;
+
+  }
+
+
+  /*
+    Kode salah / tidak ditemukan:
+    nama produk langsung dihilangkan.
+  */
+
+  clearProductName();
+
+  return null;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
 function showToast(
   text,
   type="success"
@@ -3702,6 +3921,105 @@ function showToast(
   },2800);
 
 }
+
+
+/* =====================================================
+   CONNECTION STATUS
+===================================================== */
+
+function updateOnlineStatus(){
+
+  const status =
+    $("connectionStatus");
+
+  const topStatus =
+    $("welcomeStatusText");
+
+
+  if(!status)
+    return;
+
+
+  const online =
+    navigator.onLine;
+
+
+  status.classList.remove(
+    "offline",
+    "checking"
+  );
+
+
+  if(online){
+
+    status.innerHTML =
+      `
+        <span class="status-dot"></span>
+        SYSTEM ONLINE
+      `;
+
+    if(topStatus){
+
+      topStatus.textContent =
+        "SYSTEM ONLINE";
+
+    }
+
+  }
+  else{
+
+    status.classList.add(
+      "offline"
+    );
+
+    status.innerHTML =
+      `
+        <span class="status-dot"></span>
+        SYSTEM OFFLINE
+      `;
+
+    if(topStatus){
+
+      topStatus.textContent =
+        "SYSTEM OFFLINE";
+
+    }
+
+  }
+
+}
+
+
+/*
+  Saat browser mendeteksi
+  koneksi terputus / kembali.
+*/
+
+window.addEventListener(
+  "online",
+  () => {
+
+    updateOnlineStatus();
+
+  }
+);
+
+
+window.addEventListener(
+  "offline",
+  () => {
+
+    updateOnlineStatus();
+
+  }
+);
+
+
+/*
+  Jalankan pertama kali.
+*/
+
+updateOnlineStatus();
 
 
 /* =====================================================
@@ -3759,6 +4077,7 @@ function firebaseErrorMessage(error){
   const code =
     error?.code || "";
 
+
   if(
     code.includes(
       "email-already-in-use"
@@ -3766,20 +4085,45 @@ function firebaseErrorMessage(error){
   )
     return "Email sudah digunakan.";
 
+
   if(
     code.includes("invalid-email")
   )
     return "Format email tidak valid.";
+
 
   if(
     code.includes("weak-password")
   )
     return "Password terlalu lemah.";
 
+
   if(
     code.includes("network")
   )
     return "Koneksi internet bermasalah.";
+
+
+  if(
+    error?.message ===
+    "Username tidak ditemukan."
+  )
+    return error.message;
+
+
+  if(
+    error?.message ===
+    "Data user tidak ditemukan."
+  )
+    return error.message;
+
+
+  if(
+    error?.message ===
+    "Profil user tidak ditemukan."
+  )
+    return error.message;
+
 
   return (
     error?.message ||
@@ -4357,6 +4701,15 @@ function showDashboard(){
     .remove("show");
 
 
+  /*
+    Pastikan status koneksi
+    selalu mengikuti kondisi
+    browser saat dashboard dibuka.
+  */
+
+  updateOnlineStatus();
+
+
   const username =
     currentProfile?.username ||
     currentUser?.email ||
@@ -4863,6 +5216,9 @@ async function(mode){
     .display = "none";
 
 
+  clearProductName();
+
+
   $("inventoryPage")
     .classList
     .add("show");
@@ -4870,12 +5226,15 @@ async function(mode){
 
   await loadMasterData();
 
+
   await loadHistory();
 
 
   setTimeout(
     () => {
+
       $("barcode").focus();
+
     },
     120
   );
@@ -4897,6 +5256,9 @@ function(){
   $("suggestions")
     .style
     .display = "none";
+
+
+  clearProductName();
 
 };
 
@@ -5000,14 +5362,23 @@ $("barcode")
     function(){
 
       const value =
-        this.value.trim();
+        normalizeBarcode(
+          this.value
+        );
 
+
+      /*
+        Jika kosong:
+        sembunyikan nama dan suggestion.
+      */
 
       if(!value){
 
         $("suggestions")
           .style
           .display = "none";
+
+        clearProductName();
 
         return;
 
@@ -5035,32 +5406,75 @@ $("barcode")
       }
 
 
+      /*
+        Cek EXACT MATCH terlebih dahulu.
+
+        Jika barcode persis ditemukan,
+        langsung tampilkan nama produk.
+      */
+
+      const exactProduct =
+        updateProductName(
+          value
+        );
+
+
+      if(exactProduct){
+
+        $("suggestions")
+          .style
+          .display = "none";
+
+        return;
+
+      }
+
+
+      /*
+        Kalau belum exact,
+        tampilkan suggestion.
+      */
+
       const search =
-        value.toLowerCase();
+        barcodeKey(
+          value
+        );
 
 
       const result =
         masterData
           .filter(
             item =>
-              item.barcode
-                .toLowerCase()
-                .includes(search)
+              barcodeKey(
+                item.barcode
+              ).includes(search)
 
               ||
 
-              item.nama
+              String(
+                item.nama || ""
+              )
                 .toLowerCase()
-                .includes(search)
+                .includes(
+                  search
+                )
           )
           .slice(0,20);
 
+
+      /*
+        Tidak ada hasil:
+        jangan tampilkan apa-apa.
+        Nama produk juga tetap tersembunyi.
+      */
 
       if(!result.length){
 
         $("suggestions")
           .style
           .display = "none";
+
+        clearProductName();
 
         return;
 
@@ -5117,12 +5531,28 @@ $("barcode")
             "click",
             () => {
 
-              $("barcode").value =
+              const selectedBarcode =
                 el.dataset.barcode;
+
+
+              $("barcode").value =
+                selectedBarcode;
+
 
               $("suggestions")
                 .style
                 .display = "none";
+
+
+              /*
+                Saat suggestion dipilih,
+                nama produk langsung muncul.
+              */
+
+              updateProductName(
+                selectedBarcode
+              );
+
 
               $("qty").focus();
 
@@ -5152,7 +5582,9 @@ $("barcode")
 
 
       const value =
-        this.value.trim();
+        normalizeBarcode(
+          this.value
+        );
 
 
       if(
@@ -5176,6 +5608,19 @@ $("barcode")
         return;
 
       }
+
+
+      /*
+        Exact barcode:
+        nama tampil.
+
+        Barcode salah:
+        nama disembunyikan.
+      */
+
+      updateProductName(
+        value
+      );
 
 
       $("suggestions")
@@ -5232,15 +5677,23 @@ function processWeighedBarcode(
     Weight:
     125 gram
     = 0.125 KG
+
+    Digit terakhir diabaikan.
   */
 
 
   const productBarcode =
-    value.substring(2,7);
+    value.substring(
+      2,
+      7
+    );
 
 
   const rawQty =
-    value.substring(7,12);
+    value.substring(
+      7,
+      12
+    );
 
 
   const grams =
@@ -5260,6 +5713,12 @@ function processWeighedBarcode(
   const qty =
     grams / 1000;
 
+
+  /*
+    Setelah barcode timbang
+    diproses, field barcode
+    berubah menjadi article.
+  */
 
   $("barcode").value =
     productBarcode;
@@ -5284,11 +5743,14 @@ function processWeighedBarcode(
     .display = "none";
 
 
+  /*
+    LANGSUNG CARI NAMA PRODUK
+    berdasarkan article hasil parsing.
+  */
+
   const product =
-    masterData.find(
-      item =>
-        item.barcode ===
-        productBarcode
+    updateProductName(
+      productBarcode
     );
 
 
@@ -5304,6 +5766,12 @@ function processWeighedBarcode(
 
   }
   else{
+
+    /*
+      Nama produk tidak ditampilkan
+      jika article hasil parsing
+      tidak ditemukan.
+    */
 
     showToast(
       "Kode " +
@@ -5526,6 +5994,9 @@ async function(){
       $("barcode").value = "";
 
       $("qty").value = "";
+
+
+      clearProductName();
 
 
       await loadHistory();
@@ -5818,6 +6289,9 @@ async function(){
       $("qty").value = "";
 
 
+      clearProductName();
+
+
       await loadHistory();
 
     }
@@ -5897,6 +6371,9 @@ async function(){
     .add("show");
 
 
+  createBSDNavigation();
+
+
   if(!bsdLoaded){
 
     await bsdLoadAll();
@@ -5907,6 +6384,48 @@ async function(){
     bsdDisplayCurrent();
 
   }
+
+
+  setTimeout(
+    () => {
+
+      const nav =
+        $("bsdNavigation");
+
+
+      if(nav){
+
+        nav
+          .querySelectorAll(
+            "button"
+          )
+          .forEach(
+            button => {
+
+              const active =
+                button.dataset.bsdSheet ===
+                bsdCurrentSheet;
+
+
+              button.style.background =
+                active
+                  ? "rgba(0,150,255,.16)"
+                  : "rgba(255,255,255,.045)";
+
+
+              button.style.color =
+                active
+                  ? "#fff"
+                  : "rgba(255,255,255,.65)";
+
+            }
+          );
+
+      }
+
+    },
+    50
+  );
 
 };
 
@@ -5926,6 +6445,9 @@ function(){
   $("dashboard")
     .classList
     .remove("hidden");
+
+
+  updateOnlineStatus();
 
 };
 
@@ -6066,6 +6588,17 @@ function bsdDisplayCurrent(){
 
   $("bsdSearch").value =
     "";
+
+
+  $("bsdAllBtn")
+    .style
+    .display =
+    "none";
+
+
+  $("bsdTableTitle")
+    .textContent =
+    "Semua Barang";
 
 
   $("bsdPageTitle")
@@ -6528,11 +7061,6 @@ function bsdRenderTable(){
             "";
 
 
-          /*
-            NEGATIVE SELALU
-            PRIORITAS MERAH
-          */
-
           if(negative){
 
             rowClass =
@@ -6705,13 +7233,9 @@ document.addEventListener(
 );
 
 
-/*
-  Karena navigasi MEAT,
-  SEAFOOD, DELICATE berasal
-  dari data dashboard, dibuat
-  shortcut keyboard/gesture
-  melalui fungsi global berikut.
-*/
+/* =====================================================
+   DATA BSD GLOBAL SHEET
+===================================================== */
 
 window.changeBSDSheet =
 function(sheet){
@@ -6728,12 +7252,6 @@ function(sheet){
 ===================================================== */
 
 function createBSDNavigation(){
-
-  /*
-    Tambahkan navigasi kecil
-    di bawah heading secara
-    otomatis.
-  */
 
   if(
     document.getElementById(
@@ -6876,91 +7394,6 @@ function createBSDNavigation(){
     ?.click();
 
 }
-
-
-/* =====================================================
-   PATCH OPEN DATA BSD
-===================================================== */
-
-const originalOpenDataBSD =
-  window.openDataBSD;
-
-
-window.openDataBSD =
-async function(){
-
-  $("dashboard")
-    .classList
-    .add("hidden");
-
-
-  $("inventoryPage")
-    .classList
-    .remove("show");
-
-
-  $("dataBsdPage")
-    .classList
-    .add("show");
-
-
-  createBSDNavigation();
-
-
-  if(!bsdLoaded){
-
-    await bsdLoadAll();
-
-  }
-  else{
-
-    bsdDisplayCurrent();
-
-  }
-
-
-  setTimeout(
-    () => {
-
-      const nav =
-        $("bsdNavigation");
-
-
-      if(nav){
-
-        nav
-          .querySelectorAll(
-            "button"
-          )
-          .forEach(
-            button => {
-
-              const active =
-                button.dataset.bsdSheet ===
-                bsdCurrentSheet;
-
-
-              button.style.background =
-                active
-                  ? "rgba(0,150,255,.16)"
-                  : "rgba(255,255,255,.045)";
-
-
-              button.style.color =
-                active
-                  ? "#fff"
-                  : "rgba(255,255,255,.65)";
-
-            }
-          );
-
-      }
-
-    },
-    50
-  );
-
-};
 
 
 /* =====================================================
