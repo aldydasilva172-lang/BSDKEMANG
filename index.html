@@ -1,3324 +1,4777 @@
-<!DOCTYPE html>    
-<html lang="id">    
-<head>    
-<meta charset="UTF-8">    
-<meta name="viewport" content="width=device-width,initial-scale=1.0">    
-<title>THE BUTCHER</title>    
-    
-<style>    
-*{    
-  box-sizing:border-box;    
-  margin:0;    
-  padding:0;    
-}    
-    
-:root{    
-  --orange:#ff7a00;    
-  --orange2:#ffb347;    
-  --red:#ff3b30;    
-  --green:#35e889;    
-  --bg:#08090c;    
-  --card:rgba(255,255,255,.075);    
-  --border:rgba(255,255,255,.13);    
-  --text:#fff;    
-  --muted:rgba(255,255,255,.62);    
-}    
-    
-html,body{    
-  width:100%;    
-  min-height:100%;    
-  font-family:Inter,Segoe UI,Arial,sans-serif;    
-  background:var(--bg);    
-  color:var(--text);    
-}    
-    
-body{    
-  overflow-x:hidden;    
-}    
-    
-button,input,select{    
-  font:inherit;    
-}    
-    
-button{    
-  cursor:pointer;    
-}    
-    
-/* =========================    
-   BACKGROUND    
-========================= */    
-    
-body:before{    
-  content:"";    
-  position:fixed;    
-  inset:0;    
-  z-index:-5;    
-    
-  background:    
-    radial-gradient(circle at 15% 15%,rgba(255,122,0,.17),transparent 28%),    
-    radial-gradient(circle at 85% 80%,rgba(255,59,48,.10),transparent 30%),    
-    linear-gradient(135deg,#07080a,#121419 55%,#08090c);    
-    
-  background-attachment:fixed;    
-}    
-    
-body:after{    
-  content:"";    
-  position:fixed;    
-  inset:-20%;    
-  z-index:-4;    
-  pointer-events:none;    
-    
-  background:    
-    linear-gradient(    
-      120deg,    
-      transparent 35%,    
-      rgba(255,255,255,.025) 48%,    
-      transparent 60%    
-    );    
-    
-  animation:shine 10s ease-in-out infinite;    
-}    
-    
-@keyframes shine{    
-  0%,100%{    
-    transform:translateX(-15%) rotate(-8deg);    
-  }    
-  50%{    
-    transform:translateX(15%) rotate(-8deg);    
-  }    
-}    
-    
-/* =========================    
-   LOGIN    
-========================= */    
-    
-#loginPage{    
-  min-height:100vh;    
-  display:flex;    
-  justify-content:center;    
-  align-items:center;    
-  padding:25px;    
-}    
-    
-.login-card{    
-  width:min(430px,100%);    
-  padding:34px;    
-    
-  border:1px solid var(--border);    
-  border-radius:28px;    
-    
-  background:rgba(255,255,255,.065);    
-  backdrop-filter:blur(24px);    
-  -webkit-backdrop-filter:blur(24px);    
-    
-  box-shadow:    
-    0 30px 100px rgba(0,0,0,.5),    
-    inset 0 1px rgba(255,255,255,.08);    
-    
-  animation:cardIn .8s cubic-bezier(.2,.8,.2,1);    
-}    
-    
-@keyframes cardIn{    
-  from{    
-    opacity:0;    
-    transform:translateY(40px) scale(.95);    
-    filter:blur(10px);    
-  }    
-  to{    
-    opacity:1;    
-    transform:none;    
-    filter:none;    
-  }    
-}    
-    
-.logo{    
-  width:64px;    
-  height:64px;    
-  border-radius:20px;    
-    
-  display:grid;    
-  place-items:center;    
-    
-  background:linear-gradient(    
-    135deg,    
-    var(--orange),    
-    var(--orange2)    
-  );    
-    
-  color:#17100a;    
-  font-size:23px;    
-  font-weight:900;    
-    
-  box-shadow:    
-    0 12px 40px rgba(255,122,0,.3);    
-    
-  margin-bottom:20px;    
-}    
-    
-.eyebrow{    
-  color:var(--orange2);    
-  font-size:12px;    
-  font-weight:700;    
-  letter-spacing:2px;    
-  text-transform:uppercase;    
-  margin-bottom:7px;    
-}    
-    
-h1{    
-  font-size:34px;    
-  letter-spacing:-1.5px;    
-}    
-    
-.subtitle{    
-  color:var(--muted);    
-  font-size:14px;    
-  margin-top:7px;    
-  margin-bottom:28px;    
-}    
-    
-.field{    
-  margin-bottom:17px;    
-}    
-    
-.field label{    
-  display:block;    
-  margin:0 0 8px 4px;    
-    
-  font-size:11px;    
-  font-weight:700;    
-  letter-spacing:1px;    
-    
-  color:rgba(255,255,255,.7);    
-}    
-    
-.input-wrap{    
-  position:relative;    
-}    
-    
-.input-wrap input{    
-  width:100%;    
-  height:54px;    
-    
-  border:1px solid rgba(255,255,255,.13);    
-  border-radius:15px;    
-    
-  background:rgba(0,0,0,.22);    
-  color:#fff;    
-    
-  padding:0 16px;    
-  outline:none;    
-    
-  transition:.25s;    
-}    
-    
-.input-wrap input:focus{    
-  border-color:rgba(255,145,45,.8);    
-  box-shadow:    
-    0 0 0 4px rgba(255,122,0,.1);    
-}    
-    
-.eye{    
-  position:absolute;    
-  right:10px;    
-  top:50%;    
-  transform:translateY(-50%);    
-    
-  border:0;    
-  background:transparent;    
-  color:rgba(255,255,255,.55);    
-    
-  padding:9px;    
-}    
-    
-.options{    
-  display:flex;    
-  justify-content:space-between;    
-  align-items:center;    
-    
-  margin:5px 2px 20px;    
-    
-  font-size:12px;    
-}    
-    
-.options a{    
-  color:#ffad61;    
-  text-decoration:none;    
-}    
-    
-.login-btn,    
-.primary-btn{    
-  width:100%;    
-  height:54px;    
-    
-  border:0;    
-  border-radius:16px;    
-    
-  color:#17100a;    
-  font-weight:900;    
-    
-  background:linear-gradient(    
-    135deg,    
-    var(--orange),    
-    var(--orange2)    
-  );    
-    
-  box-shadow:    
-    0 12px 30px rgba(255,122,0,.2);    
-    
-  transition:.25s;    
-}    
-    
-.login-btn:hover,    
-.primary-btn:hover{    
-  transform:translateY(-2px);    
-  box-shadow:    
-    0 16px 40px rgba(255,122,0,.3);    
-}    
-    
-.secondary-btn{    
-  width:100%;    
-  height:48px;    
-    
-  margin-top:10px;    
-    
-  border:1px solid var(--border);    
-  border-radius:14px;    
-    
-  background:rgba(255,255,255,.06);    
-  color:#fff;    
-}    
-    
-.message{    
-  min-height:20px;    
-  margin-top:14px;    
-    
-  text-align:center;    
-  font-size:13px;    
-}    
-    
-.error{    
-  color:#ff756d;    
-}    
-    
-.success{    
-  color:#5ff0a0;    
-}    
-    
-.auth-links{    
-  display:flex;    
-  justify-content:center;    
-  gap:8px;    
-    
-  margin-top:22px;    
-    
-  font-size:13px;    
-  color:var(--muted);    
-}    
-    
-.auth-links button{    
-  border:0;    
-  background:none;    
-  color:var(--orange2);    
-  font-weight:700;    
-}    
-    
-/* =========================    
-   MODAL    
-========================= */    
-    
-.modal{    
-  position:fixed;    
-  inset:0;    
-  z-index:100;    
-    
-  display:none;    
-  align-items:center;    
-  justify-content:center;    
-    
-  padding:20px;    
-    
-  background:rgba(0,0,0,.7);    
-  backdrop-filter:blur(12px);    
-}    
-    
-.modal.show{    
-  display:flex;    
-}    
-    
-.modal-card{    
-  width:min(440px,100%);    
-  max-height:90vh;    
-  overflow:auto;    
-    
-  padding:28px;    
-    
-  border:1px solid var(--border);    
-  border-radius:24px;    
-    
-  background:#111318;    
-  box-shadow:0 30px 100px rgba(0,0,0,.6);    
-    
-  animation:modalIn .3s ease;    
-}    
-    
-@keyframes modalIn{    
-  from{    
-    opacity:0;    
-    transform:scale(.94) translateY(15px);    
-  }    
-  to{    
-    opacity:1;    
-    transform:none;    
-  }    
-}    
-    
-.modal-head{    
-  display:flex;    
-  justify-content:space-between;    
-  align-items:center;    
-    
-  margin-bottom:22px;    
-}    
-    
-.modal-head h2{    
-  font-size:22px;    
-}    
-    
-.close{    
-  width:36px;    
-  height:36px;    
-    
-  border:1px solid var(--border);    
-  border-radius:10px;    
-    
-  background:rgba(255,255,255,.06);    
-  color:#fff;    
-}    
-    
-/* =========================    
-   DASHBOARD    
-========================= */    
-    
-#dashboard{    
-  display:none;    
-  min-height:100vh;    
-}    
-    
-#dashboard.show{    
-  display:block;    
-  animation:dashIn .6s ease;    
-}    
-    
-@keyframes dashIn{    
-  from{    
-    opacity:0;    
-    transform:translateY(20px);    
-  }    
-  to{    
-    opacity:1;    
-    transform:none;    
-  }    
-}    
-    
-.topbar{    
-  height:76px;    
-    
-  display:flex;    
-  align-items:center;    
-  justify-content:space-between;    
-    
-  padding:0 28px;    
-    
-  border-bottom:1px solid rgba(255,255,255,.08);    
-    
-  background:rgba(8,9,12,.7);    
-  backdrop-filter:blur(20px);    
-    
-  position:sticky;    
-  top:0;    
-  z-index:20;    
-}    
-    
-.brand{    
-  display:flex;    
-  align-items:center;    
-  gap:12px;    
-    
-  font-weight:900;    
-  letter-spacing:1px;    
-}    
-    
-.brand-logo{    
-  width:40px;    
-  height:40px;    
-    
-  display:grid;    
-  place-items:center;    
-    
-  border-radius:12px;    
-    
-  background:linear-gradient(    
-    135deg,    
-    var(--orange),    
-    var(--orange2)    
-  );    
-    
-  color:#17100a;    
-  font-weight:900;    
-}    
-    
-.user-area{    
-  display:flex;    
-  align-items:center;    
-  gap:12px;    
-}    
-    
-.avatar{    
-  width:38px;    
-  height:38px;    
-    
-  display:grid;    
-  place-items:center;    
-    
-  border-radius:50%;    
-    
-  background:rgba(255,122,0,.18);    
-  border:1px solid rgba(255,122,0,.4);    
-    
-  color:var(--orange2);    
-  font-weight:800;    
-}    
-    
-.user-name{    
-  font-size:13px;    
-}    
-    
-.logout-btn{    
-  border:1px solid var(--border);    
-  border-radius:10px;    
-    
-  padding:9px 13px;    
-    
-  background:rgba(255,255,255,.06);    
-  color:#fff;    
-    
-  margin-left:5px;    
-}    
-    
-.container{    
-  width:min(1200px,94%);    
-  margin:0 auto;    
-  padding:32px 0 50px;    
-}    
-    
-.hero{    
-  padding:30px;    
-    
-  border:1px solid var(--border);    
-  border-radius:26px;    
-    
-  background:    
-    linear-gradient(    
-      135deg,    
-      rgba(255,122,0,.13),    
-      rgba(255,255,255,.04)    
-    );    
-    
-  box-shadow:    
-    inset 0 1px rgba(255,255,255,.05);    
-}    
-    
-.hero small{    
-  color:var(--orange2);    
-  letter-spacing:2px;    
-  font-weight:700;    
-}    
-    
-.hero h2{    
-  margin-top:8px;    
-  font-size:34px;    
-  letter-spacing:-1px;    
-}    
-    
-.hero p{    
-  margin-top:8px;    
-  color:var(--muted);    
-}    
-    
-.cards{    
-  display:grid;    
-  grid-template-columns:repeat(2,1fr);    
-  gap:18px;    
-    
-  margin-top:22px;    
-}    
-    
-.dashboard-card{    
-  position:relative;    
-  overflow:hidden;    
-    
-  min-height:190px;    
-  padding:26px;    
-    
-  border:1px solid var(--border);    
-  border-radius:24px;    
-    
-  background:rgba(255,255,255,.055);    
-    
-  cursor:pointer;    
-    
-  transition:.3s;    
-}    
-    
-.dashboard-card:hover{    
-  transform:translateY(-5px);    
-  border-color:rgba(255,122,0,.4);    
-  box-shadow:0 20px 50px rgba(0,0,0,.3);    
-}    
-    
-.dashboard-card .number{    
-  color:rgba(255,255,255,.3);    
-  font-size:12px;    
-  font-weight:800;    
-}    
-    
-.dashboard-card h3{    
-  margin-top:25px;    
-  font-size:25px;    
-}    
-    
-.dashboard-card p{    
-  margin-top:8px;    
-  color:var(--muted);    
-  font-size:13px;    
-}    
-    
-.dashboard-card .arrow{    
-  position:absolute;    
-  right:25px;    
-  bottom:22px;    
-    
-  color:var(--orange2);    
-  font-size:25px;    
-}    
-    
-/* =========================    
-   INVENTORY    
-========================= */    
-    
-.inventory{    
-  display:none;    
-  margin-top:25px;    
-    
-  border:1px solid var(--border);    
-  border-radius:26px;    
-    
-  background:rgba(255,255,255,.045);    
-    
-  padding:25px;    
-}    
-    
-.inventory.show{    
-  display:block;    
-  animation:cardIn .5s ease;    
-}    
-    
-.inventory-head{    
-  display:flex;    
-  justify-content:space-between;    
-  align-items:center;    
-  gap:15px;    
-    
-  margin-bottom:20px;    
-}    
-    
-.inventory-head h3{    
-  font-size:22px;    
-}    
-    
-.mode{    
-  display:flex;    
-  gap:6px;    
-    
-  padding:5px;    
-    
-  border-radius:12px;    
-  background:rgba(0,0,0,.25);    
-}    
-    
-.mode button{    
-  border:0;    
-  border-radius:9px;    
-    
-  padding:8px 12px;    
-    
-  background:transparent;    
-  color:var(--muted);    
-}    
-    
-.mode button.active{    
-  background:var(--orange);    
-  color:#111;    
-  font-weight:800;    
-}    
-    
-.barcode-area{    
-  position:relative;    
-}    
-    
-.barcode-area input{    
-  width:100%;    
-  height:55px;    
-    
-  border:1px solid var(--border);    
-  border-radius:15px;    
-    
-  background:rgba(0,0,0,.2);    
-  color:#fff;    
-    
-  padding:0 16px;    
-  outline:none;    
-}    
-    
-.suggestions{    
-  position:absolute;    
-  left:0;    
-  right:0;    
-  top:62px;    
-    
-  z-index:30;    
-    
-  max-height:240px;    
-  overflow:auto;    
-    
-  border:1px solid var(--border);    
-  border-radius:14px;    
-    
-  background:#15171c;    
-  box-shadow:0 20px 50px rgba(0,0,0,.5);    
-}    
-    
-.suggestion{    
-  padding:12px 14px;    
-  cursor:pointer;    
-    
-  border-bottom:1px solid rgba(255,255,255,.06);    
-}    
-    
-.suggestion:hover{    
-  background:rgba(255,122,0,.1);    
-}    
-    
-.suggestion strong{    
-  display:block;    
-}    
-    
-.suggestion span{    
-  display:block;    
-  margin-top:3px;    
-  color:var(--muted);    
-  font-size:12px;    
-}    
-    
-.qty-row{    
-  display:grid;    
-  grid-template-columns:1fr auto;    
-  gap:10px;    
-    
-  margin-top:12px;    
-}    
-    
-.qty-row input{    
-  height:52px;    
-    
-  border:1px solid var(--border);    
-  border-radius:14px;    
-    
-  background:rgba(0,0,0,.2);    
-  color:#fff;    
-    
-  padding:0 15px;    
-  outline:none;    
-}    
-    
-.save-btn{    
-  min-width:120px;    
-    
-  border:0;    
-  border-radius:14px;    
-    
-  background:linear-gradient(    
-    135deg,    
-    var(--orange),    
-    var(--orange2)    
-  );    
-    
-  color:#17100a;    
-  font-weight:900;    
-}    
-    
-.history{    
-  margin-top:25px;    
-}    
-    
-.history-title{    
-  display:flex;    
-  justify-content:space-between;    
-  align-items:center;    
-  margin-bottom:10px;    
-}    
-    
-.history-title h4{    
-  font-size:16px;    
-}    
-    
-.reset-btn{    
-  border:1px solid rgba(255,59,48,.35);    
-  border-radius:10px;    
-    
-  background:rgba(255,59,48,.08);    
-  color:#ff756d;    
-    
-  padding:8px 11px;    
-}    
-    
-.history-list{    
-  max-height:330px;    
-  overflow:auto;    
-    
-  border:1px solid rgba(255,255,255,.07);    
-  border-radius:15px;    
-}    
-    
-.history-item{    
-  display:flex;    
-  justify-content:space-between;    
-  gap:15px;    
-    
-  padding:13px 14px;    
-    
-  border-bottom:1px solid rgba(255,255,255,.06);    
-}    
-    
-.history-item:last-child{    
-  border-bottom:0;    
-}    
-    
-.history-name{    
-  font-size:13px;    
-}    
-    
-.history-qty{    
-  color:var(--orange2);    
-  font-weight:800;    
-  white-space:nowrap;    
-}    
-    
-.loading{    
-  color:var(--muted);    
-  text-align:center;    
-  padding:20px;    
-}    
-    
-/* =========================    
-   ADMIN    
-========================= */    
-    
-.admin-panel{    
-  display:none;    
-    
-  margin-top:25px;    
-    
-  padding:25px;    
-    
-  border:1px solid rgba(255,122,0,.25);    
-  border-radius:24px;    
-    
-  background:rgba(255,122,0,.045);    
-}    
-    
-.admin-panel.show{    
-  display:block;    
-}    
-    
-.admin-panel h3{    
-  margin-bottom:16px;    
-}    
-    
-.pending-list{    
-  display:grid;    
-  gap:10px;    
-}    
-    
-.pending-user{    
-  display:flex;    
-  justify-content:space-between;    
-  align-items:center;    
-  gap:15px;    
-    
-  padding:14px;    
-    
-  border:1px solid var(--border);    
-  border-radius:14px;    
-    
-  background:rgba(255,255,255,.04);    
-}    
-    
-.pending-info strong{    
-  display:block;    
-}    
-    
-.pending-info span{    
-  display:block;    
-  color:var(--muted);    
-  font-size:12px;    
-  margin-top:3px;    
-}    
-    
-.approval-actions{    
-  display:flex;    
-  gap:6px;    
-}    
-    
-.approve,    
-.reject{    
-  border:0;    
-  border-radius:9px;    
-  padding:8px 11px;    
-}    
-    
-.approve{    
-  background:var(--green);    
-  color:#07140d;    
-}    
-    
-.reject{    
-  background:rgba(255,59,48,.15);    
-  color:#ff756d;    
-  border:1px solid rgba(255,59,48,.3);    
-}    
-    
-/* =========================    
-   MOBILE    
-========================= */    
-    
-@media(max-width:700px){    
-    
-  #loginPage{    
-    padding:15px;    
-  }    
-    
-  .login-card{    
-    padding:25px;    
-    border-radius:23px;    
-  }    
-    
-  .cards{    
-    grid-template-columns:1fr;    
-  }    
-    
-  .topbar{    
-    padding:0 15px;    
-  }    
-    
-  .user-name{    
-    display:none;    
-  }    
-    
-  .container{    
-    width:94%;    
-    padding-top:20px;    
-  }    
-    
-  .hero{    
-    padding:23px;    
-  }    
-    
-  .hero h2{    
-    font-size:28px;    
-  }    
-    
-  .inventory{    
-    padding:18px;    
-  }    
-    
-  .inventory-head{    
-    align-items:flex-start;    
-    flex-direction:column;    
-  }    
-    
-  .qty-row{    
-    grid-template-columns:1fr;    
-  }    
-    
-  .save-btn{    
-    height:52px;    
-  }    
-    
-  .pending-user{    
-    align-items:flex-start;    
-    flex-direction:column;    
-  }    
-    
-  .approval-actions{    
-    width:100%;    
-  }    
-    
-  .approve,    
-  .reject{    
-    flex:1;    
-  }    
-}    
-</style>    
-</head>    
-    
-<body>    
-    
-<!-- =========================    
-     LOGIN    
-========================= -->    
-    
-<section id="loginPage">    
-    
-  <div class="login-card">    
-    
-    <div class="logo">TB</div>    
-    
-    <div class="eyebrow">THE BUTCHER</div>    
-    
-    <h1>Welcome Back</h1>    
-    
-    <p class="subtitle">    
-      Login untuk melanjutkan ke workspace.    
-    </p>    
-    
-    <div class="field">    
-      <label>USERNAME / EMAIL</label>    
-    
-      <div class="input-wrap">    
-        <input    
-          id="loginIdentity"    
-          type="text"    
-          placeholder="Username atau email"    
-          autocomplete="username">    
-      </div>    
-    </div>    
-    
-    <div class="field">    
-    
-      <label>PASSWORD</label>    
-    
-      <div class="input-wrap">    
-    
-        <input    
-          id="loginPassword"    
-          type="password"    
-          placeholder="Masukkan password"    
-          autocomplete="current-password">    
-    
-        <button    
-          class="eye"    
-          type="button"    
-          onclick="togglePassword('loginPassword')">    
-          👁    
-        </button>    
-    
-      </div>    
-    
-    </div>    
-    
-    <div class="options">    
-    
-      <span></span>    
-    
-      <a href="#" onclick="openForgot();return false">    
-        Lupa password?    
-      </a>    
-    
-    </div>    
-    
-    <button    
-      class="login-btn"    
-      id="loginBtn"    
-      onclick="login()">    
-    
-      LOGIN    
-    
-    </button>    
-    
-    <div    
-      class="message"    
-      id="loginMessage">    
-    </div>    
-    
-    <div class="auth-links">    
-    
-      <span>Belum punya akun?</span>    
-    
-      <button onclick="openSignup()">    
-        Daftar    
-      </button>    
-    
-    </div>    
-    
-  </div>    
-    
-</section>    
-    
-    
-<!-- =========================    
-     DASHBOARD    
-========================= -->    
-    
-<section id="dashboard">    
-    
-  <header class="topbar">    
-    
-    <div class="brand">    
-    
-      <div class="brand-logo">    
-        TB    
-      </div>    
-    
-      <span>THE BUTCHER</span>    
-    
-    </div>    
-    
-    <div class="user-area">    
-    
-      <div    
-        class="avatar"    
-        id="avatar">    
-        A    
-      </div>    
-    
-      <div    
-        class="user-name"    
-        id="userName">    
-        User    
-      </div>    
-    
-      <button    
-        class="logout-btn"    
-        onclick="logout()">    
-        Logout    
-      </button>    
-    
-    </div>    
-    
-  </header>    
-    
-    
-  <main class="container">    
-    
-    <section class="hero">    
-    
-      <small>THE BUTCHER SYSTEM</small>    
-    
-      <h2>    
-        Halo,    
-        <span id="welcomeName">    
-          User    
-        </span>    
-        👋    
-      </h2>    
-    
-      <p>    
-        Inventory & Stock Management    
-      </p>    
-    
-    </section>    
-    
-    
-    <section class="cards">    
-    
-      <div    
-        class="dashboard-card"    
-        onclick="openInventory('stockloss')">    
-    
-        <div class="number">    
-          01    
-        </div>    
-    
-        <h3>    
-          Stockloss    
-        </h3>    
-    
-        <p>    
-          Input dan monitoring stock loss.    
-        </p>    
-    
-        <div class="arrow">    
-          →    
-        </div>    
-    
-      </div>    
-    
-    
-      <div    
-        class="dashboard-card"    
-        onclick="openInventory('opname')">    
-    
-        <div class="number">    
-          02    
-        </div>    
-    
-        <h3>    
-          Stock Opname    
-        </h3>    
-    
-        <p>    
-          Pencatatan hasil stock opname.    
-        </p>    
-    
-        <div class="arrow">    
-          →    
-        </div>    
-    
-      </div>    
-    
-    </section>    
-    
-    
-    <!-- INVENTORY -->    
-    
-    <section    
-      class="inventory"    
-      id="inventoryPanel">    
-    
-      <div class="inventory-head">    
-    
-        <h3 id="inventoryTitle">    
-          Stockloss    
-        </h3>    
-    
-        <div class="mode">    
-    
-          <button    
-            id="modeStockloss"    
-            onclick="setMode('stockloss')">    
-            Stockloss    
-          </button>    
-    
-          <button    
-            id="modeOpname"    
-            onclick="setMode('opname')">    
-            Stock Opname    
-          </button>    
-    
-        </div>    
-    
-      </div>    
-    
-    
-      <div class="barcode-area">    
-    
-        <input    
-          id="barcode"    
-          type="text"    
-          inputmode="numeric"    
-          autocomplete="off"    
-          placeholder="Scan / masukkan barcode">    
-    
-        <div    
-          class="suggestions"    
-          id="suggestions"    
-          style="display:none">    
-        </div>    
-    
-      </div>    
-    
-    
-      <div class="qty-row">    
-    
-        <input    
-          id="qty"    
-          type="text"    
-          inputmode="decimal"    
-          placeholder="Qty">    
-    
-        <button    
-          class="save-btn"    
-          onclick="saveInventory()">    
-    
-          SIMPAN    
-    
-        </button>    
-    
-      </div>    
-    
-    
-      <div    
-        class="message"    
-        id="inventoryMessage">    
-      </div>    
-    
-    
-      <div class="history">    
-    
-        <div class="history-title">    
-    
-          <h4>    
-            Riwayat Terakhir    
-          </h4>    
-    
-          <button    
-            class="reset-btn"    
-            onclick="resetInventory()">    
-    
-            RESET    
-    
-          </button>    
-    
-        </div>    
-    
-        <div    
-          class="history-list"    
-          id="historyList">    
-    
-          <div class="loading">    
-            Memuat...    
-          </div>    
-    
-        </div>    
-    
-      </div>    
-    
-    </section>    
-    
-    
-    <!-- ADMIN -->    
-    
-    <section    
-      class="admin-panel"    
-      id="adminPanel">    
-    
-      <h3>    
-        👑 Approval User    
-      </h3>    
-    
-      <div    
-        class="pending-list"    
-        id="pendingList">    
-    
-        <div class="loading">    
-          Memuat user...    
-        </div>    
-    
-      </div>    
-    
-    </section>    
-    
-  </main>    
-    
-</section>    
-    
-    
-<!-- =========================    
-     SIGN UP MODAL    
-========================= -->    
-    
-<div    
-  class="modal"    
-  id="signupModal">    
-    
-  <div class="modal-card">    
-    
-    <div class="modal-head">    
-    
-      <h2>    
-        Buat Akun    
-      </h2>    
-    
-      <button    
-        class="close"    
-        onclick="closeModal('signupModal')">    
-        ×    
-      </button>    
-    
-    </div>    
-    
-    
-    <div class="field">    
-    
-      <label>USERNAME</label>    
-    
-      <div class="input-wrap">    
-    
-        <input    
-          id="signupUsername"    
-          type="text"    
-          placeholder="Contoh: aldi"    
-          autocomplete="username">    
-    
-      </div>    
-    
-    </div>    
-    
-    
-    <div class="field">    
-    
-      <label>EMAIL ASLI</label>    
-    
-      <div class="input-wrap">    
-    
-        <input    
-          id="signupEmail"    
-          type="email"    
-          placeholder="nama@email.com"    
-          autocomplete="email">    
-    
-      </div>    
-    
-    </div>    
-    
-    
-    <div class="field">    
-    
-      <label>PASSWORD</label>    
-    
-      <div class="input-wrap">    
-    
-        <input    
-          id="signupPassword"    
-          type="password"    
-          placeholder="Minimal 6 karakter"    
-          autocomplete="new-password">    
-    
-        <button    
-          class="eye"    
-          type="button"    
-          onclick="togglePassword('signupPassword')">    
-          👁    
-        </button>    
-    
-      </div>    
-    
-    </div>    
-    
-    
-    <div class="field">    
-    
-      <label>KONFIRMASI PASSWORD</label>    
-    
-      <div class="input-wrap">    
-    
-        <input    
-          id="signupConfirm"    
-          type="password"    
-          placeholder="Ulangi password"    
-          autocomplete="new-password">    
-    
-      </div>    
-    
-    </div>    
-    
-    
-    <button    
-      class="primary-btn"    
-      onclick="signup()">    
-    
-      DAFTAR    
-    
-    </button>    
-    
-    
-    <div    
-      class="message"    
-      id="signupMessage">    
-    </div>    
-    
-  </div>    
-    
-</div>    
-    
-    
-<!-- =========================    
-     FORGOT PASSWORD    
-========================= -->    
-    
-<div    
-  class="modal"    
-  id="forgotModal">    
-    
-  <div class="modal-card">    
-    
-    <div class="modal-head">    
-    
-      <h2>    
-        Lupa Password    
-      </h2>    
-    
-      <button    
-        class="close"    
-        onclick="closeModal('forgotModal')">    
-        ×    
-      </button>    
-    
-    </div>    
-    
-    
-    <p class="subtitle">    
-      Masukkan email asli akun kamu.    
-      Firebase akan mengirimkan link untuk    
-      membuat password baru.    
-    </p>    
-    
-    
-    <div class="field">    
-    
-      <label>EMAIL</label>    
-    
-      <div class="input-wrap">    
-    
-        <input    
-          id="forgotEmail"    
-          type="email"    
-          placeholder="nama@email.com">    
-    
-      </div>    
-    
-    </div>    
-    
-    
-    <button    
-      class="primary-btn"    
-      onclick="forgotPassword()">    
-    
-      KIRIM LINK RESET    
-    
-    </button>    
-    
-    
-    <div    
-      class="message"    
-      id="forgotMessage">    
-    </div>    
-    
-  </div>    
-    
-</div>    
-    
-    
-<!-- =========================    
-     FIREBASE    
-========================= -->    
-    
-<script type="module">    
-    
-import {    
-  initializeApp    
-} from    
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
-    
-import {    
-  getAuth,    
-  createUserWithEmailAndPassword,    
-  signInWithEmailAndPassword,    
-  sendEmailVerification,    
-  sendPasswordResetEmail,    
-  onAuthStateChanged,    
-  signOut    
-} from    
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";    
-    
-import {    
-  getFirestore,    
-  doc,    
-  getDoc,    
-  setDoc,    
-  collection,    
-  query,    
-  where,    
-  getDocs,    
-  updateDoc    
-} from    
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";    
-    
-    
-/* =========================    
-   FIREBASE CONFIG    
-========================= */    
-    
-const firebaseConfig = {    
-    
-  apiKey:    
-  "AIzaSyAEll_xXB59TB59N--5wjG1C2bxYg7yqps",    
-    
-  authDomain:    
-  "stockloss-bsd-web.firebaseapp.com",    
-    
-  projectId:    
-  "stockloss-bsd-web",    
-    
-  storageBucket:    
-  "stockloss-bsd-web.firebasestorage.app",    
-    
-  messagingSenderId:    
-  "825716539347",    
-    
-  appId:    
-  "1:825716539347:web:4f919eca31a71e72f57926",    
-    
-  measurementId:    
-  "G-X0YY0849JH"    
-    
-};    
-    
-    
-const app =    
-  initializeApp(firebaseConfig);    
-    
-const auth =    
-  getAuth(app);    
-    
-const db =    
-  getFirestore(app);    
-    
-    
-/* =========================    
-   GOOGLE APPS SCRIPT    
-========================= */    
-    
-const URL_SCRIPT =    
-"https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";    
-    
-    
-/* =========================    
-   GLOBAL    
-========================= */    
-    
-let currentUser = null;    
-let currentProfile = null;    
-    
-let currentMode = "stockloss";    
-    
-let masterData = [];    
-    
-let selectedBarcode = "";    
-    
-    
-/* =========================    
-   HELPERS    
-========================= */    
-    
-function $(id){    
-  return document.getElementById(id);    
-}    
-    
-function showMessage(id,text,type=""){    
-  const el=$(id);    
-  if(!el)return;    
-    
-  el.textContent=text;    
-  el.className="message "+type;    
-}    
-    
-function normalizeUsername(value){    
-  return String(value || "")    
-    .trim()    
-    .toLowerCase();    
-}    
-    
-function escapeHtml(value){    
-  return String(value ?? "")    
-    .replaceAll("&","&amp;")    
-    .replaceAll("<","&lt;")    
-    .replaceAll(">","&gt;")    
-    .replaceAll('"',"&quot;")    
-    .replaceAll("'","&#039;");    
-}    
-    
-    
-/* =========================    
-   PASSWORD    
-========================= */    
-    
-window.togglePassword=function(id){    
-    
-  const input=$(id);    
-    
-  if(!input)return;    
-    
-  input.type =    
-    input.type === "password"    
-    ? "text"    
-    : "password";    
-    
-};    
-    
-    
-/* =========================    
-   MODAL    
-========================= */    
-    
-window.openSignup=function(){    
-    
-  $("signupModal")    
-    .classList    
-    .add("show");    
-    
-};    
-    
-window.openForgot=function(){    
-    
-  $("forgotModal")    
-    .classList    
-    .add("show");    
-    
-};    
-    
-window.closeModal=function(id){    
-    
-  $(id)    
-    .classList    
-    .remove("show");    
-    
-};    
-    
-    
-/* =========================    
-   CHECK USERNAME    
-========================= */    
-    
-async function usernameExists(username){    
-    
-  const usernameKey =    
-    normalizeUsername(username);    
-    
-  const ref =    
-    doc(    
-      db,    
-      "usernames",    
-      usernameKey    
-    );    
-    
-  const snap =    
-    await getDoc(ref);    
-    
-  return snap.exists();    
-    
-}    
-    
-    
-/* =========================    
-   SIGN UP    
-========================= */    
-    
-window.signup=async function(){    
-    
-  const username =    
-    normalizeUsername(    
-      $("signupUsername").value    
-    );    
-    
-  const email =    
-    $("signupEmail")    
-      .value    
-      .trim()    
-      .toLowerCase();    
-    
-  const password =    
-    $("signupPassword").value;    
-    
-  const confirm =    
-    $("signupConfirm").value;    
-    
-    
-  showMessage(    
-    "signupMessage",    
-    ""    
-  );    
-    
-    
-  if(!username){    
-    showMessage(    
-      "signupMessage",    
-      "Username wajib diisi.",    
-      "error"    
-    );    
-    return;    
-  }    
-    
-    
-  if(username.length < 3){    
-    showMessage(    
-      "signupMessage",    
-      "Username minimal 3 karakter.",    
-      "error"    
-    );    
-    return;    
-  }    
-    
-    
-  if(!/^[a-z0-9._-]+$/.test(username)){    
-    showMessage(    
-      "signupMessage",    
-      "Username hanya boleh huruf, angka, titik, underscore, atau strip.",    
-      "error"    
-    );    
-    return;    
-  }    
-    
-    
-  if(!email){    
-    showMessage(    
-      "signupMessage",    
-      "Email wajib diisi.",    
-      "error"    
-    );    
-    return;    
-  }    
-    
-    
-  if(password.length < 6){    
-    showMessage(    
-      "signupMessage",    
-      "Password minimal 6 karakter.",    
-      "error"    
-    );    
-    return;    
-  }    
-    
-    
-  if(password !== confirm){    
-    showMessage(    
-      "signupMessage",    
-      "Konfirmasi password tidak sama.",    
-      "error"    
-    );    
-    return;    
-  }    
-    
-    
-  try{    
-    
-    showMessage(    
-      "signupMessage",    
-      "Memeriksa username..."    
-    );    
-    
-    
-    const exists =    
-      await usernameExists(username);    
-    
-    
-    if(exists){    
-    
-      showMessage(    
-        "signupMessage",    
-        "Username sudah digunakan.",    
-        "error"    
-      );    
-    
-      return;    
-    }    
-    
-    
-    showMessage(    
-      "signupMessage",    
-      "Membuat akun..."    
-    );    
-    
-    
-    const credential =    
-      await createUserWithEmailAndPassword(    
-        auth,    
-        email,    
-        password    
-      );    
-    
-    
-    const user =    
-      credential.user;    
-    
-    
-    /*    
-      SIMPAN PROFILE    
-    */    
-    
-    await setDoc(    
-      doc(    
-        db,    
-        "users",    
-        user.uid    
-      ),    
-      {    
-    
-        username:username,    
-    
-        email:email,    
-    
-        role:"user",    
-    
-        status:"pending",    
-    
-        emailVerified:false,    
-    
-        createdAt:new Date()    
-    
-      }    
-    );    
-    
-    
-    /*    
-      MAPPING USERNAME    
-      TIDAK MENYIMPAN PASSWORD    
-    */    
-    
-    await setDoc(    
-      doc(    
-        db,    
-        "usernames",    
-        username    
-      ),    
-      {    
-    
-        uid:user.uid    
-    
-      }    
-    );    
-    
-    
-    /*    
-      KIRIM VERIFIKASI EMAIL    
-    */    
-    
-    await sendEmailVerification(user);    
-    
-    
-    await signOut(auth);    
-    
-    
-    $("signupUsername").value="";    
-    $("signupEmail").value="";    
-    $("signupPassword").value="";    
-    $("signupConfirm").value="";    
-    
-    
-    showMessage(    
-      "signupMessage",    
-      "Akun berhasil dibuat. Cek email untuk verifikasi. Setelah itu tunggu admin melakukan approval.",    
-      "success"    
-    );    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    let msg =    
-      "Gagal membuat akun.";    
-    
-    if(    
-      error.code ===    
-      "auth/email-already-in-use"    
-    ){    
-      msg =    
-        "Email tersebut sudah terdaftar.";    
-    }    
-    
-    else if(    
-      error.code ===    
-      "auth/invalid-email"    
-    ){    
-      msg =    
-        "Format email tidak valid.";    
-    }    
-    
-    else if(    
-      error.code ===    
-      "auth/weak-password"    
-    ){    
-      msg =    
-        "Password terlalu lemah.";    
-    }    
-    
-    else if(    
-      error.code ===    
-      "permission-denied"    
-    ){    
-      msg =    
-        "Firestore Rules belum mengizinkan pendaftaran.";    
-    }    
-    
-    showMessage(    
-      "signupMessage",    
-      msg,    
-      "error"    
-    );    
-    
-  }    
-    
-};    
-    
-    
-/* =========================    
-   LOGIN    
-========================= */    
-    
-window.login=async function(){    
-    
-  const identity =    
-    $("loginIdentity")    
-      .value    
-      .trim();    
-    
-  const password =    
-    $("loginPassword")    
-      .value;    
-    
-    
-  showMessage(    
-    "loginMessage",    
-    ""    
-  );    
-    
-    
-  if(!identity || !password){    
-    
-    showMessage(    
-      "loginMessage",    
-      "Username/email dan password wajib diisi.",    
-      "error"    
-    );    
-    
-    return;    
-  }    
-    
-    
-  try{    
-    
-    showMessage(    
-      "loginMessage",    
-      "Memeriksa akun..."    
-    );    
-    
-    
-    let email = identity;    
-    
-    
-    /*    
-      Kalau user memasukkan username,    
-      cari email dari collection users.    
-    */    
-    
-    if(!identity.includes("@")){    
-    
-      const username =    
-        normalizeUsername(identity);    
-    
-    
-      const usernameRef =    
-        doc(    
-          db,    
-          "usernames",    
-          username    
-        );    
-    
-    
-      const usernameSnap =    
-        await getDoc(usernameRef);    
-    
-    
-      if(!usernameSnap.exists()){    
-    
-        showMessage(    
-          "loginMessage",    
-          "Username atau password salah.",    
-          "error"    
-        );    
-    
-        return;    
-      }    
-    
-    
-      const uid =    
-        usernameSnap.data().uid;    
-    
-    
-      const userRef =    
-        doc(    
-          db,    
-          "users",    
-          uid    
-        );    
-    
-    
-      const userSnap =    
-        await getDoc(userRef);    
-    
-    
-      if(!userSnap.exists()){    
-    
-        showMessage(    
-          "loginMessage",    
-          "Data akun tidak ditemukan.",    
-          "error"    
-        );    
-    
-        return;    
-      }    
-    
-    
-      email =    
-        userSnap.data().email;    
-    
-    }    
-    
-    
-    const credential =    
-      await signInWithEmailAndPassword(    
-        auth,    
-        email,    
-        password    
-      );    
-    
-    
-    const user =    
-      credential.user;    
-    
-    
-    await user.reload();    
-    
-    
-    /*    
-      EMAIL HARUS DIVERIFIKASI    
-    */    
-    
-    if(!user.emailVerified){    
-    
-      await signOut(auth);    
-    
-      showMessage(    
-        "loginMessage",    
-        "Email belum diverifikasi. Silakan cek inbox email kamu.",    
-        "error"    
-      );    
-    
-      return;    
-    }    
-    
-    
-    const profileSnap =    
-      await getDoc(    
-        doc(    
-          db,    
-          "users",    
-          user.uid    
-        )    
-      );    
-    
-    
-    if(!profileSnap.exists()){    
-    
-      await signOut(auth);    
-    
-      showMessage(    
-        "loginMessage",    
-        "Profile akun tidak ditemukan.",    
-        "error"    
-      );    
-    
-      return;    
-    }    
-    
-    
-    const profile =    
-      profileSnap.data();    
-    
-    
-    /*    
-      CEK APPROVAL    
-    */    
-    
-    if(profile.status !== "approved"){    
-    
-      await signOut(auth);    
-    
-    
-      if(profile.status === "rejected"){    
-    
-        showMessage(    
-          "loginMessage",    
-          "Akun kamu ditolak oleh admin.",    
-          "error"    
-        );    
-    
-      }else{    
-    
-        showMessage(    
-          "loginMessage",    
-          "Akun belum disetujui admin.",    
-          "error"    
-        );    
-    
-      }    
-    
-      return;    
-    }    
-    
-    
-    currentUser =    
-      user;    
-    
-    currentProfile =    
-      profile;    
-    
-    
-    showDashboard();    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    let msg =    
-      "Username/email atau password salah.";    
-    
-    if(    
-      error.code ===    
-      "auth/too-many-requests"    
-    ){    
-    
-      msg =    
-        "Terlalu banyak percobaan. Coba lagi nanti.";    
-    
-    }    
-    
-    showMessage(    
-      "loginMessage",    
-      msg,    
-      "error"    
-    );    
-    
-  }    
-    
-};    
-    
-    
-/* =========================    
-   FORGOT PASSWORD    
-========================= */    
-    
-window.forgotPassword=async function(){    
-    
-  const email =    
-    $("forgotEmail")    
-      .value    
-      .trim()    
-      .toLowerCase();    
-    
-    
-  if(!email){    
-    
-    showMessage(    
-      "forgotMessage",    
-      "Masukkan email terlebih dahulu.",    
-      "error"    
-    );    
-    
-    return;    
-  }    
-    
-    
-  try{    
-    
-    await sendPasswordResetEmail(    
-      auth,    
-      email    
-    );    
-    
-    
-    showMessage(    
-      "forgotMessage",    
-      "Link reset password sudah dikirim ke email kamu.",    
-      "success"    
-    );    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    showMessage(    
-      "forgotMessage",    
-      "Email tidak ditemukan atau terjadi kesalahan.",    
-      "error"    
-    );    
-    
-  }    
-    
-};    
-    
-    
-/* =========================    
-   DASHBOARD    
-========================= */    
-    
-function showDashboard(){    
-    
-  $("loginPage")    
-    .style    
-    .display="none";    
-    
-    
-  $("dashboard")    
-    .classList    
-    .add("show");    
-    
-    
-  const username =    
-    currentProfile.username ||    
-    currentUser.email;    
-    
-    
-  $("userName")    
-    .textContent =    
-    username;    
-    
-    
-  $("welcomeName")    
-    .textContent =    
-    username;    
-    
-    
-  $("avatar")    
-    .textContent =    
-    username    
-      .charAt(0)    
-      .toUpperCase();    
-    
-    
-  /*    
-    ADMIN PANEL    
-  */    
-    
-  if(    
-    currentProfile.role ===    
-    "admin"    
-  ){    
-    
-    $("adminPanel")    
-      .classList    
-      .add("show");    
-    
-    loadPendingUsers();    
-    
-  }else{    
-    
-    $("adminPanel")    
-      .classList    
-      .remove("show");    
-    
-  }    
-    
-}    
-    
-    
-window.logout=async function(){    
-    
-  await signOut(auth);    
-    
-  currentUser=null;    
-  currentProfile=null;    
-    
-    
-  $("dashboard")    
-    .classList    
-    .remove("show");    
-    
-    
-  $("loginPage")    
-    .style    
-    .display="flex";    
-    
-    
-  $("loginPassword")    
-    .value="";    
-    
-};    
-    
-    
-/* =========================    
-   ADMIN    
-========================= */    
-    
-async function loadPendingUsers(){    
-    
-  const list =    
-    $("pendingList");    
-    
-  list.innerHTML =    
-    `<div class="loading">    
-      Memuat user...    
-    </div>`;    
-    
-    
-  try{    
-    
-    const q =    
-      query(    
-        collection(db,"users"),    
-        where("status","==","pending")    
-      );    
-    
-    
-    const snapshot =    
-      await getDocs(q);    
-    
-    
-    if(snapshot.empty){    
-    
-      list.innerHTML =    
-        `<div class="loading">    
-          Tidak ada user menunggu approval.    
-        </div>`;    
-    
-      return;    
-    }    
-    
-    
-    list.innerHTML="";    
-    
-    
-    snapshot.forEach(item=>{    
-    
-      const data =    
-        item.data();    
-    
-    
-      const row =    
-        document.createElement("div");    
-    
-      row.className =    
-        "pending-user";    
-    
-    
-      row.innerHTML=`    
-    
-        <div class="pending-info">    
-    
-          <strong>    
-            ${escapeHtml(data.username || "-")}    
-          </strong>    
-    
-          <span>    
-            ${escapeHtml(data.email || "-")}    
-          </span>    
-    
-        </div>    
-    
-        <div class="approval-actions">    
-    
-          <button    
-            class="approve"    
-            data-uid="${item.id}"    
-            data-action="approve">    
-    
-            APPROVE    
-    
-          </button>    
-    
-          <button    
-            class="reject"    
-            data-uid="${item.id}"    
-            data-action="reject">    
-    
-            REJECT    
-    
-          </button>    
-    
-        </div>    
-    
-      `;    
-    
-    
-      list.appendChild(row);    
-    
-    });    
-    
-    
-    list    
-      .querySelectorAll("button")    
-      .forEach(button=>{    
-    
-        button.addEventListener(    
-          "click",    
-          async ()=>{    
-    
-            const uid =    
-              button.dataset.uid;    
-    
-            const action =    
-              button.dataset.action;    
-    
-    
-            if(action === "approve"){    
-    
-              await approveUser(uid);    
-    
-            }else{    
-    
-              await rejectUser(uid);    
-    
-            }    
-    
-          }    
-        );    
-    
-      });    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    list.innerHTML =    
-      `<div class="loading">    
-        Gagal mengambil data user.    
-      </div>`;    
-    
-  }    
-    
-}    
-    
-    
-async function approveUser(uid){    
-    
-  try{    
-    
-    await updateDoc(    
-      doc(    
-        db,    
-        "users",    
-        uid    
-      ),    
-      {    
-        status:"approved"    
-      }    
-    );    
-    
-    
-    loadPendingUsers();    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    alert(    
-      "Gagal approve user."    
-    );    
-    
-  }    
-    
-}    
-    
-    
-async function rejectUser(uid){    
-    
-  try{    
-    
-    await updateDoc(    
-      doc(    
-        db,    
-        "users",    
-        uid    
-      ),    
-      {    
-        status:"rejected"    
-      }    
-    );    
-    
-    
-    loadPendingUsers();    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    alert(    
-      "Gagal reject user."    
-    );    
-    
-  }    
-    
-}    
-    
-    
-/* =========================    
-   INVENTORY MODE    
-========================= */    
-    
-window.openInventory=function(mode){    
-    
-  setMode(mode);    
-    
-    
-  $("inventoryPanel")    
-    .classList    
-    .add("show");    
-    
-    
-  $("inventoryPanel")    
-    .scrollIntoView({    
-      behavior:"smooth",    
-      block:"start"    
-    });    
-    
-};    
-    
-    
-window.setMode=function(mode){    
-    
-  currentMode =    
-    mode;    
-    
-    
-  $("inventoryTitle")    
-    .textContent =    
-    mode === "opname"    
-      ? "Stock Opname"    
-      : "Stockloss";    
-    
-    
-  $("modeStockloss")    
-    .classList    
-    .toggle(    
-      "active",    
-      mode === "stockloss"    
-    );    
-    
-    
-  $("modeOpname")    
-    .classList    
-    .toggle(    
-      "active",    
-      mode === "opname"    
-    );    
-    
-    
-  loadHistory();    
-    
-};    
-    
-    
-/* =========================    
-   MASTER DATA    
-========================= */    
-    
-async function loadMaster(){    
-    
-  try{    
-    
-    const response =    
-      await fetch(    
-        URL_SCRIPT,    
-        {    
-          method:"POST",    
-    
-          body:JSON.stringify({    
-            action:"getAllBarcode"    
-          })    
-        }    
-      );    
-    
-    
-    masterData =    
-      await response.json();    
-    
-    
-  }catch(error){    
-    
-    console.error(    
-      "MASTER ERROR",    
-      error    
-    );    
-    
-  }    
-    
-}    
-    
-    
-/* =========================    
-   BARCODE SUGGESTION    
-========================= */    
-    
-function renderSuggestions(value){    
-    
-  const box =    
-    $("suggestions");    
-    
-    
-  const keyword =    
-    value    
-      .trim()    
-      .toLowerCase();    
-    
-    
-  if(!keyword){    
-    
-    box.style.display="none";    
-    return;    
-    
-  }    
-    
-    
-  const results =    
-    masterData    
-      .filter(item=>{    
-    
-        return String(item.barcode)    
-          .toLowerCase()    
-          .includes(keyword)    
-    
-          ||    
-    
-          String(item.nama)    
-            .toLowerCase()    
-            .includes(keyword);    
-    
-      })    
-      .slice(0,20);    
-    
-    
-  if(!results.length){    
-    
-    box.style.display="none";    
-    return;    
-    
-  }    
-    
-    
-  box.innerHTML =    
-    results    
-      .map(item=>`    
-    
-        <div    
-          class="suggestion"    
-          data-barcode="${escapeHtml(item.barcode)}">    
-    
-          <strong>    
-            ${escapeHtml(item.barcode)}    
-          </strong>    
-    
-          <span>    
-            ${escapeHtml(item.nama)}    
-          </span>    
-    
-        </div>    
-    
-      `)    
-      .join("");    
-    
-    
-  box.style.display="block";    
-    
-    
-  box    
-    .querySelectorAll(".suggestion")    
-    .forEach(el=>{    
-    
-      el.addEventListener(    
-        "click",    
-        ()=>{    
-    
-          $("barcode")    
-            .value =    
-            el.dataset.barcode;    
-    
-    
-          selectedBarcode =    
-            el.dataset.barcode;    
-    
-    
-          box.style.display="none";    
-    
-    
-          $("qty").focus();    
-    
-        }    
-      );    
-    
-    });    
-    
-}    
-    
-    
-/* =========================    
-   BARCODE INPUT    
-========================= */    
-    
-$("barcode")    
-  .addEventListener(    
-    "input",    
-    e=>{    
-    
-      selectedBarcode =    
-        e.target.value.trim();    
-    
-      renderSuggestions(    
-        e.target.value    
-      );    
-    
-    }    
-  );    
-    
-    
-$("barcode")    
-  .addEventListener(    
-    "keydown",    
-    e=>{    
-    
-      if(e.key === "Enter"){    
-    
-        e.preventDefault();    
-    
-        $("suggestions")    
-          .style.display="none";    
-    
-        processWeighedBarcode();    
-    
-        $("qty").focus();    
-    
-      }    
-    
-    }    
-  );    
-    
-    
-$("qty")    
-  .addEventListener(    
-    "keydown",    
-    e=>{    
-    
-      if(e.key === "Enter"){    
-    
-        e.preventDefault();    
-    
-        saveInventory();    
-    
-      }    
-    
-    }    
-  );    
-    
-    
-document.addEventListener(    
-  "click",    
-  e=>{    
-    
-    if(    
-      !e.target.closest(    
-        ".barcode-area"    
-      )    
-    ){    
-    
-      $("suggestions")    
-        .style    
-        .display="none";    
-    
-    }    
-    
-  }    
-);    
-    
-    
-/* =========================    
-   WEIGHED BARCODE    
-========================= */    
-    
-function processWeighedBarcode(){    
-    
-  const barcode =    
-    $("barcode")    
-      .value    
-      .trim();    
-    
-    
-  if(    
-    barcode.startsWith("20") &&    
-    barcode.length === 13 &&    
-    /^\d+$/.test(barcode)    
-  ){    
-    
-    const searchBarcode =    
-      barcode.substring(    
-        2,    
-        7    
-      );    
-    
-    
-    const rawQty =    
-      barcode.substring(    
-        7,    
-        12    
-      );    
-    
-    
-    const qty =    
-      parseInt(rawQty,10) / 1000;    
-    
-    
-    $("barcode")    
-      .value =    
-      searchBarcode;    
-    
-    
-    $("qty")    
-      .value =    
-      qty    
-        .toString()    
-        .replace(".",",");    
-    
-    
-    selectedBarcode =    
-      searchBarcode;    
-    
-  }    
-    
-}    
-    
-    
-/* =========================    
-   SAVE INVENTORY    
-========================= */    
-    
-window.saveInventory=async function(){    
-    
-  const barcode =    
-    $("barcode")    
-      .value    
-      .trim();    
-    
-    
-  const qtyText =    
-    $("qty")    
-      .value    
-      .trim();    
-    
-    
-  if(!barcode){    
-    
-    showMessage(    
-      "inventoryMessage",    
-      "Barcode wajib diisi.",    
-      "error"    
-    );    
-    
-    $("barcode").focus();    
-    
-    return;    
-    
-  }    
-    
-    
-  if(!qtyText){    
-    
-    showMessage(    
-      "inventoryMessage",    
-      "Qty wajib diisi.",    
-      "error"    
-    );    
-    
-    $("qty").focus();    
-    
-    return;    
-    
-  }    
-    
-    
-  const qty =    
-    parseFloat(    
-      qtyText    
-        .replace(",",".")    
-    );    
-    
-    
-  if(isNaN(qty)){    
-    
-    showMessage(    
-      "inventoryMessage",    
-      "Qty tidak valid.",    
-      "error"    
-    );    
-    
-    return;    
-    
-  }    
-    
-    
-  try{    
-    
-    showMessage(    
-      "inventoryMessage",    
-      "Menyimpan..."    
-    );    
-    
-    
-    const response =    
-      await fetch(    
-        URL_SCRIPT,    
-        {    
-    
-          method:"POST",    
-    
-          body:JSON.stringify({    
-    
-            action:"saveData",    
-    
-            barcode:barcode,    
-    
-            qty:qty,    
-    
-            mode:    
-              currentMode ===    
-              "opname"    
-                ? "opname"    
-                : "stockloss"    
-    
-          })    
-    
-        }    
-      );    
-    
-    
-    const result =    
-      await response.text();    
-    
-    
-    if(    
-      !result.includes("Success")    
-    ){    
-    
-      throw new Error(result);    
-    
-    }    
-    
-    
-    showMessage(    
-      "inventoryMessage",    
-      "Data berhasil disimpan.",    
-      "success"    
-    );    
-    
-    
-    $("barcode")    
-      .value="";    
-    
-    $("qty")    
-      .value="";    
-    
-    selectedBarcode="";    
-    
-    
-    loadHistory();    
-    
-    
-    $("barcode").focus();    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    showMessage(    
-      "inventoryMessage",    
-      "Gagal menyimpan data.",    
-      "error"    
-    );    
-    
-  }    
-    
-};    
-    
-    
-/* =========================    
-   HISTORY    
-========================= */    
-    
-async function loadHistory(){    
-    
-  const list =    
-    $("historyList");    
-    
-    
-  list.innerHTML =    
-    `<div class="loading">    
-      Memuat riwayat...    
-    </div>`;    
-    
-    
-  try{    
-    
-    const response =    
-      await fetch(    
-        URL_SCRIPT,    
-        {    
-    
-          method:"POST",    
-    
-          body:JSON.stringify({    
-    
-            action:"getHistory",    
-    
-            mode:    
-              currentMode ===    
-              "opname"    
-                ? "opname"    
-                : "stockloss"    
-    
-          })    
-    
-        }    
-      );    
-    
-    
-    const data =    
-      await response.json();    
-    
-    
-    if(!Array.isArray(data) || !data.length){    
-    
-      list.innerHTML =    
-        `<div class="loading">    
-          Belum ada data.    
-        </div>`;    
-    
-      return;    
-    
-    }    
-    
-    
-    list.innerHTML =    
-      data    
-        .map(item=>`    
-    
-          <div class="history-item">    
-    
-            <div class="history-name">    
-    
-              ${escapeHtml(item.nama)}    
-    
-            </div>    
-    
-            <div class="history-qty">    
-    
-              ${escapeHtml(item.qty)}    
-    
-            </div>    
-    
-          </div>    
-    
-        `)    
-        .join("");    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    list.innerHTML =    
-      `<div class="loading">    
-        Gagal memuat riwayat.    
-      </div>`;    
-    
-  }    
-    
-}    
-    
-    
-/* =========================    
-   RESET    
-========================= */    
-    
-window.resetInventory=async function(){    
-    
-  const confirmation =    
-    prompt(    
-      "Masukkan password reset:"    
-    );    
-    
-    
-  if(    
-    confirmation === null    
-  ){    
-    return;    
-  }    
-    
-    
-  if(    
-    confirmation !== "0800"    
-  ){    
-    
-    alert(    
-      "Password reset salah."    
-    );    
-    
-    return;    
-    
-  }    
-    
-    
-  if(    
-    !confirm(    
-      "Yakin ingin menghapus seluruh data pada mode ini?"    
-    )    
-  ){    
-    return;    
-  }    
-    
-    
-  try{    
-    
-    const response =    
-      await fetch(    
-        URL_SCRIPT,    
-        {    
-    
-          method:"POST",    
-    
-          body:JSON.stringify({    
-    
-            action:"reset",    
-    
-            password:confirmation,    
-    
-            mode:    
-              currentMode ===    
-              "opname"    
-                ? "opname"    
-                : "stockloss"    
-    
-          })    
-    
-        }    
-      );    
-    
-    
-    const result =    
-      await response.text();    
-    
-    
-    if(    
-      !result.includes("berhasil")    
-    ){    
-    
-      throw new Error(result);    
-    
-    }    
-    
-    
-    alert(    
-      "Reset berhasil."    
-    );    
-    
-    
-    loadHistory();    
-    
-    
-  }catch(error){    
-    
-    console.error(error);    
-    
-    alert(    
-      "Reset gagal."    
-    );    
-    
-  }    
-    
-};    
-    
-    
-/* =========================    
-   AUTH STATE    
-========================= */    
-    
-onAuthStateChanged(    
-  auth,    
-  async user=>{    
-    
-    if(!user){    
-    
-      return;    
-    
-    }    
-    
-    
-    try{    
-    
-      await user.reload();    
-    
-    
-      if(!user.emailVerified){    
-    
-        return;    
-    
-      }    
-    
-    
-      const snap =    
-        await getDoc(    
-          doc(    
-            db,    
-            "users",    
-            user.uid    
-          )    
-        );    
-    
-    
-      if(!snap.exists()){    
-    
-        return;    
-    
-      }    
-    
-    
-      const profile =    
-        snap.data();    
-    
-    
-      if(    
-        profile.status !==    
-        "approved"    
-      ){    
-    
-        return;    
-    
-      }    
-    
-    
-      currentUser =    
-        user;    
-    
-      currentProfile =    
-        profile;    
-    
-    
-      showDashboard();    
-    
-    
-    }catch(error){    
-    
-      console.error(error);    
-    
-    }    
-    
-  }    
-);    
-    
-    
-/* =========================    
-   INITIAL LOAD    
-========================= */    
-    
-loadMaster();    
-    
-</script>    
-    
-</body>    
-</html>    
- 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>THE BUTCHER</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --orange:#ff7a00;
+  --orange2:#ffb347;
+  --red:#ff3b30;
+  --green:#35e889;
+  --blue:#4b91ff;
+  --bg:#08090c;
+  --card:rgba(255,255,255,.065);
+  --border:rgba(255,255,255,.11);
+  --text:#fff;
+  --muted:rgba(255,255,255,.58);
+}
+
+html,body{
+  width:100%;
+  min-height:100%;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:var(--bg);
+  color:#fff;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-5;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255,122,0,.15),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(255,59,48,.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #06070a,
+      #11141a 55%,
+      #07080b
+    );
+
+  background-attachment:fixed;
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:-30%;
+  z-index:-4;
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 38%,
+      rgba(255,255,255,.025) 50%,
+      transparent 62%
+    );
+
+  animation:shine 12s ease-in-out infinite;
+}
+
+@keyframes shine{
+  0%,100%{
+    transform:translateX(-12%) rotate(-7deg);
+  }
+
+  50%{
+    transform:translateX(12%) rotate(-7deg);
+  }
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.98);
+    filter:blur(5px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:translateY(15px) scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginPage{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.login-card{
+  width:min(430px,100%);
+  padding:34px;
+
+  border:1px solid var(--border);
+  border-radius:28px;
+
+  background:rgba(255,255,255,.065);
+
+  backdrop-filter:blur(26px);
+  -webkit-backdrop-filter:blur(26px);
+
+  box-shadow:
+    0 35px 110px rgba(0,0,0,.6),
+    inset 0 1px rgba(255,255,255,.08);
+
+  animation:pageIn .7s ease;
+}
+
+.logo{
+  width:64px;
+  height:64px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange2)
+    );
+
+  color:#17100a;
+  font-size:23px;
+  font-weight:950;
+
+  box-shadow:
+    0 12px 40px rgba(255,122,0,.28);
+
+  margin-bottom:20px;
+}
+
+.eyebrow{
+  color:var(--orange2);
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:2.4px;
+}
+
+h1{
+  font-size:35px;
+  letter-spacing:-1.7px;
+  margin-top:6px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-top:7px;
+  margin-bottom:27px;
+}
+
+.field{
+  margin-bottom:16px;
+}
+
+.field label{
+  display:block;
+  margin:0 0 8px 3px;
+
+  color:rgba(255,255,255,.7);
+
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:1.4px;
+}
+
+.input-wrap{
+  position:relative;
+}
+
+.input-wrap input{
+  width:100%;
+  height:54px;
+
+  border:1px solid var(--border);
+  border-radius:15px;
+
+  background:rgba(0,0,0,.24);
+  color:#fff;
+
+  padding:0 16px;
+  outline:none;
+
+  transition:.25s;
+}
+
+.input-wrap input:focus{
+  border-color:#ff9b45;
+  box-shadow:
+    0 0 0 4px rgba(255,122,0,.1);
+}
+
+.eye{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+
+  border:0;
+  background:none;
+  color:rgba(255,255,255,.55);
+
+  padding:9px;
+}
+
+.options{
+  display:flex;
+  justify-content:flex-end;
+
+  margin:4px 2px 20px;
+
+  font-size:12px;
+}
+
+.options a{
+  color:#ffb46d;
+  text-decoration:none;
+}
+
+.login-btn,
+.primary-btn{
+  width:100%;
+  height:54px;
+
+  border:0;
+  border-radius:16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange2)
+    );
+
+  color:#17100a;
+  font-weight:950;
+
+  box-shadow:
+    0 14px 35px rgba(255,122,0,.22);
+
+  transition:.25s;
+}
+
+.login-btn:hover,
+.primary-btn:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 18px 42px rgba(255,122,0,.32);
+}
+
+.login-btn:disabled{
+  opacity:.6;
+  cursor:wait;
+  transform:none;
+}
+
+.message{
+  min-height:20px;
+  margin-top:13px;
+
+  text-align:center;
+  font-size:12px;
+}
+
+.error{
+  color:#ff8179;
+}
+
+.success{
+  color:#61efa1;
+}
+
+.auth-links{
+  display:flex;
+  justify-content:center;
+  gap:7px;
+
+  margin-top:20px;
+
+  font-size:12px;
+  color:var(--muted);
+}
+
+.auth-links button{
+  border:0;
+  background:none;
+  color:var(--orange2);
+  font-weight:800;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+#dashboard{
+  display:none;
+  min-height:100vh;
+}
+
+#dashboard.show{
+  display:block;
+  animation:pageIn .5s ease;
+}
+
+.topbar{
+  height:72px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 24px;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+
+  background:rgba(8,9,12,.82);
+
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  font-weight:950;
+  letter-spacing:1.3px;
+}
+
+.brand-logo{
+  width:40px;
+  height:40px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange2)
+    );
+
+  color:#17100a;
+  font-weight:950;
+}
+
+.user-area{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.avatar{
+  width:37px;
+  height:37px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:rgba(255,122,0,.16);
+  border:1px solid rgba(255,122,0,.4);
+
+  color:var(--orange2);
+  font-weight:900;
+}
+
+.user-name{
+  font-size:12px;
+  font-weight:700;
+}
+
+.top-btn{
+  height:37px;
+
+  padding:0 12px;
+
+  border:1px solid var(--border);
+  border-radius:10px;
+
+  background:rgba(255,255,255,.055);
+  color:#fff;
+
+  font-size:10px;
+  font-weight:800;
+
+  transition:.2s;
+}
+
+.top-btn:hover{
+  background:rgba(255,255,255,.1);
+  border-color:rgba(255,122,0,.4);
+}
+
+.settings-btn{
+  color:#ffbd7c;
+}
+
+.logout-btn{
+  color:#fff;
+}
+
+.container{
+  width:min(1160px,94%);
+  margin:auto;
+  padding:24px 0 45px;
+}
+
+
+/* =========================
+   DASHBOARD HERO
+========================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+
+  padding:27px;
+
+  border:1px solid var(--border);
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,122,0,.13),
+      rgba(255,255,255,.035) 60%,
+      rgba(255,255,255,.015)
+    );
+
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.06);
+}
+
+.hero:after{
+  content:"";
+
+  position:absolute;
+
+  width:260px;
+  height:260px;
+
+  right:-100px;
+  top:-130px;
+
+  border-radius:50%;
+
+  background:rgba(255,122,0,.09);
+
+  filter:blur(8px);
+}
+
+.hero-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:15px;
+}
+
+.hero small{
+  color:var(--orange2);
+
+  font-size:9px;
+  font-weight:850;
+
+  letter-spacing:2.3px;
+}
+
+.hero h2{
+  margin-top:7px;
+
+  font-size:31px;
+  letter-spacing:-1.4px;
+}
+
+.hero p{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.status{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  padding:7px 10px;
+
+  border:1px solid rgba(53,232,137,.18);
+  border-radius:999px;
+
+  background:rgba(53,232,137,.045);
+
+  color:#7df2b1;
+
+  font-size:9px;
+  font-weight:850;
+
+  white-space:nowrap;
+}
+
+.dot{
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:0 0 10px var(--green);
+}
+
+
+/* =========================
+   OPERATIONS
+========================= */
+
+.section-label{
+  margin:23px 2px 10px;
+
+  color:rgba(255,255,255,.38);
+
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:2px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.dashboard-card{
+  position:relative;
+  overflow:hidden;
+
+  min-height:185px;
+
+  padding:23px;
+
+  border:1px solid var(--border);
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.065),
+      rgba(255,255,255,.025)
+    );
+
+  cursor:pointer;
+
+  transition:.3s;
+
+  box-shadow:
+    0 16px 50px rgba(0,0,0,.2);
+}
+
+.dashboard-card:before{
+  content:"";
+
+  position:absolute;
+
+  width:150px;
+  height:150px;
+
+  right:-50px;
+  top:-55px;
+
+  border-radius:50%;
+
+  background:rgba(255,122,0,.08);
+}
+
+.dashboard-card.opname:before{
+  background:rgba(65,130,255,.09);
+}
+
+.dashboard-card:hover{
+  transform:translateY(-5px);
+
+  border-color:rgba(255,122,0,.45);
+
+  box-shadow:
+    0 23px 60px rgba(0,0,0,.45);
+}
+
+.dashboard-card.opname:hover{
+  border-color:rgba(75,145,255,.45);
+}
+
+.card-number{
+  position:absolute;
+
+  right:20px;
+  top:19px;
+
+  color:rgba(255,255,255,.17);
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.card-icon{
+  width:46px;
+  height:46px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:14px;
+
+  background:rgba(255,122,0,.12);
+  border:1px solid rgba(255,122,0,.24);
+
+  font-size:20px;
+}
+
+.opname .card-icon{
+  background:rgba(75,145,255,.11);
+  border-color:rgba(75,145,255,.23);
+}
+
+.dashboard-card h3{
+  margin-top:24px;
+
+  font-size:22px;
+  letter-spacing:-.5px;
+}
+
+.dashboard-card p{
+  margin-top:7px;
+
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.55;
+
+  max-width:310px;
+}
+
+.open-link{
+  position:absolute;
+
+  left:23px;
+  bottom:19px;
+
+  color:#ffb56c;
+
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.5px;
+}
+
+.opname .open-link{
+  color:#78aeff;
+}
+
+.arrow{
+  position:absolute;
+
+  right:20px;
+  bottom:16px;
+
+  width:34px;
+  height:34px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.08);
+
+  font-size:18px;
+}
+
+.dashboard-card:hover .arrow{
+  transform:translateX(4px);
+}
+
+
+/* =========================
+   SYSTEM STATUS
+========================= */
+
+.status-grid{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:10px;
+}
+
+.mini{
+  padding:14px;
+
+  border:1px solid var(--border);
+  border-radius:16px;
+
+  background:rgba(255,255,255,.025);
+}
+
+.mini-head{
+  color:rgba(255,255,255,.35);
+
+  font-size:8px;
+  font-weight:850;
+
+  letter-spacing:1.4px;
+}
+
+.mini-value{
+  margin-top:6px;
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.mini-sub{
+  margin-top:3px;
+
+  color:rgba(255,255,255,.35);
+
+  font-size:9px;
+}
+
+
+/* =========================
+   INVENTORY PAGE
+========================= */
+
+#inventoryPage{
+  display:none;
+  min-height:100vh;
+}
+
+#inventoryPage.show{
+  display:block;
+  animation:pageIn .45s ease;
+}
+
+.inventory-topbar{
+  height:72px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 24px;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+
+  background:rgba(8,9,12,.88);
+
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.inventory-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.inventory-brand-icon{
+  width:38px;
+  height:38px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:11px;
+
+  background:rgba(255,122,0,.13);
+  border:1px solid rgba(255,122,0,.25);
+}
+
+.back-dashboard{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  height:37px;
+
+  padding:0 13px;
+
+  border:1px solid var(--border);
+  border-radius:10px;
+
+  background:rgba(255,255,255,.055);
+  color:#fff;
+
+  font-size:10px;
+  font-weight:850;
+
+  transition:.2s;
+}
+
+.back-dashboard:hover{
+  background:rgba(255,122,0,.1);
+  border-color:rgba(255,122,0,.4);
+  transform:translateX(-2px);
+}
+
+.inventory-container{
+  width:min(1000px,94%);
+  margin:auto;
+
+  padding:25px 0 45px;
+}
+
+.inventory-panel{
+  padding:23px;
+
+  border:1px solid var(--border);
+  border-radius:24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.02)
+    );
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.25);
+}
+
+.inventory-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:15px;
+
+  margin-bottom:18px;
+}
+
+.inventory-title{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.inventory-icon{
+  width:42px;
+  height:42px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:13px;
+
+  background:rgba(255,122,0,.12);
+  border:1px solid rgba(255,122,0,.25);
+}
+
+.inventory-title h3{
+  font-size:20px;
+}
+
+.inventory-title p{
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.mode{
+  display:flex;
+  gap:4px;
+
+  padding:4px;
+
+  border-radius:11px;
+
+  background:rgba(0,0,0,.25);
+}
+
+.mode button{
+  border:0;
+  border-radius:8px;
+
+  padding:8px 10px;
+
+  background:transparent;
+  color:var(--muted);
+
+  font-size:9px;
+  font-weight:750;
+}
+
+.mode button.active{
+  background:var(--orange);
+  color:#111;
+}
+
+.barcode-area{
+  position:relative;
+}
+
+.barcode-area input{
+  width:100%;
+  height:54px;
+
+  border:1px solid var(--border);
+  border-radius:14px;
+
+  background:rgba(0,0,0,.22);
+  color:#fff;
+
+  padding:0 15px;
+
+  outline:none;
+
+  transition:.2s;
+}
+
+.barcode-area input:focus,
+.qty-row input:focus{
+  border-color:rgba(255,145,45,.75);
+
+  box-shadow:
+    0 0 0 4px rgba(255,122,0,.08);
+}
+
+.suggestions{
+  position:absolute;
+
+  left:0;
+  right:0;
+  top:62px;
+
+  z-index:80;
+
+  max-height:260px;
+
+  overflow:auto;
+
+  border:1px solid var(--border);
+  border-radius:14px;
+
+  background:#14171c;
+
+  box-shadow:
+    0 25px 65px rgba(0,0,0,.7);
+}
+
+.suggestion{
+  padding:11px 13px;
+
+  cursor:pointer;
+
+  border-bottom:1px solid rgba(255,255,255,.055);
+}
+
+.suggestion:hover{
+  background:rgba(255,122,0,.1);
+}
+
+.suggestion strong{
+  display:block;
+
+  font-size:11px;
+}
+
+.suggestion span{
+  display:block;
+
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.qty-row{
+  display:grid;
+
+  grid-template-columns:1fr auto;
+
+  gap:9px;
+
+  margin-top:10px;
+}
+
+.qty-row input{
+  height:51px;
+
+  border:1px solid var(--border);
+  border-radius:13px;
+
+  background:rgba(0,0,0,.22);
+  color:#fff;
+
+  padding:0 14px;
+
+  outline:none;
+}
+
+.save-btn{
+  min-width:120px;
+
+  border:0;
+  border-radius:13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      var(--orange2)
+    );
+
+  color:#17100a;
+
+  font-size:11px;
+  font-weight:950;
+}
+
+.history{
+  margin-top:23px;
+}
+
+.history-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:9px;
+}
+
+.history-title h4{
+  font-size:12px;
+}
+
+.reset-btn{
+  border:1px solid rgba(255,59,48,.28);
+  border-radius:9px;
+
+  background:rgba(255,59,48,.07);
+  color:#ff8179;
+
+  padding:7px 10px;
+
+  font-size:9px;
+  font-weight:800;
+}
+
+.history-list{
+  max-height:320px;
+
+  overflow:auto;
+
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+}
+
+.history-item{
+  display:flex;
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:12px 13px;
+
+  border-bottom:1px solid rgba(255,255,255,.055);
+}
+
+.history-item:last-child{
+  border-bottom:0;
+}
+
+.history-name{
+  font-size:11px;
+}
+
+.history-qty{
+  color:var(--orange2);
+
+  font-size:11px;
+  font-weight:900;
+
+  white-space:nowrap;
+}
+
+.loading{
+  text-align:center;
+
+  color:var(--muted);
+
+  padding:20px;
+
+  font-size:11px;
+}
+
+
+/* =========================
+   SETTINGS MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+
+  z-index:100;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:18px;
+
+  background:rgba(0,0,0,.72);
+
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-card{
+  width:min(510px,100%);
+
+  max-height:90vh;
+
+  overflow:auto;
+
+  padding:25px;
+
+  border:1px solid var(--border);
+  border-radius:23px;
+
+  background:#111419;
+
+  box-shadow:
+    0 35px 100px rgba(0,0,0,.75);
+
+  animation:modalIn .3s ease;
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:19px;
+}
+
+.modal-head h2{
+  font-size:20px;
+}
+
+.close{
+  width:34px;
+  height:34px;
+
+  border:1px solid var(--border);
+  border-radius:9px;
+
+  background:rgba(255,255,255,.05);
+  color:#fff;
+
+  font-size:19px;
+}
+
+.setting-block{
+  padding:15px;
+
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:15px;
+
+  background:rgba(255,255,255,.025);
+
+  margin-bottom:10px;
+}
+
+.setting-label{
+  margin-bottom:8px;
+
+  color:rgba(255,255,255,.35);
+
+  font-size:8px;
+  font-weight:850;
+
+  letter-spacing:1.5px;
+}
+
+.profile-row{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.profile-big{
+  width:43px;
+  height:43px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:13px;
+
+  background:rgba(255,122,0,.12);
+  border:1px solid rgba(255,122,0,.25);
+
+  color:#ffbd7c;
+
+  font-weight:900;
+}
+
+.profile-row strong{
+  display:block;
+  font-size:12px;
+}
+
+.profile-row span{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  margin-top:3px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:9px;
+}
+
+.section-head h3{
+  font-size:13px;
+}
+
+.refresh-btn{
+  border:1px solid var(--border);
+  border-radius:8px;
+
+  background:rgba(255,255,255,.04);
+  color:#fff;
+
+  padding:6px 9px;
+
+  font-size:9px;
+}
+
+.pending-list{
+  display:grid;
+  gap:8px;
+}
+
+.pending-user{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  padding:11px;
+
+  border:1px solid var(--border);
+  border-radius:12px;
+
+  background:rgba(255,255,255,.025);
+}
+
+.pending-info strong{
+  display:block;
+  font-size:11px;
+}
+
+.pending-info span{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  margin-top:3px;
+}
+
+.approval-actions{
+  display:flex;
+  gap:5px;
+}
+
+.approve,
+.reject{
+  border:0;
+  border-radius:8px;
+
+  padding:7px 9px;
+
+  font-size:8px;
+  font-weight:850;
+}
+
+.approve{
+  background:var(--green);
+  color:#07140d;
+}
+
+.reject{
+  background:rgba(255,59,48,.12);
+  color:#ff8179;
+
+  border:1px solid rgba(255,59,48,.3);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+  .topbar,
+  .inventory-topbar{
+    padding:0 14px;
+  }
+
+  .brand span{
+    display:none;
+  }
+
+  .user-name{
+    display:none;
+  }
+
+  .top-btn{
+    padding:0 9px;
+  }
+
+  .container,
+  .inventory-container{
+    width:94%;
+    padding-top:19px;
+  }
+
+  .hero{
+    padding:22px;
+    border-radius:22px;
+  }
+
+  .hero-top{
+    display:block;
+  }
+
+  .status{
+    display:inline-flex;
+    margin-top:13px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-card{
+    min-height:175px;
+  }
+
+  .status-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .status-grid .mini:last-child{
+    grid-column:1/-1;
+  }
+
+  .inventory-panel{
+    padding:18px;
+  }
+
+  .inventory-head{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .qty-row{
+    grid-template-columns:1fr;
+  }
+
+  .save-btn{
+    height:51px;
+  }
+
+  .pending-user{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .approval-actions{
+    width:100%;
+  }
+
+  .approve,
+  .reject{
+    flex:1;
+  }
+}
+
+@media(max-width:430px){
+
+  .login-card{
+    padding:27px 22px;
+  }
+
+  .status-grid{
+    grid-template-columns:1fr;
+  }
+
+  .status-grid .mini:last-child{
+    grid-column:auto;
+  }
+
+  .inventory-brand span{
+    display:none;
+  }
+
+  .inventory-topbar{
+    gap:5px;
+  }
+
+  .user-area{
+    gap:5px;
+  }
+
+  .settings-btn,
+  .logout-btn{
+    font-size:9px;
+    padding:0 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section id="loginPage">
+
+  <div class="login-card">
+
+    <div class="logo">
+      TB
+    </div>
+
+    <div class="eyebrow">
+      THE BUTCHER
+    </div>
+
+    <h1>
+      Welcome Back
+    </h1>
+
+    <p class="subtitle">
+      Login untuk melanjutkan ke workspace.
+    </p>
+
+
+    <div class="field">
+
+      <label>
+        USERNAME / EMAIL
+      </label>
+
+      <div class="input-wrap">
+
+        <input
+          id="loginIdentity"
+          type="text"
+          placeholder="Username atau email"
+          autocomplete="username">
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        PASSWORD
+      </label>
+
+      <div class="input-wrap">
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Masukkan password"
+          autocomplete="current-password">
+
+        <button
+          class="eye"
+          type="button"
+          onclick="togglePassword('loginPassword')">
+          👁
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="options">
+
+      <a
+        href="#"
+        onclick="openForgot();return false">
+        Lupa password?
+      </a>
+
+    </div>
+
+
+    <button
+      class="login-btn"
+      id="loginBtn"
+      onclick="login()">
+
+      LOGIN
+
+    </button>
+
+
+    <div
+      class="message"
+      id="loginMessage">
+    </div>
+
+
+    <div class="auth-links">
+
+      <span>
+        Belum punya akun?
+      </span>
+
+      <button onclick="openSignup()">
+        Daftar
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section id="dashboard">
+
+  <header class="topbar">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        TB
+      </div>
+
+      <span>
+        THE BUTCHER
+      </span>
+
+    </div>
+
+
+    <div class="user-area">
+
+      <div
+        class="avatar"
+        id="avatar">
+        A
+      </div>
+
+      <div
+        class="user-name"
+        id="userName">
+        User
+      </div>
+
+
+      <button
+        class="top-btn settings-btn"
+        onclick="openSettings()">
+
+        ⚙ Pengaturan
+
+      </button>
+
+
+      <button
+        class="top-btn logout-btn"
+        onclick="logout()">
+
+        ↪ Logout
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <main class="container">
+
+
+    <section class="hero">
+
+      <div class="hero-top">
+
+        <div>
+
+          <small>
+            INVENTORY CONTROL CENTER
+          </small>
+
+          <h2>
+
+            Halo,
+            <span id="welcomeName">
+              User
+            </span>
+            👋
+
+          </h2>
+
+          <p>
+            Kelola Stock Loss dan Stock Opname
+            dalam satu workspace.
+          </p>
+
+        </div>
+
+
+        <div class="status">
+
+          <i class="dot"></i>
+
+          SYSTEM ONLINE
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="section-label">
+      OPERATIONS
+    </div>
+
+
+    <section class="cards">
+
+
+      <div
+        class="dashboard-card"
+        onclick="openInventory('stockloss')">
+
+        <div class="card-number">
+          01
+        </div>
+
+        <div class="card-icon">
+          📉
+        </div>
+
+        <h3>
+          Stock Loss
+        </h3>
+
+        <p>
+          Catat kehilangan atau selisih stock
+          dengan cepat menggunakan barcode
+          dan quantity.
+        </p>
+
+        <div class="open-link">
+          OPEN STOCK LOSS →
+        </div>
+
+        <div class="arrow">
+          ›
+        </div>
+
+      </div>
+
+
+      <div
+        class="dashboard-card opname"
+        onclick="openInventory('opname')">
+
+        <div class="card-number">
+          02
+        </div>
+
+        <div class="card-icon">
+          📦
+        </div>
+
+        <h3>
+          Stock Opname
+        </h3>
+
+        <p>
+          Lakukan pencatatan hasil pengecekan
+          stock aktual secara terstruktur.
+        </p>
+
+        <div class="open-link">
+          OPEN STOCK OPNAME →
+        </div>
+
+        <div class="arrow">
+          ›
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+    <div class="section-label">
+      SYSTEM STATUS
+    </div>
+
+
+    <section class="status-grid">
+
+
+      <div class="mini">
+
+        <div class="mini-head">
+          SYSTEM
+        </div>
+
+        <div class="mini-value">
+          ● ONLINE
+        </div>
+
+        <div class="mini-sub">
+          Firebase connected
+        </div>
+
+      </div>
+
+
+      <div class="mini">
+
+        <div
+          class="mini-head">
+          MASTER DATA
+        </div>
+
+        <div
+          class="mini-value"
+          id="masterStatus">
+          LOADING
+        </div>
+
+        <div
+          class="mini-sub"
+          id="masterCount">
+          Menyiapkan acuan...
+        </div>
+
+      </div>
+
+
+      <div class="mini">
+
+        <div class="mini-head">
+          SESSION
+        </div>
+
+        <div class="mini-value">
+          ACTIVE
+        </div>
+
+        <div class="mini-sub">
+          User terautentikasi
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+</section>
+
+
+<!-- =====================================================
+     INVENTORY PAGE
+===================================================== -->
+
+<section id="inventoryPage">
+
+
+  <header class="inventory-topbar">
+
+
+    <div class="inventory-brand">
+
+      <div class="inventory-brand-icon">
+        🥩
+      </div>
+
+      <span>
+        THE BUTCHER INVENTORY
+      </span>
+
+    </div>
+
+
+    <button
+      class="back-dashboard"
+      onclick="backToDashboard()">
+
+      ← Dashboard
+
+    </button>
+
+
+  </header>
+
+
+  <main class="inventory-container">
+
+
+    <section class="inventory-panel">
+
+
+      <div class="inventory-head">
+
+
+        <div class="inventory-title">
+
+          <div
+            class="inventory-icon"
+            id="inventoryIcon">
+            📉
+          </div>
+
+          <div>
+
+            <h3
+              id="inventoryTitle">
+              Stock Loss
+            </h3>
+
+            <p>
+              Scan barcode atau cari nama produk
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="mode">
+
+          <button
+            id="modeStockloss"
+            onclick="setMode('stockloss')">
+
+            Stock Loss
+
+          </button>
+
+
+          <button
+            id="modeOpname"
+            onclick="setMode('opname')">
+
+            Stock Opname
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="barcode-area">
+
+        <input
+          id="barcode"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="Scan / masukkan barcode atau nama produk">
+
+
+        <div
+          class="suggestions"
+          id="suggestions"
+          style="display:none">
+        </div>
+
+      </div>
+
+
+      <div class="qty-row">
+
+        <input
+          id="qty"
+          type="text"
+          inputmode="decimal"
+          placeholder="Qty">
+
+
+        <button
+          class="save-btn"
+          onclick="saveInventory()">
+
+          SIMPAN
+
+        </button>
+
+      </div>
+
+
+      <div
+        class="message"
+        id="inventoryMessage">
+      </div>
+
+
+      <div class="history">
+
+
+        <div class="history-title">
+
+          <h4>
+            Riwayat Terakhir
+          </h4>
+
+
+          <button
+            class="reset-btn"
+            onclick="resetInventory()">
+
+            RESET
+
+          </button>
+
+        </div>
+
+
+        <div
+          class="history-list"
+          id="historyList">
+
+          <div class="loading">
+            Memuat...
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+</section>
+
+
+<!-- =====================================================
+     SIGNUP MODAL
+===================================================== -->
+
+<div
+  class="modal"
+  id="signupModal">
+
+  <div class="modal-card">
+
+
+    <div class="modal-head">
+
+      <h2>
+        Buat Akun
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal('signupModal')">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        USERNAME
+      </label>
+
+      <div class="input-wrap">
+
+        <input
+          id="signupUsername"
+          type="text"
+          placeholder="Contoh: aldi"
+          autocomplete="username">
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        EMAIL ASLI
+      </label>
+
+      <div class="input-wrap">
+
+        <input
+          id="signupEmail"
+          type="email"
+          placeholder="nama@email.com"
+          autocomplete="email">
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        PASSWORD
+      </label>
+
+      <div class="input-wrap">
+
+        <input
+          id="signupPassword"
+          type="password"
+          placeholder="Minimal 6 karakter"
+          autocomplete="new-password">
+
+        <button
+          class="eye"
+          type="button"
+          onclick="togglePassword('signupPassword')">
+
+          👁
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        KONFIRMASI PASSWORD
+      </label>
+
+      <div class="input-wrap">
+
+        <input
+          id="signupConfirm"
+          type="password"
+          placeholder="Ulangi password"
+          autocomplete="new-password">
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      onclick="signup()">
+
+      DAFTAR
+
+    </button>
+
+
+    <div
+      class="message"
+      id="signupMessage">
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     FORGOT PASSWORD
+===================================================== -->
+
+<div
+  class="modal"
+  id="forgotModal">
+
+  <div class="modal-card">
+
+
+    <div class="modal-head">
+
+      <h2>
+        Lupa Password
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal('forgotModal')">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <p class="subtitle">
+
+      Masukkan email asli akun kamu.
+      Firebase akan mengirimkan link untuk
+      membuat password baru.
+
+    </p>
+
+
+    <div class="field">
+
+      <label>
+        EMAIL
+      </label>
+
+      <div class="input-wrap">
+
+        <input
+          id="forgotEmail"
+          type="email"
+          placeholder="nama@email.com">
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      onclick="forgotPassword()">
+
+      KIRIM LINK RESET
+
+    </button>
+
+
+    <div
+      class="message"
+      id="forgotMessage">
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
+
+<div
+  class="modal"
+  id="settingsModal">
+
+  <div class="modal-card">
+
+
+    <div class="modal-head">
+
+      <h2>
+        ⚙ Pengaturan
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal('settingsModal')">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <!-- ACCOUNT -->
+
+    <div class="setting-block">
+
+      <div class="setting-label">
+        ACCOUNT
+      </div>
+
+
+      <div class="profile-row">
+
+        <div
+          class="profile-big"
+          id="settingsAvatar">
+          A
+        </div>
+
+
+        <div>
+
+          <strong
+            id="settingsUsername">
+            User
+          </strong>
+
+          <span
+            id="settingsEmail">
+            email
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PASSWORD -->
+
+    <div class="setting-block">
+
+      <div class="setting-label">
+        PASSWORD
+      </div>
+
+
+      <p
+        style="
+        font-size:11px;
+        color:rgba(255,255,255,.58);
+        line-height:1.5;
+        margin-bottom:10px">
+
+        Reset password dilakukan melalui
+        email asli akun.
+
+      </p>
+
+
+      <button
+        class="primary-btn"
+        style="height:43px"
+        onclick="resetOwnPassword()">
+
+        🔐 KIRIM LINK RESET PASSWORD
+
+      </button>
+
+
+      <div
+        class="message"
+        id="settingsMessage">
+      </div>
+
+    </div>
+
+
+    <!-- USER MANAGEMENT -->
+
+    <div
+      class="setting-block"
+      id="userManagementBlock">
+
+
+      <div class="section-head">
+
+        <div>
+
+          <div
+            class="setting-label"
+            style="margin-bottom:3px">
+
+            USER MANAGEMENT
+
+          </div>
+
+          <h3>
+            Approval User
+          </h3>
+
+        </div>
+
+
+        <button
+          class="refresh-btn"
+          onclick="loadPendingUsers()">
+
+          ↻ Refresh
+
+        </button>
+
+      </div>
+
+
+      <div
+        class="pending-list"
+        id="pendingList">
+
+        <div class="loading">
+          Memuat user...
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+  signOut
+}
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc
+}
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+   SAMA SEPERTI VERSI YANG TADI BISA LOGIN
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyAEll_xXB59TB59N--5wjG1C2bxYg7yqps",
+
+  authDomain:
+  "stockloss-bsd-web.firebaseapp.com",
+
+  projectId:
+  "stockloss-bsd-web",
+
+  storageBucket:
+  "stockloss-bsd-web.firebasestorage.app",
+
+  messagingSenderId:
+  "825716539347",
+
+  appId:
+  "1:825716539347:web:4f919eca31a71e72f57926",
+
+  measurementId:
+  "G-X0YY0849JH"
+
+};
+
+
+const app =
+  initializeApp(firebaseConfig);
+
+
+const auth =
+  getAuth(app);
+
+
+const db =
+  getFirestore(app);
+
+
+/* =====================================================
+   GOOGLE APPS SCRIPT
+===================================================== */
+
+const URL_SCRIPT =
+"https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+let currentUser = null;
+
+let currentProfile = null;
+
+let currentMode = "stockloss";
+
+let masterData = [];
+
+let selectedBarcode = "";
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function $(id){
+
+  return document.getElementById(id);
+
+}
+
+
+function showMessage(
+  id,
+  text,
+  type=""
+){
+
+  const el=$(id);
+
+  if(!el)return;
+
+  el.textContent=text;
+
+  el.className="message "+type;
+
+}
+
+
+function normalizeUsername(value){
+
+  return String(value || "")
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+window.togglePassword=function(id){
+
+  const input=$(id);
+
+  if(!input)return;
+
+  input.type =
+    input.type === "password"
+    ? "text"
+    : "password";
+
+};
+
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+window.openSignup=function(){
+
+  $("signupModal")
+    .classList
+    .add("show");
+
+};
+
+
+window.openForgot=function(){
+
+  $("forgotModal")
+    .classList
+    .add("show");
+
+};
+
+
+window.openSettings=function(){
+
+  $("settingsModal")
+    .classList
+    .add("show");
+
+
+  const username =
+    currentProfile?.username ||
+    currentUser?.email ||
+    "User";
+
+
+  $("settingsUsername")
+    .textContent=username;
+
+
+  $("settingsEmail")
+    .textContent =
+      currentUser?.email ||
+      currentProfile?.email ||
+      "";
+
+
+  $("settingsAvatar")
+    .textContent =
+      username
+        .charAt(0)
+        .toUpperCase();
+
+
+  if(
+    currentProfile?.role === "admin"
+  ){
+
+    $("userManagementBlock")
+      .style
+      .display="block";
+
+    loadPendingUsers();
+
+  }else{
+
+    $("userManagementBlock")
+      .style
+      .display="none";
+
+  }
+
+};
+
+
+window.closeModal=function(id){
+
+  const modal=$(id);
+
+  if(modal)
+    modal.classList.remove("show");
+
+};
+
+
+/* =====================================================
+   USERNAME CHECK
+===================================================== */
+
+async function usernameExists(username){
+
+  const usernameKey =
+    normalizeUsername(username);
+
+
+  const ref =
+    doc(
+      db,
+      "usernames",
+      usernameKey
+    );
+
+
+  const snap =
+    await getDoc(ref);
+
+
+  return snap.exists();
+
+}
+
+
+/* =====================================================
+   SIGNUP
+   DIKEMBALIKAN SEPERTI VERSI YANG BISA LOGIN
+===================================================== */
+
+window.signup=async function(){
+
+  const username =
+    normalizeUsername(
+      $("signupUsername").value
+    );
+
+
+  const email =
+    $("signupEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const password =
+    $("signupPassword").value;
+
+
+  const confirm =
+    $("signupConfirm").value;
+
+
+  showMessage(
+    "signupMessage",
+    ""
+  );
+
+
+  if(!username){
+
+    showMessage(
+      "signupMessage",
+      "Username wajib diisi.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(username.length<3){
+
+    showMessage(
+      "signupMessage",
+      "Username minimal 3 karakter.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!/^[a-z0-9._-]+$/.test(username)){
+
+    showMessage(
+      "signupMessage",
+      "Username hanya boleh huruf, angka, titik, underscore, atau strip.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!email){
+
+    showMessage(
+      "signupMessage",
+      "Email wajib diisi.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(password.length<6){
+
+    showMessage(
+      "signupMessage",
+      "Password minimal 6 karakter.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(password!==confirm){
+
+    showMessage(
+      "signupMessage",
+      "Konfirmasi password tidak sama.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    showMessage(
+      "signupMessage",
+      "Memeriksa username..."
+    );
+
+
+    const exists =
+      await usernameExists(username);
+
+
+    if(exists){
+
+      showMessage(
+        "signupMessage",
+        "Username sudah digunakan.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    showMessage(
+      "signupMessage",
+      "Membuat akun..."
+    );
+
+
+    const credential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    const user =
+      credential.user;
+
+
+    await setDoc(
+      doc(
+        db,
+        "users",
+        user.uid
+      ),
+      {
+
+        username:username,
+
+        email:email,
+
+        role:"user",
+
+        status:"pending",
+
+        emailVerified:false,
+
+        createdAt:new Date()
+
+      }
+    );
+
+
+    /*
+      SAMA SEPERTI VERSI LAMA:
+      usernames hanya menyimpan UID.
+    */
+
+    await setDoc(
+      doc(
+        db,
+        "usernames",
+        username
+      ),
+      {
+
+        uid:user.uid
+
+      }
+    );
+
+
+    await sendEmailVerification(user);
+
+
+    await signOut(auth);
+
+
+    $("signupUsername").value="";
+    $("signupEmail").value="";
+    $("signupPassword").value="";
+    $("signupConfirm").value="";
+
+
+    showMessage(
+      "signupMessage",
+      "Akun berhasil dibuat. Cek email untuk verifikasi. Setelah itu tunggu admin melakukan approval.",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "SIGNUP ERROR:",
+      error
+    );
+
+
+    let msg =
+      "Gagal membuat akun.";
+
+
+    if(
+      error.code ===
+      "auth/email-already-in-use"
+    ){
+
+      msg =
+        "Email tersebut sudah terdaftar.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/invalid-email"
+    ){
+
+      msg =
+        "Format email tidak valid.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/weak-password"
+    ){
+
+      msg =
+        "Password terlalu lemah.";
+
+    }
+
+    else if(
+      error.code ===
+      "permission-denied"
+    ){
+
+      msg =
+        "Firestore Rules belum mengizinkan pendaftaran.";
+
+    }
+
+
+    showMessage(
+      "signupMessage",
+      msg,
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   LOGIN
+   PERSIS MENGIKUTI VERSI YANG TADI BISA LOGIN
+===================================================== */
+
+window.login=async function(){
+
+  const identity =
+    $("loginIdentity")
+      .value
+      .trim();
+
+
+  const password =
+    $("loginPassword")
+      .value;
+
+
+  showMessage(
+    "loginMessage",
+    ""
+  );
+
+
+  if(
+    !identity ||
+    !password
+  ){
+
+    showMessage(
+      "loginMessage",
+      "Username/email dan password wajib diisi.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const btn =
+    $("loginBtn");
+
+
+  btn.disabled=true;
+
+  btn.textContent="MEMERIKSA...";
+
+
+  try{
+
+    showMessage(
+      "loginMessage",
+      "Memeriksa akun..."
+    );
+
+
+    let email=identity;
+
+
+    /*
+      USERNAME
+      ↓
+      usernames/{username}
+      ↓
+      UID
+      ↓
+      users/{uid}
+      ↓
+      EMAIL
+      ↓
+      FIREBASE AUTH
+    */
+
+    if(!identity.includes("@")){
+
+      const username =
+        normalizeUsername(identity);
+
+
+      const usernameRef =
+        doc(
+          db,
+          "usernames",
+          username
+        );
+
+
+      const usernameSnap =
+        await getDoc(
+          usernameRef
+        );
+
+
+      if(!usernameSnap.exists()){
+
+        showMessage(
+          "loginMessage",
+          "Username atau password salah.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const uid =
+        usernameSnap
+          .data()
+          .uid;
+
+
+      const userRef =
+        doc(
+          db,
+          "users",
+          uid
+        );
+
+
+      const userSnap =
+        await getDoc(
+          userRef
+        );
+
+
+      if(!userSnap.exists()){
+
+        showMessage(
+          "loginMessage",
+          "Data akun tidak ditemukan.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      email =
+        userSnap
+          .data()
+          .email;
+
+    }
+
+
+    const credential =
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    const user =
+      credential.user;
+
+
+    await user.reload();
+
+
+    if(!user.emailVerified){
+
+      await signOut(auth);
+
+
+      showMessage(
+        "loginMessage",
+        "Email belum diverifikasi. Silakan cek inbox email kamu.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const profileSnap =
+      await getDoc(
+        doc(
+          db,
+          "users",
+          user.uid
+        )
+      );
+
+
+    if(!profileSnap.exists()){
+
+      await signOut(auth);
+
+
+      showMessage(
+        "loginMessage",
+        "Profile akun tidak ditemukan.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const profile =
+      profileSnap.data();
+
+
+    if(
+      profile.status !==
+      "approved"
+    ){
+
+      await signOut(auth);
+
+
+      if(
+        profile.status ===
+        "rejected"
+      ){
+
+        showMessage(
+          "loginMessage",
+          "Akun kamu ditolak oleh admin.",
+          "error"
+        );
+
+      }else{
+
+        showMessage(
+          "loginMessage",
+          "Akun belum disetujui admin.",
+          "error"
+        );
+
+      }
+
+      return;
+
+    }
+
+
+    currentUser =
+      user;
+
+
+    currentProfile =
+      profile;
+
+
+    showDashboard();
+
+
+  }catch(error){
+
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
+
+
+    let msg =
+      "Username/email atau password salah.";
+
+
+    if(
+      error.code ===
+      "auth/too-many-requests"
+    ){
+
+      msg =
+        "Terlalu banyak percobaan. Coba lagi nanti.";
+
+    }
+
+
+    showMessage(
+      "loginMessage",
+      msg,
+      "error"
+    );
+
+
+  }finally{
+
+    btn.disabled=false;
+
+    btn.textContent="LOGIN";
+
+  }
+
+};
+
+
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
+
+window.forgotPassword=async function(){
+
+  const email =
+    $("forgotEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  if(!email){
+
+    showMessage(
+      "forgotMessage",
+      "Masukkan email terlebih dahulu.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await sendPasswordResetEmail(
+      auth,
+      email
+    );
+
+
+    showMessage(
+      "forgotMessage",
+      "Link reset password sudah dikirim ke email kamu.",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    showMessage(
+      "forgotMessage",
+      "Email tidak ditemukan atau terjadi kesalahan.",
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   RESET PASSWORD
+===================================================== */
+
+window.resetOwnPassword=async function(){
+
+  if(!currentUser?.email)
+    return;
+
+
+  try{
+
+    await sendPasswordResetEmail(
+      auth,
+      currentUser.email
+    );
+
+
+    showMessage(
+      "settingsMessage",
+      "Link reset password sudah dikirim ke email kamu.",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    showMessage(
+      "settingsMessage",
+      "Gagal mengirim link reset password.",
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   SHOW DASHBOARD
+===================================================== */
+
+function showDashboard(){
+
+  $("loginPage")
+    .style
+    .display="none";
+
+
+  $("inventoryPage")
+    .classList
+    .remove("show");
+
+
+  $("dashboard")
+    .classList
+    .add("show");
+
+
+  const username =
+    currentProfile?.username ||
+    currentUser?.email ||
+    "User";
+
+
+  $("userName")
+    .textContent =
+    username;
+
+
+  $("welcomeName")
+    .textContent =
+    username;
+
+
+  $("avatar")
+    .textContent =
+    username
+      .charAt(0)
+      .toUpperCase();
+
+
+  /*
+    MASTER dijalankan di background.
+    Tidak menghambat dashboard.
+  */
+
+  loadMaster();
+
+}
+
+
+window.showDashboard =
+  showDashboard;
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logout=async function(){
+
+  await signOut(auth);
+
+
+  currentUser=null;
+
+  currentProfile=null;
+
+
+  $("dashboard")
+    .classList
+    .remove("show");
+
+
+  $("inventoryPage")
+    .classList
+    .remove("show");
+
+
+  $("settingsModal")
+    .classList
+    .remove("show");
+
+
+  $("loginPage")
+    .style
+    .display="flex";
+
+
+  $("loginIdentity")
+    .value="";
+
+
+  $("loginPassword")
+    .value="";
+
+
+  showMessage(
+    "loginMessage",
+    ""
+  );
+
+};
+
+
+/* =====================================================
+   USER APPROVAL
+===================================================== */
+
+async function loadPendingUsers(){
+
+  const list =
+    $("pendingList");
+
+
+  list.innerHTML =
+    `<div class="loading">
+      Memuat user...
+    </div>`;
+
+
+  try{
+
+    const q =
+      query(
+        collection(
+          db,
+          "users"
+        ),
+        where(
+          "status",
+          "==",
+          "pending"
+        )
+      );
+
+
+    const snapshot =
+      await getDocs(q);
+
+
+    if(snapshot.empty){
+
+      list.innerHTML =
+        `<div class="loading">
+          Tidak ada user menunggu approval.
+        </div>`;
+
+      return;
+
+    }
+
+
+    list.innerHTML="";
+
+
+    snapshot.forEach(item=>{
+
+      const data =
+        item.data();
+
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "pending-user";
+
+
+      row.innerHTML = `
+
+        <div class="pending-info">
+
+          <strong>
+            ${escapeHtml(
+              data.username || "-"
+            )}
+          </strong>
+
+          <span>
+            ${escapeHtml(
+              data.email || "-"
+            )}
+          </span>
+
+        </div>
+
+
+        <div class="approval-actions">
+
+          <button
+            class="approve"
+            data-uid="${item.id}"
+            data-action="approve">
+
+            APPROVE
+
+          </button>
+
+
+          <button
+            class="reject"
+            data-uid="${item.id}"
+            data-action="reject">
+
+            REJECT
+
+          </button>
+
+        </div>
+
+      `;
+
+
+      list.appendChild(row);
+
+    });
+
+
+    list
+      .querySelectorAll("button")
+      .forEach(button=>{
+
+        button.addEventListener(
+          "click",
+          async()=>{
+
+            const uid =
+              button.dataset.uid;
+
+
+            const action =
+              button.dataset.action;
+
+
+            if(
+              action ===
+              "approve"
+            ){
+
+              await approveUser(uid);
+
+            }else{
+
+              await rejectUser(uid);
+
+            }
+
+          }
+        );
+
+      });
+
+
+  }catch(error){
+
+    console.error(
+      "PENDING ERROR:",
+      error
+    );
+
+
+    list.innerHTML =
+      `<div class="loading">
+        Gagal mengambil data user.
+      </div>`;
+
+  }
+
+}
+
+
+async function approveUser(uid){
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        uid
+      ),
+      {
+        status:"approved"
+      }
+    );
+
+
+    loadPendingUsers();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Gagal approve user."
+    );
+
+  }
+
+}
+
+
+async function rejectUser(uid){
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        uid
+      ),
+      {
+        status:"rejected"
+      }
+    );
+
+
+    loadPendingUsers();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Gagal reject user."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   OPEN INVENTORY
+   DASHBOARD BENAR-BENAR DITUTUP
+===================================================== */
+
+window.openInventory=function(mode){
+
+  /*
+    Tutup dashboard sepenuhnya.
+  */
+
+  $("dashboard")
+    .classList
+    .remove("show");
+
+
+  /*
+    Tampilkan halaman inventory.
+  */
+
+  $("inventoryPage")
+    .classList
+    .add("show");
+
+
+  setMode(mode);
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+
+/* =====================================================
+   BACK TO DASHBOARD
+===================================================== */
+
+window.backToDashboard=function(){
+
+  $("inventoryPage")
+    .classList
+    .remove("show");
+
+
+  $("dashboard")
+    .classList
+    .add("show");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+
+/* =====================================================
+   INVENTORY MODE
+===================================================== */
+
+window.setMode=function(mode){
+
+  currentMode =
+    mode;
+
+
+  $("inventoryTitle")
+    .textContent =
+      mode === "opname"
+      ? "Stock Opname"
+      : "Stock Loss";
+
+
+  $("inventoryIcon")
+    .textContent =
+      mode === "opname"
+      ? "📦"
+      : "📉";
+
+
+  $("modeStockloss")
+    .classList
+    .toggle(
+      "active",
+      mode === "stockloss"
+    );
+
+
+  $("modeOpname")
+    .classList
+    .toggle(
+      "active",
+      mode === "opname"
+    );
+
+
+  loadHistory();
+
+};
+
+
+/* =====================================================
+   MASTER DATA
+===================================================== */
+
+async function loadMaster(){
+
+  try{
+
+    const response =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
+
+          body:JSON.stringify({
+            action:"getAllBarcode"
+          })
+        }
+      );
+
+
+    if(!response.ok)
+      throw new Error(
+        "HTTP "+response.status
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(!Array.isArray(data))
+      throw new Error(
+        "MASTER invalid"
+      );
+
+
+    masterData =
+      data
+        .filter(
+          x=>
+            x &&
+            x.barcode != null
+        )
+        .map(
+          x=>({
+            barcode:String(
+              x.barcode
+            ),
+
+            nama:String(
+              x.nama || ""
+            )
+          })
+        );
+
+
+    $("masterStatus")
+      .textContent =
+        masterData.length
+        ? "READY"
+        : "EMPTY";
+
+
+    $("masterCount")
+      .textContent =
+        masterData.length
+        ? masterData.length
+            .toLocaleString("id-ID")
+            +" item acuan"
+        : "Belum ada data";
+
+
+  }catch(error){
+
+    console.error(
+      "MASTER ERROR:",
+      error
+    );
+
+
+    $("masterStatus")
+      .textContent =
+      "OFFLINE";
+
+
+    $("masterCount")
+      .textContent =
+      "Acuan belum tersedia";
+
+  }
+
+}
+
+
+/* =====================================================
+   AUTOCOMPLETE
+===================================================== */
+
+function renderSuggestions(value){
+
+  const box =
+    $("suggestions");
+
+
+  const keyword =
+    value
+      .trim()
+      .toLowerCase();
+
+
+  if(
+    !keyword ||
+    !masterData.length
+  ){
+
+    box.style.display="none";
+
+    return;
+
+  }
+
+
+  const results =
+    masterData
+      .filter(item=>{
+
+        return String(
+          item.barcode
+        )
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        String(
+          item.nama
+        )
+          .toLowerCase()
+          .includes(keyword);
+
+      })
+      .slice(0,20);
+
+
+  if(!results.length){
+
+    box.style.display="none";
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    results
+      .map(
+        item=>`
+
+          <div
+            class="suggestion"
+            data-barcode="${escapeHtml(
+              item.barcode
+            )}">
+
+            <strong>
+              ${escapeHtml(
+                item.barcode
+              )}
+            </strong>
+
+            <span>
+              ${escapeHtml(
+                item.nama
+              )}
+            </span>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+
+  box.style.display="block";
+
+
+  box
+    .querySelectorAll(
+      ".suggestion"
+    )
+    .forEach(el=>{
+
+      el.addEventListener(
+        "click",
+        ()=>{
+
+          $("barcode")
+            .value =
+            el.dataset.barcode;
+
+
+          selectedBarcode =
+            el.dataset.barcode;
+
+
+          box.style.display =
+            "none";
+
+
+          $("qty").focus();
+
+        }
+      );
+
+    });
+
+}
+
+
+/* =====================================================
+   BARCODE EVENTS
+===================================================== */
+
+$("barcode")
+  .addEventListener(
+    "focus",
+    ()=>{
+
+      if(!masterData.length)
+        loadMaster();
+
+    }
+  );
+
+
+$("barcode")
+  .addEventListener(
+    "input",
+    e=>{
+
+      selectedBarcode =
+        e.target.value.trim();
+
+
+      renderSuggestions(
+        e.target.value
+      );
+
+    }
+  );
+
+
+$("barcode")
+  .addEventListener(
+    "keydown",
+    e=>{
+
+      if(e.key==="Enter"){
+
+        e.preventDefault();
+
+
+        $("suggestions")
+          .style
+          .display="none";
+
+
+        processWeighedBarcode();
+
+
+        $("qty").focus();
+
+      }
+
+    }
+  );
+
+
+$("qty")
+  .addEventListener(
+    "keydown",
+    e=>{
+
+      if(e.key==="Enter"){
+
+        e.preventDefault();
+
+        saveInventory();
+
+      }
+
+    }
+  );
+
+
+document.addEventListener(
+  "click",
+  e=>{
+
+    if(
+      !e.target.closest(
+        ".barcode-area"
+      )
+    ){
+
+      $("suggestions")
+        .style
+        .display="none";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   WEIGHT BARCODE
+===================================================== */
+
+function processWeighedBarcode(){
+
+  const barcode =
+    $("barcode")
+      .value
+      .trim();
+
+
+  if(
+    barcode.startsWith("20") &&
+    barcode.length === 13 &&
+    /^\d+$/.test(barcode)
+  ){
+
+    const searchBarcode =
+      barcode.substring(
+        2,
+        7
+      );
+
+
+    const rawQty =
+      barcode.substring(
+        7,
+        12
+      );
+
+
+    const qty =
+      parseInt(
+        rawQty,
+        10
+      ) / 1000;
+
+
+    $("barcode")
+      .value =
+      searchBarcode;
+
+
+    $("qty")
+      .value =
+      qty
+        .toString()
+        .replace(
+          ".",
+          ","
+        );
+
+
+    selectedBarcode =
+      searchBarcode;
+
+  }
+
+}
+
+
+/* =====================================================
+   LOCAL HISTORY
+===================================================== */
+
+function addLocalHistory(
+  barcode,
+  qty
+){
+
+  const product =
+    masterData.find(
+      x=>
+        x.barcode ===
+        barcode
+    );
+
+
+  const name =
+    product?.nama ||
+    barcode;
+
+
+  const list =
+    $("historyList");
+
+
+  const loading =
+    list.querySelector(
+      ".loading"
+    );
+
+
+  if(loading)
+    list.innerHTML="";
+
+
+  const row =
+    document.createElement(
+      "div"
+    );
+
+
+  row.className =
+    "history-item";
+
+
+  row.dataset.local="1";
+
+
+  row.innerHTML = `
+
+    <div class="history-name">
+      ${escapeHtml(name)}
+    </div>
+
+    <div class="history-qty">
+      ${escapeHtml(qty)}
+    </div>
+
+  `;
+
+
+  list.prepend(row);
+
+
+  while(
+    list.children.length > 50
+  ){
+
+    list.lastChild.remove();
+
+  }
+
+}
+
+
+/* =====================================================
+   SAVE INVENTORY
+===================================================== */
+
+window.saveInventory=async function(){
+
+  const barcode =
+    $("barcode")
+      .value
+      .trim();
+
+
+  const qtyText =
+    $("qty")
+      .value
+      .trim();
+
+
+  if(!barcode){
+
+    showMessage(
+      "inventoryMessage",
+      "Barcode wajib diisi.",
+      "error"
+    );
+
+    $("barcode").focus();
+
+    return;
+
+  }
+
+
+  if(!qtyText){
+
+    showMessage(
+      "inventoryMessage",
+      "Qty wajib diisi.",
+      "error"
+    );
+
+    $("qty").focus();
+
+    return;
+
+  }
+
+
+  const qty =
+    parseFloat(
+      qtyText.replace(
+        ",",
+        "."
+      )
+    );
+
+
+  if(isNaN(qty)){
+
+    showMessage(
+      "inventoryMessage",
+      "Qty tidak valid.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const mode =
+    currentMode === "opname"
+    ? "opname"
+    : "stockloss";
+
+
+  /*
+    OPTIMISTIC UI
+    History langsung muncul.
+    Input langsung dikosongkan.
+  */
+
+  addLocalHistory(
+    barcode,
+    qtyText
+  );
+
+
+  $("barcode").value="";
+  $("qty").value="";
+  selectedBarcode="";
+
+
+  $("barcode").focus();
+
+
+  showMessage(
+    "inventoryMessage",
+    "Data dikirim ke server...",
+    "success"
+  );
+
+
+  try{
+
+    const response =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
+
+          body:JSON.stringify({
+
+            action:"saveData",
+
+            barcode:barcode,
+
+            qty:qty,
+
+            mode:mode
+
+          })
+        }
+      );
+
+
+    const result =
+      await response.text();
+
+
+    if(
+      !result.includes(
+        "Success"
+      )
+    ){
+
+      throw new Error(
+        result
+      );
+
+    }
+
+
+    showMessage(
+      "inventoryMessage",
+      "✓ Data berhasil disimpan.",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "SAVE ERROR:",
+      error
+    );
+
+
+    showMessage(
+      "inventoryMessage",
+      "⚠ Gagal mengirim data ke Sheets.",
+      "error"
+    );
+
+
+    /*
+      Ambil ulang history server
+      apabila gagal.
+    */
+
+    loadHistory();
+
+  }
+
+};
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+async function loadHistory(){
+
+  const list =
+    $("historyList");
+
+
+  list.innerHTML =
+    `<div class="loading">
+      Memuat riwayat...
+    </div>`;
+
+
+  try{
+
+    const response =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
+
+          body:JSON.stringify({
+
+            action:"getHistory",
+
+            mode:
+              currentMode === "opname"
+              ? "opname"
+              : "stockloss"
+
+          })
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      !Array.isArray(data) ||
+      !data.length
+    ){
+
+      list.innerHTML =
+        `<div class="loading">
+          Belum ada data.
+        </div>`;
+
+      return;
+
+    }
+
+
+    list.innerHTML =
+      data
+        .map(
+          item=>`
+
+            <div class="history-item">
+
+              <div class="history-name">
+                ${escapeHtml(
+                  item.nama
+                )}
+              </div>
+
+              <div class="history-qty">
+                ${escapeHtml(
+                  item.qty
+                )}
+              </div>
+
+            </div>
+
+          `
+        )
+        .join("");
+
+
+  }catch(error){
+
+    console.error(
+      "HISTORY ERROR:",
+      error
+    );
+
+
+    list.innerHTML =
+      `<div class="loading">
+        Gagal memuat riwayat.
+      </div>`;
+
+  }
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+window.resetInventory=async function(){
+
+  const confirmation =
+    prompt(
+      "Masukkan password reset:"
+    );
+
+
+  if(
+    confirmation === null
+  )
+    return;
+
+
+  if(
+    confirmation !== "0800"
+  ){
+
+    alert(
+      "Password reset salah."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      "Yakin ingin menghapus seluruh data pada mode ini?"
+    )
+  )
+    return;
+
+
+  try{
+
+    const response =
+      await fetch(
+        URL_SCRIPT,
+        {
+
+          method:"POST",
+
+          body:JSON.stringify({
+
+            action:"reset",
+
+            password:confirmation,
+
+            mode:
+              currentMode === "opname"
+              ? "opname"
+              : "stockloss"
+
+          })
+
+        }
+      );
+
+
+    const result =
+      await response.text();
+
+
+    if(
+      !result.includes(
+        "berhasil"
+      )
+    ){
+
+      throw new Error(
+        result
+      );
+
+    }
+
+
+    alert(
+      "Reset berhasil."
+    );
+
+
+    loadHistory();
+
+
+  }catch(error){
+
+    console.error(
+      "RESET ERROR:",
+      error
+    );
+
+
+    alert(
+      "Reset gagal."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+  auth,
+  async user=>{
+
+    if(!user){
+
+      return;
+
+    }
+
+
+    try{
+
+      await user.reload();
+
+
+      if(!user.emailVerified){
+
+        return;
+
+      }
+
+
+      const snap =
+        await getDoc(
+          doc(
+            db,
+            "users",
+            user.uid
+          )
+        );
+
+
+      if(!snap.exists()){
+
+        return;
+
+      }
+
+
+      const profile =
+        snap.data();
+
+
+      if(
+        profile.status !==
+        "approved"
+      ){
+
+        return;
+
+      }
+
+
+      currentUser =
+        user;
+
+
+      currentProfile =
+        profile;
+
+
+      showDashboard();
+
+
+    }catch(error){
+
+      console.error(
+        "AUTH STATE ERROR:",
+        error
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+loadMaster();
+
+</script>
+
+</body>
+</html>
