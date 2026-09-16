@@ -2,98 +2,103 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>THE BUTCHER</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
 
 :root{
   --orange:#ff7a00;
-  --orange2:#ffad42;
-  --orange3:#ffcc80;
-
+  --orange2:#ffb347;
   --red:#ff3b30;
   --green:#35e889;
   --blue:#4b91ff;
 
-  --bg:#07080b;
-  --bg2:#0c0e13;
+  --bg:#08090c;
+  --bg2:#101217;
 
-  --card:rgba(255,255,255,.055);
-  --card2:rgba(255,255,255,.075);
+  --card:rgba(255,255,255,.065);
+  --card2:rgba(255,255,255,.035);
 
-  --border:rgba(255,255,255,.10);
-  --border2:rgba(255,255,255,.16);
+  --border:rgba(255,255,255,.11);
 
-  --text:#fff;
-  --muted:rgba(255,255,255,.56);
-  --muted2:rgba(255,255,255,.38);
+  --text:#ffffff;
+  --muted:#9ca3af;
 
-  --shadow:0 25px 80px rgba(0,0,0,.45);
+  --shadow:
+    0 25px 80px rgba(0,0,0,.45);
 
-  --radius:22px;
+  --radius:24px;
 }
 
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+  margin:0;
+  padding:0;
 }
 
 html,
 body{
-  margin:0;
-  padding:0;
   width:100%;
   min-height:100%;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter,Arial,sans-serif;
 }
 
 body{
-  min-height:100vh;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255,122,0,.10),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(75,145,255,.08),
+      transparent 30%
+    ),
+    var(--bg);
+
+  color:var(--text);
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
   overflow-x:hidden;
 }
 
-/* =========================================================
+/* =========================
    BACKGROUND
-========================================================= */
+========================= */
 
 body::before{
   content:"";
   position:fixed;
-  inset:-30%;
-  z-index:-3;
-  background:
-    radial-gradient(circle at 50% 20%,rgba(255,122,0,.10),transparent 24%),
-    radial-gradient(circle at 15% 80%,rgba(75,145,255,.055),transparent 25%),
-    radial-gradient(circle at 85% 75%,rgba(255,122,0,.045),transparent 25%);
-  pointer-events:none;
-}
-
-body::after{
-  content:"";
-  position:fixed;
   inset:0;
-  z-index:-2;
+
   pointer-events:none;
-  opacity:.035;
-  background-image:
-    linear-gradient(rgba(255,255,255,.25) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.25) 1px,transparent 1px);
-  background-size:45px 45px;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,.018) 50%,
+      transparent 100%
+    );
+
+  z-index:-1;
 }
 
-/* =========================================================
-   GLOBAL
-========================================================= */
+/* =========================
+   GENERAL
+========================= */
 
 button,
-input,
-select{
+input{
   font:inherit;
 }
 
@@ -102,1252 +107,1365 @@ button{
 }
 
 .hidden{
-  display:none!important;
+  display:none !important;
 }
+
+/* =========================
+   LOGIN
+========================= */
 
 .page{
-  min-height:100vh;
   width:100%;
+  min-height:100vh;
 }
-
-.fadeIn{
-  animation:fadeIn .35s ease both;
-}
-
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(8px) scale(.99);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-@keyframes pop{
-  from{
-    opacity:0;
-    transform:scale(.96) translateY(8px);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-@keyframes pulse{
-  0%,100%{opacity:.7}
-  50%{opacity:1}
-}
-
-@keyframes shine{
-  0%{transform:translateX(-130%)}
-  100%{transform:translateX(130%)}
-}
-
-/* =========================================================
-   LOGIN
-========================================================= */
 
 #loginPage{
-  display:flex;
-  align-items:center;
-  justify-content:center;
   min-height:100vh;
-  padding:22px;
-}
 
-.login-wrap{
-  width:100%;
-  max-width:410px;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
+
+  padding:24px;
 }
 
 .login-card{
   width:100%;
-  position:relative;
-  overflow:hidden;
+  max-width:430px;
 
-  padding:32px 27px 27px;
-
-  border:1px solid var(--border);
-  border-radius:28px;
+  padding:38px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.085),
-      rgba(255,255,255,.035)
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.025)
     );
 
-  backdrop-filter:blur(28px);
-  -webkit-backdrop-filter:blur(28px);
+  border:1px solid var(--border);
 
-  box-shadow:
-    0 35px 100px rgba(0,0,0,.58),
-    inset 0 1px rgba(255,255,255,.08);
+  border-radius:28px;
 
-  animation:pop .5s cubic-bezier(.2,.8,.2,1);
+  box-shadow:var(--shadow);
+
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+
+  animation:cardIn .5s ease;
 }
 
-.login-card::before{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  top:-100px;
-  right:-80px;
-  border-radius:50%;
-  background:rgba(255,122,0,.12);
-  filter:blur(25px);
-  pointer-events:none;
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.98);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
-.login-card::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:60%;
-  height:1px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,180,80,.8),
-    transparent
-  );
-  animation:shine 5s ease-in-out infinite;
-}
-
-.brand-center{
+.brand{
   text-align:center;
-  margin-bottom:27px;
+  margin-bottom:32px;
 }
 
-.brand-mark{
-  width:66px;
-  height:66px;
-  margin:0 auto 14px;
+.brand-logo{
+  width:78px;
+  height:78px;
+
+  margin:0 auto 16px;
+
+  border-radius:22px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:19px;
-
-  font-family:Orbitron,sans-serif;
-  font-weight:800;
-  font-size:20px;
-  letter-spacing:-1px;
-
-  color:#fff;
-
   background:
     linear-gradient(
       145deg,
-      #ff9a2e,
-      #ff6500
+      var(--orange),
+      #ff4d00
     );
 
   box-shadow:
-    0 12px 35px rgba(255,122,0,.23),
-    inset 0 1px rgba(255,255,255,.35);
+    0 15px 40px rgba(255,122,0,.25);
 }
 
-.brand-title{
-  font-family:Orbitron,sans-serif;
-  font-size:18px;
-  font-weight:800;
-  letter-spacing:2.8px;
+.brand-logo span{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:-2px;
 }
 
-.brand-sub{
+.brand h1{
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.brand p{
   margin-top:7px;
   color:var(--muted);
-  font-size:11px;
-  letter-spacing:2px;
-  text-transform:uppercase;
+  font-size:13px;
 }
 
-.login-title{
-  text-align:center;
-  font-size:25px;
-  font-weight:800;
-  margin:0;
+.input-group{
+  margin-bottom:16px;
 }
 
-.login-desc{
-  text-align:center;
-  color:var(--muted);
-  font-size:12px;
-  margin:8px 0 23px;
-}
-
-.form-group{
-  margin-bottom:14px;
-}
-
-.form-label{
+.input-group label{
   display:block;
-  margin-bottom:7px;
-  color:rgba(255,255,255,.62);
-  font-size:10px;
+  margin-bottom:8px;
+
+  font-size:12px;
   font-weight:700;
-  letter-spacing:1.1px;
-  text-transform:uppercase;
+
+  color:#c9cdd4;
 }
 
 .input-wrap{
   position:relative;
 }
 
-.input-icon{
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
-  width:17px;
-  color:rgba(255,255,255,.4);
-  font-size:14px;
-  pointer-events:none;
-}
-
-.form-input{
+.input{
   width:100%;
-  height:48px;
+
+  height:50px;
+
+  padding:0 15px;
+
+  border-radius:14px;
 
   border:1px solid var(--border);
-  border-radius:14px;
+
+  background:rgba(0,0,0,.25);
+
+  color:#fff;
 
   outline:none;
 
-  color:#fff;
-  background:rgba(0,0,0,.25);
-
-  padding:0 14px 0 42px;
-
-  transition:
-    border-color .2s,
-    box-shadow .2s,
-    background .2s;
+  transition:.2s;
 }
 
-.form-input:focus{
-  border-color:rgba(255,122,0,.65);
-  background:rgba(0,0,0,.35);
+.input:focus{
+  border-color:rgba(255,122,0,.7);
 
   box-shadow:
-    0 0 0 3px rgba(255,122,0,.08);
+    0 0 0 3px rgba(255,122,0,.09);
 }
 
-.form-input::placeholder{
-  color:rgba(255,255,255,.28);
-}
-
-.login-options{
-  display:flex;
-  justify-content:flex-end;
-  margin:2px 0 17px;
-}
-
-.text-button{
-  border:0;
-  padding:0;
-  color:var(--orange2);
-  background:none;
-  font-size:11px;
-  font-weight:600;
-}
-
-.text-button:hover{
-  color:#fff;
-}
-
-.primary-btn{
+.btn{
   width:100%;
-  height:49px;
+
+  min-height:50px;
 
   border:0;
+
   border-radius:14px;
 
-  color:#fff;
   font-weight:800;
-  font-size:12px;
-  letter-spacing:.8px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff9b2f,
-      #ff6500
-    );
-
-  box-shadow:
-    0 12px 30px rgba(255,122,0,.18);
 
   transition:
     transform .18s,
     box-shadow .18s,
-    filter .18s;
+    opacity .18s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn:active{
+  transform:translateY(1px);
+}
+
+.btn-primary{
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      #ff4d00
+    );
+
+  box-shadow:
+    0 12px 28px rgba(255,122,0,.18);
+}
+
+.btn-secondary{
+  color:#fff;
+
+  background:rgba(255,255,255,.07);
+
+  border:1px solid var(--border);
+}
+
+.btn-danger{
+  background:
+    linear-gradient(
+      135deg,
+      #ff453a,
+      #c91f18
+    );
+
+  color:#fff;
+}
+
+.login-actions{
+  margin-top:18px;
+
+  display:flex;
+  justify-content:space-between;
+
+  gap:12px;
+}
+
+.text-button{
+  background:none;
+  border:0;
+
+  color:#ff9b3d;
+
+  font-size:12px;
+  font-weight:700;
+}
+
+.text-button:hover{
+  color:#ffc078;
+}
+
+.message{
+  min-height:20px;
+
+  margin-top:14px;
+
+  font-size:12px;
+
+  text-align:center;
+
+  color:var(--muted);
+}
+
+.message.error{
+  color:#ff6b61;
+}
+
+.message.success{
+  color:#52e99a;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+#dashboard{
+  min-height:100vh;
+  padding:24px;
+}
+
+.dashboard-layout{
+  width:100%;
+  max-width:1450px;
+
+  min-height:calc(100vh - 48px);
+
+  margin:0 auto;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(280px,350px);
+
+  gap:22px;
+
+  align-items:stretch;
+}
+
+/* LEFT SIDE */
+
+.dashboard-main{
+  min-width:0;
+
+  display:flex;
+  flex-direction:column;
+
+  padding:26px;
+
+  border-radius:28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.018)
+    );
+
+  border:1px solid var(--border);
+
+  box-shadow:var(--shadow);
 
   position:relative;
   overflow:hidden;
 }
 
-.primary-btn:hover{
-  transform:translateY(-1px);
-  box-shadow:
-    0 16px 35px rgba(255,122,0,.26);
+.dashboard-main::after{
+  content:"";
+
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  right:-120px;
+  bottom:-150px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,122,0,.15),
+      transparent 70%
+    );
+
+  pointer-events:none;
 }
 
-.primary-btn:active{
-  transform:scale(.985);
-}
-
-.secondary-btn{
-  width:100%;
-  height:45px;
-
-  border:1px solid var(--border);
-  border-radius:13px;
-
-  color:#fff;
-  background:rgba(255,255,255,.045);
-
-  font-size:11px;
-  font-weight:700;
-
-  transition:.2s;
-}
-
-.secondary-btn:hover{
-  background:rgba(255,255,255,.08);
-  border-color:var(--border2);
-}
-
-.login-message{
-  min-height:20px;
-  margin-top:12px;
-  text-align:center;
-  font-size:11px;
-  color:var(--muted);
-}
-
-.login-footer{
-  text-align:center;
-  margin-top:22px;
-  color:var(--muted2);
-  font-size:10px;
-  letter-spacing:.6px;
-}
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-#dashboard{
-  display:none;
-  min-height:100vh;
-}
-
-#dashboard.show{
-  display:block;
-}
-
-.dashboard-center{
-  width:100%;
-  max-width:850px;
-  margin:0 auto;
-  padding:26px 22px 40px;
-}
-
-/* TOP */
+/* TOPBAR */
 
 .topbar{
+  width:100%;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-  gap:12px;
-  margin-bottom:55px;
+
+  gap:15px;
+
+  margin-bottom:45px;
+
+  position:relative;
+  z-index:2;
 }
 
 .top-brand{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
-.top-brand-mark{
-  width:35px;
-  height:35px;
+.top-brand-icon{
+  width:43px;
+  height:43px;
+
+  border-radius:13px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:11px;
+  font-weight:900;
 
-  font-family:Orbitron,sans-serif;
-  font-size:10px;
-  font-weight:800;
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      #ff4b00
+    );
 
-  background:linear-gradient(135deg,#ff9b2f,#ff6500);
-
-  box-shadow:0 7px 20px rgba(255,122,0,.16);
+  box-shadow:
+    0 8px 22px rgba(255,122,0,.18);
 }
 
 .top-brand-text{
-  font-family:Orbitron,sans-serif;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:1.6px;
+  line-height:1.1;
 }
 
-.top-actions{
-  display:flex;
-  align-items:center;
-  gap:7px;
+.top-brand-text strong{
+  display:block;
+
+  font-size:15px;
+  letter-spacing:1px;
 }
 
-.user-pill{
+.top-brand-text span{
+  display:block;
+
+  margin-top:4px;
+
+  color:#858b96;
+
+  font-size:10px;
+
+  letter-spacing:1px;
+}
+
+.user-area{
   display:flex;
   align-items:center;
-  gap:8px;
-
-  padding:5px 10px 5px 5px;
-
-  border:1px solid var(--border);
-  border-radius:100px;
-
-  background:rgba(255,255,255,.035);
+  gap:9px;
 }
 
 .avatar{
-  width:29px;
-  height:29px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:38px;
+  height:38px;
 
   border-radius:50%;
 
-  background:
-    linear-gradient(135deg,#ff9b2f,#ff6500);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  font-size:10px;
-  font-weight:800;
+  background:
+    linear-gradient(
+      135deg,
+      #343840,
+      #181a20
+    );
+
+  border:1px solid var(--border);
+
+  font-size:12px;
+  font-weight:900;
 }
 
 .user-name{
-  max-width:100px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  max-width:130px;
 
-  font-size:10px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+
+  font-size:12px;
   font-weight:700;
 }
 
-.icon-btn{
-  width:36px;
-  height:36px;
+.icon-button{
+  width:38px;
+  height:38px;
+
+  border-radius:12px;
+
+  border:1px solid var(--border);
+
+  background:rgba(255,255,255,.045);
+
+  color:#fff;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border:1px solid var(--border);
-  border-radius:11px;
-
-  color:#fff;
-  background:rgba(255,255,255,.04);
-
-  font-size:14px;
+  font-size:16px;
 
   transition:.2s;
 }
 
-.icon-btn:hover{
-  background:rgba(255,255,255,.08);
-  border-color:var(--border2);
+.icon-button:hover{
+  background:rgba(255,255,255,.09);
 }
 
 /* WELCOME */
 
-.welcome{
-  text-align:center;
-  margin-bottom:38px;
+.welcome-block{
+  position:relative;
+  z-index:2;
+
+  margin-top:auto;
+  margin-bottom:auto;
+
+  max-width:760px;
 }
 
-.welcome-eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
+.welcome-small{
+  color:var(--orange);
 
-  padding:6px 10px;
-
-  border:1px solid rgba(255,122,0,.17);
-  border-radius:100px;
-
-  background:rgba(255,122,0,.055);
-
-  color:var(--orange2);
-
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1.7px;
-}
-
-.online-dot{
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 9px var(--green);
-}
-
-.welcome h1{
-  margin:14px 0 7px;
-
-  font-size:clamp(28px,5vw,42px);
-  line-height:1.05;
-  letter-spacing:-1.5px;
-  font-weight:800;
-}
-
-.welcome h1 span{
-  color:var(--orange2);
-}
-
-.welcome p{
-  max-width:480px;
-  margin:0 auto;
-
-  color:var(--muted);
   font-size:12px;
+  font-weight:800;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  margin-bottom:12px;
+}
+
+.welcome-title{
+  font-size:
+    clamp(42px,6vw,82px);
+
+  line-height:.95;
+
+  font-weight:950;
+
+  letter-spacing:-4px;
+}
+
+.welcome-title span{
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      var(--orange2)
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+}
+
+.welcome-sub{
+  margin-top:20px;
+
+  max-width:650px;
+
+  color:#8f96a2;
+
+  font-size:14px;
+
   line-height:1.7;
 }
 
-/* =========================================================
-   MAIN MENU
-========================================================= */
+.system-status{
+  display:inline-flex;
 
-.menu-title{
-  text-align:center;
-  margin-bottom:15px;
-}
+  align-items:center;
+  gap:8px;
 
-.menu-title strong{
-  display:block;
+  margin-top:25px;
+
+  padding:9px 13px;
+
+  border-radius:999px;
+
+  background:rgba(53,232,137,.06);
+
+  border:1px solid rgba(53,232,137,.15);
+
+  color:#71efa9;
+
   font-size:11px;
-  letter-spacing:1.6px;
-  font-weight:800;
+
+  font-weight:700;
 }
 
-.menu-title span{
-  display:block;
-  margin-top:4px;
-  color:var(--muted2);
-  font-size:9px;
+.status-dot{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:
+    0 0 12px var(--green);
 }
 
-/* Desktop:
-   cards remain centered, not full width
-*/
+/* FOOTER */
 
-.operation-grid{
-  width:100%;
-  max-width:660px;
-  margin:0 auto;
+.dashboard-footer{
+  position:relative;
+  z-index:2;
 
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:13px;
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+
+  margin-top:35px;
+
+  padding-top:18px;
+
+  border-top:1px solid rgba(255,255,255,.06);
+
+  color:#666d78;
+
+  font-size:10px;
+}
+
+/* =========================
+   OPERATIONS RIGHT PANEL
+========================= */
+
+.operations-panel{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+  min-width:0;
+}
+
+.operations-heading{
+  padding:5px 4px 3px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:end;
+}
+
+.operations-heading h2{
+  font-size:17px;
+  font-weight:900;
+}
+
+.operations-heading span{
+  color:#6d737e;
+
+  font-size:10px;
 }
 
 .operation-card{
-  position:relative;
-  min-height:155px;
+  flex:1;
 
-  padding:19px;
+  min-height:180px;
 
-  overflow:hidden;
+  padding:22px;
+
+  border-radius:22px;
 
   border:1px solid var(--border);
-  border-radius:20px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,.075),
-      rgba(255,255,255,.035)
+      rgba(255,255,255,.065),
+      rgba(255,255,255,.025)
     );
 
   box-shadow:
-    0 16px 45px rgba(0,0,0,.22),
-    inset 0 1px rgba(255,255,255,.055);
+    0 18px 45px rgba(0,0,0,.25);
+
+  position:relative;
+
+  overflow:hidden;
 
   cursor:pointer;
 
   transition:
-    transform .25s cubic-bezier(.2,.8,.2,1),
-    border-color .25s,
-    background .25s,
-    box-shadow .25s;
-
-  animation:pop .45s ease both;
-}
-
-.operation-card:nth-child(2){
-  animation-delay:.07s;
+    transform .2s,
+    border-color .2s,
+    background .2s;
 }
 
 .operation-card:hover{
-  transform:translateY(-4px);
+  transform:translateX(-4px);
 
-  border-color:rgba(255,122,0,.38);
+  border-color:
+    rgba(255,122,0,.4);
 
   background:
     linear-gradient(
       145deg,
       rgba(255,122,0,.10),
-      rgba(255,255,255,.045)
+      rgba(255,255,255,.035)
     );
-
-  box-shadow:
-    0 22px 60px rgba(0,0,0,.35),
-    0 0 35px rgba(255,122,0,.055);
 }
 
-.operation-card:active{
-  transform:scale(.985);
-}
-
-.operation-card::before{
+.operation-card::after{
   content:"";
-  position:absolute;
-  width:120px;
-  height:120px;
 
-  right:-45px;
-  bottom:-55px;
+  position:absolute;
+
+  width:170px;
+  height:170px;
+
+  right:-70px;
+  bottom:-80px;
 
   border-radius:50%;
 
-  background:rgba(255,122,0,.10);
-  filter:blur(15px);
-
-  transition:.3s;
-}
-
-.operation-card:hover::before{
-  transform:scale(1.35);
-}
-
-.operation-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,122,0,.18),
+      transparent 70%
+    );
 }
 
 .operation-icon{
-  width:43px;
-  height:43px;
+  width:55px;
+  height:55px;
+
+  border-radius:17px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:13px;
+  margin-bottom:18px;
 
-  font-size:19px;
+  font-size:25px;
 
-  background:rgba(255,122,0,.10);
-  border:1px solid rgba(255,122,0,.16);
+  background:
+    rgba(255,122,0,.10);
+
+  border:
+    1px solid rgba(255,122,0,.16);
+}
+
+.operation-card.opname .operation-icon{
+  background:
+    rgba(75,145,255,.10);
+
+  border-color:
+    rgba(75,145,255,.17);
+}
+
+.operation-title{
+  font-size:18px;
+
+  font-weight:900;
+
+  letter-spacing:.2px;
+}
+
+.operation-desc{
+  margin-top:7px;
+
+  color:#777f8c;
+
+  font-size:11px;
+
+  line-height:1.5;
+
+  max-width:220px;
 }
 
 .operation-arrow{
-  color:rgba(255,255,255,.3);
-  font-size:18px;
-  transition:.25s;
-}
+  position:absolute;
 
-.operation-card:hover .operation-arrow{
-  color:var(--orange2);
-  transform:translateX(3px);
-}
+  right:20px;
+  top:20px;
 
-.operation-tag{
-  margin-top:17px;
+  width:30px;
+  height:30px;
 
-  color:var(--orange2);
+  border-radius:10px;
 
-  font-size:8px;
-  font-weight:800;
-  letter-spacing:1.5px;
-}
-
-.operation-card h3{
-  margin:5px 0 5px;
-
-  font-size:17px;
-  font-weight:800;
-  letter-spacing:-.3px;
-}
-
-.operation-card p{
-  margin:0;
-
-  color:var(--muted);
-  font-size:10px;
-  line-height:1.55;
-}
-
-/* SYSTEM */
-
-.system-area{
-  max-width:660px;
-  margin:24px auto 0;
-}
-
-.system-label{
-  margin-bottom:9px;
-
-  color:var(--muted2);
-  font-size:8px;
-  font-weight:800;
-  letter-spacing:1.5px;
-  text-align:center;
-}
-
-.status-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.status-chip{
-  min-height:54px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-
-  padding:8px 11px;
-
-  border:1px solid var(--border);
-  border-radius:13px;
-
-  background:rgba(255,255,255,.035);
-}
-
-.status-top{
   display:flex;
   align-items:center;
-  gap:6px;
+  justify-content:center;
 
-  color:var(--muted2);
+  color:#aaa;
 
-  font-size:7px;
-  font-weight:800;
-  letter-spacing:1px;
+  background:rgba(255,255,255,.04);
+
+  font-size:14px;
 }
 
-.status-dot{
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 8px var(--green);
-}
-
-.status-value{
-  margin-top:5px;
-
-  font-size:9px;
-  font-weight:700;
-}
-
-.status-count{
-  color:var(--orange2);
-}
-
-/* =========================================================
+/* =========================
    INVENTORY PAGE
-========================================================= */
+========================= */
 
 #inventoryPage{
+  position:fixed;
+
+  inset:0;
+
+  z-index:100;
+
   display:none;
+
   min-height:100vh;
+
+  padding:24px;
+
+  overflow:auto;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255,122,0,.09),
+      transparent 35%
+    ),
+    rgba(8,9,12,.97);
+
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
 }
 
 #inventoryPage.show{
-  display:block;
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
 }
 
 .inventory-center{
   width:100%;
+
   max-width:560px;
-  margin:0 auto;
-  padding:24px 18px 40px;
+
+  margin:auto;
+
+  animation:
+    inventoryIn .35s ease;
 }
 
-.inventory-header{
+@keyframes inventoryIn{
+  from{
+    opacity:0;
+    transform:
+      translateY(18px)
+      scale(.97);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.inventory-top{
   display:flex;
+
   align-items:center;
-  justify-content:center;
-  position:relative;
+  justify-content:space-between;
 
-  margin-bottom:27px;
-}
+  gap:12px;
 
-.back-btn{
-  position:absolute;
-  left:0;
-
-  height:35px;
-  padding:0 11px;
-
-  display:flex;
-  align-items:center;
-  gap:5px;
-
-  border:1px solid var(--border);
-  border-radius:11px;
-
-  color:rgba(255,255,255,.7);
-  background:rgba(255,255,255,.035);
-
-  font-size:9px;
-  font-weight:700;
-
-  transition:.2s;
-}
-
-.back-btn:hover{
-  color:#fff;
-  border-color:var(--border2);
+  margin-bottom:18px;
 }
 
 .inventory-brand{
-  text-align:center;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.inventory-brand-small{
-  color:var(--orange2);
-  font-family:Orbitron,sans-serif;
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:2px;
+.inventory-logo{
+  width:42px;
+  height:42px;
+
+  border-radius:13px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:900;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--orange),
+      #ff4b00
+    );
 }
 
-.inventory-brand-title{
-  margin-top:4px;
-  font-size:17px;
-  font-weight:800;
-  letter-spacing:-.4px;
+.inventory-brand strong{
+  display:block;
+
+  font-size:13px;
+
+  letter-spacing:1px;
 }
 
-.inventory-card{
-  position:relative;
-  overflow:hidden;
+.inventory-brand span{
+  display:block;
 
-  padding:23px;
+  color:#777e89;
+
+  font-size:9px;
+
+  margin-top:3px;
+}
+
+.back-button{
+  height:40px;
+
+  padding:0 14px;
+
+  border-radius:12px;
 
   border:1px solid var(--border);
-  border-radius:23px;
+
+  background:rgba(255,255,255,.05);
+
+  color:#fff;
+
+  font-size:11px;
+
+  font-weight:800;
+}
+
+.back-button:hover{
+  background:rgba(255,255,255,.09);
+}
+
+/* INVENTORY CARD */
+
+.inventory-card{
+  padding:28px;
+
+  border-radius:28px;
+
+  border:1px solid var(--border);
 
   background:
     linear-gradient(
       145deg,
       rgba(255,255,255,.075),
-      rgba(255,255,255,.035)
+      rgba(255,255,255,.025)
     );
-
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
 
   box-shadow:var(--shadow);
 
-  animation:pop .35s ease both;
+  position:relative;
+
+  overflow:visible;
 }
 
-.inventory-card::before{
-  content:"";
-  position:absolute;
+.inventory-heading{
+  text-align:center;
 
-  width:190px;
-  height:190px;
-
-  top:-120px;
-  right:-100px;
-
-  border-radius:50%;
-
-  background:rgba(255,122,0,.09);
-  filter:blur(30px);
-
-  pointer-events:none;
+  margin-bottom:25px;
 }
 
-.mode-heading{
-  display:flex;
-  align-items:center;
-  gap:11px;
+.inventory-heading-icon{
+  width:66px;
+  height:66px;
 
-  margin-bottom:21px;
-}
+  margin:0 auto 15px;
 
-.mode-icon{
-  width:42px;
-  height:42px;
+  border-radius:20px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:13px;
+  font-size:28px;
 
-  background:rgba(255,122,0,.11);
-  border:1px solid rgba(255,122,0,.17);
+  background:
+    rgba(255,122,0,.10);
 
-  font-size:18px;
+  border:
+    1px solid rgba(255,122,0,.17);
 }
 
-.mode-name{
-  font-size:17px;
-  font-weight:800;
+.inventory-card.opname-card
+.inventory-heading-icon{
+  background:
+    rgba(75,145,255,.10);
 }
 
-.mode-description{
-  margin-top:3px;
+.inventory-heading h1{
+  font-size:27px;
 
-  color:var(--muted);
-  font-size:9px;
+  font-weight:950;
+
+  letter-spacing:-1px;
 }
 
-.field-block{
-  margin-bottom:14px;
+.inventory-heading p{
+  margin-top:6px;
+
+  color:#777e89;
+
+  font-size:11px;
 }
 
-.field-head{
+/* FORM */
+
+.inventory-form{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:7px;
+
+  flex-direction:column;
+
+  gap:15px;
 }
 
-.field-title{
-  color:rgba(255,255,255,.62);
-  font-size:9px;
+.inventory-input-group{
+  position:relative;
+}
+
+.inventory-input-group label{
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#b9bec6;
+
+  font-size:11px;
+
   font-weight:800;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-.field-helper{
-  color:var(--muted2);
-  font-size:8px;
 }
 
 .inventory-input{
   width:100%;
-  height:48px;
+
+  height:54px;
+
+  padding:
+    0 15px;
+
+  border-radius:15px;
 
   border:1px solid var(--border);
-  border-radius:13px;
+
+  background:
+    rgba(0,0,0,.25);
+
+  color:#fff;
 
   outline:none;
 
-  padding:0 13px;
-
-  color:#fff;
-  background:rgba(0,0,0,.24);
-
-  font-size:13px;
+  font-size:15px;
 
   transition:.2s;
 }
 
 .inventory-input:focus{
-  border-color:rgba(255,122,0,.58);
-  box-shadow:0 0 0 3px rgba(255,122,0,.075);
+  border-color:
+    rgba(255,122,0,.7);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255,122,0,.08);
 }
 
 .inventory-input::placeholder{
-  color:rgba(255,255,255,.25);
+  color:#565d68;
 }
 
 .qty-row{
   display:grid;
-  grid-template-columns:1fr 125px;
-  gap:10px;
+
+  grid-template-columns:
+    1fr 150px;
+
+  gap:12px;
 }
 
-.send-btn{
-  width:100%;
-  height:49px;
+.qty-unit{
+  height:54px;
 
-  margin-top:5px;
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:15px;
+
+  border:1px solid var(--border);
+
+  background:
+    rgba(255,255,255,.035);
+
+  color:#999faa;
+
+  font-size:12px;
+
+  font-weight:800;
+}
+
+.send-button{
+  width:100%;
+
+  height:55px;
+
+  margin-top:3px;
 
   border:0;
-  border-radius:14px;
+
+  border-radius:16px;
 
   color:#fff;
 
   background:
     linear-gradient(
       135deg,
-      #ff9c31,
-      #ff6500
+      var(--orange),
+      #ff4b00
     );
 
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.9px;
-
   box-shadow:
-    0 12px 30px rgba(255,122,0,.18);
+    0 13px 30px
+    rgba(255,122,0,.18);
+
+  font-size:13px;
+
+  font-weight:900;
+
+  letter-spacing:.4px;
 
   transition:.2s;
 }
 
-.send-btn:hover{
+.send-button:hover{
   transform:translateY(-1px);
-  box-shadow:0 16px 35px rgba(255,122,0,.25);
+
+  box-shadow:
+    0 17px 35px
+    rgba(255,122,0,.24);
 }
 
-.send-btn:active{
-  transform:scale(.985);
+.send-button:disabled{
+  opacity:.5;
+
+  cursor:not-allowed;
+
+  transform:none;
 }
 
 .inventory-message{
-  min-height:21px;
-
-  margin:11px 0 0;
+  min-height:18px;
 
   text-align:center;
 
-  font-size:10px;
-  color:var(--muted);
+  margin-top:12px;
+
+  font-size:11px;
+
+  color:#7f8792;
 }
 
-/* SUGGESTIONS */
-
-.suggestion-wrap{
-  position:relative;
+.inventory-message.error{
+  color:#ff6961;
 }
 
-#suggestions{
+.inventory-message.success{
+  color:#50e89a;
+}
+
+/* =========================
+   SUGGESTIONS
+========================= */
+
+.suggestions{
+  display:none;
+
   position:absolute;
 
-  top:calc(100% + 5px);
   left:0;
   right:0;
 
-  z-index:100;
+  top:82px;
 
-  display:none;
+  z-index:50;
 
-  max-height:220px;
+  max-height:240px;
+
   overflow-y:auto;
 
-  border:1px solid var(--border2);
-  border-radius:13px;
+  padding:5px;
+
+  border-radius:15px;
 
   background:
-    rgba(17,18,23,.97);
+    rgba(18,20,25,.98);
+
+  border:
+    1px solid var(--border);
 
   box-shadow:
-    0 20px 50px rgba(0,0,0,.55);
-
-  backdrop-filter:blur(20px);
+    0 20px 50px rgba(0,0,0,.5);
 }
 
 .suggestion-item{
-  padding:11px 13px;
+  padding:10px 11px;
 
-  border-bottom:1px solid rgba(255,255,255,.055);
+  border-radius:11px;
 
   cursor:pointer;
 
   transition:.15s;
 }
 
-.suggestion-item:last-child{
-  border-bottom:0;
-}
-
 .suggestion-item:hover{
-  background:rgba(255,122,0,.08);
+  background:
+    rgba(255,122,0,.10);
 }
 
 .suggestion-barcode{
-  color:var(--orange2);
-  font-family:monospace;
-  font-size:10px;
-  font-weight:700;
+  font-size:12px;
+
+  font-weight:800;
+
+  color:#fff;
 }
 
 .suggestion-name{
   margin-top:3px;
 
-  color:rgba(255,255,255,.72);
-
   font-size:10px;
 
+  color:#777f8b;
+
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
 }
 
-/* HISTORY */
+/* =========================
+   HISTORY
+========================= */
 
 .history-section{
-  margin-top:21px;
-  padding-top:19px;
-
-  border-top:1px solid rgba(255,255,255,.07);
+  margin-top:22px;
 }
 
-.history-head{
+.history-header{
   display:flex;
-  align-items:center;
+
   justify-content:space-between;
+  align-items:center;
 
-  margin-bottom:9px;
+  margin-bottom:10px;
 }
 
-.history-title{
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:1px;
+.history-header strong{
+  font-size:12px;
 }
 
-.history-sub{
-  color:var(--muted2);
-  font-size:8px;
+.history-header span{
+  color:#646b75;
+
+  font-size:9px;
 }
 
 .history-list{
-  max-height:260px;
+  max-height:180px;
+
   overflow-y:auto;
-}
 
-.history-empty{
-  padding:17px;
+  display:flex;
 
-  text-align:center;
+  flex-direction:column;
 
-  color:var(--muted2);
-
-  font-size:9px;
-
-  border:1px dashed rgba(255,255,255,.09);
-  border-radius:12px;
+  gap:7px;
 }
 
 .history-item{
+  padding:11px 12px;
+
+  border-radius:12px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  border:
+    1px solid rgba(255,255,255,.055);
+
   display:flex;
+
+  align-items:center;
+
   justify-content:space-between;
-  gap:10px;
 
-  padding:10px 11px;
-
-  margin-bottom:6px;
-
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:11px;
-
-  background:rgba(255,255,255,.025);
+  gap:12px;
 }
 
-.history-main{
+.history-left{
   min-width:0;
 }
 
 .history-code{
-  color:var(--orange2);
-  font-family:monospace;
-  font-size:9px;
-  font-weight:700;
+  font-size:11px;
+
+  font-weight:800;
 }
 
 .history-name{
   margin-top:3px;
 
-  color:rgba(255,255,255,.68);
-
   font-size:9px;
 
+  color:#737b87;
+
   overflow:hidden;
+
   white-space:nowrap;
+
   text-overflow:ellipsis;
 }
 
-.history-meta{
-  text-align:right;
-  flex-shrink:0;
-}
-
 .history-qty{
+  flex:none;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  color:var(--orange2);
+}
+
+.history-empty{
+  padding:18px;
+
+  text-align:center;
+
+  color:#626975;
+
   font-size:10px;
-  font-weight:800;
 }
 
-.history-time{
-  margin-top:3px;
-  color:var(--muted2);
-  font-size:7px;
+/* RESET */
+
+.reset-row{
+  margin-top:13px;
+
+  display:flex;
+
+  justify-content:flex-end;
 }
 
-.reset-btn{
-  width:100%;
-  height:39px;
+.reset-button{
+  background:none;
 
-  margin-top:9px;
+  border:0;
 
-  border:1px solid rgba(255,59,48,.18);
-  border-radius:11px;
+  color:#686f7b;
 
-  color:rgba(255,100,95,.8);
+  font-size:10px;
 
-  background:rgba(255,59,48,.035);
-
-  font-size:9px;
-  font-weight:800;
-
-  transition:.2s;
+  font-weight:700;
 }
 
-.reset-btn:hover{
-  border-color:rgba(255,59,48,.4);
-  background:rgba(255,59,48,.07);
-  color:#ff716b;
+.reset-button:hover{
+  color:#ff6961;
 }
 
-/* =========================================================
-   MODAL
-========================================================= */
+/* =========================
+   MODALS
+========================= */
 
 .modal{
   position:fixed;
+
   inset:0;
-  z-index:1000;
+
+  z-index:200;
 
   display:none;
+
   align-items:center;
   justify-content:center;
 
-  padding:18px;
+  padding:20px;
 
-  background:rgba(0,0,0,.68);
+  background:
+    rgba(0,0,0,.72);
 
-  backdrop-filter:blur(9px);
-  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
 }
 
 .modal.show{
@@ -1356,1005 +1474,929 @@ button{
 
 .modal-card{
   width:100%;
-  max-width:410px;
-  max-height:90vh;
+
+  max-width:450px;
+
+  max-height:
+    calc(100vh - 40px);
+
   overflow-y:auto;
 
-  padding:23px;
+  padding:26px;
 
-  border:1px solid var(--border2);
-  border-radius:22px;
+  border-radius:24px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(27,28,34,.97),
-      rgba(12,13,17,.98)
+      rgba(25,27,32,.98),
+      rgba(13,14,18,.98)
     );
 
-  box-shadow:
-    0 35px 100px rgba(0,0,0,.7);
+  border:1px solid var(--border);
 
-  animation:pop .25s ease both;
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.65);
+
+  animation:
+    modalIn .25s ease;
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:scale(.96) translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 .modal-head{
   display:flex;
+
   justify-content:space-between;
   align-items:center;
 
-  margin-bottom:20px;
+  margin-bottom:22px;
 }
 
-.modal-title{
-  font-size:16px;
-  font-weight:800;
+.modal-head h2{
+  font-size:19px;
+
+  font-weight:900;
 }
 
 .modal-close{
-  width:32px;
-  height:32px;
+  width:34px;
+  height:34px;
+
+  border-radius:10px;
 
   border:1px solid var(--border);
-  border-radius:9px;
 
-  color:rgba(255,255,255,.65);
-  background:rgba(255,255,255,.035);
+  background:rgba(255,255,255,.04);
 
-  font-size:15px;
-}
-
-.modal-close:hover{
   color:#fff;
 }
 
-.modal-message{
-  min-height:18px;
-  margin-top:10px;
-
-  text-align:center;
-
-  font-size:10px;
-  color:var(--muted);
-}
+/* =========================
+   SETTINGS
+========================= */
 
 .profile-box{
+  padding:15px;
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  border:1px solid rgba(255,255,255,.06);
+
+  margin-bottom:18px;
+}
+
+.profile-row{
   display:flex;
-  align-items:center;
-  gap:12px;
 
-  padding:12px;
+  justify-content:space-between;
 
-  margin-bottom:17px;
+  gap:15px;
 
-  border:1px solid var(--border);
-  border-radius:14px;
-
-  background:rgba(255,255,255,.035);
-}
-
-.profile-avatar{
-  width:42px;
-  height:42px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:13px;
-
-  background:linear-gradient(135deg,#ff9b2f,#ff6500);
-
-  font-size:12px;
-  font-weight:800;
-}
-
-.profile-info{
-  min-width:0;
-}
-
-.profile-username{
-  font-size:11px;
-  font-weight:800;
-}
-
-.profile-email{
-  margin-top:3px;
-
-  color:var(--muted);
-
-  font-size:9px;
-
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.admin-box{
-  margin-top:19px;
-  padding-top:18px;
-
-  border-top:1px solid rgba(255,255,255,.07);
-}
-
-.admin-title{
-  margin-bottom:10px;
-
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:1px;
-}
-
-.pending-list{
-  max-height:220px;
-  overflow-y:auto;
-}
-
-.pending-empty{
-  padding:14px;
-
-  border:1px dashed rgba(255,255,255,.08);
-  border-radius:12px;
-
-  color:var(--muted2);
-
-  text-align:center;
-
-  font-size:9px;
-}
-
-.pending-item{
-  padding:11px;
-
-  margin-bottom:7px;
-
-  border:1px solid var(--border);
-  border-radius:12px;
-
-  background:rgba(255,255,255,.025);
-}
-
-.pending-info{
   margin-bottom:9px;
 }
 
-.pending-name{
+.profile-row:last-child{
+  margin-bottom:0;
+}
+
+.profile-label{
+  color:#707783;
+
   font-size:10px;
+}
+
+.profile-value{
+  color:#e9ebef;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  text-align:right;
+}
+
+.admin-section{
+  margin-top:22px;
+
+  padding-top:20px;
+
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.admin-section h3{
+  font-size:13px;
+
+  margin-bottom:10px;
+}
+
+.pending-list{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+  max-height:220px;
+
+  overflow-y:auto;
+}
+
+.pending-user{
+  padding:11px;
+
+  border-radius:13px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.pending-user-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+}
+
+.pending-user-name{
+  font-size:11px;
+
   font-weight:800;
 }
 
-.pending-email{
-  margin-top:3px;
-  color:var(--muted);
-  font-size:8px;
+.pending-user-email{
+  margin-top:4px;
+
+  color:#707783;
+
+  font-size:9px;
 }
 
 .pending-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:flex;
+
   gap:6px;
+
+  margin-top:9px;
 }
 
-.approve-btn,
-.reject-btn{
-  height:32px;
+.small-btn{
+  padding:7px 10px;
 
   border-radius:9px;
 
-  font-size:8px;
+  border:0;
+
+  font-size:9px;
+
   font-weight:800;
 }
 
 .approve-btn{
-  color:#06150d;
-  border:0;
-  background:var(--green);
+  background:rgba(53,232,137,.12);
+
+  color:#52e99a;
 }
 
 .reject-btn{
-  color:#fff;
-  border:1px solid rgba(255,59,48,.25);
-  background:rgba(255,59,48,.07);
+  background:rgba(255,59,48,.12);
+
+  color:#ff7169;
 }
 
-/* =========================================================
+/* =========================
    TOAST
-========================================================= */
+========================= */
 
-.toast{
+#toastContainer{
   position:fixed;
+
   left:50%;
   bottom:22px;
-  z-index:2000;
 
-  transform:translateX(-50%) translateY(15px);
+  transform:translateX(-50%);
 
-  min-width:220px;
-  max-width:calc(100% - 30px);
+  z-index:500;
 
-  padding:11px 14px;
+  width:
+    min(420px,calc(100% - 30px));
 
-  border:1px solid var(--border2);
-  border-radius:12px;
+  pointer-events:none;
+}
 
-  background:rgba(20,21,26,.95);
+.toast{
+  padding:12px 15px;
 
-  box-shadow:0 15px 40px rgba(0,0,0,.5);
+  border-radius:13px;
 
-  color:#fff;
+  background:
+    rgba(25,27,32,.97);
+
+  border:1px solid var(--border);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.4);
 
   text-align:center;
 
-  font-size:10px;
+  font-size:11px;
 
-  opacity:0;
-  pointer-events:none;
+  font-weight:700;
 
-  transition:.25s;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+  animation:
+    toastIn .25s ease;
 }
 
 .toast.success{
-  border-color:rgba(53,232,137,.25);
+  border-color:
+    rgba(53,232,137,.2);
+
+  color:#65eca7;
 }
 
 .toast.error{
-  border-color:rgba(255,59,48,.25);
+  border-color:
+    rgba(255,59,48,.2);
+
+  color:#ff726b;
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+@keyframes toastIn{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  #dashboard{
+    padding:16px;
+  }
+
+  .dashboard-layout{
+    min-height:
+      calc(100vh - 32px);
+
+    grid-template-columns:1fr;
+
+    gap:14px;
+  }
+
+  .dashboard-main{
+    min-height:480px;
+
+    padding:21px;
+
+    border-radius:23px;
+  }
+
+  .topbar{
+    margin-bottom:25px;
+  }
+
+  .welcome-block{
+    margin-top:35px;
+    margin-bottom:35px;
+  }
+
+  .welcome-title{
+    font-size:
+      clamp(42px,11vw,65px);
+  }
+
+  .operations-panel{
+    display:grid;
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+    align-items:stretch;
+  }
+
+  .operations-heading{
+    grid-column:1 / -1;
+  }
+
+  .operation-card{
+    min-height:145px;
+
+    padding:17px;
+
+    border-radius:18px;
+  }
+
+  .operation-icon{
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    margin-bottom:12px;
+
+    font-size:20px;
+  }
+
+  .operation-title{
+    font-size:14px;
+  }
+
+  .operation-desc{
+    font-size:9px;
+  }
+
+  .operation-arrow{
+    width:25px;
+    height:25px;
+
+    top:13px;
+    right:13px;
+  }
+}
 
 @media(max-width:600px){
 
   #loginPage{
-    padding:15px;
+    padding:16px;
   }
 
   .login-card{
-    padding:27px 20px 22px;
-    border-radius:23px;
+    padding:25px 20px;
+
+    border-radius:22px;
   }
 
-  .brand-mark{
-    width:58px;
-    height:58px;
-    border-radius:17px;
-  }
-
-  .brand-title{
-    font-size:16px;
-    letter-spacing:2.4px;
-  }
-
-  .login-title{
-    font-size:23px;
-  }
-
-  .dashboard-center{
-    padding:18px 14px 30px;
-  }
-
-  .topbar{
-    margin-bottom:42px;
-  }
-
-  .top-brand-text{
-    font-size:10px;
-  }
-
-  .user-name{
-    max-width:70px;
-  }
-
-  .welcome{
-    margin-bottom:29px;
-  }
-
-  .welcome h1{
-    font-size:30px;
-  }
-
-  .welcome p{
-    max-width:330px;
-    font-size:10px;
-  }
-
-  .operation-grid{
-    max-width:370px;
-    gap:9px;
-  }
-
-  .operation-card{
-    min-height:132px;
-    padding:14px;
-    border-radius:17px;
-  }
-
-  .operation-icon{
-    width:37px;
-    height:37px;
-    border-radius:11px;
-    font-size:16px;
-  }
-
-  .operation-tag{
-    margin-top:13px;
-    font-size:7px;
-  }
-
-  .operation-card h3{
-    font-size:13px;
-    margin-top:4px;
-  }
-
-  .operation-card p{
-    font-size:8px;
-  }
-
-  .operation-arrow{
-    font-size:15px;
-  }
-
-  .system-area{
-    max-width:370px;
-    margin-top:17px;
-  }
-
-  .status-grid{
-    gap:6px;
-  }
-
-  .status-chip{
-    min-height:49px;
-    padding:7px 8px;
-    border-radius:11px;
-  }
-
-  .status-top{
-    font-size:6px;
-  }
-
-  .status-value{
-    font-size:8px;
+  #inventoryPage{
+    padding:15px;
   }
 
   .inventory-center{
-    padding:18px 13px 30px;
-  }
-
-  .inventory-header{
-    margin-bottom:21px;
-  }
-
-  .back-btn{
-    height:32px;
-    padding:0 9px;
-    font-size:8px;
-  }
-
-  .inventory-brand-title{
-    font-size:15px;
+    max-width:100%;
   }
 
   .inventory-card{
-    padding:18px 15px;
-    border-radius:19px;
+    padding:20px 17px;
+
+    border-radius:22px;
   }
 
-  .mode-name{
-    font-size:15px;
+  .inventory-top{
+    margin-bottom:12px;
+  }
+
+  .inventory-brand strong{
+    font-size:11px;
+  }
+
+  .back-button{
+    height:36px;
+
+    padding:0 11px;
+
+    font-size:9px;
+  }
+
+  .inventory-heading{
+    margin-bottom:20px;
+  }
+
+  .inventory-heading-icon{
+    width:58px;
+    height:58px;
+
+    font-size:24px;
+  }
+
+  .inventory-heading h1{
+    font-size:23px;
   }
 
   .qty-row{
-    grid-template-columns:1fr 105px;
+    grid-template-columns:1fr 75px;
   }
 
-  .inventory-input{
-    height:46px;
-    font-size:12px;
+  .qty-unit{
+    font-size:10px;
   }
 
-  .send-btn{
-    height:47px;
+  .dashboard-footer{
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:6px;
   }
 
-  .history-list{
-    max-height:220px;
+  .user-name{
+    display:none;
   }
-
 }
 
-@media(max-width:370px){
+@media(max-width:380px){
 
-  .operation-card{
-    min-height:126px;
-    padding:12px;
+  .operations-panel{
+    grid-template-columns:1fr 1fr;
   }
 
-  .operation-card p{
+  .operation-card{
+    min-height:135px;
+
+    padding:14px;
+  }
+
+  .operation-title{
+    font-size:13px;
+  }
+
+  .operation-desc{
     display:none;
   }
 
-  .welcome h1{
-    font-size:27px;
-  }
-
-  .qty-row{
-    grid-template-columns:1fr 95px;
-  }
-
-}
-
-/* =========================================================
-   LARGE DESKTOP
-========================================================= */
-
-@media(min-width:1000px){
-
-  .dashboard-center{
-    max-width:900px;
-    padding-top:34px;
-  }
-
-  .topbar{
-    margin-bottom:70px;
-  }
-
-  .operation-card{
-    min-height:165px;
+  .welcome-title{
+    font-size:39px;
   }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
+<!-- =====================================================
      LOGIN
-====================================================== -->
+===================================================== -->
 
 <section id="loginPage" class="page">
 
-  <div class="login-wrap">
+  <div class="login-card">
 
-    <div class="login-card">
+    <div class="brand">
 
-      <div class="brand-center">
-
-        <div class="brand-mark">
-          TB
-        </div>
-
-        <div class="brand-title">
-          THE BUTCHER
-        </div>
-
-        <div class="brand-sub">
-          Inventory Control System
-        </div>
-
+      <div class="brand-logo">
+        <span>TB</span>
       </div>
 
-      <h1 class="login-title">
-        Welcome Back
-      </h1>
+      <h1>THE BUTCHER</h1>
 
-      <p class="login-desc">
-        Sign in untuk mengakses inventory control.
-      </p>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          Username / Email
-        </label>
-
-        <div class="input-wrap">
-
-          <span class="input-icon">◉</span>
-
-          <input
-            id="loginIdentity"
-            class="form-input"
-            type="text"
-            autocomplete="username"
-            placeholder="Masukkan username atau email"
-          >
-
-        </div>
-
-      </div>
-
-      <div class="form-group">
-
-        <label class="form-label">
-          Password
-        </label>
-
-        <div class="input-wrap">
-
-          <span class="input-icon">●</span>
-
-          <input
-            id="loginPassword"
-            class="form-input"
-            type="password"
-            autocomplete="current-password"
-            placeholder="Masukkan password"
-          >
-
-        </div>
-
-      </div>
-
-      <div class="login-options">
-
-        <button
-          class="text-button"
-          onclick="openForgot()"
-        >
-          Lupa password?
-        </button>
-
-      </div>
-
-      <button
-        id="loginBtn"
-        class="primary-btn"
-        onclick="login()"
-      >
-        LOGIN
-      </button>
-
-      <div
-        id="loginMessage"
-        class="login-message"
-      ></div>
-
-      <button
-        class="secondary-btn"
-        onclick="openSignup()"
-      >
-        BUAT AKUN BARU
-      </button>
-
-      <div class="login-footer">
-        THE BUTCHER • INVENTORY CONTROL
-      </div>
+      <p>Inventory Management System</p>
 
     </div>
+
+
+    <div class="input-group">
+
+      <label>USERNAME / EMAIL</label>
+
+      <input
+        id="loginIdentity"
+        class="input"
+        type="text"
+        autocomplete="username"
+        placeholder="Masukkan username atau email"
+      >
+
+    </div>
+
+
+    <div class="input-group">
+
+      <label>PASSWORD</label>
+
+      <input
+        id="loginPassword"
+        class="input"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Masukkan password"
+      >
+
+    </div>
+
+
+    <button
+      class="btn btn-primary"
+      id="loginButton"
+      onclick="login()"
+    >
+      LOGIN
+    </button>
+
+
+    <div class="login-actions">
+
+      <button
+        class="text-button"
+        onclick="openModal('forgotModal')"
+      >
+        Lupa Password?
+      </button>
+
+      <button
+        class="text-button"
+        onclick="openModal('signupModal')"
+      >
+        Buat Akun
+      </button>
+
+    </div>
+
+
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
 
   </div>
 
 </section>
 
 
-<!-- ======================================================
+<!-- =====================================================
      DASHBOARD
-====================================================== -->
+===================================================== -->
 
-<section id="dashboard" class="page">
+<section
+  id="dashboard"
+  class="page hidden"
+>
 
-  <div class="dashboard-center">
+  <div class="dashboard-layout">
 
-    <!-- TOPBAR -->
 
-    <header class="topbar">
+    <!-- LEFT -->
 
-      <div class="top-brand">
+    <main class="dashboard-main">
 
-        <div class="top-brand-mark">
-          TB
+      <div class="topbar">
+
+        <div class="top-brand">
+
+          <div class="top-brand-icon">
+            TB
+          </div>
+
+          <div class="top-brand-text">
+
+            <strong>THE BUTCHER</strong>
+
+            <span>
+              INVENTORY SYSTEM
+            </span>
+
+          </div>
+
         </div>
 
-        <div class="top-brand-text">
-          THE BUTCHER
-        </div>
 
-      </div>
-
-      <div class="top-actions">
-
-        <div class="user-pill">
+        <div class="user-area">
 
           <div
             id="avatar"
             class="avatar"
           >
-            U
+            TB
           </div>
 
           <div
             id="userName"
             class="user-name"
           >
-            USER
+            User
           </div>
+
+          <button
+            class="icon-button"
+            onclick="openSettings()"
+            title="Settings"
+          >
+            ⚙
+          </button>
+
+          <button
+            class="icon-button"
+            onclick="logout()"
+            title="Logout"
+          >
+            ↪
+          </button>
 
         </div>
 
-        <button
-          class="icon-btn"
-          onclick="openSettings()"
-          title="Settings"
-        >
-          ⚙
-        </button>
+      </div>
 
-        <button
-          class="icon-btn"
-          onclick="logout()"
-          title="Logout"
+
+      <div class="welcome-block">
+
+        <div class="welcome-small">
+          SYSTEM ONLINE
+        </div>
+
+        <h1
+          id="welcomeName"
+          class="welcome-title"
         >
-          ↪
-        </button>
+          WELCOME
+        </h1>
+
+        <p class="welcome-sub">
+          Kelola pencatatan stock loss dan
+          stock opname dengan cepat,
+          akurat, dan terintegrasi.
+        </p>
+
+
+        <div class="system-status">
+
+          <span class="status-dot"></span>
+
+          Inventory system ready
+
+        </div>
 
       </div>
 
-    </header>
 
-
-    <!-- WELCOME -->
-
-    <section class="welcome">
-
-      <div class="welcome-eyebrow">
-
-        <span class="online-dot"></span>
-
-        INVENTORY CONTROL CENTER
-
-      </div>
-
-      <h1>
-        Halo, <span id="welcomeName">User</span> 👋
-      </h1>
-
-      <p>
-        Pilih aktivitas inventory yang ingin kamu proses.
-        Semua data akan dikirim langsung ke sistem.
-      </p>
-
-    </section>
-
-
-    <!-- MENU -->
-
-    <section>
-
-      <div class="menu-title">
-
-        <strong>
-          PILIH MENU
-        </strong>
+      <div class="dashboard-footer">
 
         <span>
-          Select inventory operation
+          THE BUTCHER • INVENTORY MANAGEMENT
+        </span>
+
+        <span>
+          v1.0
         </span>
 
       </div>
 
-      <div class="operation-grid">
+    </main>
 
-        <!-- STOCK LOSS -->
 
-        <div
-          class="operation-card"
-          onclick="openInventory('stockloss')"
-        >
+    <!-- RIGHT OPERATIONS -->
 
-          <div class="operation-top">
+    <aside class="operations-panel">
 
-            <div class="operation-icon">
-              ↘
-            </div>
+      <div class="operations-heading">
 
-            <div class="operation-arrow">
-              →
-            </div>
+        <h2>OPERATIONS</h2>
 
-          </div>
+        <span>
+          PILIH MENU
+        </span>
 
-          <div class="operation-tag">
-            INVENTORY
-          </div>
+      </div>
 
-          <h3>
-            STOCK LOSS
-          </h3>
 
-          <p>
-            Catat barang yang mengalami kehilangan
-            atau selisih stock.
-          </p>
+      <!-- STOCK LOSS -->
 
+      <div
+        class="operation-card"
+        onclick="openInventory('stockloss')"
+      >
+
+        <div class="operation-arrow">
+          →
         </div>
 
+        <div class="operation-icon">
+          📉
+        </div>
 
-        <!-- STOCK OPNAME -->
+        <div class="operation-title">
+          STOCK LOSS
+        </div>
 
-        <div
-          class="operation-card"
-          onclick="openInventory('opname')"
-        >
-
-          <div class="operation-top">
-
-            <div class="operation-icon">
-              ◫
-            </div>
-
-            <div class="operation-arrow">
-              →
-            </div>
-
-          </div>
-
-          <div class="operation-tag">
-            INVENTORY
-          </div>
-
-          <h3>
-            STOCK OPNAME
-          </h3>
-
-          <p>
-            Input hasil pengecekan fisik stock
-            secara langsung.
-          </p>
-
+        <div class="operation-desc">
+          Input kehilangan,
+          kerusakan, atau selisih
+          stock produk.
         </div>
 
       </div>
 
-    </section>
 
+      <!-- STOCK OPNAME -->
 
-    <!-- SYSTEM STATUS -->
+      <div
+        class="operation-card opname"
+        onclick="openInventory('opname')"
+      >
 
-    <section class="system-area">
-
-      <div class="system-label">
-        SYSTEM STATUS
-      </div>
-
-      <div class="status-grid">
-
-        <div class="status-chip">
-
-          <div class="status-top">
-            <span class="status-dot"></span>
-            SYSTEM
-          </div>
-
-          <div class="status-value">
-            ONLINE
-          </div>
-
+        <div class="operation-arrow">
+          →
         </div>
 
-        <div class="status-chip">
-
-          <div class="status-top">
-            <span class="status-dot"></span>
-            MASTER DATA
-          </div>
-
-          <div class="status-value">
-
-            <span id="masterStatus">
-              LOADING
-            </span>
-
-            <span
-              id="masterCount"
-              class="status-count"
-            >
-            </span>
-
-          </div>
-
+        <div class="operation-icon">
+          📦
         </div>
 
-        <div class="status-chip">
+        <div class="operation-title">
+          STOCK OPNAME
+        </div>
 
-          <div class="status-top">
-            <span class="status-dot"></span>
-            SESSION
-          </div>
-
-          <div class="status-value">
-            ACTIVE
-          </div>
-
+        <div class="operation-desc">
+          Catat hasil perhitungan
+          stock aktual produk.
         </div>
 
       </div>
 
-    </section>
+    </aside>
 
   </div>
 
 </section>
 
 
-<!-- ======================================================
+<!-- =====================================================
      INVENTORY PAGE
-====================================================== -->
+===================================================== -->
 
-<section id="inventoryPage" class="page">
+<section
+  id="inventoryPage"
+>
 
   <div class="inventory-center">
 
-    <header class="inventory-header">
+
+    <div class="inventory-top">
+
+      <div class="inventory-brand">
+
+        <div class="inventory-logo">
+          TB
+        </div>
+
+        <div>
+
+          <strong>
+            THE BUTCHER
+          </strong>
+
+          <span>
+            INVENTORY SYSTEM
+          </span>
+
+        </div>
+
+      </div>
+
 
       <button
-        class="back-btn"
+        class="back-button"
         onclick="backToDashboard()"
       >
         ← Dashboard
       </button>
 
-      <div class="inventory-brand">
-
-        <div class="inventory-brand-small">
-          THE BUTCHER
-        </div>
-
-        <div class="inventory-brand-title">
-          INVENTORY
-        </div>
-
-      </div>
-
-    </header>
+    </div>
 
 
-    <div class="inventory-card">
+    <div
+      id="inventoryCard"
+      class="inventory-card"
+    >
 
-      <div class="mode-heading">
+
+      <div class="inventory-heading">
 
         <div
-          id="modeIcon"
-          class="mode-icon"
+          id="inventoryIcon"
+          class="inventory-heading-icon"
         >
-          ↘
+          📦
         </div>
 
-        <div>
+        <h1 id="inventoryTitle">
+          STOCK OPNAME
+        </h1>
 
-          <div
-            id="modeTitle"
-            class="mode-name"
-          >
-            STOCK LOSS
-          </div>
-
-          <div
-            id="modeDescription"
-            class="mode-description"
-          >
-            Input stock loss
-          </div>
-
-        </div>
+        <p id="inventorySubtitle">
+          Input data inventory
+        </p>
 
       </div>
 
 
-      <!-- BARCODE -->
+      <div class="inventory-form">
 
-      <div class="field-block">
 
-        <div class="field-head">
+        <!-- BARCODE -->
 
-          <label class="field-title">
-            Barcode
+        <div
+          class="inventory-input-group"
+        >
+
+          <label>
+            BARCODE / ARTICLE
           </label>
-
-          <span class="field-helper">
-            Scan / ketik
-          </span>
-
-        </div>
-
-        <div class="suggestion-wrap">
 
           <input
             id="barcode"
             class="inventory-input"
             type="text"
+            inputmode="numeric"
             autocomplete="off"
             placeholder="Scan atau masukkan barcode"
           >
 
-          <div id="suggestions"></div>
+          <div
+            id="suggestions"
+            class="suggestions"
+          ></div>
 
         </div>
 
-      </div>
 
+        <!-- QTY -->
 
-      <!-- QTY -->
+        <div
+          class="inventory-input-group"
+        >
 
-      <div class="field-block">
-
-        <div class="field-head">
-
-          <label class="field-title">
-            Quantity
+          <label>
+            QUANTITY
           </label>
 
-          <span class="field-helper">
-            Gunakan koma untuk desimal
-          </span>
+          <div class="qty-row">
+
+            <input
+              id="qty"
+              class="inventory-input"
+              type="text"
+              inputmode="decimal"
+              placeholder="0"
+            >
+
+            <div class="qty-unit">
+              KG
+            </div>
+
+          </div>
 
         </div>
 
-        <div class="qty-row">
 
-          <input
-            id="qty"
-            class="inventory-input"
-            type="text"
-            inputmode="decimal"
-            placeholder="0"
-          >
+        <button
+          id="sendButton"
+          class="send-button"
+          onclick="saveInventory()"
+        >
+          KIRIM DATA
+        </button>
 
-          <input
-            id="unitDisplay"
-            class="inventory-input"
-            type="text"
-            value="/ EA"
-            disabled
-            style="color:rgba(255,255,255,.45);"
-          >
 
-        </div>
+        <div
+          id="inventoryMessage"
+          class="inventory-message"
+        ></div>
+
 
       </div>
-
-
-      <!-- SEND -->
-
-      <button
-        id="sendDataBtn"
-        class="send-btn"
-        onclick="saveInventory()"
-      >
-        KIRIM DATA
-      </button>
-
-      <div
-        id="inventoryMessage"
-        class="inventory-message"
-      ></div>
 
 
       <!-- HISTORY -->
 
       <div class="history-section">
 
-        <div class="history-head">
+        <div class="history-header">
 
-          <div class="history-title">
-            RIWAYAT DATA
-          </div>
+          <strong>
+            RIWAYAT INPUT
+          </strong>
 
-          <div
-            id="historyModeText"
-            class="history-sub"
-          >
-            STOCK LOSS
-          </div>
+          <span id="historyMode">
+            -
+          </span>
 
         </div>
+
 
         <div
           id="historyList"
@@ -2362,19 +2404,25 @@ button{
         >
 
           <div class="history-empty">
-            Memuat riwayat...
+            Belum ada data
           </div>
 
         </div>
 
-        <button
-          class="reset-btn"
-          onclick="resetInventory()"
-        >
-          RESET DATA
-        </button>
+
+        <div class="reset-row">
+
+          <button
+            class="reset-button"
+            onclick="resetInventory()"
+          >
+            ↻ Reset Data
+          </button>
+
+        </div>
 
       </div>
+
 
     </div>
 
@@ -2383,9 +2431,9 @@ button{
 </section>
 
 
-<!-- ======================================================
+<!-- =====================================================
      SIGNUP MODAL
-====================================================== -->
+===================================================== -->
 
 <div
   id="signupModal"
@@ -2396,9 +2444,9 @@ button{
 
     <div class="modal-head">
 
-      <div class="modal-title">
+      <h2>
         Buat Akun
-      </div>
+      </h2>
 
       <button
         class="modal-close"
@@ -2409,84 +2457,74 @@ button{
 
     </div>
 
-    <div class="form-group">
 
-      <label class="form-label">
-        Username
-      </label>
+    <div class="input-group">
+
+      <label>USERNAME</label>
 
       <input
         id="signupUsername"
-        class="form-input"
+        class="input"
         type="text"
-        style="padding-left:14px"
-        autocomplete="username"
-        placeholder="contoh: aldi"
+        placeholder="username"
       >
 
     </div>
 
-    <div class="form-group">
 
-      <label class="form-label">
-        Email
-      </label>
+    <div class="input-group">
+
+      <label>EMAIL</label>
 
       <input
         id="signupEmail"
-        class="form-input"
+        class="input"
         type="email"
-        style="padding-left:14px"
-        autocomplete="email"
-        placeholder="nama@email.com"
+        placeholder="email"
       >
 
     </div>
 
-    <div class="form-group">
 
-      <label class="form-label">
-        Password
-      </label>
+    <div class="input-group">
+
+      <label>PASSWORD</label>
 
       <input
         id="signupPassword"
-        class="form-input"
+        class="input"
         type="password"
-        style="padding-left:14px"
-        autocomplete="new-password"
         placeholder="Minimal 6 karakter"
       >
 
     </div>
 
-    <div class="form-group">
 
-      <label class="form-label">
-        Konfirmasi Password
-      </label>
+    <div class="input-group">
+
+      <label>KONFIRMASI PASSWORD</label>
 
       <input
         id="signupConfirm"
-        class="form-input"
+        class="input"
         type="password"
-        style="padding-left:14px"
-        autocomplete="new-password"
         placeholder="Ulangi password"
       >
 
     </div>
 
+
     <button
-      class="primary-btn"
+      class="btn btn-primary"
       onclick="signup()"
     >
       DAFTAR
     </button>
 
+
     <div
       id="signupMessage"
-      class="modal-message"
+      class="message"
     ></div>
 
   </div>
@@ -2494,9 +2532,9 @@ button{
 </div>
 
 
-<!-- ======================================================
-     FORGOT PASSWORD MODAL
-====================================================== -->
+<!-- =====================================================
+     FORGOT PASSWORD
+===================================================== -->
 
 <div
   id="forgotModal"
@@ -2507,9 +2545,9 @@ button{
 
     <div class="modal-head">
 
-      <div class="modal-title">
+      <h2>
         Reset Password
-      </div>
+      </h2>
 
       <button
         class="modal-close"
@@ -2520,32 +2558,32 @@ button{
 
     </div>
 
-    <div class="form-group">
 
-      <label class="form-label">
-        Email
-      </label>
+    <div class="input-group">
+
+      <label>EMAIL</label>
 
       <input
         id="forgotEmail"
-        class="form-input"
+        class="input"
         type="email"
-        style="padding-left:14px"
-        placeholder="Masukkan email akun"
+        placeholder="Masukkan email"
       >
 
     </div>
 
+
     <button
-      class="primary-btn"
+      class="btn btn-primary"
       onclick="forgotPassword()"
     >
       KIRIM LINK RESET
     </button>
 
+
     <div
       id="forgotMessage"
-      class="modal-message"
+      class="message"
     ></div>
 
   </div>
@@ -2553,9 +2591,9 @@ button{
 </div>
 
 
-<!-- ======================================================
-     SETTINGS MODAL
-====================================================== -->
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
 
 <div
   id="settingsModal"
@@ -2566,9 +2604,9 @@ button{
 
     <div class="modal-head">
 
-      <div class="modal-title">
+      <h2>
         Settings
-      </div>
+      </h2>
 
       <button
         class="modal-close"
@@ -2582,28 +2620,50 @@ button{
 
     <div class="profile-box">
 
-      <div
-        id="settingsAvatar"
-        class="profile-avatar"
-      >
-        U
-      </div>
+      <div class="profile-row">
 
-      <div class="profile-info">
+        <span class="profile-label">
+          Username
+        </span>
 
-        <div
+        <span
           id="settingsUsername"
-          class="profile-username"
-        >
-          USER
-        </div>
-
-        <div
-          id="settingsEmail"
-          class="profile-email"
+          class="profile-value"
         >
           -
-        </div>
+        </span>
+
+      </div>
+
+
+      <div class="profile-row">
+
+        <span class="profile-label">
+          Email
+        </span>
+
+        <span
+          id="settingsEmail"
+          class="profile-value"
+        >
+          -
+        </span>
+
+      </div>
+
+
+      <div class="profile-row">
+
+        <span class="profile-label">
+          Role
+        </span>
+
+        <span
+          id="settingsRole"
+          class="profile-value"
+        >
+          -
+        </span>
 
       </div>
 
@@ -2611,68 +2671,62 @@ button{
 
 
     <button
-      class="secondary-btn"
+      class="btn btn-secondary"
       onclick="resetOwnPassword()"
     >
-      RESET PASSWORD
+      KIRIM RESET PASSWORD
     </button>
 
 
     <!-- ADMIN -->
 
     <div
-      id="userManagementBlock"
-      class="admin-box hidden"
+      id="adminSection"
+      class="admin-section hidden"
     >
 
-      <div class="admin-title">
-        USER MANAGEMENT
-      </div>
-
-      <button
-        class="secondary-btn"
-        onclick="loadPendingUsers()"
-        style="margin-bottom:10px"
-      >
-        ↻ REFRESH PENDING
-      </button>
+      <h3>
+        USER MENUNGGU PERSETUJUAN
+      </h3>
 
       <div
         id="pendingList"
         class="pending-list"
       >
 
-        <div class="pending-empty">
-          Memuat...
+        <div class="history-empty">
+          Tidak ada user pending
         </div>
 
       </div>
 
     </div>
 
+
   </div>
 
 </div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      TOAST
-====================================================== -->
+===================================================== -->
 
-<div
-  id="toast"
-  class="toast"
-></div>
+<div id="toastContainer"></div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      FIREBASE + APPLICATION
-====================================================== -->
+===================================================== -->
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
 
 import {
   getAuth,
@@ -2683,7 +2737,9 @@ import {
   onAuthStateChanged,
   signOut
 }
-from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
 
 import {
   getFirestore,
@@ -2696,171 +2752,198 @@ import {
   getDocs,
   updateDoc
 }
-from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 
-/* ======================================================
+/* =====================================================
    FIREBASE CONFIG
-====================================================== */
+===================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAEll_xXB59TB59N--5wjG1C2bxYg7yqps",
-  authDomain: "stockloss-bsd-web.firebaseapp.com",
-  projectId: "stockloss-bsd-web",
-  storageBucket: "stockloss-bsd-web.firebasestorage.app",
-  messagingSenderId: "825716539347",
-  appId: "1:825716539347:web:4f919eca31a71e72f57926",
-  measurementId: "G-X0YY0849JH"
+
+  apiKey:
+    "AIzaSyAEll_xXB59TB59N--5wjG1C2bxYg7yqps",
+
+  authDomain:
+    "stockloss-bsd-web.firebaseapp.com",
+
+  projectId:
+    "stockloss-bsd-web",
+
+  storageBucket:
+    "stockloss-bsd-web.firebasestorage.app",
+
+  messagingSenderId:
+    "825716539347",
+
+  appId:
+    "1:825716539347:web:4f919eca31a71e72f57926",
+
+  measurementId:
+    "G-X0YY0849JH"
+
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+  getAuth(app);
 
-const db = getFirestore(app);
+const db =
+  getFirestore(app);
 
 
-/* ======================================================
+/* =====================================================
    GOOGLE APPS SCRIPT API
-====================================================== */
+===================================================== */
 
 const URL_SCRIPT =
 "https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";
 
 
-/* ======================================================
-   GLOBAL VARIABLES
-====================================================== */
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 let currentUser = null;
+
 let currentProfile = null;
 
-let currentMode = "stockloss";
+let currentMode = "opname";
 
 let masterData = [];
 
-let isSending = false;
+
+/* =====================================================
+   HELPER
+===================================================== */
+
+function $(id){
+  return document.getElementById(id);
+}
 
 
-/* ======================================================
-   ELEMENT HELPER
-====================================================== */
+function escapeHtml(value){
 
-const $ = id => document.getElementById(id);
-
-
-/* ======================================================
-   MESSAGE
-====================================================== */
-
-function setMessage(id,text,type="normal"){
-
-  const el = $(id);
-
-  if(!el) return;
-
-  el.textContent = text;
-
-  if(type === "error"){
-    el.style.color = "#ff716b";
-  }
-  else if(type === "success"){
-    el.style.color = "#35e889";
-  }
-  else{
-    el.style.color = "rgba(255,255,255,.56)";
-  }
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* ======================================================
-   TOAST
-====================================================== */
+function normalizeBarcode(value){
 
-let toastTimer = null;
+  return String(value ?? "")
+    .trim()
+    .replace(/\s+/g,"");
 
-window.showToast = function(message,type="normal"){
+}
 
-  const toast = $("toast");
 
-  if(!toast) return;
+function showToast(
+  text,
+  type="success"
+){
 
-  toast.textContent = message;
+  const container =
+    $("toastContainer");
+
+  const toast =
+    document.createElement("div");
 
   toast.className =
-    "toast show " +
-    (type === "success" ? "success" :
-     type === "error" ? "error" : "");
+    "toast " + type;
 
-  clearTimeout(toastTimer);
+  toast.textContent =
+    text;
 
-  toastTimer = setTimeout(()=>{
-    toast.className = "toast";
-  },2600);
+  container.appendChild(toast);
 
-};
+  setTimeout(() => {
+
+    toast.style.opacity = "0";
+
+    toast.style.transform =
+      "translateY(10px)";
+
+    setTimeout(() => {
+
+      toast.remove();
+
+    },250);
+
+  },2800);
+
+}
 
 
-/* ======================================================
+/* =====================================================
    MODAL
-====================================================== */
+===================================================== */
 
-window.openModal = function(id){
+window.openModal =
+function(id){
 
-  const el = $(id);
-
-  if(el){
-    el.classList.add("show");
-  }
-
-};
-
-window.closeModal = function(id){
-
-  const el = $(id);
-
-  if(el){
-    el.classList.remove("show");
-  }
-
-};
-
-window.openSignup = function(){
-
-  $("signupUsername").value = "";
-  $("signupEmail").value = "";
-  $("signupPassword").value = "";
-  $("signupConfirm").value = "";
-
-  setMessage("signupMessage","");
-
-  openModal("signupModal");
-
-};
-
-window.openForgot = function(){
-
-  $("forgotEmail").value = "";
-  setMessage("forgotMessage","");
-
-  openModal("forgotModal");
+  $(id).classList.add("show");
 
 };
 
 
-/* ======================================================
+window.closeModal =
+function(id){
+
+  $(id).classList.remove("show");
+
+};
+
+
+/* close modal clicking outside */
+
+document
+  .querySelectorAll(".modal")
+  .forEach(modal => {
+
+    modal.addEventListener(
+      "click",
+      e => {
+
+        if(e.target === modal){
+
+          modal.classList.remove("show");
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
    SIGNUP
-====================================================== */
+===================================================== */
 
-window.signup = async function(){
+window.signup =
+async function(){
 
   const username =
-    $("signupUsername").value.trim().toLowerCase();
+    $("signupUsername")
+      .value
+      .trim()
+      .toLowerCase();
 
   const email =
-    $("signupEmail").value.trim().toLowerCase();
+    $("signupEmail")
+      .value
+      .trim()
+      .toLowerCase();
 
   const password =
     $("signupPassword").value;
@@ -2868,89 +2951,89 @@ window.signup = async function(){
   const confirm =
     $("signupConfirm").value;
 
+  const message =
+    $("signupMessage");
 
-  if(!username){
 
-    setMessage(
-      "signupMessage",
-      "Username wajib diisi.",
-      "error"
-    );
+  message.className =
+    "message";
+
+  message.textContent =
+    "";
+
+
+  if(
+    username.length < 3
+  ){
+
+    message.classList.add("error");
+
+    message.textContent =
+      "Username minimal 3 karakter.";
 
     return;
+
   }
 
 
-  if(username.length < 3){
+  if(
+    !/^[a-z0-9._-]+$/.test(username)
+  ){
 
-    setMessage(
-      "signupMessage",
-      "Username minimal 3 karakter.",
-      "error"
-    );
+    message.classList.add("error");
 
-    return;
-  }
-
-
-  if(!/^[a-z0-9._-]+$/.test(username)){
-
-    setMessage(
-      "signupMessage",
-      "Username hanya boleh huruf kecil, angka, titik, underscore atau strip.",
-      "error"
-    );
+    message.textContent =
+      "Username hanya boleh huruf kecil, angka, titik, underscore, dan strip.";
 
     return;
+
   }
 
 
   if(!email){
 
-    setMessage(
-      "signupMessage",
-      "Email wajib diisi.",
-      "error"
-    );
+    message.classList.add("error");
+
+    message.textContent =
+      "Email wajib diisi.";
 
     return;
+
   }
 
 
   if(password.length < 6){
 
-    setMessage(
-      "signupMessage",
-      "Password minimal 6 karakter.",
-      "error"
-    );
+    message.classList.add("error");
+
+    message.textContent =
+      "Password minimal 6 karakter.";
 
     return;
+
   }
 
 
   if(password !== confirm){
 
-    setMessage(
-      "signupMessage",
-      "Konfirmasi password tidak sama.",
-      "error"
-    );
+    message.classList.add("error");
+
+    message.textContent =
+      "Konfirmasi password tidak sama.";
 
     return;
+
   }
 
 
   try{
 
-    setMessage(
-      "signupMessage",
-      "Memeriksa username..."
-    );
-
-
     const usernameRef =
-      doc(db,"usernames",username);
+      doc(
+        db,
+        "usernames",
+        username
+      );
 
     const usernameSnap =
       await getDoc(usernameRef);
@@ -2958,20 +3041,14 @@ window.signup = async function(){
 
     if(usernameSnap.exists()){
 
-      setMessage(
-        "signupMessage",
-        "Username sudah digunakan.",
-        "error"
-      );
+      message.classList.add("error");
+
+      message.textContent =
+        "Username sudah digunakan.";
 
       return;
+
     }
-
-
-    setMessage(
-      "signupMessage",
-      "Membuat akun..."
-    );
 
 
     const credential =
@@ -2982,18 +3059,30 @@ window.signup = async function(){
       );
 
 
-    const user = credential.user;
+    const user =
+      credential.user;
 
 
     await setDoc(
-      doc(db,"users",user.uid),
+      doc(
+        db,
+        "users",
+        user.uid
+      ),
       {
-        username:username,
-        email:email,
+
+        username,
+
+        email,
+
         role:"user",
+
         status:"pending",
+
         emailVerified:false,
+
         createdAt:new Date()
+
       }
     );
 
@@ -3006,36 +3095,22 @@ window.signup = async function(){
     );
 
 
-    try{
-      await sendEmailVerification(user);
-    }
-    catch(error){
-      console.warn(
-        "Verification email:",
-        error
-      );
-    }
+    await sendEmailVerification(user);
 
 
     await signOut(auth);
 
 
-    setMessage(
-      "signupMessage",
-      "Akun berhasil dibuat. Silakan verifikasi email lalu tunggu persetujuan admin.",
-      "success"
-    );
+    message.classList.add("success");
+
+    message.textContent =
+      "Akun berhasil dibuat. Verifikasi email dan tunggu persetujuan admin.";
 
 
-    showToast(
-      "Akun berhasil dibuat",
-      "success"
-    );
-
-
-    setTimeout(()=>{
-      closeModal("signupModal");
-    },2200);
+    $("signupUsername").value="";
+    $("signupEmail").value="";
+    $("signupPassword").value="";
+    $("signupConfirm").value="";
 
 
   }
@@ -3043,118 +3118,99 @@ window.signup = async function(){
 
     console.error(error);
 
-    let msg = error.message || "Gagal membuat akun.";
+    message.classList.add("error");
 
-    if(error.code === "auth/email-already-in-use"){
-      msg = "Email sudah digunakan.";
-    }
-
-    if(error.code === "auth/invalid-email"){
-      msg = "Format email tidak valid.";
-    }
-
-    if(error.code === "auth/weak-password"){
-      msg = "Password terlalu lemah.";
-    }
-
-    setMessage(
-      "signupMessage",
-      msg,
-      "error"
-    );
+    message.textContent =
+      firebaseErrorMessage(error);
 
   }
 
 };
 
 
-/* ======================================================
-   FORGOT PASSWORD
-====================================================== */
+/* =====================================================
+   FIREBASE ERROR
+===================================================== */
 
-window.forgotPassword = async function(){
+function firebaseErrorMessage(error){
 
-  const email =
-    $("forgotEmail").value.trim().toLowerCase();
+  const code =
+    error?.code || "";
 
+  if(
+    code.includes("email-already-in-use")
+  )
+    return "Email sudah digunakan.";
 
-  if(!email){
+  if(
+    code.includes("invalid-email")
+  )
+    return "Format email tidak valid.";
 
-    setMessage(
-      "forgotMessage",
-      "Email wajib diisi.",
-      "error"
-    );
+  if(
+    code.includes("weak-password")
+  )
+    return "Password terlalu lemah.";
 
-    return;
-  }
+  if(
+    code.includes("network")
+  )
+    return "Koneksi internet bermasalah.";
 
+  return (
+    error?.message ||
+    "Terjadi kesalahan."
+  );
 
-  try{
-
-    await sendPasswordResetEmail(
-      auth,
-      email
-    );
-
-
-    setMessage(
-      "forgotMessage",
-      "Link reset password sudah dikirim ke email.",
-      "success"
-    );
-
-
-    showToast(
-      "Link reset password dikirim",
-      "success"
-    );
-
-  }
-  catch(error){
-
-    console.error(error);
-
-    setMessage(
-      "forgotMessage",
-      error.message || "Gagal mengirim reset password.",
-      "error"
-    );
-
-  }
-
-};
+}
 
 
-/* ======================================================
+/* =====================================================
    LOGIN
-====================================================== */
+===================================================== */
 
-window.login = async function(){
+window.login =
+async function(){
 
   const identity =
-    $("loginIdentity").value.trim().toLowerCase();
+    $("loginIdentity")
+      .value
+      .trim()
+      .toLowerCase();
 
   const password =
     $("loginPassword").value;
 
+  const message =
+    $("loginMessage");
+
+  const button =
+    $("loginButton");
+
+
+  message.className =
+    "message";
+
+  message.textContent =
+    "";
+
 
   if(!identity || !password){
 
-    setMessage(
-      "loginMessage",
-      "Username/email dan password wajib diisi.",
-      "error"
-    );
+    message.classList.add("error");
+
+    message.textContent =
+      "Username/email dan password wajib diisi.";
 
     return;
+
   }
 
 
-  const btn = $("loginBtn");
+  button.disabled = true;
 
-  btn.disabled = true;
-  btn.textContent = "MEMPROSES...";
+  button.textContent =
+    "LOGIN...";
 
 
   try{
@@ -3162,12 +3218,19 @@ window.login = async function(){
     let email = identity;
 
 
-    /* USERNAME */
+    /*
+      Kalau login menggunakan username,
+      cari email melalui collection usernames.
+    */
 
     if(!identity.includes("@")){
 
       const usernameRef =
-        doc(db,"usernames",identity);
+        doc(
+          db,
+          "usernames",
+          identity
+        );
 
       const usernameSnap =
         await getDoc(usernameRef);
@@ -3182,18 +3245,22 @@ window.login = async function(){
       }
 
 
-      const uid =
-        usernameSnap.data().uid;
+      const usernameData =
+        usernameSnap.data();
 
 
-      const profileRef =
-        doc(db,"users",uid);
+      const userRef =
+        doc(
+          db,
+          "users",
+          usernameData.uid
+        );
 
-      const profileSnap =
-        await getDoc(profileRef);
+      const userSnap =
+        await getDoc(userRef);
 
 
-      if(!profileSnap.exists()){
+      if(!userSnap.exists()){
 
         throw new Error(
           "Data user tidak ditemukan."
@@ -3203,7 +3270,7 @@ window.login = async function(){
 
 
       email =
-        profileSnap.data().email;
+        userSnap.data().email;
 
     }
 
@@ -3227,18 +3294,24 @@ window.login = async function(){
 
       await signOut(auth);
 
-      throw new Error(
-        "Email belum diverifikasi. Silakan cek email kamu."
-      );
+      message.classList.add("error");
+
+      message.textContent =
+        "Email belum diverifikasi. Cek inbox email Anda.";
+
+      return;
 
     }
 
 
-    const profileRef =
-      doc(db,"users",user.uid);
-
     const profileSnap =
-      await getDoc(profileRef);
+      await getDoc(
+        doc(
+          db,
+          "users",
+          user.uid
+        )
+      );
 
 
     if(!profileSnap.exists()){
@@ -3246,7 +3319,7 @@ window.login = async function(){
       await signOut(auth);
 
       throw new Error(
-        "Profile user tidak ditemukan."
+        "Profil user tidak ditemukan."
       );
 
     }
@@ -3260,68 +3333,52 @@ window.login = async function(){
 
       await signOut(auth);
 
-      if(profile.status === "pending"){
+      message.classList.add("error");
 
-        throw new Error(
-          "Akun masih menunggu persetujuan admin."
-        );
+      message.textContent =
+        "Akun belum disetujui admin.";
 
-      }
-
-
-      if(profile.status === "rejected"){
-
-        throw new Error(
-          "Akun ditolak oleh admin."
-        );
-
-      }
-
-
-      throw new Error(
-        "Akun belum aktif."
-      );
+      return;
 
     }
 
 
-    currentUser = user;
-    currentProfile = profile;
+    currentUser =
+      user;
+
+    currentProfile =
+      profile;
 
 
     showDashboard();
 
-
-    showToast(
-      "Login berhasil",
-      "success"
-    );
 
   }
   catch(error){
 
     console.error(error);
 
-    setMessage(
-      "loginMessage",
-      error.message || "Login gagal.",
-      "error"
-    );
+    message.classList.add("error");
+
+    message.textContent =
+      firebaseErrorMessage(error);
 
   }
   finally{
 
-    btn.disabled = false;
-    btn.textContent = "LOGIN";
+    button.disabled = false;
+
+    button.textContent =
+      "LOGIN";
 
   }
 
 };
 
 
-/* ======================================================
+/* =====================================================
    AUTH STATE
-====================================================== */
+===================================================== */
 
 onAuthStateChanged(
   auth,
@@ -3332,6 +3389,7 @@ onAuthStateChanged(
       showLogin();
 
       return;
+
     }
 
 
@@ -3347,49 +3405,65 @@ onAuthStateChanged(
         showLogin();
 
         return;
+
       }
 
 
-      const profileSnap =
+      const snap =
         await getDoc(
-          doc(db,"users",user.uid)
+          doc(
+            db,
+            "users",
+            user.uid
+          )
         );
 
 
-      if(!profileSnap.exists()){
+      if(!snap.exists()){
 
         await signOut(auth);
 
         showLogin();
 
         return;
+
       }
 
 
       const profile =
-        profileSnap.data();
+        snap.data();
 
 
-      if(profile.status !== "approved"){
+      if(
+        profile.status !==
+        "approved"
+      ){
 
         await signOut(auth);
 
         showLogin();
 
         return;
+
       }
 
 
-      currentUser = user;
-      currentProfile = profile;
+      currentUser =
+        user;
+
+      currentProfile =
+        profile;
 
 
       showDashboard();
+
 
     }
     catch(error){
 
       console.error(error);
+
+      await signOut(auth);
 
       showLogin();
 
@@ -3399,81 +3473,95 @@ onAuthStateChanged(
 );
 
 
-/* ======================================================
+/* =====================================================
    SHOW LOGIN
-====================================================== */
+===================================================== */
 
 function showLogin(){
 
-  $("loginPage").style.display = "flex";
+  $("loginPage")
+    .classList
+    .remove("hidden");
 
-  $("dashboard").classList.remove("show");
+  $("dashboard")
+    .classList
+    .add("hidden");
 
-  $("inventoryPage").classList.remove("show");
+  $("inventoryPage")
+    .classList
+    .remove("show");
 
 }
 
 
-/* ======================================================
+/* =====================================================
    SHOW DASHBOARD
-====================================================== */
+===================================================== */
 
 function showDashboard(){
 
-  $("loginPage").style.display = "none";
+  $("loginPage")
+    .classList
+    .add("hidden");
 
-  $("inventoryPage").classList.remove("show");
+  $("dashboard")
+    .classList
+    .remove("hidden");
 
-  $("dashboard").classList.add("show");
-
-  $("dashboard").classList.add("fadeIn");
+  $("inventoryPage")
+    .classList
+    .remove("show");
 
 
   const username =
     currentProfile?.username ||
-    currentUser?.email?.split("@")[0] ||
-    "User";
+    currentUser?.email ||
+    "USER";
 
 
   $("userName").textContent =
     username;
 
-  $("welcomeName").textContent =
-    username;
+
+  $("welcomeName").innerHTML =
+    `WELCOME<br><span>${escapeHtml(username)}</span>`;
 
 
-  const initial =
+  const initials =
     username
-      .charAt(0)
+      .split(/[ ._-]+/)
+      .filter(Boolean)
+      .slice(0,2)
+      .map(x => x[0])
+      .join("")
       .toUpperCase();
 
 
   $("avatar").textContent =
-    initial;
-
-
-  loadMaster();
+    initials || "TB";
 
 }
 
 
-/* ======================================================
+/* =====================================================
    LOGOUT
-====================================================== */
+===================================================== */
 
-window.logout = async function(){
+window.logout =
+async function(){
 
   try{
 
     await signOut(auth);
 
     currentUser = null;
+
     currentProfile = null;
 
     showLogin();
 
     showToast(
-      "Logout berhasil",
+      "Berhasil logout.",
       "success"
     );
 
@@ -3487,113 +3575,502 @@ window.logout = async function(){
 };
 
 
-/* ======================================================
-   OPEN INVENTORY
-====================================================== */
+/* =====================================================
+   SETTINGS
+===================================================== */
 
-window.openInventory = function(mode){
+window.openSettings =
+function(){
 
-  currentMode = mode;
-
-
-  $("dashboard").classList.remove("show");
-
-  $("inventoryPage").classList.add("show");
-
-  $("inventoryPage").classList.add("fadeIn");
+  if(!currentUser)
+    return;
 
 
-  /* AUTOMATIC MODE */
+  $("settingsUsername").textContent =
+    currentProfile?.username ||
+    "-";
 
-  if(mode === "stockloss"){
+  $("settingsEmail").textContent =
+    currentProfile?.email ||
+    currentUser.email ||
+    "-";
 
-    $("modeIcon").textContent = "↘";
+  $("settingsRole").textContent =
+    currentProfile?.role ||
+    "user";
 
-    $("modeTitle").textContent =
-      "STOCK LOSS";
 
-    $("modeDescription").textContent =
-      "Catat barang yang mengalami stock loss.";
+  const isAdmin =
+    currentProfile?.role === "admin";
 
-    $("historyModeText").textContent =
-      "STOCK LOSS";
+
+  if(isAdmin){
+
+    $("adminSection")
+      .classList
+      .remove("hidden");
+
+    loadPendingUsers();
 
   }
   else{
 
-    $("modeIcon").textContent = "◫";
-
-    $("modeTitle").textContent =
-      "STOCK OPNAME";
-
-    $("modeDescription").textContent =
-      "Input hasil pengecekan stock fisik.";
-
-    $("historyModeText").textContent =
-      "STOCK OPNAME";
+    $("adminSection")
+      .classList
+      .add("hidden");
 
   }
 
 
-  $("barcode").value = "";
-  $("qty").value = "";
-
-  $("suggestions").style.display = "none";
-
-  setMessage(
-    "inventoryMessage",
-    ""
+  openModal(
+    "settingsModal"
   );
 
-
-  loadHistory();
-
-
-  setTimeout(()=>{
-    $("barcode").focus();
-  },200);
-
 };
 
 
-/* ======================================================
-   BACK DASHBOARD
-====================================================== */
+/* =====================================================
+   RESET OWN PASSWORD
+===================================================== */
 
-window.backToDashboard = function(){
+window.resetOwnPassword =
+async function(){
 
-  $("inventoryPage").classList.remove("show");
+  if(!currentUser)
+    return;
 
-  $("dashboard").classList.add("show");
-
-  $("dashboard").classList.add("fadeIn");
-
-};
-
-
-/* ======================================================
-   LOAD MASTER DATA
-====================================================== */
-
-async function loadMaster(){
 
   try{
 
-    $("masterStatus").textContent =
-      "LOADING";
+    await sendPasswordResetEmail(
+      auth,
+      currentUser.email
+    );
 
-    $("masterCount").textContent =
-      "";
 
+    showToast(
+      "Link reset password dikirim ke email.",
+      "success"
+    );
+
+  }
+  catch(error){
+
+    showToast(
+      firebaseErrorMessage(error),
+      "error"
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   ADMIN - PENDING USERS
+===================================================== */
+
+async function loadPendingUsers(){
+
+  const list =
+    $("pendingList");
+
+
+  list.innerHTML =
+    `
+      <div class="history-empty">
+        Loading...
+      </div>
+    `;
+
+
+  try{
+
+    const q =
+      query(
+        collection(
+          db,
+          "users"
+        ),
+        where(
+          "status",
+          "==",
+          "pending"
+        )
+      );
+
+
+    const snapshot =
+      await getDocs(q);
+
+
+    if(snapshot.empty){
+
+      list.innerHTML =
+        `
+          <div class="history-empty">
+            Tidak ada user pending
+          </div>
+        `;
+
+      return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    snapshot.forEach(
+      userDoc => {
+
+        const data =
+          userDoc.data();
+
+
+        const div =
+          document.createElement("div");
+
+
+        div.className =
+          "pending-user";
+
+
+        div.innerHTML = `
+
+          <div class="pending-user-top">
+
+            <div>
+
+              <div class="pending-user-name">
+                ${escapeHtml(
+                  data.username || "-"
+                )}
+              </div>
+
+              <div class="pending-user-email">
+                ${escapeHtml(
+                  data.email || "-"
+                )}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="pending-actions">
+
+            <button
+              class="small-btn approve-btn"
+              data-uid="${userDoc.id}"
+              data-action="approve"
+            >
+              APPROVE
+            </button>
+
+            <button
+              class="small-btn reject-btn"
+              data-uid="${userDoc.id}"
+              data-action="reject"
+            >
+              REJECT
+            </button>
+
+          </div>
+        `;
+
+
+        list.appendChild(div);
+
+      }
+    );
+
+
+    list
+      .querySelectorAll(
+        ".small-btn"
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          async () => {
+
+            await updateUserStatus(
+              button.dataset.uid,
+              button.dataset.action
+            );
+
+          }
+        );
+
+      });
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    list.innerHTML =
+      `
+        <div class="history-empty">
+          Gagal memuat user.
+        </div>
+      `;
+
+  }
+
+}
+
+
+/* =====================================================
+   ADMIN UPDATE STATUS
+===================================================== */
+
+async function updateUserStatus(
+  uid,
+  action
+){
+
+  if(
+    currentProfile?.role !==
+    "admin"
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        uid
+      ),
+      {
+        status:
+          action === "approve"
+            ? "approved"
+            : "rejected"
+      }
+    );
+
+
+    showToast(
+      action === "approve"
+        ? "User disetujui."
+        : "User ditolak.",
+      "success"
+    );
+
+
+    loadPendingUsers();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    showToast(
+      "Gagal mengubah status user.",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
+
+window.forgotPassword =
+async function(){
+
+  const email =
+    $("forgotEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const message =
+    $("forgotMessage");
+
+
+  message.className =
+    "message";
+
+
+  if(!email){
+
+    message.classList.add("error");
+
+    message.textContent =
+      "Email wajib diisi.";
+
+    return;
+
+  }
+
+
+  try{
+
+    await sendPasswordResetEmail(
+      auth,
+      email
+    );
+
+
+    message.classList.add("success");
+
+    message.textContent =
+      "Link reset password sudah dikirim.";
+
+  }
+  catch(error){
+
+    message.classList.add("error");
+
+    message.textContent =
+      firebaseErrorMessage(error);
+
+  }
+
+};
+
+
+/* =====================================================
+   INVENTORY
+===================================================== */
+
+window.openInventory =
+async function(mode){
+
+  currentMode =
+    mode === "stockloss"
+      ? "stockloss"
+      : "opname";
+
+
+  /*
+    TITLE OTOMATIS
+  */
+
+  if(currentMode === "stockloss"){
+
+    $("inventoryTitle")
+      .textContent =
+      "STOCK LOSS";
+
+    $("inventorySubtitle")
+      .textContent =
+      "Input data stock loss";
+
+    $("inventoryIcon")
+      .textContent =
+      "📉";
+
+  }
+  else{
+
+    $("inventoryTitle")
+      .textContent =
+      "STOCK OPNAME";
+
+    $("inventorySubtitle")
+      .textContent =
+      "Input data stock opname";
+
+    $("inventoryIcon")
+      .textContent =
+      "📦";
+
+  }
+
+
+  $("historyMode")
+    .textContent =
+    currentMode === "stockloss"
+      ? "STOCK LOSS"
+      : "STOCK OPNAME";
+
+
+  $("inventoryMessage").textContent =
+    "";
+
+
+  $("inventoryPage")
+    .classList
+    .add("show");
+
+
+  $("barcode").value = "";
+
+  $("qty").value = "";
+
+  $("suggestions").style.display =
+    "none";
+
+
+  await loadMasterData();
+
+  await loadHistory();
+
+
+  setTimeout(() => {
+
+    $("barcode").focus();
+
+  },150);
+
+};
+
+
+/* =====================================================
+   BACK DASHBOARD
+===================================================== */
+
+window.backToDashboard =
+function(){
+
+  $("inventoryPage")
+    .classList
+    .remove("show");
+
+  $("suggestions")
+    .style
+    .display = "none";
+
+};
+
+
+/* =====================================================
+   MASTER DATA
+===================================================== */
+
+async function loadMasterData(){
+
+  if(masterData.length)
+    return;
+
+
+  try{
 
     const response =
       await fetch(
         URL_SCRIPT,
         {
           method:"POST",
-          body:JSON.stringify({
-            action:"getAllBarcode"
-          })
+
+          body:
+            JSON.stringify({
+              action:
+                "getAllBarcode"
+            })
         }
       );
 
@@ -3602,72 +4079,62 @@ async function loadMaster(){
       await response.json();
 
 
-    if(!Array.isArray(data)){
+    if(Array.isArray(data)){
 
-      throw new Error(
-        "Format master data tidak valid."
-      );
+      masterData =
+        data.map(item => ({
+
+          barcode:
+            normalizeBarcode(
+              item.barcode
+            ),
+
+          nama:
+            String(
+              item.nama || ""
+            )
+
+        }));
 
     }
+    else if(
+      Array.isArray(data.data)
+    ){
 
+      masterData =
+        data.data.map(item => ({
 
-    masterData =
-      data.map(item=>({
+          barcode:
+            normalizeBarcode(
+              item.barcode
+            ),
 
-        barcode:
-          String(
-            item.barcode ??
-            item.kode ??
-            ""
-          ).trim(),
+          nama:
+            String(
+              item.nama || ""
+            )
 
-        nama:
-          String(
-            item.nama ??
-            item.name ??
-            ""
-          ).trim()
+        }));
 
-      }))
-      .filter(
-        item =>
-          item.barcode ||
-          item.nama
-      );
-
-
-    $("masterStatus").textContent =
-      "READY";
-
-
-    $("masterCount").textContent =
-      " • " +
-      masterData.length;
+    }
 
 
   }
   catch(error){
 
     console.error(
-      "loadMaster:",
+      "Master error:",
       error
     );
-
-
-    $("masterStatus").textContent =
-      "ERROR";
-
-    $("masterCount").textContent =
-      "";
 
   }
 
 }
 
 
-/* ======================================================
+/* =====================================================
    BARCODE INPUT
-====================================================== */
+===================================================== */
 
 $("barcode").addEventListener(
   "input",
@@ -3679,21 +4146,30 @@ $("barcode").addEventListener(
 
     if(!value){
 
-      $("suggestions").style.display =
-        "none";
+      $("suggestions")
+        .style
+        .display = "none";
 
       return;
+
     }
 
 
-    /* WEIGHED BARCODE */
+    /*
+      WEIGHT BARCODE
+      13 DIGIT
+      AWAL 20
+    */
 
-    if(/^\d{13}$/.test(value) &&
-       value.startsWith("20")){
+    if(
+      value.length === 13 &&
+      /^20\d{11}$/.test(value)
+    ){
 
       processWeighedBarcode(value);
 
       return;
+
     }
 
 
@@ -3721,54 +4197,70 @@ $("barcode").addEventListener(
 
     if(!result.length){
 
-      $("suggestions").style.display =
-        "none";
+      $("suggestions")
+        .style
+        .display = "none";
 
       return;
+
     }
 
 
     $("suggestions").innerHTML =
-      result.map(item => `
 
-        <div
-          class="suggestion-item"
-          data-barcode="${escapeHtml(item.barcode)}"
-        >
+      result
+        .map(item => `
 
-          <div class="suggestion-barcode">
-            ${escapeHtml(item.barcode)}
+          <div
+            class="suggestion-item"
+            data-barcode="${escapeHtml(
+              item.barcode
+            )}"
+          >
+
+            <div class="suggestion-barcode">
+
+              ${escapeHtml(
+                item.barcode
+              )}
+
+            </div>
+
+            <div class="suggestion-name">
+
+              ${escapeHtml(
+                item.nama
+              )}
+
+            </div>
+
           </div>
 
-          <div class="suggestion-name">
-            ${escapeHtml(item.nama)}
-          </div>
-
-        </div>
-
-      `).join("");
+        `)
+        .join("");
 
 
-    $("suggestions").style.display =
-      "block";
+    $("suggestions")
+      .style
+      .display = "block";
 
 
     document
-      .querySelectorAll(".suggestion-item")
-      .forEach(el=>{
+      .querySelectorAll(
+        ".suggestion-item"
+      )
+      .forEach(el => {
 
         el.addEventListener(
           "click",
-          ()=>{
-
-            const code =
-              el.dataset.barcode;
+          () => {
 
             $("barcode").value =
-              code;
+              el.dataset.barcode;
 
-            $("suggestions").style.display =
-              "none";
+            $("suggestions")
+              .style
+              .display = "none";
 
             $("qty").focus();
 
@@ -3781,9 +4273,9 @@ $("barcode").addEventListener(
 );
 
 
-/* ======================================================
+/* =====================================================
    BARCODE ENTER
-====================================================== */
+===================================================== */
 
 $("barcode").addEventListener(
   "keydown",
@@ -3800,19 +4292,29 @@ $("barcode").addEventListener(
       this.value.trim();
 
 
-    if(/^\d{13}$/.test(value) &&
-       value.startsWith("20")){
+    if(
+      value.length === 13 &&
+      /^20\d{11}$/.test(value)
+    ){
 
       processWeighedBarcode(value);
 
-      $("qty").focus();
+
+      setTimeout(() => {
+
+        $("qty").focus();
+
+      },50);
+
 
       return;
+
     }
 
 
-    $("suggestions").style.display =
-      "none";
+    $("suggestions")
+      .style
+      .display = "none";
 
 
     $("qty").focus();
@@ -3821,275 +4323,318 @@ $("barcode").addEventListener(
 );
 
 
-/* ======================================================
-   QTY ENTER
-====================================================== */
+/* =====================================================
+   WEIGHT BARCODE
+===================================================== */
 
-$("qty").addEventListener(
-  "keydown",
-  function(e){
+function processWeighedBarcode(
+  value
+){
 
-    if(e.key === "Enter"){
+  if(
+    !value ||
+    value.length !== 13 ||
+    !/^\d{13}$/.test(value) ||
+    !value.startsWith("20")
+  ){
 
-      e.preventDefault();
+    return false;
 
-      saveInventory();
-
-    }
-
-  }
-);
-
-
-/* ======================================================
-   WEIGHED BARCODE
-====================================================== */
-
-function processWeighedBarcode(value){
-
-  try{
-
-    /*
-      FORMAT:
-      20 + 5 DIGIT PRODUCT CODE + 5 DIGIT WEIGHT + CHECK
-    */
-
-
-    const productBarcode =
-      value.substring(2,7);
-
-
-    const rawQty =
-      value.substring(7,12);
-
-
-    const qty =
-      Number(rawQty) / 1000;
-
-
-    $("barcode").value =
-      productBarcode;
-
-
-    $("qty").value =
-      String(qty).replace(".",",");
-
-
-    $("suggestions").style.display =
-      "none";
-
-
-    const product =
-      masterData.find(
-        item =>
-          item.barcode === productBarcode
-      );
-
-
-    if(product){
-
-      showToast(
-        product.nama +
-        " • " +
-        qty +
-        " KG",
-        "success"
-      );
-
-    }
-
-  }
-  catch(error){
-
-    console.error(
-      "Barcode timbang:",
-      error
-    );
-
-  }
-
-}
-
-
-/* ======================================================
-   ESCAPE HTML
-====================================================== */
-
-function escapeHtml(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* ======================================================
-   SAVE / SEND DATA
-====================================================== */
-
-window.saveInventory = async function(){
-
-  if(isSending)
-    return;
-
-
-  const barcode =
-    $("barcode").value.trim();
-
-  let qtyText =
-    $("qty").value.trim();
-
-
-  if(!barcode){
-
-    setMessage(
-      "inventoryMessage",
-      "Barcode wajib diisi.",
-      "error"
-    );
-
-    $("barcode").focus();
-
-    return;
-  }
-
-
-  if(!qtyText){
-
-    setMessage(
-      "inventoryMessage",
-      "Quantity wajib diisi.",
-      "error"
-    );
-
-    $("qty").focus();
-
-    return;
   }
 
 
   /*
-    SUPPORT:
-    1,5
-    1.5
-    1.000,5
+    FORMAT:
+
+    20
+    XXXXX
+    XXXXX
+    X
+
+    contoh:
+
+    2012345001250
+
+    20
+    12345
+    00125
+    0
   */
 
-  qtyText =
-    qtyText.replace(/\s/g,"");
+
+  const productBarcode =
+    value.substring(2,7);
 
 
-  let normalized =
-    qtyText;
+  const rawQty =
+    value.substring(7,12);
 
 
-  if(
-    normalized.includes(",") &&
-    normalized.includes(".")
-  ){
+  const grams =
+    parseInt(
+      rawQty,
+      10
+    );
 
-    normalized =
-      normalized
-        .replace(/\./g,"")
-        .replace(",", ".");
 
-  }
-  else if(normalized.includes(",")){
+  if(!Number.isFinite(grams)){
 
-    normalized =
-      normalized.replace(",", ".");
+    return false;
 
   }
 
 
   const qty =
-    Number(normalized);
+    grams / 1000;
 
 
-  if(!Number.isFinite(qty)){
+  /*
+    Masukkan kode produk
+  */
 
-    setMessage(
-      "inventoryMessage",
-      "Quantity tidak valid.",
+  $("barcode").value =
+    productBarcode;
+
+
+  /*
+    Tampilkan qty KG
+  */
+
+  let qtyDisplay =
+    qty.toFixed(3);
+
+
+  qtyDisplay =
+    qtyDisplay
+      .replace(/\.?0+$/,"")
+      .replace(".",",");
+
+
+  $("qty").value =
+    qtyDisplay;
+
+
+  $("suggestions")
+    .style
+    .display = "none";
+
+
+  /*
+    Cari nama produk
+  */
+
+  const product =
+    masterData.find(
+      item =>
+        item.barcode ===
+        productBarcode
+    );
+
+
+  if(product){
+
+    showToast(
+      product.nama +
+      " • " +
+      qtyDisplay +
+      " KG",
+      "success"
+    );
+
+  }
+  else{
+
+    showToast(
+      "Kode " +
+      productBarcode +
+      " • " +
+      qtyDisplay +
+      " KG",
+      "success"
+    );
+
+  }
+
+
+  return true;
+
+}
+
+
+/* =====================================================
+   QUANTITY NORMALIZATION
+===================================================== */
+
+function parseQty(value){
+
+  let text =
+    String(value ?? "")
+      .trim()
+      .replace(/\s/g,"");
+
+
+  if(!text)
+    return NaN;
+
+
+  /*
+    Support:
+
+    1
+    1.5
+    1,5
+    0.125
+    0,125
+  */
+
+
+  if(
+    text.includes(",") &&
+    text.includes(".")
+  ){
+
+    /*
+      Jika format 1.234,56
+    */
+
+    if(
+      text.lastIndexOf(",") >
+      text.lastIndexOf(".")
+    ){
+
+      text =
+        text
+          .replace(/\./g,"")
+          .replace(",", ".");
+
+    }
+    else{
+
+      text =
+        text.replace(/,/g,"");
+
+    }
+
+  }
+  else if(
+    text.includes(",")
+  ){
+
+    text =
+      text.replace(",", ".");
+
+  }
+
+
+  const number =
+    Number(text);
+
+
+  return number;
+
+}
+
+
+/* =====================================================
+   SAVE INVENTORY
+===================================================== */
+
+window.saveInventory =
+async function(){
+
+  const barcode =
+    normalizeBarcode(
+      $("barcode").value
+    );
+
+
+  const qty =
+    parseQty(
+      $("qty").value
+    );
+
+
+  const message =
+    $("inventoryMessage");
+
+  const button =
+    $("sendButton");
+
+
+  message.className =
+    "inventory-message";
+
+  message.textContent =
+    "";
+
+
+  if(!barcode){
+
+    message.classList.add(
       "error"
     );
+
+    message.textContent =
+      "Barcode wajib diisi.";
+
+    $("barcode").focus();
+
+    return;
+
+  }
+
+
+  if(
+    !Number.isFinite(qty) ||
+    qty <= 0
+  ){
+
+    message.classList.add(
+      "error"
+    );
+
+    message.textContent =
+      "Quantity harus lebih dari 0.";
 
     $("qty").focus();
 
     return;
+
   }
 
 
-  if(qty <= 0){
+  button.disabled = true;
 
-    setMessage(
-      "inventoryMessage",
-      "Quantity harus lebih dari 0.",
-      "error"
-    );
-
-    $("qty").focus();
-
-    return;
-  }
-
-
-  const mode =
-    currentMode;
-
-
-  isSending = true;
-
-
-  const btn =
-    $("sendDataBtn");
-
-
-  btn.disabled = true;
-  btn.textContent = "MENGIRIM...";
-
-
-  setMessage(
-    "inventoryMessage",
-    "Mengirim data..."
-  );
+  button.textContent =
+    "MENGIRIM...";
 
 
   try{
-
-    /*
-      OPTIMISTIC HISTORY
-    */
-
-    addLocalHistory({
-      barcode:barcode,
-      qty:qty,
-      mode:mode,
-      nama:getProductName(barcode),
-      time:new Date()
-    });
-
 
     const response =
       await fetch(
         URL_SCRIPT,
         {
+
           method:"POST",
-          body:JSON.stringify({
 
-            action:"saveData",
+          body:
+            JSON.stringify({
 
-            barcode:barcode,
+              action:
+                "saveData",
 
-            qty:qty,
+              barcode:
+                barcode,
 
-            mode:mode
+              qty:
+                qty,
 
-          })
+              mode:
+                currentMode
+
+            })
+
         }
       );
 
@@ -4099,57 +4644,60 @@ window.saveInventory = async function(){
 
 
     console.log(
-      "API RESPONSE:",
+      "Save response:",
       text
     );
 
 
-    if(
-      text
-        .toLowerCase()
-        .includes("success")
-      ||
+    const lower =
+      text.toLowerCase();
 
-      text
-        .toLowerCase()
-        .includes("berhasil")
+
+    if(
+      lower.includes("success") ||
+      lower.includes("berhasil")
     ){
 
-      setMessage(
-        "inventoryMessage",
-        "Data berhasil dikirim.",
+      message.classList.add(
         "success"
       );
 
+      message.textContent =
+        "Data berhasil dikirim.";
+
 
       showToast(
-        "Data berhasil dikirim",
+        "Data " +
+        (
+          currentMode ===
+          "stockloss"
+            ? "Stock Loss"
+            : "Stock Opname"
+        ) +
+        " berhasil disimpan.",
         "success"
       );
 
 
       $("barcode").value = "";
+
       $("qty").value = "";
+
+      $("suggestions")
+        .style
+        .display = "none";
+
+
+      await loadHistory();
 
 
       $("barcode").focus();
 
-
-      /*
-        REFRESH HISTORY FROM SERVER
-      */
-
-      setTimeout(()=>{
-        loadHistory();
-      },500);
-
     }
     else{
 
-      setMessage(
-        "inventoryMessage",
-        "Data dikirim, tetapi response server tidak dikenali.",
-        "error"
+      throw new Error(
+        text || "Gagal menyimpan data."
       );
 
     }
@@ -4157,32 +4705,26 @@ window.saveInventory = async function(){
   }
   catch(error){
 
-    console.error(
-      "saveInventory:",
-      error
-    );
+    console.error(error);
 
-
-    setMessage(
-      "inventoryMessage",
-      "Gagal mengirim data. Cek koneksi/API.",
+    message.classList.add(
       "error"
     );
 
+    message.textContent =
+      "Gagal mengirim data.";
 
     showToast(
-      "Gagal mengirim data",
+      "Gagal mengirim data.",
       "error"
     );
 
   }
   finally{
 
-    isSending = false;
+    button.disabled = false;
 
-    btn.disabled = false;
-
-    btn.textContent =
+    button.textContent =
       "KIRIM DATA";
 
   }
@@ -4190,81 +4732,9 @@ window.saveInventory = async function(){
 };
 
 
-/* ======================================================
-   GET PRODUCT NAME
-====================================================== */
-
-function getProductName(barcode){
-
-  const item =
-    masterData.find(
-      x => x.barcode === barcode
-    );
-
-
-  return item?.nama || "-";
-
-}
-
-
-/* ======================================================
-   LOCAL HISTORY
-====================================================== */
-
-function addLocalHistory(item){
-
-  const key =
-    "tb_local_history_" + currentMode;
-
-
-  let arr = [];
-
-  try{
-
-    arr =
-      JSON.parse(
-        localStorage.getItem(key) || "[]"
-      );
-
-  }
-  catch{
-
-    arr = [];
-
-  }
-
-
-  arr.unshift({
-
-    barcode:item.barcode,
-
-    qty:item.qty,
-
-    nama:item.nama,
-
-    time:new Date().toISOString()
-
-  });
-
-
-  arr =
-    arr.slice(0,30);
-
-
-  localStorage.setItem(
-    key,
-    JSON.stringify(arr)
-  );
-
-
-  renderHistory(arr);
-
-}
-
-
-/* ======================================================
-   LOAD HISTORY
-====================================================== */
+/* =====================================================
+   HISTORY
+===================================================== */
 
 async function loadHistory(){
 
@@ -4272,11 +4742,12 @@ async function loadHistory(){
     $("historyList");
 
 
-  list.innerHTML = `
-    <div class="history-empty">
-      Memuat riwayat...
-    </div>
-  `;
+  list.innerHTML =
+    `
+      <div class="history-empty">
+        Loading...
+      </div>
+    `;
 
 
   try{
@@ -4285,14 +4756,20 @@ async function loadHistory(){
       await fetch(
         URL_SCRIPT,
         {
+
           method:"POST",
-          body:JSON.stringify({
 
-            action:"getHistory",
+          body:
+            JSON.stringify({
 
-            mode:currentMode
+              action:
+                "getHistory",
 
-          })
+              mode:
+                currentMode
+
+            })
+
         }
       );
 
@@ -4301,196 +4778,133 @@ async function loadHistory(){
       await response.json();
 
 
+    let rows = [];
+
+
     if(Array.isArray(data)){
 
-      renderHistory(data);
+      rows = data;
+
+    }
+    else if(
+      Array.isArray(data.data)
+    ){
+
+      rows =
+        data.data;
+
+    }
+
+
+    if(!rows.length){
+
+      list.innerHTML =
+        `
+          <div class="history-empty">
+            Belum ada data
+          </div>
+        `;
 
       return;
 
     }
 
 
-    throw new Error(
-      "History format invalid"
-    );
+    /*
+      Ambil maksimal 30 history
+    */
+
+    rows =
+      rows
+        .slice(-30)
+        .reverse();
+
+
+    list.innerHTML =
+      rows
+        .map(item => {
+
+          const barcode =
+            item.barcode ??
+            item.kode ??
+            item.article ??
+            "-";
+
+
+          const qty =
+            item.qty ??
+            item.quantity ??
+            item.Qty ??
+            "-";
+
+
+          const name =
+            item.nama ??
+            item.name ??
+            "";
+
+
+          return `
+
+            <div class="history-item">
+
+              <div class="history-left">
+
+                <div class="history-code">
+                  ${escapeHtml(
+                    barcode
+                  )}
+                </div>
+
+                <div class="history-name">
+                  ${escapeHtml(
+                    name
+                  )}
+                </div>
+
+              </div>
+
+              <div class="history-qty">
+                ${escapeHtml(
+                  String(qty)
+                )} KG
+              </div>
+
+            </div>
+
+          `;
+
+        })
+        .join("");
+
 
   }
   catch(error){
 
-    console.warn(
-      "Server history:",
+    console.error(
+      "History error:",
       error
     );
 
 
-    /*
-      FALLBACK LOCAL HISTORY
-    */
-
-    const key =
-      "tb_local_history_" + currentMode;
-
-
-    let local = [];
-
-    try{
-
-      local =
-        JSON.parse(
-          localStorage.getItem(key) || "[]"
-        );
-
-    }
-    catch{
-
-      local = [];
-
-    }
-
-
-    renderHistory(local);
-
-  }
-
-}
-
-
-/* ======================================================
-   RENDER HISTORY
-====================================================== */
-
-function renderHistory(data){
-
-  const list =
-    $("historyList");
-
-
-  if(!Array.isArray(data) ||
-     data.length === 0){
-
-    list.innerHTML = `
-      <div class="history-empty">
-        Belum ada data.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  const rows =
-    data.slice(0,50);
-
-
-  list.innerHTML =
-    rows.map(item => {
-
-      const barcode =
-        String(
-          item.barcode ??
-          item.kode ??
-          item.Barcode ??
-          ""
-        );
-
-
-      const nama =
-        String(
-          item.nama ??
-          item.name ??
-          item.Nama ??
-          getProductName(barcode)
-        );
-
-
-      const qty =
-        item.qty ??
-        item.Qty ??
-        item.quantity ??
-        "";
-
-
-      const time =
-        item.time ??
-        item.timestamp ??
-        item.Tanggal ??
-        item.date ??
-        "";
-
-
-      return `
-
-        <div class="history-item">
-
-          <div class="history-main">
-
-            <div class="history-code">
-              ${escapeHtml(barcode)}
-            </div>
-
-            <div class="history-name">
-              ${escapeHtml(nama || "-")}
-            </div>
-
-          </div>
-
-          <div class="history-meta">
-
-            <div class="history-qty">
-              ${escapeHtml(String(qty))}
-            </div>
-
-            <div class="history-time">
-              ${formatTime(time)}
-            </div>
-
-          </div>
-
+    list.innerHTML =
+      `
+        <div class="history-empty">
+          Riwayat belum tersedia
         </div>
-
       `;
 
-    }).join("");
+  }
 
 }
 
 
-/* ======================================================
-   FORMAT TIME
-====================================================== */
-
-function formatTime(value){
-
-  if(!value)
-    return "-";
-
-
-  const date =
-    new Date(value);
-
-
-  if(Number.isNaN(date.getTime()))
-    return String(value);
-
-
-  return date.toLocaleString(
-    "id-ID",
-    {
-      day:"2-digit",
-      month:"2-digit",
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
-
-}
-
-
-/* ======================================================
+/* =====================================================
    RESET INVENTORY
-====================================================== */
+===================================================== */
 
-window.resetInventory = async function(){
+window.resetInventory =
+async function(){
 
   const confirmation =
     prompt(
@@ -4498,55 +4912,47 @@ window.resetInventory = async function(){
     );
 
 
-  if(confirmation === null)
+  if(
+    confirmation === null
+  )
     return;
 
 
-  if(confirmation !== "0800"){
+  if(!confirmation){
 
     showToast(
-      "Password reset salah.",
+      "Password wajib diisi.",
       "error"
     );
 
     return;
+
   }
 
 
-  const yes =
-    confirm(
-      "Yakin ingin menghapus seluruh data " +
-      currentMode.toUpperCase() +
-      "?"
-    );
-
-
-  if(!yes)
-    return;
-
-
   try{
-
-    setMessage(
-      "inventoryMessage",
-      "Mereset data..."
-    );
-
 
     const response =
       await fetch(
         URL_SCRIPT,
         {
+
           method:"POST",
-          body:JSON.stringify({
 
-            action:"reset",
+          body:
+            JSON.stringify({
 
-            password:confirmation,
+              action:
+                "reset",
 
-            mode:currentMode
+              password:
+                confirmation,
 
-          })
+              mode:
+                currentMode
+
+            })
+
         }
       );
 
@@ -4555,44 +4961,36 @@ window.resetInventory = async function(){
       await response.text();
 
 
+    console.log(
+      "Reset response:",
+      text
+    );
+
+
     if(
       text
         .toLowerCase()
         .includes("berhasil")
-      ||
-
-      text
-        .toLowerCase()
-        .includes("success")
     ){
 
-      localStorage.removeItem(
-        "tb_local_history_" +
-        currentMode
-      );
-
-
-      renderHistory([]);
-
-
-      setMessage(
-        "inventoryMessage",
-        "Data berhasil direset.",
-        "success"
-      );
-
-
       showToast(
-        "Data berhasil direset",
+        "Data berhasil di-reset.",
         "success"
       );
+
+
+      $("barcode").value = "";
+
+      $("qty").value = "";
+
+
+      await loadHistory();
 
     }
     else{
 
-      setMessage(
-        "inventoryMessage",
-        "Reset gagal.",
+      showToast(
+        "Reset gagal. Password mungkin salah.",
         "error"
       );
 
@@ -4603,8 +5001,7 @@ window.resetInventory = async function(){
 
     console.error(error);
 
-    setMessage(
-      "inventoryMessage",
+    showToast(
       "Gagal melakukan reset.",
       "error"
     );
@@ -4614,410 +5011,91 @@ window.resetInventory = async function(){
 };
 
 
-/* ======================================================
-   SETTINGS
-====================================================== */
+/* =====================================================
+   ENTER LOGIN
+===================================================== */
 
-window.openSettings = function(){
+$("loginPassword")
+  .addEventListener(
+    "keydown",
+    e => {
 
-  if(!currentUser ||
-     !currentProfile){
+      if(e.key === "Enter"){
 
-    return;
-  }
+        login();
 
+      }
 
-  const username =
-    currentProfile.username ||
-    currentUser.email?.split("@")[0] ||
-    "USER";
-
-
-  $("settingsUsername").textContent =
-    username;
+    }
+  );
 
 
-  $("settingsEmail").textContent =
-    currentUser.email || "-";
+/* =====================================================
+   ENTER QTY
+===================================================== */
+
+$("qty")
+  .addEventListener(
+    "keydown",
+    e => {
+
+      if(e.key === "Enter"){
+
+        e.preventDefault();
+
+        saveInventory();
+
+      }
+
+    }
+  );
 
 
-  $("settingsAvatar").textContent =
-    username
-      .charAt(0)
-      .toUpperCase();
+/* =====================================================
+   CLOSE SUGGESTIONS
+===================================================== */
 
+document.addEventListener(
+  "click",
+  e => {
 
-  const adminBlock =
-    $("userManagementBlock");
+    if(
+      !e.target.closest(
+        ".inventory-input-group"
+      )
+    ){
 
+      $("suggestions")
+        .style
+        .display = "none";
 
-  if(currentProfile.role === "admin"){
-
-    adminBlock.classList.remove(
-      "hidden"
-    );
-
-    loadPendingUsers();
-
-  }
-  else{
-
-    adminBlock.classList.add(
-      "hidden"
-    );
-
-  }
-
-
-  openModal("settingsModal");
-
-};
-
-
-/* ======================================================
-   RESET OWN PASSWORD
-====================================================== */
-
-window.resetOwnPassword = async function(){
-
-  if(!currentUser?.email){
-
-    showToast(
-      "Email akun tidak ditemukan.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  const yes =
-    confirm(
-      "Kirim link reset password ke:\n\n" +
-      currentUser.email +
-      "?"
-    );
-
-
-  if(!yes)
-    return;
-
-
-  try{
-
-    await sendPasswordResetEmail(
-      auth,
-      currentUser.email
-    );
-
-
-    showToast(
-      "Link reset password dikirim.",
-      "success"
-    );
-
-  }
-  catch(error){
-
-    console.error(error);
-
-    showToast(
-      error.message ||
-      "Gagal mengirim link.",
-      "error"
-    );
-
-  }
-
-};
-
-
-/* ======================================================
-   LOAD PENDING USERS
-====================================================== */
-
-window.loadPendingUsers = async function(){
-
-  const list =
-    $("pendingList");
-
-
-  list.innerHTML = `
-    <div class="pending-empty">
-      Memuat user pending...
-    </div>
-  `;
-
-
-  try{
-
-    const q =
-      query(
-        collection(db,"users"),
-        where("status","==","pending")
-      );
-
-
-    const snapshot =
-      await getDocs(q);
-
-
-    if(snapshot.empty){
-
-      list.innerHTML = `
-        <div class="pending-empty">
-          Tidak ada user pending.
-        </div>
-      `;
-
-      return;
     }
 
-
-    list.innerHTML = "";
-
-
-    snapshot.forEach(
-      userDoc => {
-
-        const data =
-          userDoc.data();
-
-
-        const item =
-          document.createElement("div");
-
-
-        item.className =
-          "pending-item";
-
-
-        item.innerHTML = `
-
-          <div class="pending-info">
-
-            <div class="pending-name">
-              ${escapeHtml(
-                data.username || "-"
-              )}
-            </div>
-
-            <div class="pending-email">
-              ${escapeHtml(
-                data.email || "-"
-              )}
-            </div>
-
-          </div>
-
-          <div class="pending-actions">
-
-            <button
-              class="approve-btn"
-              data-action="approve"
-            >
-              APPROVE
-            </button>
-
-            <button
-              class="reject-btn"
-              data-action="reject"
-            >
-              REJECT
-            </button>
-
-          </div>
-
-        `;
-
-
-        item
-          .querySelector(
-            '[data-action="approve"]'
-          )
-          .addEventListener(
-            "click",
-            ()=>{
-              updateUserStatus(
-                userDoc.id,
-                "approved"
-              );
-            }
-          );
-
-
-        item
-          .querySelector(
-            '[data-action="reject"]'
-          )
-          .addEventListener(
-            "click",
-            ()=>{
-              updateUserStatus(
-                userDoc.id,
-                "rejected"
-              );
-            }
-          );
-
-
-        list.appendChild(item);
-
-      }
-    );
-
   }
-  catch(error){
-
-    console.error(error);
-
-    list.innerHTML = `
-      <div class="pending-empty">
-        Gagal memuat user pending.
-      </div>
-    `;
-
-  }
-
-};
+);
 
 
-/* ======================================================
-   UPDATE USER STATUS
-====================================================== */
+/* =====================================================
+   PREVENT ACCIDENTAL FORM SUBMISSION
+===================================================== */
 
-async function updateUserStatus(
-  uid,
-  status
-){
+document.addEventListener(
+  "keydown",
+  e => {
 
-  if(
-    !currentProfile ||
-    currentProfile.role !== "admin"
-  ){
+    if(
+      e.key === "Escape"
+    ){
 
-    showToast(
-      "Akses admin diperlukan.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  try{
-
-    await updateDoc(
-      doc(db,"users",uid),
-      {
-        status:status
-      }
-    );
-
-
-    showToast(
-      status === "approved"
-        ? "User berhasil di-approve."
-        : "User berhasil di-reject.",
-      "success"
-    );
-
-
-    loadPendingUsers();
-
-  }
-  catch(error){
-
-    console.error(error);
-
-    showToast(
-      "Gagal mengubah status user.",
-      "error"
-    );
-
-  }
-
-}
-
-
-/* ======================================================
-   CLOSE MODAL WHEN CLICK OUTSIDE
-====================================================== */
-
-document
-  .querySelectorAll(".modal")
-  .forEach(modal=>{
-
-    modal.addEventListener(
-      "click",
-      function(e){
-
-        if(e.target === modal){
+      document
+        .querySelectorAll(".modal.show")
+        .forEach(modal => {
 
           modal.classList.remove(
             "show"
           );
 
-        }
-
-      }
-    );
-
-  });
-
-
-/* ======================================================
-   ESC KEY
-====================================================== */
-
-document.addEventListener(
-  "keydown",
-  function(e){
-
-    if(e.key !== "Escape")
-      return;
-
-
-    document
-      .querySelectorAll(".modal.show")
-      .forEach(modal=>{
-
-        modal.classList.remove(
-          "show"
-        );
-
-      });
-
-
-    $("suggestions").style.display =
-      "none";
-
-  }
-);
-
-
-/* ======================================================
-   GLOBAL CLICK - CLOSE SUGGESTION
-====================================================== */
-
-document.addEventListener(
-  "click",
-  function(e){
-
-    const barcodeInput =
-      $("barcode");
-
-    const suggestions =
-      $("suggestions");
-
-
-    if(
-      e.target !== barcodeInput &&
-      !suggestions.contains(e.target)
-    ){
-
-      suggestions.style.display =
-        "none";
+        });
 
     }
 
@@ -5025,13 +5103,13 @@ document.addEventListener(
 );
 
 
-/* ======================================================
+/* =====================================================
    INITIAL
-====================================================== */
+===================================================== */
 
-$("masterStatus").textContent =
-  "WAITING";
-
+console.log(
+  "THE BUTCHER Inventory System ready."
+);
 
 </script>
 
