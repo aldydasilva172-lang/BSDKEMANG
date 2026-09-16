@@ -2,2721 +2,3250 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>STOCKLOSS BSD</title>
+<title>THE BUTCHER — Inventory System</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Poppins',sans-serif;
 }
 
-html, body{
-width:100%;
-min-height:100%;
-margin:0;
-padding:0;
-overscroll-behavior:none;
--webkit-text-size-adjust:100%;
+html,body{
+  width:100%;
+  min-height:100%;
 }
 
 body{
-min-height:100dvh;
-min-height:-webkit-fill-available;
-
-padding:20px;
-
-position:relative;
-
-overflow-x:hidden;
-overflow-y:auto;
-
-display:block;
-
-background:#000;
+  min-height:100vh;
+  color:#fff;
+  overflow-x:hidden;
+  background:#08090b;
 }
 
-/* BACKGROUND UTAMA BLUR */
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
 body::before{
-content:"";
-
-position:fixed;
-inset:-30px;
-
-background:
-linear-gradient(
-rgba(0,0,0,.60),
-rgba(0,0,0,.60)
-),
-url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
-center top / cover no-repeat;
-
-filter:blur(12px);
-
-transform:scale(1.05);
-
-z-index:-2;
+  content:"";
+  position:fixed;
+  inset:-20px;
+  z-index:-3;
+  background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.78)),
+    url("232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg")
+    center/cover no-repeat;
+  filter:blur(8px);
+  transform:scale(1.05);
 }
 
-/* LOGIN OVERLAY */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(255,106,0,.22),transparent 30%),
+    radial-gradient(circle at 90% 80%,rgba(255,150,50,.12),transparent 30%);
+  pointer-events:none;
+}
+
+/* =====================================================
+   COMMON
+===================================================== */
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.error{
+  min-height:20px;
+  margin-top:12px;
+  text-align:center;
+  color:#ff6262;
+  font-size:13px;
+}
+
+.success{
+  color:#5cff9d;
+}
+
+/* =====================================================
+   LOGIN
+===================================================== */
 
 .login-overlay{
-position:fixed;
-inset:0;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-z-index:9999999999;
-
-background:rgba(0,0,0,.55);
-
-padding:20px;
-overflow:auto;
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(15px);
 }
 
-/* FOTO LOGIN BLUR */
+.login-card{
+  width:min(430px,100%);
+  padding:35px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:30px;
+  background:rgba(255,255,255,.075);
+  backdrop-filter:blur(25px);
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.55),
+    inset 0 1px rgba(255,255,255,.08);
 
-.login-overlay::before{
-content:"";
-
-position:absolute;
-inset:-30px;
-
-background:
-linear-gradient(
-rgba(0,0,0,.80),
-rgba(0,0,0,.80)
-),
-url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
-center center / cover no-repeat;
-
-filter:blur(12px);
-
-transform:scale(1.05);
-
-z-index:-1;
+  animation:loginIn .8s cubic-bezier(.2,.8,.2,1);
 }
 
-/* LOGIN BOX */
+.brand-logo{
+  width:70px;
+  height:70px;
+  border-radius:22px;
 
-.login-box{
-width:90%;
-max-width:360px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-padding:30px;
+  margin-bottom:20px;
 
-border-radius:28px;
+  background:linear-gradient(135deg,#ff6900,#ffb35c);
 
-background:
-linear-gradient(
-rgba(0,0,0,.45),
-rgba(0,0,0,.45)
-),
-url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
-center center / cover no-repeat;
+  color:#17110c;
+  font-weight:900;
+  font-size:25px;
 
-border:1px solid rgba(255,255,255,.08);
-
-backdrop-filter:none;
-
--webkit-backdrop-filter:none;
-
-
-box-shadow:
-0 0 20px rgba(0,245,255,.25),
-0 0 40px rgba(124,58,237,.20),
-0 15px 35px rgba(0,0,0,.45);
-
-animation:popup .25s ease;
+  box-shadow:0 12px 40px rgba(255,105,0,.35);
 }
 
-.login-title{
-text-align:center;
-
-font-size:24px;
-font-weight:700;
-
-color:white;
-
-margin-bottom:10px;
-
-text-shadow:
-0 0 10px rgba(0,245,255,.45),
-0 2px 8px rgba(0,0,0,.8);
+.login-card h1{
+  font-size:34px;
+  letter-spacing:-1.5px;
 }
 
-.login-desc{
-text-align:center;
-
-font-size:13px;
-
-color:#cbd5e1;
-
-margin-bottom:22px;
-
-line-height:1.5;
+.login-card h1 span{
+  color:#ff8b32;
 }
 
-.login-input{
-width:100%;
-padding:16px;
-
-border:none;
-outline:none;
-
-border-radius:18px;
-
-background:rgba(0,0,0,.35);
-
-color:white;
-font-size:16px;
-
-border:1px solid rgba(255,255,255,.08);
-
-box-shadow:
-0 0 12px rgba(0,245,255,.35),
-0 0 25px rgba(124,58,237,.20);
-
-margin-bottom:18px;
-
-transition:.3s;
+.subtitle{
+  color:rgba(255,255,255,.58);
+  font-size:13px;
+  margin:7px 0 28px;
 }
 
-.login-input:focus{
-box-shadow:
-0 0 18px rgba(0,245,255,.55),
-0 0 35px rgba(124,58,237,.35);
+.field{
+  margin-bottom:17px;
+}
 
-background:rgba(0,0,0,.45);
+.field label{
+  display:block;
+  margin:0 0 8px 4px;
+  color:rgba(255,255,255,.68);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.8px;
+}
+
+.input-wrap{
+  position:relative;
+}
+
+.input-wrap input{
+  width:100%;
+  height:54px;
+
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.13);
+
+  background:rgba(0,0,0,.22);
+  color:#fff;
+
+  outline:none;
+  padding:0 48px 0 16px;
+
+  transition:.25s;
+}
+
+.input-wrap input:focus{
+  border-color:rgba(255,130,30,.85);
+  box-shadow:0 0 0 4px rgba(255,105,0,.10);
+}
+
+.eye{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+
+  width:40px;
+  height:40px;
+
+  border:0;
+  background:transparent;
+  color:#aaa;
 }
 
 .login-btn{
-width:100%;
+  width:100%;
+  height:56px;
+
+  border:0;
+  border-radius:17px;
+
+  background:linear-gradient(135deg,#ff6900,#ff9b43);
+
+  color:#17110c;
+  font-weight:800;
+
+  box-shadow:0 12px 35px rgba(255,105,0,.25);
+
+  transition:.25s;
 }
 
-/* CONTAINER */
-
-.container{
-position:relative;
-z-index:1;
-
-overflow:visible;
-
-width:100%;
-max-width:430px;
-padding:35px;
-
-border-radius:28px;
-
-background:transparent;
+.login-btn:hover{
+  transform:translateY(-2px);
 }
 
-h1{
-text-align:center;
-font-size:40px;
-font-weight:700;
-margin-bottom:8px;
-
-color:white;
-
-text-shadow:
-0 0 10px rgba(0,245,255,.7),
-0 0 20px rgba(124,58,237,.5),
-0 2px 8px rgba(0,0,0,.8);
-
-letter-spacing:1px;
+.login-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
 }
 
-.desc{
-text-align:center;
-font-size:12px;
+.login-links{
+  display:flex;
+  justify-content:space-between;
+  margin-top:18px;
 
-color:#f97316;
-
-margin-bottom:30px;
-
-text-shadow:
-0 0 8px rgba(56,189,248,.5),
-0 0 18px rgba(14,165,233,.35);
-
-letter-spacing:.5px;
+  font-size:12px;
 }
 
-/* LAST INPUT */
-
-.last-input-box{
-display:none;
-
-margin-top:16px;
-margin-bottom:8px;
-
-border:1px solid rgba(255,255,255,.08);
-
-background:rgba(0,0,0,.02);
-
-border-radius:22px;
-
-padding:10px 12px;
-
-backdrop-filter:blur(2px);
--webkit-backdrop-filter:blur(2px);
-
-box-shadow:
-0 0 14px rgba(0,245,255,.18),
-0 0 28px rgba(124,58,237,.25),
-0 8px 22px rgba(0,0,0,.32);
-
-text-align:center;
+.login-links button{
+  border:0;
+  background:none;
+  color:#ffab67;
 }
 
-.last-title{
-font-size:15px;
-font-weight:600;
+/* =====================================================
+   REGISTER / FORGOT MODAL
+===================================================== */
 
-color:white;
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:100000;
 
-margin-bottom:6px;
+  display:none;
+  align-items:center;
+  justify-content:center;
 
-text-shadow:
-0 0 10px rgba(0,245,255,.7),
-0 0 20px rgba(124,58,237,.5),
-0 2px 8px rgba(0,0,0,.8);
+  padding:20px;
+
+  background:rgba(0,0,0,.62);
+  backdrop-filter:blur(16px);
 }
-
-.history-header{
-display:flex;
-
-background:rgba(249,115,22,.20);
-
-border:1px solid rgba(249,115,22,.35);
-
-border-radius:10px 10px 0 0;
-
-font-size:12px;
-font-weight:700;
-
-color:#f97316;
-
-margin-bottom:2px;
-}
-
-.history-header div:first-child{
-flex:1;
-
-padding:8px 10px;
-
-border-right:1px solid rgba(249,115,22,.35);
-
-text-align:center;
-}
-
-.history-header div:last-child{
-width:60px;
-
-padding:8px;
-
-text-align:center;
-}
-
-.history-item{
-display:flex;
-align-items:center;
-
-border:1px solid rgba(255,255,255,.10);
-
-background:rgba(0,0,0,.08);
-
-margin-bottom:2px;
-
-overflow:hidden;
-
-animation:historyIn .20s ease;
-}
-
-@keyframes historyIn{
-from{
-opacity:0;
-transform:translateY(-5px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-.history-nama{
-flex:1;
-
-padding:8px 10px;
-
-font-size:13px;
-font-weight:600;
-
-color:white;
-
-text-align:left;
-
-border-right:1px solid rgba(255,255,255,.10);
-
-text-shadow:
-0 0 5px rgba(0,245,255,.35),
-0 1px 4px rgba(0,0,0,.8);
-}
-
-.history-qty{
-min-width:60px;
-
-padding:8px 10px;
-
-text-align:center;
-
-font-size:12px;
-font-weight:700;
-
-color:#f97316;
-
-background:transparent;
-
-text-shadow:
-0 0 6px rgba(249,115,22,.35);
-}
-
-/* INPUT BOX */
-
-.input-box{
-margin-bottom:16px;
-position:relative;
-
-border:1px solid rgba(255,255,255,.08);
-
-background:rgba(0,0,0,.12);
-
-border-radius:22px;
-
-padding:14px;
-
-backdrop-filter:blur(4px);
--webkit-backdrop-filter:blur(4px);
-
-box-shadow:
-0 0 14px rgba(0,245,255,.18),
-0 0 28px rgba(124,58,237,.14),
-0 6px 16px rgba(0,0,0,.25);
-
-overflow:visible;
-}
-
-.barcode-box{
-z-index:9999;
-}
-
-.qty-box{
-z-index:1;
-}
-
-.input-box label{
-display:block;
-
-margin-bottom:8px;
-
-font-size:14px;
-font-weight:600;
-
-color:white;
-
-text-shadow:
-0 2px 8px rgba(0,0,0,.7),
-0 0 8px rgba(0,245,255,.35);
-
-letter-spacing:.5px;
-}
-
-.input-box input{
-width:100%;
-
-padding:16px;
-
-border:none;
-outline:none;
-
-border-radius:16px;
-
-border:1px solid rgba(255,255,255,.08);
-
-background:rgba(0,0,0,.25);
-
-color:white;
-
-font-size:15px;
-font-weight:500;
-
-backdrop-filter:blur(6px);
-
-transition:.3s;
-
-box-shadow:
-0 4px 12px rgba(0,0,0,.25);
-}
-
-.input-box input:focus{
-border:1px solid rgba(0,245,255,.7);
-
-background:rgba(0,0,0,.35);
-
-box-shadow:
-0 0 12px rgba(0,245,255,.35),
-0 0 25px rgba(124,58,237,.20),
-0 4px 15px rgba(0,0,0,.35);
-
-transform:scale(1.01);
-}
-
-input::placeholder{
-color:rgba(219,234,254,.55);
-
-text-shadow:
-0 0 6px rgba(0,245,255,.18);
-
-letter-spacing:.4px;
-}
-
-/* ============================= */
-/* BUTTON GLASS NEON */
-/* ============================= */
-
-button{
-
-width:100%;
-padding:16px;
-
-border:none;
-border-radius:18px;
-
-background:
-linear-gradient(
-135deg,
-rgba(0,0,0,.72),
-rgba(5,15,25,.62)
-);
-
-color:white;
-
-font-size:16px;
-font-weight:600;
-
-cursor:pointer;
-
-transition:
-transform .25s ease,
-box-shadow .25s ease,
-border-color .25s ease,
-background .25s ease;
-
-border:1px solid rgba(0,245,255,.35);
-
-backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-
-box-shadow:
-inset 0 0 15px rgba(0,245,255,.08),
-0 0 10px rgba(0,245,255,.18),
-0 0 25px rgba(0,245,255,.10),
-0 10px 25px rgba(0,0,0,.45);
-
-text-shadow:
-0 0 8px rgba(255,255,255,.45),
-0 2px 8px rgba(0,0,0,.8);
-
-letter-spacing:.5px;
-
-position:relative;
-
-overflow:hidden;
-}
-
-
-/* CAHAYA DI DALAM TOMBOL */
-
-button::before{
-
-content:"";
-
-position:absolute;
-
-top:0;
-left:-120%;
-
-width:70%;
-height:100%;
-
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.12),
-transparent
-);
-
-transform:skewX(-20deg);
-
-transition:.5s;
-
-}
-
-
-/* HOVER */
-
-button:hover{
-
-transform:
-translateY(-2px)
-scale(1.01);
-
-border-color:
-rgba(0,245,255,.75);
-
-background:
-linear-gradient(
-135deg,
-rgba(0,0,0,.80),
-rgba(5,20,30,.72)
-);
-
-box-shadow:
-inset 0 0 20px rgba(0,245,255,.12),
-0 0 15px rgba(0,245,255,.45),
-0 0 35px rgba(0,245,255,.25),
-0 12px 30px rgba(0,0,0,.50);
-
-}
-
-button:hover::before{
-
-left:130%;
-
-}
-
-
-/* SAAT DITEKAN */
-
-button:active{
-
-transform:
-scale(.98);
-
-box-shadow:
-inset 0 0 25px rgba(0,245,255,.18),
-0 0 20px rgba(0,245,255,.55);
-
-}
-
-
-/* DISABLED */
-
-button:disabled{
-
-opacity:.6;
-
-cursor:not-allowed;
-
-filter:none;
-
-}
-
-
-/* ============================= */
-/* RESET BUTTON */
-/* ============================= */
-
-.reset-btn{
-
-margin-top:12px;
-
-border-color:
-rgba(255,60,60,.35);
-
-background:
-linear-gradient(
-135deg,
-rgba(0,0,0,.74),
-rgba(25,5,8,.65)
-);
-
-box-shadow:
-inset 0 0 15px rgba(255,0,0,.07),
-0 0 10px rgba(255,0,0,.18),
-0 0 25px rgba(255,0,0,.10),
-0 10px 25px rgba(0,0,0,.45);
-
-}
-
-
-/* RESET HOVER */
-
-.reset-btn:hover{
-
-border-color:
-rgba(255,70,70,.80);
-
-background:
-linear-gradient(
-135deg,
-rgba(0,0,0,.82),
-rgba(30,5,8,.72)
-);
-
-box-shadow:
-inset 0 0 20px rgba(255,0,0,.12),
-0 0 15px rgba(255,50,50,.45),
-0 0 35px rgba(255,0,0,.25),
-0 12px 30px rgba(0,0,0,.50);
-
-}
-
-
-/* RESET ACTIVE */
-
-.reset-btn:active{
-
-box-shadow:
-inset 0 0 25px rgba(255,0,0,.18),
-0 0 20px rgba(255,50,50,.55);
-
-}
-
-/* STATUS */
-
-#status{
-margin-top:16px;
-
-text-align:center;
-
-font-size:14px;
-
-font-weight:500;
-
-color:rgba(225,225,225,.95);
-
-min-height:20px;
-
-text-shadow:
-0 2px 8px rgba(255,255,255,.35),
-0 0 12px rgba(0,245,255,.45),
-0 0 22px rgba(0,245,255,.25);
-
-letter-spacing:.3px;
-}
-
-/* NAMA BARANG */
-
-#namaBarang{
-margin-top:10px;
-
-padding:12px 14px;
-
-border-radius:14px;
-
-background:rgba(255,255,255,.06);
-
-border:1px solid rgba(255,255,255,.08);
-
-color:white;
-
-font-size:14px;
-font-weight:500;
-
-text-align:center;
-
-text-shadow:
-0 0 10px rgba(0,245,255,.7),
-0 0 20px rgba(124,58,237,.5),
-0 2px 8px rgba(0,0,0,.8);
-
-box-shadow:
-0 0 12px rgba(0,245,255,.10);
-
-min-height:20px;
-
-display:none;
-}
-
-/* DROPDOWN */
-
-#suggestions{
-position:absolute;
-
-top:calc(100% + 8px);
-
-left:0;
-right:0;
-
-max-height:320px;
-
-overflow-y:auto;
-
-overscroll-behavior:contain;
-
-z-index:9999999;
-
-display:none;
-
-background:
-linear-gradient(
-rgba(0,0,0,.75),
-rgba(0,0,0,.75)
-),
-url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
-center center / cover no-repeat;
-
-backdrop-filter:blur(8px);
-
-border-radius:18px;
-
-border:1px solid rgba(255,255,255,.08);
-
-box-shadow:
-0 10px 25px rgba(0,0,0,.35);
-
--webkit-overflow-scrolling:touch;
-
-transform:translateZ(999px);
-}
-
-.suggest-item{
-padding:12px 20px;
-
-border-bottom:1px solid rgba(255,255,255,.05);
-
-cursor:pointer;
-
-transition:.2s;
-
-display:flex;
-flex-direction:column;
-
-align-items:center;
-justify-content:center;
-
-text-align:center;
-}
-
-.suggest-item:last-child{
-border-bottom:none;
-}
-
-.suggest-item:hover{
-background:rgba(255,255,255,.08);
-}
-
-.suggest-barcode{
-font-size:14px;
-font-weight:700;
-
-color:#00f5ff;
-}
-
-.suggest-name{
-font-size:13px;
-
-color:#cbd5e1;
-
-margin-top:4px;
-
-line-height:1.4;
-}
-
-/* MODAL */
-
-.modal{
-position:fixed;
-inset:0;
-
-display:none;
-
-align-items:center;
-justify-content:center;
-
-background:rgba(0,0,0,.72);
-
-backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-
-z-index:999999999;
-
-padding:20px;
-
-overflow:auto;
-}
-
-/* MODAL BOX */
 
 .modal-box{
-width:90%;
-max-width:360px;
+  width:min(430px,100%);
+  padding:30px;
 
-padding:28px;
+  border-radius:27px;
+  border:1px solid rgba(255,255,255,.14);
 
-border-radius:28px;
+  background:rgba(25,25,25,.88);
 
-background:
-linear-gradient(
-rgba(0,0,0,.45),
-rgba(0,0,0,.45)
-),
-url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
-center center / cover no-repeat;
+  box-shadow:0 30px 100px rgba(0,0,0,.65);
 
-border:1px solid rgba(255,255,255,.08);
-
-backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-
-box-shadow:
-0 0 15px rgba(0,245,255,.25),
-0 0 35px rgba(124,58,237,.20),
-0 15px 35px rgba(0,0,0,.45);
-
-animation:popup .25s ease;
-
-overflow:hidden;
-
-position:relative;
+  animation:modalIn .4s ease;
 }
 
-@keyframes popup{
-from{
-transform:scale(.85);
-opacity:0;
-}
-to{
-transform:scale(1);
-opacity:1;
-}
+.modal-box h2{
+  margin-bottom:8px;
 }
 
-.modal-title{
-text-align:center;
-
-font-size:22px;
-font-weight:700;
-
-color:white;
-
-margin-bottom:20px;
-
-text-shadow:
-0 0 10px rgba(0,245,255,.45),
-0 2px 8px rgba(0,0,0,.8);
-}
-
-.modal-input{
-width:100%;
-
-padding:16px;
-
-border:none;
-outline:none;
-
-border-radius:18px;
-
-background:rgba(0,0,0,.35);
-
-color:white;
-
-font-size:16px;
-
-border:1px solid rgba(255,255,255,.08);
-
-margin-bottom:18px;
-
-transition:.3s;
-}
-
-.modal-input:focus{
-border:1px solid rgba(0,245,255,.7);
-
-box-shadow:
-0 0 12px rgba(0,245,255,.35),
-0 0 25px rgba(124,58,237,.20);
-
-background:rgba(0,0,0,.45);
+.modal-box p{
+  color:#888;
+  font-size:12px;
+  margin-bottom:22px;
 }
 
 .modal-actions{
-display:flex;
-
-gap:12px;
+  display:flex;
+  gap:10px;
+  margin-top:18px;
 }
 
 .modal-actions button{
-flex:1;
-
-padding:14px;
-
-border-radius:16px;
+  flex:1;
+  height:48px;
+  border-radius:13px;
+  border:0;
 }
 
-.cancel-btn{
-background:rgba(255,255,255,.08);
+.btn-main{
+  background:#ff7600;
+  color:#15100b;
+  font-weight:700;
 }
 
-.confirm-btn{
-background:
-linear-gradient(
-135deg,
-#00f5ff,
-#7c3aed
-);
+.btn-cancel{
+  background:rgba(255,255,255,.08);
+  color:#fff;
 }
 
-@media(max-width:500px){
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
-.container{
-padding:28px;
+.dashboard{
+  min-height:100vh;
+  padding:25px;
+  display:none;
 }
 
-h1{
-font-size:24px;
+.dashboard.show{
+  display:block;
+  animation:dashboardIn .7s ease;
+}
+
+.dashboard-container{
+  width:min(1200px,100%);
+  margin:auto;
+
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:28px;
+
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(25px);
+
+  padding:25px;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:35px;
+}
+
+.logo-text{
+  font-size:22px;
+  font-weight:800;
+}
+
+.logo-text span{
+  color:#ff852d;
+}
+
+.user-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+
+  display:grid;
+  place-items:center;
+
+  background:linear-gradient(135deg,#ff6900,#ffb15d);
+
+  color:#18100b;
+  font-weight:800;
+}
+
+.user-name{
+  font-size:13px;
+}
+
+.user-role{
+  color:#777;
+  font-size:10px;
+}
+
+.logout-btn{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+
+  padding:10px 15px;
+  border-radius:12px;
+}
+
+/* HERO */
+
+.hero{
+  margin-bottom:28px;
+}
+
+.hero small{
+  color:#ff9145;
+  font-size:11px;
+  letter-spacing:1.5px;
+}
+
+.hero h2{
+  font-size:clamp(30px,5vw,55px);
+  line-height:1.05;
+  margin-top:8px;
+}
+
+.hero p{
+  margin-top:10px;
+  color:#777;
+}
+
+/* CARDS */
+
+.mode-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.mode-card{
+  position:relative;
+  overflow:hidden;
+
+  min-height:220px;
+
+  padding:28px;
+
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:25px;
+
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.025)
+  );
+
+  cursor:pointer;
+
+  transition:.35s;
+}
+
+.mode-card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(255,130,30,.45);
+  box-shadow:0 25px 70px rgba(0,0,0,.35);
+}
+
+.mode-number{
+  color:#777;
+  font-size:12px;
+}
+
+.mode-icon{
+  font-size:50px;
+  margin:25px 0 12px;
+}
+
+.mode-card h3{
+  font-size:23px;
+}
+
+.mode-card p{
+  color:#777;
+  font-size:12px;
+  margin-top:6px;
+}
+
+.mode-card::after{
+  content:"→";
+  position:absolute;
+  right:25px;
+  bottom:22px;
+
+  color:#ff8730;
+  font-size:25px;
+}
+
+/* =====================================================
+   STOCKLOSS APPLICATION
+===================================================== */
+
+.stock-app{
+  display:none;
+  min-height:100vh;
+  padding:20px;
+}
+
+.stock-app.show{
+  display:block;
+  animation:dashboardIn .5s ease;
+}
+
+.stock-container{
+  width:min(700px,100%);
+  margin:auto;
+
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:27px;
+
+  padding:25px;
+
+  background:rgba(255,255,255,.065);
+  backdrop-filter:blur(24px);
+}
+
+.stock-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.back-btn{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+
+  border-radius:12px;
+  padding:10px 14px;
+}
+
+.stock-title h1{
+  font-size:26px;
+}
+
+.stock-title p{
+  color:#777;
+  font-size:11px;
+}
+
+.input-box{
+  margin-bottom:17px;
+}
+
+.input-box label{
+  display:block;
+  color:#999;
+  font-size:11px;
+  margin:0 0 8px 4px;
+}
+
+.input-box input{
+  width:100%;
+  height:56px;
+
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+
+  background:rgba(0,0,0,.2);
+  color:#fff;
+
+  outline:none;
+  padding:0 16px;
+
+  font-size:15px;
+}
+
+.input-box input:focus{
+  border-color:#ff8029;
+  box-shadow:0 0 0 4px rgba(255,115,0,.08);
+}
+
+#namaBarang{
+  display:none;
+
+  margin-top:8px;
+  padding:10px 12px;
+
+  border-radius:10px;
+
+  background:rgba(255,120,30,.08);
+  border:1px solid rgba(255,120,30,.12);
+
+  color:#ffb070;
+  font-size:12px;
 }
 
 #suggestions{
-max-height:280px;
+  display:none;
+
+  max-height:250px;
+  overflow:auto;
+
+  margin-top:7px;
+
+  border-radius:13px;
+
+  background:#151515;
+  border:1px solid rgba(255,255,255,.10);
+
+  box-shadow:0 15px 40px rgba(0,0,0,.5);
+
+  position:relative;
+  z-index:100;
 }
 
+.suggestion-item{
+  padding:12px 14px;
+  cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
 
-@supports (-webkit-touch-callout: none){
-
-html{
-height:-webkit-fill-available;
+.suggestion-item:hover{
+  background:rgba(255,120,30,.10);
 }
 
-body{
-min-height:-webkit-fill-available;
+.suggestion-code{
+  color:#ff923e;
+  font-size:11px;
 }
 
+.suggestion-name{
+  font-size:12px;
+  color:#ddd;
 }
 
-@media (min-width:768px){
+.send-btn{
+  width:100%;
+  height:55px;
 
-body{
-display:flex;
+  border:0;
+  border-radius:16px;
 
-justify-content:center;
-align-items:center;
+  background:linear-gradient(135deg,#ff6900,#ff9f4b);
 
-min-height:100vh;
+  color:#17110c;
+  font-weight:800;
+
+  margin-top:5px;
 }
 
-.container{
-width:100%;
-max-width:450px;
+.reset-btn{
+  width:100%;
+  height:45px;
 
-margin:0 auto;
+  margin-top:10px;
+
+  border:1px solid rgba(255,80,80,.20);
+  border-radius:13px;
+
+  background:rgba(255,50,50,.07);
+  color:#ff7777;
 }
 
+#status{
+  min-height:24px;
+  text-align:center;
+  margin:14px 0;
+  font-size:12px;
 }
 
-/* ============================= */
-/* MODE OVERLAY */
-/* ============================= */
+.last-input-box{
+  margin-top:25px;
 
-.mode-overlay{
-position:fixed;
-inset:0;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
 
-display:none;
-
-justify-content:center;
-align-items:center;
-
-z-index:9999999998;
-
-background:rgba(0,0,0,.55);
-
-padding:20px;
+  overflow:hidden;
 }
 
-/* FOTO MODE BLUR */
+.last-title{
+  padding:15px;
 
-.mode-overlay::before{
-content:"";
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
 
-position:absolute;
-inset:-30px;
-
-background:
-linear-gradient(
-rgba(0,0,0,.80),
-rgba(0,0,0,.80)
-),
-url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
-center center / cover no-repeat;
-
-filter:blur(12px);
-
-transform:scale(1.05);
-
-z-index:-1;
+  background:rgba(255,255,255,.04);
 }
 
-
-/* MODE BOX */
-
-.mode-box{
-width:90%;
-max-width:360px;
-
-padding:30px;
-
-border-radius:28px;
-
-background:
-linear-gradient(
-rgba(0,0,0,.45),
-rgba(0,0,0,.45)
-),
-url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
-center center / cover no-repeat;
-
-border:1px solid rgba(255,255,255,.08);
-
-backdrop-filter:blur(10px);
--webkit-backdrop-filter:blur(10px);
-
-box-shadow:
-0 0 20px rgba(0,245,255,.25),
-0 0 40px rgba(124,58,237,.20),
-0 15px 35px rgba(0,0,0,.45);
-
-animation:popup .25s ease;
+.history-header,
+.history-item{
+  display:grid;
+  grid-template-columns:1fr 100px;
 }
 
-
-/* TITLE */
-
-.mode-title{
-text-align:center;
-
-font-size:24px;
-font-weight:700;
-
-color:white;
-
-margin-bottom:8px;
-
-text-shadow:
-0 0 10px rgba(0,245,255,.55),
-0 0 20px rgba(124,58,237,.35),
-0 2px 8px rgba(0,0,0,.8);
+.history-header{
+  padding:10px 15px;
+  color:#666;
+  font-size:9px;
 }
 
-
-.mode-desc{
-text-align:center;
-
-font-size:13px;
-
-color:#cbd5e1;
-
-margin-bottom:25px;
+.history-item{
+  padding:12px 15px;
+  border-top:1px solid rgba(255,255,255,.05);
+  font-size:12px;
 }
 
-
-/* BUTTON WRAPPER */
-
-.mode-buttons{
-display:flex;
-flex-direction:column;
-
-gap:14px;
+.history-qty{
+  text-align:right;
+  color:#ff9a50;
+  font-weight:700;
 }
 
+/* =====================================================
+   ADMIN
+===================================================== */
 
-/* MODE BUTTON */
+.admin-panel{
+  margin-top:30px;
 
-.mode-btn{
-width:100%;
+  display:none;
 
-padding:18px;
-
-border-radius:18px;
-
-font-size:16px;
-font-weight:700;
-
-letter-spacing:.7px;
-
-color:white;
-
-cursor:pointer;
-
-transition:
-transform .25s ease,
-box-shadow .25s ease,
-border-color .25s ease;
-
-position:relative;
-overflow:hidden;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:25px;
 }
 
-
-/* STOCKLOSS */
-
-.stockloss-mode{
-
-border:1px solid rgba(0,245,255,.45);
-
-background:
-linear-gradient(
-135deg,
-rgba(0,245,255,.12),
-rgba(0,0,0,.65)
-);
-
-box-shadow:
-inset 0 0 15px rgba(0,245,255,.08),
-0 0 12px rgba(0,245,255,.20);
+.admin-panel.show{
+  display:block;
 }
 
-
-/* STOCK OPNAME */
-
-.opname-mode{
-
-border:1px solid rgba(124,58,237,.55);
-
-background:
-linear-gradient(
-135deg,
-rgba(124,58,237,.18),
-rgba(0,0,0,.65)
-);
-
-box-shadow:
-inset 0 0 15px rgba(124,58,237,.08),
-0 0 12px rgba(124,58,237,.20);
+.admin-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
 }
 
-
-/* HOVER */
-
-.stockloss-mode:hover{
-
-transform:
-translateY(-2px)
-scale(1.02);
-
-border-color:
-rgba(0,245,255,.85);
-
-box-shadow:
-inset 0 0 20px rgba(0,245,255,.12),
-0 0 18px rgba(0,245,255,.50),
-0 0 35px rgba(0,245,255,.20);
+.pending-list{
+  display:grid;
+  gap:10px;
 }
 
+.pending-user{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
 
-.opname-mode:hover{
+  padding:14px;
 
-transform:
-translateY(-2px)
-scale(1.02);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
 
-border-color:
-rgba(168,85,247,.90);
-
-box-shadow:
-inset 0 0 20px rgba(124,58,237,.12),
-0 0 18px rgba(124,58,237,.50),
-0 0 35px rgba(124,58,237,.20);
+  background:rgba(255,255,255,.04);
 }
 
-
-/* ACTIVE */
-
-.mode-btn:active{
-
-transform:scale(.97);
+.pending-info strong{
+  display:block;
+  font-size:13px;
 }
 
-
-/* MOBILE */
-
-@media(max-width:500px){
-
-.mode-box{
-padding:28px 22px;
+.pending-info small{
+  color:#777;
+  font-size:10px;
 }
 
-.mode-title{
-font-size:22px;
+.pending-actions{
+  display:flex;
+  gap:7px;
 }
 
-.mode-btn{
-padding:17px;
-font-size:15px;
+.approve,
+.reject{
+  border:0;
+  border-radius:9px;
+  padding:8px 10px;
+  font-size:11px;
 }
 
+.approve{
+  background:#28c76f;
+  color:#06160d;
 }
 
-/* FIX GARIS DI ANTARA BARCODE DAN QTY */
-
-.barcode-box{
-    overflow:visible;
-    box-shadow:
-        0 0 14px rgba(0,245,255,.18),
-        0 0 28px rgba(124,58,237,.14),
-        0 4px 10px rgba(0,0,0,.15);
+.reject{
+  background:#ff5050;
+  color:#1b0000;
 }
 
-.qty-box{
-    overflow:visible;
-    box-shadow:
-        0 0 14px rgba(0,245,255,.18),
-        0 0 28px rgba(124,58,237,.14),
-        0 8px 22px rgba(0,0,0,.32);
-}
-.barcode-box{
-z-index:9999;
+/* =====================================================
+   ANIMATIONS
+===================================================== */
 
-box-shadow:
-0 0 14px rgba(0,245,255,.18),
-0 0 28px rgba(124,58,237,.14),
-0 4px 10px rgba(0,0,0,.15);
-}
-
-.qty-box{
-z-index:1;
+@keyframes loginIn{
+  from{
+    opacity:0;
+    transform:translateY(40px) scale(.94);
+    filter:blur(12px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
 }
 
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:scale(.94) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
 
+@keyframes dashboardIn{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+    filter:blur(8px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+}
+
+@media(max-width:650px){
+
+  .login-card{
+    padding:27px 22px;
+  }
+
+  .mode-grid{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard{
+    padding:10px;
+  }
+
+  .dashboard-container{
+    padding:18px;
+    border-radius:20px;
+  }
+
+  .topbar{
+    flex-wrap:wrap;
+  }
+
+  .user-area{
+    width:100%;
+  }
+
+  .logout-btn{
+    margin-left:auto;
+  }
+
+  .stock-app{
+    padding:10px;
+  }
+
+  .stock-container{
+    padding:18px;
+  }
+}
 </style>
 </head>
 
 <body>
-    
-<!-- PILIH MODE -->
 
-<div class="mode-overlay" id="modeOverlay">
-
-<div class="mode-box">
-
-<div class="mode-title">
-PILIH MODE
-</div>
-
-<div class="mode-desc">
-Silahkan pilih jenis transaksi
-</div>
-
-<div class="mode-buttons">
-
-<button
-class="mode-btn stockloss-mode"
-onclick="pilihMode('stockloss')">
-STOCKLOSS
-</button>
-
-<button
-class="mode-btn opname-mode"
-onclick="pilihMode('opname')">
-STOCK OPNAME
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- LOGIN SCREEN -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div class="login-overlay" id="loginOverlay">
 
-<div class="login-box">
+  <div class="login-card">
 
-<div class="login-title">
-THE BUTCHER KEMANG
-</div>
+    <div class="brand-logo">TB</div>
 
-<div class="login-desc">
-Silahkan masukkan password terlebih dahulu
-</div>
+    <h1>THE <span>BUTCHER</span></h1>
 
-<input
-type="password"
-id="loginPassword"
-class="login-input"
-placeholder="Masukkan Password"
->
+    <p class="subtitle">
+      Inventory Management System
+    </p>
 
-<button
-class="login-btn"
-onclick="loginApp()">
-Masuk
-</button>
+    <div class="field">
+      <label>USERNAME</label>
 
-<div
-id="loginStatus"
-style="
-margin-top:14px;
-text-align:center;
-font-size:13px;
-color:#fff;
-min-height:18px;
-">
-</div>
+      <div class="input-wrap">
+        <input
+          id="loginUsername"
+          type="text"
+          placeholder="Masukkan username"
+          autocomplete="username">
+      </div>
+    </div>
 
-</div>
+    <div class="field">
+      <label>PASSWORD</label>
 
-</div>
+      <div class="input-wrap">
 
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Masukkan password"
+          autocomplete="current-password">
 
-<div class="container">
+        <button
+          class="eye"
+          type="button"
+          onclick="togglePassword('loginPassword')">
+          👁
+        </button>
 
-<h1>STOCKLOSS BSD</h1>
+      </div>
+    </div>
 
-<p class="desc">
-Scan / Input Barcode dan Qty
-</p>
+    <button
+      class="login-btn"
+      id="loginBtn"
+      onclick="loginUser()">
+      LOGIN
+    </button>
 
+    <div id="loginStatus" class="error"></div>
 
-<!-- BARCODE -->
+    <div class="login-links">
 
-<div class="input-box barcode-box">
+      <button onclick="openRegister()">
+        Sign Up
+      </button>
 
-<label>Barcode</label>
+      <button onclick="openForgot()">
+        Forgot Password?
+      </button>
 
-<input 
-type="text" 
-id="barcode" 
-placeholder="Scan / Input Barcode"
-autocomplete="off"
->
+    </div>
 
-<div id="namaBarang"></div>
-
-<div id="suggestions"></div>
-
-</div>
-
-
-<!-- QTY -->
-
-<div class="input-box qty-box">
-
-<label>Qty</label>
-
-<input 
-type="text"
-inputmode="decimal"
-id="qty" 
-placeholder="Masukkan Qty"
->
-
+  </div>
 </div>
 
 
-<button id="btnKirim" onclick="kirimData()">
-Kirim Data
-</button>
+<!-- =====================================================
+     REGISTER
+===================================================== -->
 
-<button onclick="resetData()" class="reset-btn">
-Reset Data Stockloss
-</button>
+<div class="modal-overlay" id="registerModal">
 
-<div id="status"></div>
+  <div class="modal-box">
 
+    <h2>Create Account</h2>
 
-<!-- HISTORY -->
+    <p>
+      Buat akun THE BUTCHER.
+      Setelah mendaftar, akun menunggu approval admin.
+    </p>
 
-<div id="historyBox" class="last-input-box">
+    <div class="field">
 
-<div class="last-title">
-DATA INPUT
-</div>
+      <label>USERNAME</label>
 
-<div class="history-header">
+      <div class="input-wrap">
+        <input
+          id="registerUsername"
+          type="text"
+          placeholder="Contoh: aldi">
+      </div>
 
-<div>
-ARTICLE NAME
-</div>
+    </div>
 
-<div>
-QTY
-</div>
+    <div class="field">
 
-</div>
+      <label>EMAIL</label>
 
-<div id="historyList"></div>
+      <div class="input-wrap">
+        <input
+          id="registerEmail"
+          type="email"
+          placeholder="email@example.com">
+      </div>
 
-</div>
+    </div>
 
-</div>
+    <div class="field">
 
+      <label>PASSWORD</label>
 
-<!-- MODAL PASSWORD -->
+      <div class="input-wrap">
 
-<div class="modal" id="passwordModal">
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Minimal 6 karakter">
 
-<div class="modal-box">
+        <button
+          class="eye"
+          type="button"
+          onclick="togglePassword('registerPassword')">
+          👁
+        </button>
 
-<div class="modal-title">
-Silahkan Masukan Password
-</div>
+      </div>
 
-<input
-type="password"
-id="adminPassword"
-class="modal-input"
-placeholder="Masukkan password"
->
+    </div>
 
-<div class="modal-actions">
+    <div class="modal-actions">
 
-<button
-class="cancel-btn"
-onclick="closePasswordModal()">
-Batal
-</button>
+      <button
+        class="btn-cancel"
+        onclick="closeModals()">
+        Batal
+      </button>
 
-<button
-class="confirm-btn"
-onclick="submitReset()">
-Masuk
-</button>
+      <button
+        class="btn-main"
+        onclick="registerUser()">
+        DAFTAR
+      </button>
 
-</div>
+    </div>
 
-</div>
+    <div id="registerStatus" class="error"></div>
+
+  </div>
 
 </div>
 
 
-<script>
+<!-- =====================================================
+     FORGOT PASSWORD
+===================================================== -->
 
-/* ================================================= */
-/* CONFIG */
-/* ================================================= */
+<div class="modal-overlay" id="forgotModal">
 
-const URL_SCRIPT =
-"https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";
+  <div class="modal-box">
 
-const ADMIN_PASSWORD = "0800";
+    <h2>Reset Password</h2>
+
+    <p>
+      Masukkan email akun kamu.
+      Firebase akan mengirim link reset password.
+    </p>
+
+    <div class="field">
+
+      <label>EMAIL</label>
+
+      <div class="input-wrap">
+
+        <input
+          id="forgotEmail"
+          type="email"
+          placeholder="email@example.com">
+
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button
+        class="btn-cancel"
+        onclick="closeModals()">
+        Batal
+      </button>
+
+      <button
+        class="btn-main"
+        onclick="forgotPassword()">
+        KIRIM
+      </button>
+
+    </div>
+
+    <div id="forgotStatus" class="error"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section class="dashboard" id="dashboard">
+
+  <div class="dashboard-container">
+
+    <div class="topbar">
+
+      <div class="logo-text">
+        THE <span>BUTCHER</span>
+      </div>
+
+      <div class="user-area">
+
+        <div class="avatar" id="userAvatar">
+          U
+        </div>
+
+        <div>
+          <div class="user-name" id="userName">
+            User
+          </div>
+
+          <div class="user-role" id="userRole">
+            USER
+          </div>
+        </div>
+
+        <button
+          class="logout-btn"
+          onclick="logoutUser()">
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="hero">
+
+      <small>INVENTORY MANAGEMENT SYSTEM</small>
+
+      <h2>
+        Welcome back,<br>
+        <span id="welcomeName">User</span> 👋
+      </h2>
+
+      <p>
+        Pilih sistem yang ingin kamu gunakan.
+      </p>
+
+    </div>
+
+
+    <div class="mode-grid">
+
+      <div
+        class="mode-card"
+        onclick="openStockApp('stockloss')">
+
+        <div class="mode-number">
+          01
+        </div>
+
+        <div class="mode-icon">
+          📦
+        </div>
+
+        <h3>
+          STOCKLOSS
+        </h3>
+
+        <p>
+          Input stock loss / barang terjual
+        </p>
+
+      </div>
+
+
+      <div
+        class="mode-card"
+        onclick="openStockApp('opname')">
+
+        <div class="mode-number">
+          02
+        </div>
+
+        <div class="mode-icon">
+          📋
+        </div>
+
+        <h3>
+          STOCK OPNAME
+        </h3>
+
+        <p>
+          Input dan pengecekan stock fisik
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ADMIN -->
+
+    <div
+      class="admin-panel"
+      id="adminPanel">
+
+      <div class="admin-title">
+
+        <h3>
+          👑 Admin Approval
+        </h3>
+
+        <button
+          class="logout-btn"
+          onclick="loadPendingUsers()">
+          Refresh
+        </button>
+
+      </div>
+
+      <div
+        class="pending-list"
+        id="pendingList">
+
+        Loading...
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     STOCK APPLICATION
+===================================================== -->
+
+<section
+  class="stock-app"
+  id="stockApp">
+
+  <div class="stock-container">
+
+    <div class="stock-header">
+
+      <div class="stock-title">
+
+        <h1 id="stockTitle">
+          STOCKLOSS
+        </h1>
+
+        <p id="stockDescription">
+          Scan / Input Barcode dan Qty
+        </p>
+
+      </div>
+
+      <button
+        class="back-btn"
+        onclick="backDashboard()">
+        ← Back
+      </button>
+
+    </div>
+
+
+    <div class="input-box">
+
+      <label>BARCODE</label>
+
+      <input
+        type="text"
+        id="barcode"
+        placeholder="Scan / Input Barcode"
+        autocomplete="off">
+
+      <div id="namaBarang"></div>
+
+      <div id="suggestions"></div>
+
+    </div>
+
+
+    <div class="input-box">
+
+      <label>QTY</label>
+
+      <input
+        type="text"
+        inputmode="decimal"
+        id="qty"
+        placeholder="Masukkan Qty">
+
+    </div>
+
+
+    <button
+      class="send-btn"
+      id="btnKirim"
+      onclick="kirimData()">
+
+      KIRIM DATA
+
+    </button>
+
+
+    <button
+      class="reset-btn"
+      onclick="resetData()">
+
+      RESET DATA
+
+    </button>
+
+
+    <div id="status"></div>
+
+
+    <div
+      id="historyBox"
+      class="last-input-box">
+
+      <div class="last-title">
+        DATA INPUT
+      </div>
+
+      <div class="history-header">
+        <div>ARTICLE NAME</div>
+        <div>QTY</div>
+      </div>
+
+      <div id="historyList"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithCustomToken,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+import {
+  getFunctions,
+  httpsCallable
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-functions.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyAEll_xXB59TB59N--5wjG1C2bxYg7yqps",
+
+  authDomain:
+    "stockloss-bsd-web.firebaseapp.com",
+
+  projectId:
+    "stockloss-bsd-web",
+
+  storageBucket:
+    "stockloss-bsd-web.firebasestorage.app",
+
+  messagingSenderId:
+    "825716539347",
+
+  appId:
+    "1:825716539347:web:4f919eca31a71e72f57926",
+
+  measurementId:
+    "G-X0YY0849JH"
+};
+
+
+/* =====================================================
+   FIREBASE INIT
+===================================================== */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const functions = getFunctions(app);
+
+
+/*
+  Cloud Function:
+  usernameLogin
+*/
+
+const usernameLogin =
+  httpsCallable(
+    functions,
+    "usernameLogin"
+  );
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+const ADMIN_UID =
+  "4ogW7YFhtAbVssfoMQrguo6dHE23";
+
+const ADMIN_EMAIL =
+  "aldydasilva172@gmail.com";
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+let currentUser = null;
+let currentProfile = null;
 
 let currentMode = "";
 
 let barcodeCache = [];
 
-let debounceTimer;
-
 let historyData = [];
 
+let debounceTimer;
 
 
-/* ================================================= */
-/* RENDER HISTORY */
-/* ================================================= */
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-function renderHistory(){
+const loginOverlay =
+  document.getElementById("loginOverlay");
 
-const box =
-document.getElementById(
-"historyBox"
-);
+const dashboard =
+  document.getElementById("dashboard");
 
-const list =
-document.getElementById(
-"historyList"
-);
+const stockApp =
+  document.getElementById("stockApp");
 
 
-if(
-!Array.isArray(historyData) ||
-historyData.length === 0
-){
+/* =====================================================
+   PASSWORD TOGGLE
+===================================================== */
 
-box.style.display = "none";
+window.togglePassword = function(id){
 
-list.innerHTML = "";
+  const input =
+    document.getElementById(id);
 
-return;
-
-}
-
-
-box.style.display = "block";
-
-
-let html = "";
-
-
-historyData
-.slice(0,50)
-.forEach(item=>{
-
-html += `
-
-<div class="history-item">
-
-<div class="history-nama">
-${escapeHTML(item.nama)}
-</div>
-
-<div class="history-qty">
-${escapeHTML(item.qty)}
-</div>
-
-</div>
-
-`;
-
-});
-
-
-list.innerHTML = html;
-
-}
-
-
-/* ================================================= */
-/* ESCAPE HTML */
-/* ================================================= */
-
-function escapeHTML(value){
-
-return String(value ?? "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* ================================================= */
-/* TAMBAH HISTORY LANGSUNG */
-/* ================================================= */
-
-function addHistoryInstant(nama,qty){
-
-historyData.unshift({
-
-nama:nama || "-",
-
-qty:qty
-
-});
-
-
-historyData =
-historyData.slice(0,50);
-
-renderHistory();
-
-}
-
-
-/* ================================================= */
-/* LOAD BARCODE DARI MASTER */
-/* ================================================= */
-
-async function loadBarcodeData(){
-
-try{
-
-const res =
-await fetch(URL_SCRIPT,{
-
-method:"POST",
-
-headers:{
-"Content-Type":
-"text/plain;charset=utf-8"
-},
-
-body:JSON.stringify({
-action:"getAllBarcode"
-})
-
-});
-
-barcodeCache =
-await res.json();
-
-console.log(
-"Barcode berhasil dimuat:",
-barcodeCache.length
-);
-
-}catch(err){
-
-console.log(
-"Load barcode error:",
-err
-);
-
-barcodeCache = [];
-
-}
-
-}
-
-/* ================================================= */
-/* AUTO FOCUS / INITIAL LOAD */
-/* ================================================= */
-
-window.onload = async () => {
-
-await loadBarcodeData();
-
-setTimeout(()=>{
-
-document
-.getElementById("loginPassword")
-.focus();
-
-},200);
+  input.type =
+    input.type === "password"
+      ? "text"
+      : "password";
 
 };
 
 
-/* ================================================= */
-/* ================================================= */
-/* LOGIN */
-/* ================================================= */
+/* =====================================================
+   MODALS
+===================================================== */
 
-function loginApp(){
+window.openRegister = function(){
 
-const password =
-document
-.getElementById("loginPassword")
-.value;
+  document.getElementById("registerModal")
+    .style.display = "flex";
+
+};
+
+window.openForgot = function(){
+
+  document.getElementById("forgotModal")
+    .style.display = "flex";
+
+};
+
+window.closeModals = function(){
+
+  document.querySelectorAll(".modal-overlay")
+    .forEach(el => {
+      el.style.display = "none";
+    });
+
+};
 
 
-if(password !== ADMIN_PASSWORD){
+/* =====================================================
+   REGISTER
+===================================================== */
 
-const status = document.getElementById("loginStatus");
+window.registerUser = async function(){
 
-status.innerHTML = "❌ Password salah";
+  const username =
+    document.getElementById("registerUsername")
+      .value
+      .trim()
+      .toLowerCase();
 
-status.style.color = "#ff4d4d";
+  const email =
+    document.getElementById("registerEmail")
+      .value
+      .trim()
+      .toLowerCase();
 
-return;
+  const password =
+    document.getElementById("registerPassword")
+      .value;
+
+  const status =
+    document.getElementById("registerStatus");
+
+
+  status.textContent = "";
+
+
+  if(!/^[a-z0-9._-]{3,20}$/.test(username)){
+
+    status.textContent =
+      "Username 3–20 karakter. Gunakan huruf, angka, titik, _ atau -.";
+
+    return;
+  }
+
+
+  if(!email.includes("@")){
+
+    status.textContent =
+      "Email tidak valid.";
+
+    return;
+  }
+
+
+  if(password.length < 6){
+
+    status.textContent =
+      "Password minimal 6 karakter.";
+
+    return;
+  }
+
+
+  try{
+
+    /*
+      Cek username terlebih dahulu
+    */
+
+    const usernameRef =
+      doc(
+        db,
+        "usernames",
+        username
+      );
+
+    const usernameSnap =
+      await getDoc(usernameRef);
+
+    if(usernameSnap.exists()){
+
+      status.textContent =
+        "Username sudah digunakan.";
+
+      return;
+    }
+
+
+    /*
+      Buat akun Firebase Authentication
+    */
+
+    const credential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    const user =
+      credential.user;
+
+
+    /*
+      Kirim verifikasi email
+    */
+
+    await sendEmailVerification(user);
+
+
+    /*
+      Simpan profile
+    */
+
+    await setDoc(
+      doc(db,"users",user.uid),
+      {
+
+        username: username,
+
+        email: email,
+
+        role: "user",
+
+        status: "pending"
+
+      }
+    );
+
+
+    /*
+      Simpan mapping username → UID
+      Tidak menyimpan password.
+      Tidak menyimpan email di collection ini.
+    */
+
+    await setDoc(
+      usernameRef,
+      {
+
+        uid: user.uid
+
+      }
+    );
+
+
+    await signOut(auth);
+
+
+    status.className =
+      "error success";
+
+    status.textContent =
+      "Pendaftaran berhasil. Cek email untuk verifikasi, lalu tunggu approval admin.";
+
+    document.getElementById("registerUsername")
+      .value = "";
+
+    document.getElementById("registerEmail")
+      .value = "";
+
+    document.getElementById("registerPassword")
+      .value = "";
+
+
+  }catch(error){
+
+    console.error(error);
+
+    status.className = "error";
+
+    status.textContent =
+      firebaseError(error.code);
+
+  }
+
+};
+
+
+/* =====================================================
+   LOGIN USERNAME
+===================================================== */
+
+window.loginUser = async function(){
+
+  const username =
+    document.getElementById("loginUsername")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const password =
+    document.getElementById("loginPassword")
+      .value;
+
+  const status =
+    document.getElementById("loginStatus");
+
+  const button =
+    document.getElementById("loginBtn");
+
+
+  status.textContent = "";
+
+
+  if(!username || !password){
+
+    status.textContent =
+      "Username dan password wajib diisi.";
+
+    return;
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "LOGIN...";
+
+
+  try{
+
+    /*
+      Cloud Function mencari UID berdasarkan username,
+      lalu melakukan autentikasi Firebase.
+    */
+
+    const result =
+      await usernameLogin({
+        username,
+        password
+      });
+
+
+    const token =
+      result.data.token;
+
+
+    await signInWithCustomToken(
+      auth,
+      token
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    status.textContent =
+      error.message ||
+      "Username atau password salah.";
+
+    button.disabled = false;
+
+    button.textContent =
+      "LOGIN";
+
+  }
+
+};
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+
+      currentUser = null;
+
+      return;
+    }
+
+
+    currentUser = user;
+
+
+    try{
+
+      /*
+        Verifikasi email
+      */
+
+      if(!user.emailVerified){
+
+        document.getElementById("loginStatus")
+          .textContent =
+          "Email belum diverifikasi. Silakan cek email kamu.";
+
+        await signOut(auth);
+
+        return;
+      }
+
+
+      /*
+        Ambil profile
+      */
+
+      const profileSnap =
+        await getDoc(
+          doc(db,"users",user.uid)
+        );
+
+
+      if(!profileSnap.exists()){
+
+        await signOut(auth);
+
+        return;
+      }
+
+
+      currentProfile =
+        profileSnap.data();
+
+
+      /*
+        Status approval
+      */
+
+      if(
+        currentProfile.status !== "approved"
+      ){
+
+        document.getElementById("loginStatus")
+          .textContent =
+          "Akun kamu masih menunggu approval admin.";
+
+        await signOut(auth);
+
+        return;
+      }
+
+
+      /*
+        Login sukses
+      */
+
+      showDashboard();
+
+
+    }catch(error){
+
+      console.error(error);
+
+      await signOut(auth);
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SHOW DASHBOARD
+===================================================== */
+
+function showDashboard(){
+
+  loginOverlay.style.display =
+    "none";
+
+  dashboard.classList.add("show");
+
+  stockApp.classList.remove("show");
+
+
+  const username =
+    currentProfile.username ||
+    "User";
+
+
+  document.getElementById("userName")
+    .textContent =
+    username;
+
+
+  document.getElementById("welcomeName")
+    .textContent =
+    username;
+
+
+  document.getElementById("userRole")
+    .textContent =
+    String(currentProfile.role || "user")
+      .toUpperCase();
+
+
+  document.getElementById("userAvatar")
+    .textContent =
+    username
+      .charAt(0)
+      .toUpperCase();
+
+
+  /*
+    Admin panel
+  */
+
+  if(
+    currentUser.uid === ADMIN_UID ||
+    currentProfile.role === "admin"
+  ){
+
+    document
+      .getElementById("adminPanel")
+      .classList.add("show");
+
+    loadPendingUsers();
+
+  }
 
 }
 
 
-/* PASSWORD BENAR */
+/* =====================================================
+   LOGOUT
+===================================================== */
 
-document
-.getElementById("loginOverlay")
-.style.display =
-"none";
+window.logoutUser = async function(){
+
+  await signOut(auth);
+
+  currentUser = null;
+  currentProfile = null;
+
+  dashboard.classList.remove("show");
+
+  stockApp.classList.remove("show");
+
+  loginOverlay.style.display =
+    "flex";
+
+  document.getElementById("loginPassword")
+    .value = "";
+
+};
 
 
-/* TAMPILKAN PILIH MODE */
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
 
-document
-.getElementById("modeOverlay")
-.style.display =
-"flex";
+window.forgotPassword = async function(){
+
+  const email =
+    document.getElementById("forgotEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const status =
+    document.getElementById("forgotStatus");
+
+
+  if(!email){
+
+    status.textContent =
+      "Masukkan email.";
+
+    return;
+  }
+
+
+  try{
+
+    await sendPasswordResetEmail(
+      auth,
+      email
+    );
+
+
+    status.className =
+      "error success";
+
+    status.textContent =
+      "Link reset password sudah dikirim ke email.";
+
+
+  }catch(error){
+
+    status.className =
+      "error";
+
+    status.textContent =
+      firebaseError(error.code);
+
+  }
+
+};
+
+
+/* =====================================================
+   ADMIN — LOAD PENDING
+===================================================== */
+
+window.loadPendingUsers =
+async function(){
+
+  const list =
+    document.getElementById("pendingList");
+
+  list.innerHTML =
+    "Loading...";
+
+
+  try{
+
+    const q =
+      query(
+        collection(db,"users"),
+        where("status","==","pending")
+      );
+
+
+    const snapshot =
+      await getDocs(q);
+
+
+    if(snapshot.empty){
+
+      list.innerHTML =
+        `<div style="color:#777;font-size:12px">
+          Tidak ada user menunggu approval.
+        </div>`;
+
+      return;
+    }
+
+
+    list.innerHTML = "";
+
+
+    snapshot.forEach(
+      snap => {
+
+        const data =
+          snap.data();
+
+
+        const item =
+          document.createElement("div");
+
+        item.className =
+          "pending-user";
+
+
+        item.innerHTML = `
+
+          <div class="pending-info">
+
+            <strong>
+              ${escapeHTML(data.username || "-")}
+            </strong>
+
+            <small>
+              ${escapeHTML(data.email || "-")}
+            </small>
+
+          </div>
+
+          <div class="pending-actions">
+
+            <button
+              class="approve"
+              onclick="approveUser('${snap.id}')">
+              APPROVE
+            </button>
+
+            <button
+              class="reject"
+              onclick="rejectUser('${snap.id}')">
+              REJECT
+            </button>
+
+          </div>
+
+        `;
+
+
+        list.appendChild(item);
+
+      }
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    list.innerHTML =
+      "Gagal mengambil data user.";
+
+  }
+
+};
+
+
+/* =====================================================
+   ADMIN — APPROVE
+===================================================== */
+
+window.approveUser =
+async function(uid){
+
+  if(!confirm("Approve user ini?"))
+    return;
+
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",uid),
+      {
+        status:"approved"
+      }
+    );
+
+
+    await loadPendingUsers();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Gagal approve user."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   ADMIN — REJECT
+===================================================== */
+
+window.rejectUser =
+async function(uid){
+
+  if(!confirm("Tolak user ini?"))
+    return;
+
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",uid),
+      {
+        status:"rejected"
+      }
+    );
+
+
+    await loadPendingUsers();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Gagal menolak user."
+    );
+
+  }
+
+};
+
+
+/* =====================================================
+   OPEN STOCK APP
+===================================================== */
+
+window.openStockApp =
+async function(mode){
+
+  currentMode =
+    mode;
+
+
+  dashboard.classList.remove(
+    "show"
+  );
+
+  stockApp.classList.add(
+    "show"
+  );
+
+
+  if(mode === "stockloss"){
+
+    document.getElementById("stockTitle")
+      .textContent =
+      "STOCKLOSS";
+
+    document.getElementById("stockDescription")
+      .textContent =
+      "Scan / Input Barcode dan Qty";
+
+    document.querySelector(".reset-btn")
+      .textContent =
+      "Reset Data Stockloss";
+
+  }else{
+
+    document.getElementById("stockTitle")
+      .textContent =
+      "STOCK OPNAME";
+
+    document.getElementById("stockDescription")
+      .textContent =
+      "Scan / Input Barcode dan Qty";
+
+    document.querySelector(".reset-btn")
+      .textContent =
+      "Reset Data Stock Opname";
+
+  }
+
+
+  historyData = [];
+
+  renderHistory();
+
+  await loadBarcodeData();
+
+  await loadHistory();
+
+
+  setTimeout(
+    () =>
+      document
+        .getElementById("barcode")
+        .focus(),
+    100
+  );
+
+};
+
+
+/* =====================================================
+   BACK DASHBOARD
+===================================================== */
+
+window.backDashboard =
+function(){
+
+  stockApp.classList.remove(
+    "show"
+  );
+
+  dashboard.classList.add(
+    "show"
+  );
+
+};
+
+
+/* =====================================================
+   APPS SCRIPT
+===================================================== */
+
+const URL_SCRIPT =
+"https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";
+
+
+/* =====================================================
+   LOAD BARCODE
+===================================================== */
+
+async function loadBarcodeData(){
+
+  try{
+
+    const res =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:JSON.stringify({
+            action:"getAllBarcode"
+          })
+        }
+      );
+
+
+    barcodeCache =
+      await res.json();
+
+
+    console.log(
+      "Barcode:",
+      barcodeCache.length
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Load barcode error:",
+      error
+    );
+
+    barcodeCache = [];
+
+  }
 
 }
 
 
-/* ================================================= */
-/* PILIH MODE */
-/* ================================================= */
+/* =====================================================
+   HISTORY
+===================================================== */
 
-function pilihMode(mode){
+function renderHistory(){
 
-currentMode = mode;
+  const box =
+    document.getElementById(
+      "historyBox"
+    );
 
-const title =
-document.querySelector("h1");
-
-const desc =
-document.querySelector(".desc");
-
-const modeOverlay =
-document.getElementById("modeOverlay");
-
-
-if(mode === "stockloss"){
-
-title.innerText =
-"STOCKLOSS BSD";
-
-desc.innerText =
-"Scan / Input Barcode dan Qty";
-
-document.querySelector(".reset-btn").innerText =
-"Reset Data Stockloss";
-
-}
-
-else if(mode === "opname"){
-
-title.innerText =
-"STOCK OPNAME BSD";
-
-desc.innerText =
-"Scan / Input Barcode dan Qty";
-
-document.querySelector(".reset-btn").innerText =
-"Reset Data Stock Opname";
-
-}
+  const list =
+    document.getElementById(
+      "historyList"
+    );
 
 
-/* KOSONGKAN HISTORY MODE SEBELUMNYA */
+  if(
+    !Array.isArray(historyData) ||
+    historyData.length === 0
+  ){
 
-historyData = [];
+    box.style.display =
+      "none";
 
-renderHistory();
+    list.innerHTML =
+      "";
 
-
-modeOverlay.style.display =
-"none";
-
-
-/* LOAD HISTORY SESUAI MODE */
-
-loadHistory();
+    return;
+  }
 
 
-setTimeout(()=>{
+  box.style.display =
+    "block";
 
-document
-.getElementById("barcode")
-.focus();
 
-},100);
+  let html = "";
+
+
+  historyData
+    .slice(0,50)
+    .forEach(
+      item => {
+
+        html += `
+
+          <div class="history-item">
+
+            <div>
+              ${escapeHTML(item.nama)}
+            </div>
+
+            <div class="history-qty">
+              ${escapeHTML(item.qty)}
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+  list.innerHTML =
+    html;
 
 }
 
 
-/* ================================================= */
-/* ENTER LOGIN */
-/* ================================================= */
+function addHistoryInstant(
+  nama,
+  qty
+){
 
-document
-.getElementById("loginPassword")
-.addEventListener(
-"keypress",
-function(e){
+  historyData.unshift({
+    nama:nama || "-",
+    qty:qty
+  });
 
-if(e.key === "Enter"){
 
-loginApp();
+  historyData =
+    historyData.slice(0,50);
+
+
+  renderHistory();
 
 }
 
-});
-
-
-/* ================================================= */
-/* LOAD History */
-/* ================================================= */
 
 async function loadHistory(){
 
-try{
+  try{
 
-const res =
-await fetch(URL_SCRIPT,{
+    const res =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
 
-method:"POST",
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
 
-headers:{
-"Content-Type":
-"text/plain;charset=utf-8"
-},
+          body:JSON.stringify({
+            action:"getHistory",
+            mode:currentMode
+          })
+        }
+      );
 
-body:JSON.stringify({
-action:"getHistory",
-mode:currentMode
-})
 
-});
+    historyData =
+      await res.json();
 
-historyData =
-await res.json();
 
-renderHistory();
+    renderHistory();
 
-}catch(err){
 
-console.log(
-"Load history error:",
-err
+  }catch(error){
+
+    console.error(
+      "Load history:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   BARCODE INPUT
+===================================================== */
+
+const barcodeInput =
+  document.getElementById(
+    "barcode"
+  );
+
+
+barcodeInput.addEventListener(
+  "input",
+  function(){
+
+    const barcode =
+      this.value.trim();
+
+
+    tampilkanNamaBarang(
+      barcode
+    );
+
+
+    /*
+      Weighted barcode
+      20 + 5 digit article + 5 digit qty
+    */
+
+    if(
+      barcode.startsWith("20") &&
+      barcode.length === 13 &&
+      /^\d+$/.test(barcode)
+    ){
+
+      hideSuggestions();
+
+
+      const qtyRaw =
+        barcode.substring(
+          7,
+          12
+        );
+
+
+      const qtyNumber =
+        parseInt(
+          qtyRaw,
+          10
+        ) / 1000;
+
+
+      let qtyFormatted =
+        qtyNumber
+          .toFixed(3)
+          .replace(/\.?0+$/,"");
+
+
+      qtyFormatted =
+        qtyFormatted.replace(
+          ".",
+          ","
+        );
+
+
+      document.getElementById(
+        "qty"
+      ).value =
+        qtyFormatted;
+
+    }
+
+  }
 );
 
-}
+
+/* =====================================================
+   BARCODE SUGGESTIONS
+===================================================== */
+
+barcodeInput.addEventListener(
+  "input",
+  function(){
+
+    clearTimeout(
+      debounceTimer
+    );
+
+
+    debounceTimer =
+      setTimeout(
+        () => {
+
+          const keyword =
+            this.value
+              .trim()
+              .toLowerCase();
+
+
+          const suggestions =
+            document.getElementById(
+              "suggestions"
+            );
+
+
+          if(keyword.length < 2){
+
+            hideSuggestions();
+
+            return;
+
+          }
+
+
+          let filtered =
+            barcodeCache.filter(
+              item => {
+
+                const barcode =
+                  String(
+                    item.barcode
+                  ).toLowerCase();
+
+                const nama =
+                  String(
+                    item.nama
+                  ).toLowerCase();
+
+
+                return(
+                  barcode.startsWith(
+                    keyword
+                  ) ||
+
+                  barcode.includes(
+                    keyword
+                  ) ||
+
+                  nama.includes(
+                    keyword
+                  )
+                );
+
+              }
+            );
+
+
+          filtered =
+            filtered.slice(
+              0,
+              20
+            );
+
+
+          if(
+            filtered.length === 0
+          ){
+
+            hideSuggestions();
+
+            return;
+
+          }
+
+
+          let html = "";
+
+
+          filtered.forEach(
+            item => {
+
+              html += `
+
+                <div
+                  class="suggestion-item"
+                  onclick="selectBarcode('${escapeAttr(item.barcode)}')">
+
+                  <div class="suggestion-code">
+                    ${escapeHTML(item.barcode)}
+                  </div>
+
+                  <div class="suggestion-name">
+                    ${escapeHTML(item.nama)}
+                  </div>
+
+                </div>
+
+              `;
+
+            }
+          );
+
+
+          suggestions.innerHTML =
+            html;
+
+          suggestions.style.display =
+            "block";
+
+        },
+        120
+      );
+
+  }
+);
+
+
+/* =====================================================
+   SELECT BARCODE
+===================================================== */
+
+window.selectBarcode =
+function(barcode){
+
+  barcodeInput.value =
+    barcode;
+
+
+  tampilkanNamaBarang(
+    barcode
+  );
+
+
+  hideSuggestions();
+
+
+  document.getElementById(
+    "qty"
+  ).focus();
+
+};
+
+
+/* =====================================================
+   PRODUCT NAME
+===================================================== */
+
+function tampilkanNamaBarang(
+  barcode
+){
+
+  const namaBox =
+    document.getElementById(
+      "namaBarang"
+    );
+
+
+  let searchBarcode =
+    barcode;
+
+
+  if(
+    barcode.startsWith("20") &&
+    barcode.length === 13 &&
+    /^\d+$/.test(barcode)
+  ){
+
+    searchBarcode =
+      barcode.substring(
+        2,
+        7
+      );
+
+  }
+
+
+  const item =
+    barcodeCache.find(
+      x =>
+        String(x.barcode) ===
+        String(searchBarcode)
+    );
+
+
+  if(item){
+
+    namaBox.style.display =
+      "block";
+
+    namaBox.innerHTML =
+      escapeHTML(item.nama);
+
+  }else{
+
+    namaBox.style.display =
+      "none";
+
+    namaBox.innerHTML =
+      "";
+
+  }
 
 }
 
 
-/* ================================================= */
-/* HIDE DROPDOWN */
-/* ================================================= */
+/* =====================================================
+   HIDE SUGGESTIONS
+===================================================== */
 
 function hideSuggestions(){
 
-const suggestions =
-document.getElementById("suggestions");
-
-suggestions.innerHTML = "";
-
-suggestions.style.display = "none";
-
-}
+  const suggestions =
+    document.getElementById(
+      "suggestions"
+    );
 
 
-/* ================================================= */
-/* AUTO QTY + NAMA */
-/* ================================================= */
+  suggestions.innerHTML =
+    "";
 
-document
-.getElementById("barcode")
-.addEventListener(
-"input",
-function(){
-
-const barcode =
-this.value.trim();
-
-
-tampilkanNamaBarang(
-barcode
-);
-
-
-if(
-barcode.startsWith("20") &&
-barcode.length === 13 &&
-/^\d+$/.test(barcode)
-){
-
-hideSuggestions();
-
-
-const qtyRaw =
-barcode.substring(7,12);
-
-
-const qtyNumber =
-parseInt(
-qtyRaw,
-10
-) / 1000;
-
-
-let qtyFormatted =
-qtyNumber
-.toFixed(3)
-.replace(/\.?0+$/,'');
-
-
-qtyFormatted =
-qtyFormatted.replace(
-".",
-","
-);
-
-
-document
-.getElementById("qty")
-.value =
-qtyFormatted;
+  suggestions.style.display =
+    "none";
 
 }
 
-});
 
+/* =====================================================
+   QTY ENTER
+===================================================== */
 
-/* ================================================= */
-/* TAMPILKAN NAMA BARANG */
-/* ================================================= */
-
-function tampilkanNamaBarang(barcode){
-
-const namaBox =
 document.getElementById(
-"namaBarang"
+  "qty"
+).addEventListener(
+  "keypress",
+  e => {
+
+    if(e.key === "Enter"){
+
+      kirimData();
+
+    }
+
+  }
 );
 
 
-let searchBarcode =
-barcode;
+/* =====================================================
+   BARCODE ENTER
+===================================================== */
+
+barcodeInput.addEventListener(
+  "keypress",
+  e => {
+
+    if(e.key === "Enter"){
+
+      e.preventDefault();
+
+      document.getElementById(
+        "qty"
+      ).focus();
+
+    }
+
+  }
+);
 
 
-/* BARCODE TIMBANG */
+/* =====================================================
+   SAVE DATA
+===================================================== */
 
-if(
-barcode.startsWith("20") &&
-barcode.length === 13 &&
-/^\d+$/.test(barcode)
+window.kirimData =
+async function(){
+
+  const barcode =
+    barcodeInput.value.trim();
+
+
+  const qty =
+    document.getElementById(
+      "qty"
+    ).value.trim();
+
+
+  const status =
+    document.getElementById(
+      "status"
+    );
+
+
+  const button =
+    document.getElementById(
+      "btnKirim"
+    );
+
+
+  if(!barcode){
+
+    status.innerHTML =
+      "❌ Barcode kosong";
+
+    return;
+
+  }
+
+
+  if(!qty){
+
+    status.innerHTML =
+      "❌ Qty kosong";
+
+    return;
+
+  }
+
+
+  const namaItem =
+    getProductName(
+      barcode
+    );
+
+
+  addHistoryInstant(
+    namaItem || barcode,
+    qty
+  );
+
+
+  button.disabled =
+    true;
+
+  status.innerHTML =
+    "⏳ Menyimpan...";
+
+
+  try{
+
+    const res =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:JSON.stringify({
+
+            action:"saveData",
+
+            barcode:barcode,
+
+            qty:qty,
+
+            mode:currentMode
+
+          })
+
+        }
+      );
+
+
+    const result =
+      await res.text();
+
+
+    if(
+      result !==
+      "Success"
+    ){
+
+      throw new Error(
+        result
+      );
+
+    }
+
+
+    status.innerHTML =
+      "✅ Data berhasil disimpan";
+
+
+    barcodeInput.value =
+      "";
+
+    document.getElementById(
+      "qty"
+    ).value =
+      "";
+
+    document.getElementById(
+      "namaBarang"
+    ).style.display =
+      "none";
+
+
+    hideSuggestions();
+
+
+    barcodeInput.focus();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    historyData.shift();
+
+    renderHistory();
+
+
+    status.innerHTML =
+      "❌ Gagal menyimpan data";
+
+  }finally{
+
+    button.disabled =
+      false;
+
+  }
+
+};
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+window.resetData =
+async function(){
+
+  /*
+    Tetap memakai password lama 0800
+    sebagai konfirmasi reset.
+
+    Login utama sudah Firebase.
+  */
+
+  const password =
+    prompt(
+      "Masukkan password reset:"
+    );
+
+
+  if(password === null)
+    return;
+
+
+  if(password !== "0800"){
+
+    document.getElementById(
+      "status"
+    ).innerHTML =
+      "❌ Password reset salah";
+
+    return;
+
+  }
+
+
+  const namaMode =
+    currentMode === "opname"
+      ? "STOCK OPNAME"
+      : "STOCKLOSS";
+
+
+  if(
+    !confirm(
+      `Yakin ingin menghapus semua data ${namaMode}?`
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+    document.getElementById(
+      "status"
+    ).innerHTML =
+      "⏳ Menghapus data...";
+
+
+    const res =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:JSON.stringify({
+
+            action:"reset",
+
+            password:"0800",
+
+            mode:currentMode
+
+          })
+
+        }
+      );
+
+
+    const result =
+      await res.text();
+
+
+    if(
+      result !==
+      "Reset berhasil"
+    ){
+
+      throw new Error(
+        result
+      );
+
+    }
+
+
+    historyData = [];
+
+    renderHistory();
+
+
+    barcodeInput.value =
+      "";
+
+    document.getElementById(
+      "qty"
+    ).value =
+      "";
+
+
+    document.getElementById(
+      "status"
+    ).innerHTML =
+      `✅ Semua data ${namaMode} berhasil dihapus`;
+
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById(
+      "status"
+    ).innerHTML =
+      "❌ Gagal reset data";
+
+    await loadHistory();
+
+  }
+
+};
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function getProductName(
+  barcode
 ){
 
-searchBarcode =
-barcode.substring(2,7);
+  let searchBarcode =
+    barcode;
+
+
+  if(
+    barcode.startsWith("20") &&
+    barcode.length === 13 &&
+    /^\d+$/.test(barcode)
+  ){
+
+    searchBarcode =
+      barcode.substring(
+        2,
+        7
+      );
+
+  }
+
+
+  const item =
+    barcodeCache.find(
+      x =>
+        String(x.barcode) ===
+        String(searchBarcode)
+    );
+
+
+  return item
+    ? item.nama
+    : barcode;
 
 }
 
 
-const item =
-barcodeCache.find(x =>
-String(x.barcode) ===
-String(searchBarcode)
-);
+function escapeHTML(
+  value
+){
 
-
-if(item){
-
-namaBox.style.display =
-"block";
-
-namaBox.innerHTML =
-escapeHTML(item.nama);
-
-}else{
-
-namaBox.style.display =
-"none";
-
-namaBox.innerHTML = "";
+  return String(
+    value ?? ""
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
+
+function escapeAttr(
+  value
+){
+
+  return String(
+    value ?? ""
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  );
+
 }
 
 
-/* ================================================= */
-/* AUTOCOMPLETE */
-/* ================================================= */
+function firebaseError(
+  code
+){
 
-document
-.getElementById("barcode")
-.addEventListener(
-"input",
-function(e){
+  const errors = {
 
-e.stopPropagation();
+    "auth/email-already-in-use":
+      "Email sudah digunakan.",
 
+    "auth/invalid-email":
+      "Email tidak valid.",
 
-clearTimeout(
-debounceTimer
-);
+    "auth/weak-password":
+      "Password terlalu lemah.",
 
+    "auth/too-many-requests":
+      "Terlalu banyak percobaan. Coba lagi nanti.",
 
-debounceTimer =
-setTimeout(()=>{
+    "auth/network-request-failed":
+      "Koneksi internet bermasalah."
 
-const keyword =
-this.value
-.trim()
-.toLowerCase();
+  };
 
 
-const suggestions =
+  return (
+    errors[code] ||
+    "Terjadi kesalahan. Silakan coba lagi."
+  );
+
+}
+
+
+/* =====================================================
+   ENTER LOGIN
+===================================================== */
+
 document.getElementById(
-"suggestions"
+  "loginPassword"
+).addEventListener(
+  "keypress",
+  e => {
+
+    if(e.key === "Enter"){
+
+      loginUser();
+
+    }
+
+  }
 );
-
-
-if(keyword.length < 2){
-
-suggestions.innerHTML = "";
-suggestions.style.display = "none";
-
-return;
-
-}
-
-
-let filtered =
-barcodeCache.filter(item=>{
-
-const barcode =
-String(item.barcode)
-.toLowerCase();
-
-const nama =
-String(item.nama)
-.toLowerCase();
-
-
-return(
-barcode.startsWith(keyword) ||
-barcode.includes(keyword) ||
-nama.includes(keyword)
-);
-
-});
-
-
-filtered =
-filtered.slice(0,20);
-
-
-let html = "";
-
-
-filtered.forEach(item=>{
-
-html += `
-
-<div
-class="suggest-item"
-onclick="pilihBarcode('${String(item.barcode).replace(/'/g,"\\'")}')">
-
-<div class="suggest-barcode">
-${escapeHTML(item.barcode)}
-</div>
-
-<div class="suggest-name">
-${escapeHTML(item.nama)}
-</div>
-
-</div>
-
-`;
-
-});
-
-
-suggestions.innerHTML =
-html;
-
-if(filtered.length > 0){
-
-suggestions.style.display = "block";
-
-}else{
-
-suggestions.style.display = "none";
-
-}
-
-},120);
-
-});
-
-
-/* ================================================= */
-/* HIDE QTY DROPDOWN */
-/* ================================================= */
-
-document
-.getElementById("qty")
-.addEventListener(
-"focus",
-function(){
-
-hideSuggestions();
-
-});
-
-
-/* ================================================= */
-/* HIDE CLICK LUAR */
-/* ================================================= */
-
-document.addEventListener(
-"click",
-function(e){
-
-if(
-!e.target.closest(
-".input-box"
-)
-){
-
-hideSuggestions();
-
-}
-
-});
-
-
-/* ================================================= */
-/* PILIH BARCODE */
-/* ================================================= */
-
-function pilihBarcode(barcode){
-
-document
-.getElementById("barcode")
-.value =
-barcode;
-
-
-tampilkanNamaBarang(
-barcode
-);
-
-
-hideSuggestions();
-
-
-document
-.getElementById("qty")
-.focus();
-
-}
-
-
-/* ================================================= */
-/* ENTER BARCODE */
-/* ================================================= */
-
-document
-.getElementById("barcode")
-.addEventListener(
-"keypress",
-function(e){
-
-if(e.key === "Enter"){
-
-e.preventDefault();
-
-hideSuggestions();
-
-document
-.getElementById("qty")
-.focus();
-
-}
-
-});
-
-
-/* ================================================= */
-/* ENTER QTY */
-/* ================================================= */
-
-document
-.getElementById("qty")
-.addEventListener(
-"keypress",
-function(e){
-
-if(e.key === "Enter"){
-
-e.preventDefault();
-
-hideSuggestions();
-
-kirimData();
-
-}
-
-});
-
-
-/* ================================================= */
-/* KIRIM DATA - OPTIMIZED */
-/* ================================================= */
-
-async function kirimData(){
-
-const barcodeInput =
-document
-.getElementById("barcode");
-
-
-const qtyInput =
-document
-.getElementById("qty");
-
-
-let barcode =
-barcodeInput.value.trim();
-
-
-let qty =
-qtyInput.value.trim();
-
-
-if(
-barcode === "" ||
-qty === ""
-){
-
-document
-.getElementById("status")
-.innerHTML =
-"⚠️ Barcode dan Qty wajib diisi";
-
-return;
-
-}
-
-
-let namaBarang = "";
-
-let searchBarcode =
-barcode;
-
-
-/* BARCODE TIMBANG */
-
-if(
-barcode.startsWith("20") &&
-barcode.length === 13 &&
-/^\d+$/.test(barcode)
-){
-
-searchBarcode =
-barcode.substring(2,7);
-
-}
-
-
-const item =
-barcodeCache.find(x =>
-String(x.barcode) ===
-String(searchBarcode)
-);
-
-
-if(item){
-
-namaBarang =
-item.nama;
-
-}
-
-
-/* QTY */
-
-qty =
-qty.replace(",", ".");
-
-
-const btn =
-document
-.getElementById("btnKirim");
-
-
-btn.disabled = true;
-
-btn.innerHTML =
-"⏳ Mengirim...";
-
-
-/* ================================================= */
-/* SIMPAN DATA INPUT */
-/* ================================================= */
-
-barcodeInput.value = "";
-
-qtyInput.value = "";
-
-document
-.getElementById("namaBarang")
-.style.display =
-"none";
-
-document
-.getElementById("namaBarang")
-.innerHTML = "";
-
-hideSuggestions();
-
-
-/* ================================================= */
-/* UPDATE HISTORY LANGSUNG */
-/* ================================================= */
-
-addHistoryInstant(
-namaBarang || barcode,
-qty
-);
-
-
-document
-.getElementById("status")
-.innerHTML =
-"⏳ Menyimpan data...";
-
-
-barcodeInput.focus();
-
-
-/* ================================================= */
-/* KIRIM KE GOOGLE */
-/* ================================================= */
-
-try{
-
-const res =
-await fetch(
-URL_SCRIPT,
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":
-"text/plain;charset=utf-8"
-},
-
-body:JSON.stringify({
-
-action:"saveData",
-
-barcode:barcode,
-
-qty:qty,
-
-mode:currentMode
-
-})
-
-});
-
-
-const result =
-await res.text();
-
-
-if(
-result.startsWith("Success")
-){
-
-document
-.getElementById("status")
-.innerHTML =
-"✅ Data berhasil dikirim";
-
-}else{
-
-throw new Error(result);
-
-}
-
-
-}catch(err){
-
-console.log(
-"Send error:",
-err
-);
-
-
-/*
- * Jika gagal, hapus history
- * yang tadi ditampilkan secara lokal.
- */
-
-historyData.shift();
-
-renderHistory();
-
-
-document
-.getElementById("status")
-.innerHTML =
-"❌ Gagal mengirim data";
-
-
-}finally{
-
-btn.disabled = false;
-
-btn.innerHTML =
-"Kirim Data";
-
-}
-
-}
-
-
-/* ================================================= */
-/* BUKA MODAL PASSWORD */
-/* ================================================= */
-
-function openPasswordModal(){
-
-document
-.getElementById("passwordModal")
-.style.display =
-"flex";
-
-
-document
-.getElementById("adminPassword")
-.value = "";
-
-
-setTimeout(()=>{
-
-document
-.getElementById("adminPassword")
-.focus();
-
-},100);
-
-}
-
-
-/* ================================================= */
-/* TUTUP MODAL */
-/* ================================================= */
-
-function closePasswordModal(){
-
-document
-.getElementById("passwordModal")
-.style.display =
-"none";
-
-
-document
-.getElementById("adminPassword")
-.value = "";
-
-}
-
-
-/* ================================================= */
-/* ENTER PASSWORD RESET */
-/* ================================================= */
-
-document.addEventListener(
-"keydown",
-function(e){
-
-const modal =
-document.getElementById(
-"passwordModal"
-);
-
-
-if(
-modal.style.display ===
-"flex"
-){
-
-if(e.key === "Enter"){
-
-e.preventDefault();
-
-submitReset();
-
-}
-
-
-if(e.key === "Escape"){
-
-closePasswordModal();
-
-}
-
-}
-
-});
-
-
-/* ================================================= */
-/* RESET */
-/* ================================================= */
-
-function resetData(){
-
-openPasswordModal();
-
-}
-
-
-/* ================================================= */
-/* SUBMIT RESET - OPTIMIZED */
-/* ================================================= */
-
-async function submitReset(){
-
-const password =
-document
-.getElementById("adminPassword")
-.value;
-
-
-if(password !== ADMIN_PASSWORD){
-
-document
-.getElementById("status")
-.innerHTML =
-"❌ Password salah";
-
-return;
-
-}
-
-
-closePasswordModal();
-
-
-const namaMode =
-currentMode === "opname"
-? "STOCK OPNAME"
-: "STOCKLOSS";
-
-const konfirmasi =
-confirm(
-`Yakin ingin menghapus semua data ${namaMode} sebelumnya?`
-);
-
-
-if(!konfirmasi){
-
-return;
-
-}
-
-
-/* ================================================= */
-/* LANGSUNG KOSONGKAN HISTORY */
-/* ================================================= */
-
-historyData = [];
-
-renderHistory();
-
-
-document
-.getElementById("barcode")
-.value = "";
-
-document
-.getElementById("qty")
-.value = "";
-
-document
-.getElementById("namaBarang")
-.style.display =
-"none";
-
-document
-.getElementById("namaBarang")
-.innerHTML = "";
-
-hideSuggestions();
-
-
-document
-.getElementById("status")
-.innerHTML =
-"⏳ Menghapus data...";
-
-
-const resetButton =
-document.querySelector(
-".reset-btn"
-);
-
-
-resetButton.disabled =
-true;
-
-
-try{
-
-const res =
-await fetch(
-URL_SCRIPT,
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":
-"text/plain;charset=utf-8"
-},
-
-body:JSON.stringify({
-
-action:"reset",
-
-password:password,
-
-mode:currentMode
-
-})
-
-});
-
-
-const result =
-await res.text();
-
-
-if(
-result ===
-"Reset berhasil"
-){
-
-document
-.getElementById("status")
-.innerHTML =
-`✅ Semua data ${namaMode} sebelumnya berhasil dihapus`;
-
-
-}else{
-
-throw new Error(result);
-
-}
-
-
-}catch(err){
-
-console.log(
-"Reset error:",
-err
-);
-
-
-document
-.getElementById("status")
-.innerHTML =
-"❌ Gagal reset data";
-
-
-/*
- * Jika reset gagal,
- * ambil kembali history asli.
- */
-
-await loadHistory();
-
-
-}finally{
-
-resetButton.disabled =
-false;
-
-
-document
-.getElementById("barcode")
-.focus();
-
-}
-
-}
 
 </script>
 
