@@ -3502,6 +3502,263 @@ button{
   background:  
     rgba(255,122,0,.08);  
 }  
+
+/* =====================================================
+   EMAIL VERIFICATION
+===================================================== */
+
+.verify-card{
+  text-align:center;
+  max-width:420px;
+}
+
+.verify-icon{
+  width:62px;
+  height:62px;
+
+  margin:0 auto 16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:var(--green);
+
+  font-size:30px;
+  font-weight:950;
+
+  background:
+    rgba(53,232,137,.10);
+
+  border:
+    1px solid rgba(53,232,137,.28);
+
+  box-shadow:
+    0 0 35px rgba(53,232,137,.12);
+
+  animation:
+    verifyPulse 2s ease-in-out infinite;
+}
+
+@keyframes verifyPulse{
+
+  0%,100%{
+    transform:scale(1);
+    box-shadow:
+      0 0 25px rgba(53,232,137,.10);
+  }
+
+  50%{
+    transform:scale(1.04);
+    box-shadow:
+      0 0 40px rgba(53,232,137,.20);
+  }
+
+}
+
+.verify-brand{
+  margin-bottom:20px;
+}
+
+.verify-brand .brand-logo{
+  width:52px;
+  height:52px;
+
+  margin-bottom:10px;
+
+  border-radius:15px;
+}
+
+.verify-brand .brand-logo span{
+  font-size:20px;
+}
+
+.verify-brand h1{
+  font-size:22px;
+}
+
+.verify-brand p{
+  font-size:9px;
+  margin-top:4px;
+}
+
+.verify-content{
+  margin-top:5px;
+}
+
+.verify-title{
+  font-size:14px;
+  font-weight:950;
+
+  letter-spacing:.8px;
+
+  color:#fff;
+
+  margin-bottom:9px;
+}
+
+.verify-text{
+  color:#858c98;
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+.verify-email{
+  margin:10px 0 13px;
+
+  padding:10px 12px;
+
+  border-radius:10px;
+
+  border:
+    1px solid rgba(255,179,71,.18);
+
+  background:
+    rgba(255,122,0,.055);
+
+  color:var(--orange2);
+
+  font-size:11px;
+  font-weight:900;
+
+  word-break:break-all;
+}
+
+.verify-info{
+  padding:11px;
+
+  border-radius:11px;
+
+  background:
+    rgba(75,145,255,.055);
+
+  border:
+    1px solid rgba(75,145,255,.13);
+
+  color:#7f8998;
+
+  font-size:9px;
+
+  line-height:1.55;
+
+  margin-bottom:12px;
+}
+
+.verify-info b{
+  color:#b8c5d8;
+}
+
+.verify-status{
+  min-height:17px;
+
+  margin-bottom:10px;
+
+  color:var(--orange2);
+
+  font-size:9px;
+
+  font-weight:900;
+
+  letter-spacing:.6px;
+}
+
+.verify-status.success{
+  color:var(--green);
+}
+
+.verify-status.error{
+  color:#ff6b61;
+}
+
+.back-login-button{
+  width:100%;
+
+  margin-top:13px;
+
+  padding:7px;
+
+  border:0;
+
+  background:none;
+
+  color:#727985;
+
+  font-size:10px;
+
+  font-weight:800;
+
+  cursor:pointer;
+}
+
+.back-login-button:hover{
+  color:var(--orange2);
+}
+
+
+/* =====================================================
+   VERIFY MOBILE
+===================================================== */
+
+@media(max-width:500px){
+
+  #verifyModal{
+    padding:10px;
+  }
+
+  .verify-card{
+    padding:22px 18px;
+    border-radius:20px;
+  }
+
+  .verify-icon{
+    width:54px;
+    height:54px;
+    font-size:27px;
+  }
+
+  .verify-brand{
+    margin-bottom:16px;
+  }
+
+  .verify-brand .brand-logo{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+  }
+
+  .verify-brand h1{
+    font-size:19px;
+  }
+
+  .verify-brand p{
+    font-size:8px;
+  }
+
+  .verify-title{
+    font-size:12px;
+  }
+
+  .verify-text{
+    font-size:9px;
+  }
+
+  .verify-email{
+    font-size:10px;
+  }
+
+  .verify-info{
+    font-size:8px;
+  }
+
+  .verify-status{
+    font-size:8px;
+  }
+
+}
   
 </style>  </head>  <body>  <!-- =====================================================  
      LOGIN  
@@ -4269,9 +4526,111 @@ button{
   class="message"  
 ></div>
 
-  </div>  </div>  <!-- =====================================================  
+  </div>  </div>  
+
+  <!-- =====================================================
+     EMAIL VERIFICATION
+===================================================== -->
+
+<div
+  id="verifyModal"
+  class="modal"
+>
+
+  <div class="modal-card verify-card">
+
+    <div class="verify-icon">
+      ✓
+    </div>
+
+    <div class="brand verify-brand">
+
+      <div class="brand-logo">
+        <span>TB</span>
+      </div>
+
+      <h1>
+        VERIFIKASI EMAIL
+      </h1>
+
+      <p>
+        THE BUTCHER • INVENTORY SYSTEM
+      </p>
+
+    </div>
+
+    <div class="verify-content">
+
+      <div class="verify-title">
+        PENDAFTARAN BERHASIL
+      </div>
+
+      <div class="verify-text">
+        Link verifikasi telah dikirim ke:
+      </div>
+
+      <div
+        id="verifyEmail"
+        class="verify-email"
+      >
+        —
+      </div>
+
+      <div class="verify-info">
+
+        📧 Silakan buka email Anda,
+        lalu klik link verifikasi
+        yang dikirim oleh
+        <b>THE BUTCHER</b>.
+
+        <br><br>
+
+        Setelah selesai, kembali ke sini
+        dan klik <b>CEK VERIFIKASI</b>.
+
+      </div>
+
+      <div
+        id="verifyStatus"
+        class="verify-status"
+      >
+        MENUNGGU VERIFIKASI EMAIL
+      </div>
+
+      <button
+        id="checkVerifyBtn"
+        class="btn btn-primary"
+        onclick="checkEmailVerification()"
+      >
+        ✓ CEK VERIFIKASI
+      </button>
+
+      <button
+        id="resendVerifyBtn"
+        class="btn btn-secondary"
+        style="margin-top:8px"
+        onclick="resendVerificationEmail()"
+      >
+        ↻ KIRIM ULANG EMAIL
+      </button>
+
+      <button
+        class="back-login-button"
+        onclick="backToLoginFromVerify()"
+      >
+        ← KEMBALI KE LOGIN
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+  
+  <!-- =====================================================  
      FORGOT  
-===================================================== -->  <div  
+===================================================== -->
+  <div  
   id="forgotModal"  
   class="modal"  
 >    <div class="modal-card">  <div class="modal-head">  
@@ -5027,195 +5386,572 @@ function firebaseErrorMessage(error){
   
 }  
   
-/* =====================================================  
-   SIGNUP  
-===================================================== */  
-  
-window.signup=async function(){  
-  
-  const username=  
-    $("signupUsername")  
-      .value  
-      .trim()  
-      .toLowerCase();  
-  
-  const email=  
-    $("signupEmail")  
-      .value  
-      .trim()  
-      .toLowerCase();  
-  
-  const password=  
-    $("signupPassword")  
-      .value;  
-  
-  const confirm=  
-    $("signupConfirm")  
-      .value;  
-  
-  const message=  
-    $("signupMessage");  
-  
-  message.className="message";  
-  message.textContent="";  
-  
-  if(username.length<3){  
-  
-    message.classList.add(  
-      "error"  
-    );  
-  
-    message.textContent=  
-      "Username minimal 3 karakter.";  
-  
-    return;  
-  }  
-  
-  if(  
-    !/^[a-z0-9._-]+$/.test(  
-      username  
-    )  
-  ){  
-  
-    message.classList.add(  
-      "error"  
-    );  
-  
-    message.textContent=  
-      "Username hanya boleh huruf kecil, angka, titik, underscore, dan strip.";  
-  
-    return;  
-  }  
-  
-  if(!email){  
-  
-    message.classList.add(  
-      "error"  
-    );  
-  
-    message.textContent=  
-      "Email wajib diisi.";  
-  
-    return;  
-  }  
-  
-  if(password.length<6){  
-  
-    message.classList.add(  
-      "error"  
-    );  
-  
-    message.textContent=  
-      "Password minimal 6 karakter.";  
-  
-    return;  
-  }  
-  
-  if(password!==confirm){  
-  
-    message.classList.add(  
-      "error"  
-    );  
-  
-    message.textContent=  
-      "Konfirmasi password tidak sama.";  
-  
-    return;  
-  }  
-  
-  try{  
-  
-    const usernameRef=  
-      doc(  
-        db,  
-        "usernames",  
-        username  
-      );  
-  
-    const usernameSnap=  
-      await getDoc(  
-        usernameRef  
-      );  
-  
-    if(usernameSnap.exists()){  
-  
-      message.classList.add(  
-        "error"  
-      );  
-  
-      message.textContent=  
-        "Username sudah digunakan.";  
-  
-      return;  
-    }  
-  
-    const credential=  
-      await createUserWithEmailAndPassword(  
-        auth,  
-        email,  
-        password  
-      );  
-  
-    const user=  
-      credential.user;  
-  
-    await setDoc(  
-      doc(  
-        db,  
-        "users",  
-        user.uid  
-      ),  
-      {  
-        username,  
-        email,  
-        role:"user",  
-        status:"pending",  
-        emailVerified:false,  
-        createdAt:new Date()  
-      }  
-    );  
-  
-    await setDoc(  
-      usernameRef,  
-      {  
-        uid:user.uid  
-      }  
-    );  
-  
-    await sendEmailVerification(  
-      user  
-    );  
-  
-    await signOut(auth);  
-  
-    message.classList.add(  
-      "success"  
-    );  
-  
-    message.textContent=  
-      "Akun berhasil dibuat. Verifikasi email dan tunggu persetujuan admin.";  
-  
-    $("signupUsername").value="";  
-    $("signupEmail").value="";  
-    $("signupPassword").value="";  
-    $("signupConfirm").value="";  
-  
-  }catch(error){  
-  
-    console.error(error);  
-  
-    message.classList.add(  
-      "error"  
-    );  
-  
-    message.textContent=  
-      firebaseErrorMessage(  
-        error  
-      );  
-  
-  }  
-  
-};  
+/* =====================================================
+   SIGNUP
+===================================================== */
+
+let verificationUser=null;
+let verificationEmail="";
+
+window.signup=async function(){
+
+  const username=
+    $("signupUsername")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const email=
+    $("signupEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const password=
+    $("signupPassword")
+      .value;
+
+  const confirm=
+    $("signupConfirm")
+      .value;
+
+  const message=
+    $("signupMessage");
+
+
+  message.className="message";
+  message.textContent="";
+
+
+  /* =========================
+     VALIDASI USERNAME
+  ========================= */
+
+  if(username.length<3){
+
+    message.classList.add("error");
+
+    message.textContent=
+      "Username minimal 3 karakter.";
+
+    return;
+  }
+
+
+  if(
+    !/^[a-z0-9._-]+$/.test(username)
+  ){
+
+    message.classList.add("error");
+
+    message.textContent=
+      "Username hanya boleh huruf kecil, angka, titik, underscore, dan strip.";
+
+    return;
+  }
+
+
+  /* =========================
+     VALIDASI EMAIL
+  ========================= */
+
+  if(!email){
+
+    message.classList.add("error");
+
+    message.textContent=
+      "Email wajib diisi.";
+
+    return;
+  }
+
+
+  /* =========================
+     VALIDASI PASSWORD
+  ========================= */
+
+  if(password.length<6){
+
+    message.classList.add("error");
+
+    message.textContent=
+      "Password minimal 6 karakter.";
+
+    return;
+  }
+
+
+  if(password!==confirm){
+
+    message.classList.add("error");
+
+    message.textContent=
+      "Konfirmasi password tidak sama.";
+
+    return;
+  }
+
+
+  const signupButton=
+    document.querySelector(
+      '#signupModal .btn-primary'
+    );
+
+
+  if(signupButton){
+
+    signupButton.disabled=true;
+
+    signupButton.textContent=
+      "MEMBUAT AKUN...";
+
+  }
+
+
+  try{
+
+    /* =========================
+       CEK USERNAME
+    ========================= */
+
+    const usernameRef=
+      doc(
+        db,
+        "usernames",
+        username
+      );
+
+    const usernameSnap=
+      await getDoc(
+        usernameRef
+      );
+
+
+    if(usernameSnap.exists()){
+
+      message.classList.add("error");
+
+      message.textContent=
+        "Username sudah digunakan.";
+
+      return;
+    }
+
+
+    /* =========================
+       CREATE ACCOUNT
+    ========================= */
+
+    const credential=
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    const user=
+      credential.user;
+
+
+    /* =========================
+       SIMPAN PROFILE
+    ========================= */
+
+    await setDoc(
+      doc(
+        db,
+        "users",
+        user.uid
+      ),
+      {
+
+        username,
+
+        email,
+
+        role:"user",
+
+        status:"pending",
+
+        emailVerified:false,
+
+        createdAt:new Date()
+
+      }
+    );
+
+
+    /* =========================
+       SIMPAN USERNAME
+    ========================= */
+
+    await setDoc(
+      usernameRef,
+      {
+        uid:user.uid
+      }
+    );
+
+
+    /* =========================
+       SIMPAN USER UNTUK
+       HALAMAN VERIFIKASI
+    ========================= */
+
+    verificationUser=
+      user;
+
+    verificationEmail=
+      email;
+
+
+    /* =========================
+       KIRIM EMAIL VERIFIKASI
+    ========================= */
+
+    await sendEmailVerification(
+      user
+    );
+
+
+    /* =========================
+       BERSIHKAN FORM
+    ========================= */
+
+    $("signupUsername").value="";
+    $("signupEmail").value="";
+    $("signupPassword").value="";
+    $("signupConfirm").value="";
+
+
+    /* =========================
+       TUTUP SIGNUP
+    ========================= */
+
+    closeModal(
+      "signupModal"
+    );
+
+
+    /* =========================
+       TAMPILKAN VERIFIKASI
+    ========================= */
+
+    $("verifyEmail")
+      .textContent=
+      email;
+
+    $("verifyStatus")
+      .className=
+      "verify-status";
+
+    $("verifyStatus")
+      .textContent=
+      "MENUNGGU VERIFIKASI EMAIL";
+
+
+    openModal(
+      "verifyModal"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Signup error:",
+      error
+    );
+
+    message.classList.add(
+      "error"
+    );
+
+    message.textContent=
+      firebaseErrorMessage(
+        error
+      );
+
+
+  }finally{
+
+    if(signupButton){
+
+      signupButton.disabled=false;
+
+      signupButton.textContent=
+        "DAFTAR";
+
+    }
+
+  }
+
+};
+
+/* =====================================================
+   CHECK EMAIL VERIFICATION
+===================================================== */
+
+window.checkEmailVerification=
+async function(){
+
+  const status=
+    $("verifyStatus");
+
+  const button=
+    $("checkVerifyBtn");
+
+
+  if(!verificationUser){
+
+    status.className=
+      "verify-status error";
+
+    status.textContent=
+      "Sesi verifikasi tidak ditemukan.";
+
+    return;
+  }
+
+
+  button.disabled=true;
+
+  button.textContent=
+    "MEMERIKSA...";
+
+
+  try{
+
+    /* =========================
+       REFRESH USER
+    ========================= */
+
+    await verificationUser.reload();
+
+
+    if(
+      verificationUser.emailVerified
+    ){
+
+      /* =========================
+         UPDATE FIRESTORE
+      ========================= */
+
+      await updateDoc(
+        doc(
+          db,
+          "users",
+          verificationUser.uid
+        ),
+        {
+          emailVerified:true
+        }
+      );
+
+
+      status.className=
+        "verify-status success";
+
+      status.textContent=
+        "✓ EMAIL BERHASIL DIVERIFIKASI";
+
+
+      button.textContent=
+        "✓ TERVERIFIKASI";
+
+
+      /* =========================
+         TUNGGU SEBENTAR
+      ========================= */
+
+      setTimeout(
+        async()=>{
+
+          closeModal(
+            "verifyModal"
+          );
+
+
+          /*
+             Logout agar user harus
+             login normal setelah
+             verifikasi.
+          */
+
+          await signOut(auth);
+
+
+          verificationUser=null;
+
+          verificationEmail="";
+
+
+          $("loginMessage")
+            .className=
+            "message success";
+
+          $("loginMessage")
+            .textContent=
+            "Email berhasil diverifikasi. Silakan login dan tunggu persetujuan admin.";
+
+        },
+        1200
+      );
+
+
+    }else{
+
+      status.className=
+        "verify-status error";
+
+      status.textContent=
+        "EMAIL BELUM DIVERIFIKASI";
+
+    }
+
+
+  }catch(error){
+
+    console.error(
+      "Verification error:",
+      error
+    );
+
+    status.className=
+      "verify-status error";
+
+    status.textContent=
+      "Gagal memeriksa verifikasi.";
+
+
+  }finally{
+
+    if(
+      !verificationUser?.emailVerified
+    ){
+
+      button.disabled=false;
+
+      button.textContent=
+        "✓ CEK VERIFIKASI";
+
+    }
+
+  }
+
+};
+
+/* =====================================================
+   RESEND VERIFICATION EMAIL
+===================================================== */
+
+window.resendVerificationEmail=
+async function(){
+
+  const status=
+    $("verifyStatus");
+
+  const button=
+    $("resendVerifyBtn");
+
+
+  if(!verificationUser){
+
+    status.className=
+      "verify-status error";
+
+    status.textContent=
+      "Sesi verifikasi tidak ditemukan.";
+
+    return;
+  }
+
+
+  button.disabled=true;
+
+  button.textContent=
+    "MENGIRIM...";
+
+
+  try{
+
+    await sendEmailVerification(
+      verificationUser
+    );
+
+
+    status.className=
+      "verify-status success";
+
+    status.textContent=
+      "✓ EMAIL VERIFIKASI DIKIRIM ULANG";
+
+
+  }catch(error){
+
+    console.error(
+      "Resend error:",
+      error
+    );
+
+    status.className=
+      "verify-status error";
+
+
+    if(
+      error?.code===
+      "auth/too-many-requests"
+    ){
+
+      status.textContent=
+        "Terlalu banyak permintaan. Coba lagi nanti.";
+
+    }else{
+
+      status.textContent=
+        firebaseErrorMessage(
+          error
+        );
+
+    }
+
+
+  }finally{
+
+    button.disabled=false;
+
+    button.textContent=
+      "↻ KIRIM ULANG EMAIL";
+
+  }
+
+};
+
+/* =====================================================
+   BACK TO LOGIN FROM VERIFY
+===================================================== */
+
+window.backToLoginFromVerify=
+function(){
+
+  closeModal(
+    "verifyModal"
+  );
+
+
+  verificationUser=null;
+
+  verificationEmail="";
+
+
+  $("loginMessage")
+    .className=
+    "message";
+
+  $("loginMessage")
+    .textContent="";
+
+};
+
   
 /* =====================================================  
    LOGIN  
