@@ -3061,109 +3061,369 @@ button{
   }  
 }  
   
-@media(max-width:650px){  
-  
-  .data-bsd-topbar{  
-    height:58px;  
-    padding:0 10px;  
-  }  
-  
-  .data-bsd-back,  
-  .data-bsd-refresh{  
-    padding:0 9px;  
-    font-size:9px;  
-  }  
-  
-  .data-bsd-body{  
-    padding:12px;  
-  }  
-  
-  .data-page-title{  
-    font-size:21px;  
-  }  
-  
-  .data-table-header{  
-    flex-direction:column;  
-    align-items:stretch;  
-  }  
-  
-  .data-table-actions{  
-    width:100%;  
-  }  
-  
-  .bsd-search{  
-    flex:1;  
-    width:auto;  
-  }  
-  
-  .inventory-top{  
-    height:58px;  
-    min-height:58px;  
-    padding:0 10px;  
-  }  
-  
-  .inventory-logo{  
-    width:36px;  
-    height:36px;  
-    border-radius:10px;  
-  }  
-  
-  .inventory-brand strong{  
-    font-size:11px  
-  }  
-  
-  .inventory-brand span{  
-    font-size:7px  
-  }  
-  
-  .inventory-card{  
-    padding:20px 14px 30px  
-  }  
-  
-  .inventory-heading{  
-    margin-bottom:20px  
-  }  
-  
-  .inventory-heading-icon{  
-    width:42px;  
-    height:42px;  
-    margin-bottom:10px  
-  }  
-  
-  .inventory-heading h1{  
-    font-size:22px  
-  }  
-  
-  .inventory-heading p{  
-    font-size:10px  
-  }  
-  
-  .inventory-input{  
-    height:50px  
-  }  
-  
-  .send-button{  
-    height:52px  
-  }  
-  
-  .history-list{  
-    max-height:320px  
-  }  
-  
-  .reset-row{  
-    justify-content:center  
-  }  
+/* =====================================================
+   DATA BSD — SUPER COMPACT MOBILE
+===================================================== */
+
+@media(max-width:650px){
+
+  /* ---------- TOPBAR ---------- */
+
+  .data-bsd-topbar{
+    height:50px;
+    min-height:50px;
+    padding:0 8px;
+    gap:6px;
+
+    background:
+      rgba(7,11,18,.94);
+
+    backdrop-filter:blur(18px);
+  }
+
+  .data-bsd-brand{
+    gap:7px;
+    min-width:0;
+  }
+
+  .data-bsd-logo{
+    width:30px;
+    height:30px;
+    min-width:30px;
+    border-radius:8px;
+    font-size:8px;
+  }
+
+  .data-bsd-brand strong{
+    font-size:10px;
+    letter-spacing:.7px;
+    white-space:nowrap;
+  }
+
+  .data-bsd-brand span{
+    margin-top:1px;
+    font-size:6px;
+    letter-spacing:.7px;
+  }
+
+  .data-bsd-actions{
+    gap:4px;
+  }
+
+  .data-bsd-back,
+  .data-bsd-refresh{
+    height:30px;
+    padding:0 7px;
+    border-radius:8px;
+    font-size:8px;
+    white-space:nowrap;
+  }
+
+
+  /* ---------- BODY ---------- */
+
+  .data-bsd-body{
+    padding:8px;
+    overflow:auto;
+  }
+
+  .data-dashboard{
+    width:100%;
+  }
+
+
+  /* ---------- TITLE ---------- */
+
+  .data-page-heading{
+    margin-bottom:9px;
+  }
+
+  .data-page-title{
+    font-size:17px;
+    line-height:1.1;
+    letter-spacing:-.3px;
+  }
+
+  .data-page-subtitle{
+    margin-top:3px;
+    font-size:8px;
+  }
+
+
+  /* ---------- STAT CARDS ---------- */
+
+  .data-stats{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+    gap:6px;
+
+    margin-bottom:9px;
+  }
+
+  .data-stat{
+    min-height:60px;
+
+    padding:9px;
+
+    border-radius:10px;
+
+    border-color:
+      rgba(255,255,255,.07);
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255,255,255,.05),
+        rgba(255,255,255,.015)
+      );
+  }
+
+  .data-stat-label{
+    font-size:7px;
+    letter-spacing:.7px;
+  }
+
+  .data-stat-value{
+    margin-top:5px;
+    font-size:18px;
+  }
+
+  .data-stat-desc{
+    margin-top:4px;
+    font-size:7px;
+  }
+
+
+  /* ---------- TABLE CONTAINER ---------- */
+
+  .data-table-container{
+    border-radius:11px;
+
+    box-shadow:
+      0 10px 25px rgba(0,0,0,.18);
+  }
+
+
+  /* ---------- TABLE HEADER ---------- */
+
+  .data-table-header{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:stretch;
+
+    gap:7px;
+
+    padding:9px;
+  }
+
+  .data-table-title{
+    font-size:11px;
+  }
+
+  .data-info{
+    margin-top:2px;
+    font-size:7px;
+  }
+
+  .data-table-actions{
+    width:100%;
+    gap:5px;
+  }
+
+  .bsd-search{
+    width:auto;
+    flex:1;
+
+    height:30px;
+
+    padding:0 9px;
+
+    border-radius:7px;
+
+    font-size:9px;
+  }
+
+  .bsd-all-btn{
+    padding:6px 8px;
+    border-radius:7px;
+    font-size:7px;
+  }
+
+
+  /* ---------- NAVIGATION MEAT / SEAFOOD / DELICATE ---------- */
+
+  #bsdNavigation{
+    gap:5px!important;
+
+    margin-bottom:8px!important;
+  }
+
+  #bsdNavigation button{
+    min-height:29px!important;
+
+    height:29px!important;
+
+    padding:0 8px!important;
+
+    border-radius:7px!important;
+
+    font-size:7px!important;
+
+    letter-spacing:.2px!important;
+  }
+
+
+  /* ---------- TABLE ---------- */
+
+  .data-table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .data-table{
+    min-width:720px;
+  }
+
+  .data-table th{
+    padding:8px 9px;
+
+    font-size:7px;
+
+    letter-spacing:.4px;
+  }
+
+  .data-table td{
+    padding:8px 9px;
+
+    font-size:9px;
+  }
+
+  .bsd-row-number{
+    font-size:7px;
+  }
+
+  .bsd-empty{
+    padding:30px 12px!important;
+    font-size:9px!important;
+  }
+
+
+  /* ---------- MOBILE ROW HEIGHT ---------- */
+
+  .data-table tbody tr{
+    height:32px;
+  }
+
+
+  /* ---------- LOW / NEGATIVE ---------- */
+
+  .bsd-low-value,
+  .bsd-negative-value{
+    font-weight:900;
+  }
+
+}
+
+
+/* =====================================================
+   EXTRA SMALL PHONE
+===================================================== */
+
+@media(max-width:380px){
+
+  .data-bsd-topbar{
+    height:48px;
+    min-height:48px;
+    padding:0 7px;
+  }
+
+  .data-bsd-logo{
+    width:28px;
+    height:28px;
+    min-width:28px;
+  }
+
+  .data-bsd-brand strong{
+    font-size:9px;
+  }
+
+  .data-bsd-brand span{
+    font-size:5.5px;
+  }
+
+  .data-bsd-back,
+  .data-bsd-refresh{
+    height:28px;
+    padding:0 6px;
+    font-size:7px;
+  }
+
+  .data-bsd-body{
+    padding:7px;
+  }
+
+  .data-page-title{
+    font-size:16px;
+  }
+
+  .data-page-subtitle{
+    font-size:7px;
+  }
+
+  .data-stats{
+    gap:5px;
+  }
+
+  .data-stat{
+    min-height:56px;
+    padding:8px;
+    border-radius:9px;
+  }
+
+  .data-stat-label{
+    font-size:6.5px;
+  }
+
+  .data-stat-value{
+    font-size:17px;
+  }
+
+  .data-stat-desc{
+    font-size:6.5px;
+  }
+
+  #bsdNavigation{
+    gap:4px!important;
+  }
+
+  #bsdNavigation button{
+    height:27px!important;
+    min-height:27px!important;
+    padding:0 6px!important;
+    font-size:6.5px!important;
+  }
+
+  .data-table-header{
+    padding:8px;
+  }
+
+  .data-table-title{
+    font-size:10px;
+  }
+
+  .data-info{
+    font-size:6.5px;
+  }
+
+  .bsd-search{
+    height:28px;
+    font-size:8px;
+  }
+
 }  
-  
-@media(max-width:650px){  
-  
-  input,  
-  select,  
-  textarea{  
-    font-size:16px!important  
-  }  
-}  
-  
 /* =====================================================  
    ACTION LOADING  
 ===================================================== */  
@@ -3493,7 +3753,7 @@ button{
     </div>  
 
     <div class="operation-desc">  
-      Monitoring data stock MEAT, SEAFOOD, dan DELICATE.  
+      Monitoring data stock MEAT, SEAFOOD, DELICATE.  
     </div>  
 
   </div>  
