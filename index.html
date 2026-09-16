@@ -120,13 +120,15 @@ button{cursor:pointer}
 .dashboard-main{
   position:relative;
   min-width:0;
+  display:flex;
+  flex-direction:column;
 
-  height:105px;
-  min-height:105px;
+  height:155px;
+  min-height:155px;
 
-  padding:8px 10px;
+  padding:12px 15px;
+  border-radius:16px;
 
-  border-radius:11px;
   border:1px solid var(--border);
 
   background:
@@ -137,10 +139,10 @@ button{cursor:pointer}
     );
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,.30);
+    0 15px 45px rgba(0,0,0,.30);
 
   overflow:hidden;
-
+  
   display:flex;
   flex-direction:column;
 }
@@ -381,15 +383,12 @@ button{cursor:pointer}
 }
 
 .welcome-title{
-  font-size:17px;
-
+  font-size:28px;
   line-height:1;
-
   font-weight:950;
-
-  letter-spacing:-.8px;
+  letter-spacing:-1.5px;
 }
-
+  
 .welcome-title span{
   background:
     linear-gradient(
@@ -405,17 +404,13 @@ button{cursor:pointer}
 }
 
 .welcome-sub{
-  max-width:380px;
-
-  margin-top:3px;
-
+  max-width:520px;
+  margin-top:6px;
   color:#858c98;
-
-  font-size:6px;
-
-  line-height:1.35;
+  font-size:9px;
+  line-height:1.4;
 }
-
+  
 /* =========================
    FOOTER
 ========================= */
