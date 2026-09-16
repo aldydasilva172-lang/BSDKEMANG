@@ -1,0 +1,2724 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STOCKLOSS BSD</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html, body{
+width:100%;
+min-height:100%;
+margin:0;
+padding:0;
+overscroll-behavior:none;
+-webkit-text-size-adjust:100%;
+}
+
+body{
+min-height:100dvh;
+min-height:-webkit-fill-available;
+
+padding:20px;
+
+position:relative;
+
+overflow-x:hidden;
+overflow-y:auto;
+
+display:block;
+
+background:#000;
+}
+
+/* BACKGROUND UTAMA BLUR */
+
+body::before{
+content:"";
+
+position:fixed;
+inset:-30px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.60),
+rgba(0,0,0,.60)
+),
+url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
+center top / cover no-repeat;
+
+filter:blur(12px);
+
+transform:scale(1.05);
+
+z-index:-2;
+}
+
+/* LOGIN OVERLAY */
+
+.login-overlay{
+position:fixed;
+inset:0;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+z-index:9999999999;
+
+background:rgba(0,0,0,.55);
+
+padding:20px;
+overflow:auto;
+}
+
+/* FOTO LOGIN BLUR */
+
+.login-overlay::before{
+content:"";
+
+position:absolute;
+inset:-30px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.80),
+rgba(0,0,0,.80)
+),
+url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
+center center / cover no-repeat;
+
+filter:blur(12px);
+
+transform:scale(1.05);
+
+z-index:-1;
+}
+
+/* LOGIN BOX */
+
+.login-box{
+width:90%;
+max-width:360px;
+
+padding:30px;
+
+border-radius:28px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.45)
+),
+url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
+center center / cover no-repeat;
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:none;
+
+-webkit-backdrop-filter:none;
+
+
+box-shadow:
+0 0 20px rgba(0,245,255,.25),
+0 0 40px rgba(124,58,237,.20),
+0 15px 35px rgba(0,0,0,.45);
+
+animation:popup .25s ease;
+}
+
+.login-title{
+text-align:center;
+
+font-size:24px;
+font-weight:700;
+
+color:white;
+
+margin-bottom:10px;
+
+text-shadow:
+0 0 10px rgba(0,245,255,.45),
+0 2px 8px rgba(0,0,0,.8);
+}
+
+.login-desc{
+text-align:center;
+
+font-size:13px;
+
+color:#cbd5e1;
+
+margin-bottom:22px;
+
+line-height:1.5;
+}
+
+.login-input{
+width:100%;
+padding:16px;
+
+border:none;
+outline:none;
+
+border-radius:18px;
+
+background:rgba(0,0,0,.35);
+
+color:white;
+font-size:16px;
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 0 12px rgba(0,245,255,.35),
+0 0 25px rgba(124,58,237,.20);
+
+margin-bottom:18px;
+
+transition:.3s;
+}
+
+.login-input:focus{
+box-shadow:
+0 0 18px rgba(0,245,255,.55),
+0 0 35px rgba(124,58,237,.35);
+
+background:rgba(0,0,0,.45);
+}
+
+.login-btn{
+width:100%;
+}
+
+/* CONTAINER */
+
+.container{
+position:relative;
+z-index:1;
+
+overflow:visible;
+
+width:100%;
+max-width:430px;
+padding:35px;
+
+border-radius:28px;
+
+background:transparent;
+}
+
+h1{
+text-align:center;
+font-size:40px;
+font-weight:700;
+margin-bottom:8px;
+
+color:white;
+
+text-shadow:
+0 0 10px rgba(0,245,255,.7),
+0 0 20px rgba(124,58,237,.5),
+0 2px 8px rgba(0,0,0,.8);
+
+letter-spacing:1px;
+}
+
+.desc{
+text-align:center;
+font-size:12px;
+
+color:#f97316;
+
+margin-bottom:30px;
+
+text-shadow:
+0 0 8px rgba(56,189,248,.5),
+0 0 18px rgba(14,165,233,.35);
+
+letter-spacing:.5px;
+}
+
+/* LAST INPUT */
+
+.last-input-box{
+display:none;
+
+margin-top:16px;
+margin-bottom:8px;
+
+border:1px solid rgba(255,255,255,.08);
+
+background:rgba(0,0,0,.02);
+
+border-radius:22px;
+
+padding:10px 12px;
+
+backdrop-filter:blur(2px);
+-webkit-backdrop-filter:blur(2px);
+
+box-shadow:
+0 0 14px rgba(0,245,255,.18),
+0 0 28px rgba(124,58,237,.25),
+0 8px 22px rgba(0,0,0,.32);
+
+text-align:center;
+}
+
+.last-title{
+font-size:15px;
+font-weight:600;
+
+color:white;
+
+margin-bottom:6px;
+
+text-shadow:
+0 0 10px rgba(0,245,255,.7),
+0 0 20px rgba(124,58,237,.5),
+0 2px 8px rgba(0,0,0,.8);
+}
+
+.history-header{
+display:flex;
+
+background:rgba(249,115,22,.20);
+
+border:1px solid rgba(249,115,22,.35);
+
+border-radius:10px 10px 0 0;
+
+font-size:12px;
+font-weight:700;
+
+color:#f97316;
+
+margin-bottom:2px;
+}
+
+.history-header div:first-child{
+flex:1;
+
+padding:8px 10px;
+
+border-right:1px solid rgba(249,115,22,.35);
+
+text-align:center;
+}
+
+.history-header div:last-child{
+width:60px;
+
+padding:8px;
+
+text-align:center;
+}
+
+.history-item{
+display:flex;
+align-items:center;
+
+border:1px solid rgba(255,255,255,.10);
+
+background:rgba(0,0,0,.08);
+
+margin-bottom:2px;
+
+overflow:hidden;
+
+animation:historyIn .20s ease;
+}
+
+@keyframes historyIn{
+from{
+opacity:0;
+transform:translateY(-5px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.history-nama{
+flex:1;
+
+padding:8px 10px;
+
+font-size:13px;
+font-weight:600;
+
+color:white;
+
+text-align:left;
+
+border-right:1px solid rgba(255,255,255,.10);
+
+text-shadow:
+0 0 5px rgba(0,245,255,.35),
+0 1px 4px rgba(0,0,0,.8);
+}
+
+.history-qty{
+min-width:60px;
+
+padding:8px 10px;
+
+text-align:center;
+
+font-size:12px;
+font-weight:700;
+
+color:#f97316;
+
+background:transparent;
+
+text-shadow:
+0 0 6px rgba(249,115,22,.35);
+}
+
+/* INPUT BOX */
+
+.input-box{
+margin-bottom:16px;
+position:relative;
+
+border:1px solid rgba(255,255,255,.08);
+
+background:rgba(0,0,0,.12);
+
+border-radius:22px;
+
+padding:14px;
+
+backdrop-filter:blur(4px);
+-webkit-backdrop-filter:blur(4px);
+
+box-shadow:
+0 0 14px rgba(0,245,255,.18),
+0 0 28px rgba(124,58,237,.14),
+0 6px 16px rgba(0,0,0,.25);
+
+overflow:visible;
+}
+
+.barcode-box{
+z-index:9999;
+}
+
+.qty-box{
+z-index:1;
+}
+
+.input-box label{
+display:block;
+
+margin-bottom:8px;
+
+font-size:14px;
+font-weight:600;
+
+color:white;
+
+text-shadow:
+0 2px 8px rgba(0,0,0,.7),
+0 0 8px rgba(0,245,255,.35);
+
+letter-spacing:.5px;
+}
+
+.input-box input{
+width:100%;
+
+padding:16px;
+
+border:none;
+outline:none;
+
+border-radius:16px;
+
+border:1px solid rgba(255,255,255,.08);
+
+background:rgba(0,0,0,.25);
+
+color:white;
+
+font-size:15px;
+font-weight:500;
+
+backdrop-filter:blur(6px);
+
+transition:.3s;
+
+box-shadow:
+0 4px 12px rgba(0,0,0,.25);
+}
+
+.input-box input:focus{
+border:1px solid rgba(0,245,255,.7);
+
+background:rgba(0,0,0,.35);
+
+box-shadow:
+0 0 12px rgba(0,245,255,.35),
+0 0 25px rgba(124,58,237,.20),
+0 4px 15px rgba(0,0,0,.35);
+
+transform:scale(1.01);
+}
+
+input::placeholder{
+color:rgba(219,234,254,.55);
+
+text-shadow:
+0 0 6px rgba(0,245,255,.18);
+
+letter-spacing:.4px;
+}
+
+/* ============================= */
+/* BUTTON GLASS NEON */
+/* ============================= */
+
+button{
+
+width:100%;
+padding:16px;
+
+border:none;
+border-radius:18px;
+
+background:
+linear-gradient(
+135deg,
+rgba(0,0,0,.72),
+rgba(5,15,25,.62)
+);
+
+color:white;
+
+font-size:16px;
+font-weight:600;
+
+cursor:pointer;
+
+transition:
+transform .25s ease,
+box-shadow .25s ease,
+border-color .25s ease,
+background .25s ease;
+
+border:1px solid rgba(0,245,255,.35);
+
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+
+box-shadow:
+inset 0 0 15px rgba(0,245,255,.08),
+0 0 10px rgba(0,245,255,.18),
+0 0 25px rgba(0,245,255,.10),
+0 10px 25px rgba(0,0,0,.45);
+
+text-shadow:
+0 0 8px rgba(255,255,255,.45),
+0 2px 8px rgba(0,0,0,.8);
+
+letter-spacing:.5px;
+
+position:relative;
+
+overflow:hidden;
+}
+
+
+/* CAHAYA DI DALAM TOMBOL */
+
+button::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:70%;
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.12),
+transparent
+);
+
+transform:skewX(-20deg);
+
+transition:.5s;
+
+}
+
+
+/* HOVER */
+
+button:hover{
+
+transform:
+translateY(-2px)
+scale(1.01);
+
+border-color:
+rgba(0,245,255,.75);
+
+background:
+linear-gradient(
+135deg,
+rgba(0,0,0,.80),
+rgba(5,20,30,.72)
+);
+
+box-shadow:
+inset 0 0 20px rgba(0,245,255,.12),
+0 0 15px rgba(0,245,255,.45),
+0 0 35px rgba(0,245,255,.25),
+0 12px 30px rgba(0,0,0,.50);
+
+}
+
+button:hover::before{
+
+left:130%;
+
+}
+
+
+/* SAAT DITEKAN */
+
+button:active{
+
+transform:
+scale(.98);
+
+box-shadow:
+inset 0 0 25px rgba(0,245,255,.18),
+0 0 20px rgba(0,245,255,.55);
+
+}
+
+
+/* DISABLED */
+
+button:disabled{
+
+opacity:.6;
+
+cursor:not-allowed;
+
+filter:none;
+
+}
+
+
+/* ============================= */
+/* RESET BUTTON */
+/* ============================= */
+
+.reset-btn{
+
+margin-top:12px;
+
+border-color:
+rgba(255,60,60,.35);
+
+background:
+linear-gradient(
+135deg,
+rgba(0,0,0,.74),
+rgba(25,5,8,.65)
+);
+
+box-shadow:
+inset 0 0 15px rgba(255,0,0,.07),
+0 0 10px rgba(255,0,0,.18),
+0 0 25px rgba(255,0,0,.10),
+0 10px 25px rgba(0,0,0,.45);
+
+}
+
+
+/* RESET HOVER */
+
+.reset-btn:hover{
+
+border-color:
+rgba(255,70,70,.80);
+
+background:
+linear-gradient(
+135deg,
+rgba(0,0,0,.82),
+rgba(30,5,8,.72)
+);
+
+box-shadow:
+inset 0 0 20px rgba(255,0,0,.12),
+0 0 15px rgba(255,50,50,.45),
+0 0 35px rgba(255,0,0,.25),
+0 12px 30px rgba(0,0,0,.50);
+
+}
+
+
+/* RESET ACTIVE */
+
+.reset-btn:active{
+
+box-shadow:
+inset 0 0 25px rgba(255,0,0,.18),
+0 0 20px rgba(255,50,50,.55);
+
+}
+
+/* STATUS */
+
+#status{
+margin-top:16px;
+
+text-align:center;
+
+font-size:14px;
+
+font-weight:500;
+
+color:rgba(225,225,225,.95);
+
+min-height:20px;
+
+text-shadow:
+0 2px 8px rgba(255,255,255,.35),
+0 0 12px rgba(0,245,255,.45),
+0 0 22px rgba(0,245,255,.25);
+
+letter-spacing:.3px;
+}
+
+/* NAMA BARANG */
+
+#namaBarang{
+margin-top:10px;
+
+padding:12px 14px;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.08);
+
+color:white;
+
+font-size:14px;
+font-weight:500;
+
+text-align:center;
+
+text-shadow:
+0 0 10px rgba(0,245,255,.7),
+0 0 20px rgba(124,58,237,.5),
+0 2px 8px rgba(0,0,0,.8);
+
+box-shadow:
+0 0 12px rgba(0,245,255,.10);
+
+min-height:20px;
+
+display:none;
+}
+
+/* DROPDOWN */
+
+#suggestions{
+position:absolute;
+
+top:calc(100% + 8px);
+
+left:0;
+right:0;
+
+max-height:320px;
+
+overflow-y:auto;
+
+overscroll-behavior:contain;
+
+z-index:9999999;
+
+display:none;
+
+background:
+linear-gradient(
+rgba(0,0,0,.75),
+rgba(0,0,0,.75)
+),
+url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
+center center / cover no-repeat;
+
+backdrop-filter:blur(8px);
+
+border-radius:18px;
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.35);
+
+-webkit-overflow-scrolling:touch;
+
+transform:translateZ(999px);
+}
+
+.suggest-item{
+padding:12px 20px;
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+cursor:pointer;
+
+transition:.2s;
+
+display:flex;
+flex-direction:column;
+
+align-items:center;
+justify-content:center;
+
+text-align:center;
+}
+
+.suggest-item:last-child{
+border-bottom:none;
+}
+
+.suggest-item:hover{
+background:rgba(255,255,255,.08);
+}
+
+.suggest-barcode{
+font-size:14px;
+font-weight:700;
+
+color:#00f5ff;
+}
+
+.suggest-name{
+font-size:13px;
+
+color:#cbd5e1;
+
+margin-top:4px;
+
+line-height:1.4;
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+
+display:none;
+
+align-items:center;
+justify-content:center;
+
+background:rgba(0,0,0,.72);
+
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+
+z-index:999999999;
+
+padding:20px;
+
+overflow:auto;
+}
+
+/* MODAL BOX */
+
+.modal-box{
+width:90%;
+max-width:360px;
+
+padding:28px;
+
+border-radius:28px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.45)
+),
+url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
+center center / cover no-repeat;
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+
+box-shadow:
+0 0 15px rgba(0,245,255,.25),
+0 0 35px rgba(124,58,237,.20),
+0 15px 35px rgba(0,0,0,.45);
+
+animation:popup .25s ease;
+
+overflow:hidden;
+
+position:relative;
+}
+
+@keyframes popup{
+from{
+transform:scale(.85);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.modal-title{
+text-align:center;
+
+font-size:22px;
+font-weight:700;
+
+color:white;
+
+margin-bottom:20px;
+
+text-shadow:
+0 0 10px rgba(0,245,255,.45),
+0 2px 8px rgba(0,0,0,.8);
+}
+
+.modal-input{
+width:100%;
+
+padding:16px;
+
+border:none;
+outline:none;
+
+border-radius:18px;
+
+background:rgba(0,0,0,.35);
+
+color:white;
+
+font-size:16px;
+
+border:1px solid rgba(255,255,255,.08);
+
+margin-bottom:18px;
+
+transition:.3s;
+}
+
+.modal-input:focus{
+border:1px solid rgba(0,245,255,.7);
+
+box-shadow:
+0 0 12px rgba(0,245,255,.35),
+0 0 25px rgba(124,58,237,.20);
+
+background:rgba(0,0,0,.45);
+}
+
+.modal-actions{
+display:flex;
+
+gap:12px;
+}
+
+.modal-actions button{
+flex:1;
+
+padding:14px;
+
+border-radius:16px;
+}
+
+.cancel-btn{
+background:rgba(255,255,255,.08);
+}
+
+.confirm-btn{
+background:
+linear-gradient(
+135deg,
+#00f5ff,
+#7c3aed
+);
+}
+
+@media(max-width:500px){
+
+.container{
+padding:28px;
+}
+
+h1{
+font-size:24px;
+}
+
+#suggestions{
+max-height:280px;
+}
+
+}
+
+@supports (-webkit-touch-callout: none){
+
+html{
+height:-webkit-fill-available;
+}
+
+body{
+min-height:-webkit-fill-available;
+}
+
+}
+
+@media (min-width:768px){
+
+body{
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+min-height:100vh;
+}
+
+.container{
+width:100%;
+max-width:450px;
+
+margin:0 auto;
+}
+
+}
+
+/* ============================= */
+/* MODE OVERLAY */
+/* ============================= */
+
+.mode-overlay{
+position:fixed;
+inset:0;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:9999999998;
+
+background:rgba(0,0,0,.55);
+
+padding:20px;
+}
+
+/* FOTO MODE BLUR */
+
+.mode-overlay::before{
+content:"";
+
+position:absolute;
+inset:-30px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.80),
+rgba(0,0,0,.80)
+),
+url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
+center center / cover no-repeat;
+
+filter:blur(12px);
+
+transform:scale(1.05);
+
+z-index:-1;
+}
+
+
+/* MODE BOX */
+
+.mode-box{
+width:90%;
+max-width:360px;
+
+padding:30px;
+
+border-radius:28px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.45)
+),
+url('232c59a2-a76c-4766-8c58-20a6e1b7550a.jpeg')
+center center / cover no-repeat;
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+
+box-shadow:
+0 0 20px rgba(0,245,255,.25),
+0 0 40px rgba(124,58,237,.20),
+0 15px 35px rgba(0,0,0,.45);
+
+animation:popup .25s ease;
+}
+
+
+/* TITLE */
+
+.mode-title{
+text-align:center;
+
+font-size:24px;
+font-weight:700;
+
+color:white;
+
+margin-bottom:8px;
+
+text-shadow:
+0 0 10px rgba(0,245,255,.55),
+0 0 20px rgba(124,58,237,.35),
+0 2px 8px rgba(0,0,0,.8);
+}
+
+
+.mode-desc{
+text-align:center;
+
+font-size:13px;
+
+color:#cbd5e1;
+
+margin-bottom:25px;
+}
+
+
+/* BUTTON WRAPPER */
+
+.mode-buttons{
+display:flex;
+flex-direction:column;
+
+gap:14px;
+}
+
+
+/* MODE BUTTON */
+
+.mode-btn{
+width:100%;
+
+padding:18px;
+
+border-radius:18px;
+
+font-size:16px;
+font-weight:700;
+
+letter-spacing:.7px;
+
+color:white;
+
+cursor:pointer;
+
+transition:
+transform .25s ease,
+box-shadow .25s ease,
+border-color .25s ease;
+
+position:relative;
+overflow:hidden;
+}
+
+
+/* STOCKLOSS */
+
+.stockloss-mode{
+
+border:1px solid rgba(0,245,255,.45);
+
+background:
+linear-gradient(
+135deg,
+rgba(0,245,255,.12),
+rgba(0,0,0,.65)
+);
+
+box-shadow:
+inset 0 0 15px rgba(0,245,255,.08),
+0 0 12px rgba(0,245,255,.20);
+}
+
+
+/* STOCK OPNAME */
+
+.opname-mode{
+
+border:1px solid rgba(124,58,237,.55);
+
+background:
+linear-gradient(
+135deg,
+rgba(124,58,237,.18),
+rgba(0,0,0,.65)
+);
+
+box-shadow:
+inset 0 0 15px rgba(124,58,237,.08),
+0 0 12px rgba(124,58,237,.20);
+}
+
+
+/* HOVER */
+
+.stockloss-mode:hover{
+
+transform:
+translateY(-2px)
+scale(1.02);
+
+border-color:
+rgba(0,245,255,.85);
+
+box-shadow:
+inset 0 0 20px rgba(0,245,255,.12),
+0 0 18px rgba(0,245,255,.50),
+0 0 35px rgba(0,245,255,.20);
+}
+
+
+.opname-mode:hover{
+
+transform:
+translateY(-2px)
+scale(1.02);
+
+border-color:
+rgba(168,85,247,.90);
+
+box-shadow:
+inset 0 0 20px rgba(124,58,237,.12),
+0 0 18px rgba(124,58,237,.50),
+0 0 35px rgba(124,58,237,.20);
+}
+
+
+/* ACTIVE */
+
+.mode-btn:active{
+
+transform:scale(.97);
+}
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+.mode-box{
+padding:28px 22px;
+}
+
+.mode-title{
+font-size:22px;
+}
+
+.mode-btn{
+padding:17px;
+font-size:15px;
+}
+
+}
+
+/* FIX GARIS DI ANTARA BARCODE DAN QTY */
+
+.barcode-box{
+    overflow:visible;
+    box-shadow:
+        0 0 14px rgba(0,245,255,.18),
+        0 0 28px rgba(124,58,237,.14),
+        0 4px 10px rgba(0,0,0,.15);
+}
+
+.qty-box{
+    overflow:visible;
+    box-shadow:
+        0 0 14px rgba(0,245,255,.18),
+        0 0 28px rgba(124,58,237,.14),
+        0 8px 22px rgba(0,0,0,.32);
+}
+.barcode-box{
+z-index:9999;
+
+box-shadow:
+0 0 14px rgba(0,245,255,.18),
+0 0 28px rgba(124,58,237,.14),
+0 4px 10px rgba(0,0,0,.15);
+}
+
+.qty-box{
+z-index:1;
+}
+
+
+</style>
+</head>
+
+<body>
+    
+<!-- PILIH MODE -->
+
+<div class="mode-overlay" id="modeOverlay">
+
+<div class="mode-box">
+
+<div class="mode-title">
+PILIH MODE
+</div>
+
+<div class="mode-desc">
+Silahkan pilih jenis transaksi
+</div>
+
+<div class="mode-buttons">
+
+<button
+class="mode-btn stockloss-mode"
+onclick="pilihMode('stockloss')">
+STOCKLOSS
+</button>
+
+<button
+class="mode-btn opname-mode"
+onclick="pilihMode('opname')">
+STOCK OPNAME
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- LOGIN SCREEN -->
+
+<div class="login-overlay" id="loginOverlay">
+
+<div class="login-box">
+
+<div class="login-title">
+THE BUTCHER KEMANG
+</div>
+
+<div class="login-desc">
+Silahkan masukkan password terlebih dahulu
+</div>
+
+<input
+type="password"
+id="loginPassword"
+class="login-input"
+placeholder="Masukkan Password"
+>
+
+<button
+class="login-btn"
+onclick="loginApp()">
+Masuk
+</button>
+
+<div
+id="loginStatus"
+style="
+margin-top:14px;
+text-align:center;
+font-size:13px;
+color:#fff;
+min-height:18px;
+">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="container">
+
+<h1>STOCKLOSS BSD</h1>
+
+<p class="desc">
+Scan / Input Barcode dan Qty
+</p>
+
+
+<!-- BARCODE -->
+
+<div class="input-box barcode-box">
+
+<label>Barcode</label>
+
+<input 
+type="text" 
+id="barcode" 
+placeholder="Scan / Input Barcode"
+autocomplete="off"
+>
+
+<div id="namaBarang"></div>
+
+<div id="suggestions"></div>
+
+</div>
+
+
+<!-- QTY -->
+
+<div class="input-box qty-box">
+
+<label>Qty</label>
+
+<input 
+type="text"
+inputmode="decimal"
+id="qty" 
+placeholder="Masukkan Qty"
+>
+
+</div>
+
+
+<button id="btnKirim" onclick="kirimData()">
+Kirim Data
+</button>
+
+<button onclick="resetData()" class="reset-btn">
+Reset Data Stockloss
+</button>
+
+<div id="status"></div>
+
+
+<!-- HISTORY -->
+
+<div id="historyBox" class="last-input-box">
+
+<div class="last-title">
+DATA INPUT
+</div>
+
+<div class="history-header">
+
+<div>
+ARTICLE NAME
+</div>
+
+<div>
+QTY
+</div>
+
+</div>
+
+<div id="historyList"></div>
+
+</div>
+
+</div>
+
+
+<!-- MODAL PASSWORD -->
+
+<div class="modal" id="passwordModal">
+
+<div class="modal-box">
+
+<div class="modal-title">
+Silahkan Masukan Password
+</div>
+
+<input
+type="password"
+id="adminPassword"
+class="modal-input"
+placeholder="Masukkan password"
+>
+
+<div class="modal-actions">
+
+<button
+class="cancel-btn"
+onclick="closePasswordModal()">
+Batal
+</button>
+
+<button
+class="confirm-btn"
+onclick="submitReset()">
+Masuk
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ================================================= */
+/* CONFIG */
+/* ================================================= */
+
+const URL_SCRIPT =
+"https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";
+
+const ADMIN_PASSWORD = "0800";
+
+let currentMode = "";
+
+let barcodeCache = [];
+
+let debounceTimer;
+
+let historyData = [];
+
+
+
+/* ================================================= */
+/* RENDER HISTORY */
+/* ================================================= */
+
+function renderHistory(){
+
+const box =
+document.getElementById(
+"historyBox"
+);
+
+const list =
+document.getElementById(
+"historyList"
+);
+
+
+if(
+!Array.isArray(historyData) ||
+historyData.length === 0
+){
+
+box.style.display = "none";
+
+list.innerHTML = "";
+
+return;
+
+}
+
+
+box.style.display = "block";
+
+
+let html = "";
+
+
+historyData
+.slice(0,50)
+.forEach(item=>{
+
+html += `
+
+<div class="history-item">
+
+<div class="history-nama">
+${escapeHTML(item.nama)}
+</div>
+
+<div class="history-qty">
+${escapeHTML(item.qty)}
+</div>
+
+</div>
+
+`;
+
+});
+
+
+list.innerHTML = html;
+
+}
+
+
+/* ================================================= */
+/* ESCAPE HTML */
+/* ================================================= */
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* ================================================= */
+/* TAMBAH HISTORY LANGSUNG */
+/* ================================================= */
+
+function addHistoryInstant(nama,qty){
+
+historyData.unshift({
+
+nama:nama || "-",
+
+qty:qty
+
+});
+
+
+historyData =
+historyData.slice(0,50);
+
+renderHistory();
+
+}
+
+
+/* ================================================= */
+/* LOAD BARCODE DARI MASTER */
+/* ================================================= */
+
+async function loadBarcodeData(){
+
+try{
+
+const res =
+await fetch(URL_SCRIPT,{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"text/plain;charset=utf-8"
+},
+
+body:JSON.stringify({
+action:"getAllBarcode"
+})
+
+});
+
+barcodeCache =
+await res.json();
+
+console.log(
+"Barcode berhasil dimuat:",
+barcodeCache.length
+);
+
+}catch(err){
+
+console.log(
+"Load barcode error:",
+err
+);
+
+barcodeCache = [];
+
+}
+
+}
+
+/* ================================================= */
+/* AUTO FOCUS / INITIAL LOAD */
+/* ================================================= */
+
+window.onload = async () => {
+
+await loadBarcodeData();
+
+setTimeout(()=>{
+
+document
+.getElementById("loginPassword")
+.focus();
+
+},200);
+
+};
+
+
+/* ================================================= */
+/* ================================================= */
+/* LOGIN */
+/* ================================================= */
+
+function loginApp(){
+
+const password =
+document
+.getElementById("loginPassword")
+.value;
+
+
+if(password !== ADMIN_PASSWORD){
+
+const status = document.getElementById("loginStatus");
+
+status.innerHTML = "❌ Password salah";
+
+status.style.color = "#ff4d4d";
+
+return;
+
+}
+
+
+/* PASSWORD BENAR */
+
+document
+.getElementById("loginOverlay")
+.style.display =
+"none";
+
+
+/* TAMPILKAN PILIH MODE */
+
+document
+.getElementById("modeOverlay")
+.style.display =
+"flex";
+
+}
+
+
+/* ================================================= */
+/* PILIH MODE */
+/* ================================================= */
+
+function pilihMode(mode){
+
+currentMode = mode;
+
+const title =
+document.querySelector("h1");
+
+const desc =
+document.querySelector(".desc");
+
+const modeOverlay =
+document.getElementById("modeOverlay");
+
+
+if(mode === "stockloss"){
+
+title.innerText =
+"STOCKLOSS BSD";
+
+desc.innerText =
+"Scan / Input Barcode dan Qty";
+
+document.querySelector(".reset-btn").innerText =
+"Reset Data Stockloss";
+
+}
+
+else if(mode === "opname"){
+
+title.innerText =
+"STOCK OPNAME BSD";
+
+desc.innerText =
+"Scan / Input Barcode dan Qty";
+
+document.querySelector(".reset-btn").innerText =
+"Reset Data Stock Opname";
+
+}
+
+
+/* KOSONGKAN HISTORY MODE SEBELUMNYA */
+
+historyData = [];
+
+renderHistory();
+
+
+modeOverlay.style.display =
+"none";
+
+
+/* LOAD HISTORY SESUAI MODE */
+
+loadHistory();
+
+
+setTimeout(()=>{
+
+document
+.getElementById("barcode")
+.focus();
+
+},100);
+
+}
+
+
+/* ================================================= */
+/* ENTER LOGIN */
+/* ================================================= */
+
+document
+.getElementById("loginPassword")
+.addEventListener(
+"keypress",
+function(e){
+
+if(e.key === "Enter"){
+
+loginApp();
+
+}
+
+});
+
+
+/* ================================================= */
+/* LOAD History */
+/* ================================================= */
+
+async function loadHistory(){
+
+try{
+
+const res =
+await fetch(URL_SCRIPT,{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"text/plain;charset=utf-8"
+},
+
+body:JSON.stringify({
+action:"getHistory",
+mode:currentMode
+})
+
+});
+
+historyData =
+await res.json();
+
+renderHistory();
+
+}catch(err){
+
+console.log(
+"Load history error:",
+err
+);
+
+}
+
+}
+
+
+/* ================================================= */
+/* HIDE DROPDOWN */
+/* ================================================= */
+
+function hideSuggestions(){
+
+const suggestions =
+document.getElementById("suggestions");
+
+suggestions.innerHTML = "";
+
+suggestions.style.display = "none";
+
+}
+
+
+/* ================================================= */
+/* AUTO QTY + NAMA */
+/* ================================================= */
+
+document
+.getElementById("barcode")
+.addEventListener(
+"input",
+function(){
+
+const barcode =
+this.value.trim();
+
+
+tampilkanNamaBarang(
+barcode
+);
+
+
+if(
+barcode.startsWith("20") &&
+barcode.length === 13 &&
+/^\d+$/.test(barcode)
+){
+
+hideSuggestions();
+
+
+const qtyRaw =
+barcode.substring(7,12);
+
+
+const qtyNumber =
+parseInt(
+qtyRaw,
+10
+) / 1000;
+
+
+let qtyFormatted =
+qtyNumber
+.toFixed(3)
+.replace(/\.?0+$/,'');
+
+
+qtyFormatted =
+qtyFormatted.replace(
+".",
+","
+);
+
+
+document
+.getElementById("qty")
+.value =
+qtyFormatted;
+
+}
+
+});
+
+
+/* ================================================= */
+/* TAMPILKAN NAMA BARANG */
+/* ================================================= */
+
+function tampilkanNamaBarang(barcode){
+
+const namaBox =
+document.getElementById(
+"namaBarang"
+);
+
+
+let searchBarcode =
+barcode;
+
+
+/* BARCODE TIMBANG */
+
+if(
+barcode.startsWith("20") &&
+barcode.length === 13 &&
+/^\d+$/.test(barcode)
+){
+
+searchBarcode =
+barcode.substring(2,7);
+
+}
+
+
+const item =
+barcodeCache.find(x =>
+String(x.barcode) ===
+String(searchBarcode)
+);
+
+
+if(item){
+
+namaBox.style.display =
+"block";
+
+namaBox.innerHTML =
+escapeHTML(item.nama);
+
+}else{
+
+namaBox.style.display =
+"none";
+
+namaBox.innerHTML = "";
+
+}
+
+}
+
+
+/* ================================================= */
+/* AUTOCOMPLETE */
+/* ================================================= */
+
+document
+.getElementById("barcode")
+.addEventListener(
+"input",
+function(e){
+
+e.stopPropagation();
+
+
+clearTimeout(
+debounceTimer
+);
+
+
+debounceTimer =
+setTimeout(()=>{
+
+const keyword =
+this.value
+.trim()
+.toLowerCase();
+
+
+const suggestions =
+document.getElementById(
+"suggestions"
+);
+
+
+if(keyword.length < 2){
+
+suggestions.innerHTML = "";
+suggestions.style.display = "none";
+
+return;
+
+}
+
+
+let filtered =
+barcodeCache.filter(item=>{
+
+const barcode =
+String(item.barcode)
+.toLowerCase();
+
+const nama =
+String(item.nama)
+.toLowerCase();
+
+
+return(
+barcode.startsWith(keyword) ||
+barcode.includes(keyword) ||
+nama.includes(keyword)
+);
+
+});
+
+
+filtered =
+filtered.slice(0,20);
+
+
+let html = "";
+
+
+filtered.forEach(item=>{
+
+html += `
+
+<div
+class="suggest-item"
+onclick="pilihBarcode('${String(item.barcode).replace(/'/g,"\\'")}')">
+
+<div class="suggest-barcode">
+${escapeHTML(item.barcode)}
+</div>
+
+<div class="suggest-name">
+${escapeHTML(item.nama)}
+</div>
+
+</div>
+
+`;
+
+});
+
+
+suggestions.innerHTML =
+html;
+
+if(filtered.length > 0){
+
+suggestions.style.display = "block";
+
+}else{
+
+suggestions.style.display = "none";
+
+}
+
+},120);
+
+});
+
+
+/* ================================================= */
+/* HIDE QTY DROPDOWN */
+/* ================================================= */
+
+document
+.getElementById("qty")
+.addEventListener(
+"focus",
+function(){
+
+hideSuggestions();
+
+});
+
+
+/* ================================================= */
+/* HIDE CLICK LUAR */
+/* ================================================= */
+
+document.addEventListener(
+"click",
+function(e){
+
+if(
+!e.target.closest(
+".input-box"
+)
+){
+
+hideSuggestions();
+
+}
+
+});
+
+
+/* ================================================= */
+/* PILIH BARCODE */
+/* ================================================= */
+
+function pilihBarcode(barcode){
+
+document
+.getElementById("barcode")
+.value =
+barcode;
+
+
+tampilkanNamaBarang(
+barcode
+);
+
+
+hideSuggestions();
+
+
+document
+.getElementById("qty")
+.focus();
+
+}
+
+
+/* ================================================= */
+/* ENTER BARCODE */
+/* ================================================= */
+
+document
+.getElementById("barcode")
+.addEventListener(
+"keypress",
+function(e){
+
+if(e.key === "Enter"){
+
+e.preventDefault();
+
+hideSuggestions();
+
+document
+.getElementById("qty")
+.focus();
+
+}
+
+});
+
+
+/* ================================================= */
+/* ENTER QTY */
+/* ================================================= */
+
+document
+.getElementById("qty")
+.addEventListener(
+"keypress",
+function(e){
+
+if(e.key === "Enter"){
+
+e.preventDefault();
+
+hideSuggestions();
+
+kirimData();
+
+}
+
+});
+
+
+/* ================================================= */
+/* KIRIM DATA - OPTIMIZED */
+/* ================================================= */
+
+async function kirimData(){
+
+const barcodeInput =
+document
+.getElementById("barcode");
+
+
+const qtyInput =
+document
+.getElementById("qty");
+
+
+let barcode =
+barcodeInput.value.trim();
+
+
+let qty =
+qtyInput.value.trim();
+
+
+if(
+barcode === "" ||
+qty === ""
+){
+
+document
+.getElementById("status")
+.innerHTML =
+"⚠️ Barcode dan Qty wajib diisi";
+
+return;
+
+}
+
+
+let namaBarang = "";
+
+let searchBarcode =
+barcode;
+
+
+/* BARCODE TIMBANG */
+
+if(
+barcode.startsWith("20") &&
+barcode.length === 13 &&
+/^\d+$/.test(barcode)
+){
+
+searchBarcode =
+barcode.substring(2,7);
+
+}
+
+
+const item =
+barcodeCache.find(x =>
+String(x.barcode) ===
+String(searchBarcode)
+);
+
+
+if(item){
+
+namaBarang =
+item.nama;
+
+}
+
+
+/* QTY */
+
+qty =
+qty.replace(",", ".");
+
+
+const btn =
+document
+.getElementById("btnKirim");
+
+
+btn.disabled = true;
+
+btn.innerHTML =
+"⏳ Mengirim...";
+
+
+/* ================================================= */
+/* SIMPAN DATA INPUT */
+/* ================================================= */
+
+barcodeInput.value = "";
+
+qtyInput.value = "";
+
+document
+.getElementById("namaBarang")
+.style.display =
+"none";
+
+document
+.getElementById("namaBarang")
+.innerHTML = "";
+
+hideSuggestions();
+
+
+/* ================================================= */
+/* UPDATE HISTORY LANGSUNG */
+/* ================================================= */
+
+addHistoryInstant(
+namaBarang || barcode,
+qty
+);
+
+
+document
+.getElementById("status")
+.innerHTML =
+"⏳ Menyimpan data...";
+
+
+barcodeInput.focus();
+
+
+/* ================================================= */
+/* KIRIM KE GOOGLE */
+/* ================================================= */
+
+try{
+
+const res =
+await fetch(
+URL_SCRIPT,
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"text/plain;charset=utf-8"
+},
+
+body:JSON.stringify({
+
+action:"saveData",
+
+barcode:barcode,
+
+qty:qty,
+
+mode:currentMode
+
+})
+
+});
+
+
+const result =
+await res.text();
+
+
+if(
+result.startsWith("Success")
+){
+
+document
+.getElementById("status")
+.innerHTML =
+"✅ Data berhasil dikirim";
+
+}else{
+
+throw new Error(result);
+
+}
+
+
+}catch(err){
+
+console.log(
+"Send error:",
+err
+);
+
+
+/*
+ * Jika gagal, hapus history
+ * yang tadi ditampilkan secara lokal.
+ */
+
+historyData.shift();
+
+renderHistory();
+
+
+document
+.getElementById("status")
+.innerHTML =
+"❌ Gagal mengirim data";
+
+
+}finally{
+
+btn.disabled = false;
+
+btn.innerHTML =
+"Kirim Data";
+
+}
+
+}
+
+
+/* ================================================= */
+/* BUKA MODAL PASSWORD */
+/* ================================================= */
+
+function openPasswordModal(){
+
+document
+.getElementById("passwordModal")
+.style.display =
+"flex";
+
+
+document
+.getElementById("adminPassword")
+.value = "";
+
+
+setTimeout(()=>{
+
+document
+.getElementById("adminPassword")
+.focus();
+
+},100);
+
+}
+
+
+/* ================================================= */
+/* TUTUP MODAL */
+/* ================================================= */
+
+function closePasswordModal(){
+
+document
+.getElementById("passwordModal")
+.style.display =
+"none";
+
+
+document
+.getElementById("adminPassword")
+.value = "";
+
+}
+
+
+/* ================================================= */
+/* ENTER PASSWORD RESET */
+/* ================================================= */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+const modal =
+document.getElementById(
+"passwordModal"
+);
+
+
+if(
+modal.style.display ===
+"flex"
+){
+
+if(e.key === "Enter"){
+
+e.preventDefault();
+
+submitReset();
+
+}
+
+
+if(e.key === "Escape"){
+
+closePasswordModal();
+
+}
+
+}
+
+});
+
+
+/* ================================================= */
+/* RESET */
+/* ================================================= */
+
+function resetData(){
+
+openPasswordModal();
+
+}
+
+
+/* ================================================= */
+/* SUBMIT RESET - OPTIMIZED */
+/* ================================================= */
+
+async function submitReset(){
+
+const password =
+document
+.getElementById("adminPassword")
+.value;
+
+
+if(password !== ADMIN_PASSWORD){
+
+document
+.getElementById("status")
+.innerHTML =
+"❌ Password salah";
+
+return;
+
+}
+
+
+closePasswordModal();
+
+
+const namaMode =
+currentMode === "opname"
+? "STOCK OPNAME"
+: "STOCKLOSS";
+
+const konfirmasi =
+confirm(
+`Yakin ingin menghapus semua data ${namaMode} sebelumnya?`
+);
+
+
+if(!konfirmasi){
+
+return;
+
+}
+
+
+/* ================================================= */
+/* LANGSUNG KOSONGKAN HISTORY */
+/* ================================================= */
+
+historyData = [];
+
+renderHistory();
+
+
+document
+.getElementById("barcode")
+.value = "";
+
+document
+.getElementById("qty")
+.value = "";
+
+document
+.getElementById("namaBarang")
+.style.display =
+"none";
+
+document
+.getElementById("namaBarang")
+.innerHTML = "";
+
+hideSuggestions();
+
+
+document
+.getElementById("status")
+.innerHTML =
+"⏳ Menghapus data...";
+
+
+const resetButton =
+document.querySelector(
+".reset-btn"
+);
+
+
+resetButton.disabled =
+true;
+
+
+try{
+
+const res =
+await fetch(
+URL_SCRIPT,
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"text/plain;charset=utf-8"
+},
+
+body:JSON.stringify({
+
+action:"reset",
+
+password:password,
+
+mode:currentMode
+
+})
+
+});
+
+
+const result =
+await res.text();
+
+
+if(
+result ===
+"Reset berhasil"
+){
+
+document
+.getElementById("status")
+.innerHTML =
+`✅ Semua data ${namaMode} sebelumnya berhasil dihapus`;
+
+
+}else{
+
+throw new Error(result);
+
+}
+
+
+}catch(err){
+
+console.log(
+"Reset error:",
+err
+);
+
+
+document
+.getElementById("status")
+.innerHTML =
+"❌ Gagal reset data";
+
+
+/*
+ * Jika reset gagal,
+ * ambil kembali history asli.
+ */
+
+await loadHistory();
+
+
+}finally{
+
+resetButton.disabled =
+false;
+
+
+document
+.getElementById("barcode")
+.focus();
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
