@@ -43,6 +43,11 @@ button{
   cursor:pointer;
 }
 
+button:disabled{
+  cursor:not-allowed;
+  opacity:.55;
+}
+
 body:before{
   content:"";
   position:fixed;
@@ -118,7 +123,6 @@ body:after{
     transform:none;
   }
 }
-
 
 /* =====================================================
    LOGIN
@@ -300,9 +304,8 @@ h1{
   font-weight:800;
 }
 
-
 /* =====================================================
-   APP / TOPBAR
+   APP
 ===================================================== */
 
 #app{
@@ -320,14 +323,10 @@ h1{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   padding:0 24px;
-
   border-bottom:1px solid rgba(255,255,255,.08);
-
   background:rgba(8,9,12,.90);
   backdrop-filter:blur(22px);
-
   position:sticky;
   top:0;
   z-index:50;
@@ -337,7 +336,6 @@ h1{
   display:flex;
   align-items:center;
   gap:11px;
-
   font-weight:950;
   letter-spacing:1.4px;
 }
@@ -358,15 +356,11 @@ h1{
 .avatar{
   width:36px;
   height:36px;
-
   display:grid;
   place-items:center;
-
   border-radius:50%;
-
   background:#ff7a0020;
   border:1px solid #ff7a0066;
-
   color:var(--orange2);
   font-weight:900;
 }
@@ -378,18 +372,13 @@ h1{
 
 .top-btn{
   height:36px;
-
   padding:0 12px;
-
   border:1px solid var(--line);
   border-radius:10px;
-
   background:#ffffff08;
   color:#fff;
-
   font-size:10px;
   font-weight:750;
-
   transition:.2s;
 }
 
@@ -403,15 +392,13 @@ h1{
   color:#ffbd7c;
 }
 
-
 /* =====================================================
-   DASHBOARD COMPACT
+   DASHBOARD
 ===================================================== */
 
 .view{
   width:min(1120px,94%);
   margin:auto;
-
   padding:22px 0 35px;
 }
 
@@ -420,12 +407,9 @@ h1{
   align-items:center;
   justify-content:space-between;
   gap:20px;
-
   padding:24px 27px;
-
   border:1px solid var(--line);
   border-radius:23px;
-
   background:
     linear-gradient(
       135deg,
@@ -433,7 +417,6 @@ h1{
       #ffffff05 55%,
       #ffffff02
     );
-
   box-shadow:
     inset 0 1px rgba(255,255,255,.07);
 }
@@ -461,37 +444,27 @@ h1{
   display:flex;
   align-items:center;
   gap:7px;
-
   border:1px solid #35e88930;
   background:#35e8890b;
-
   border-radius:999px;
-
   padding:7px 10px;
-
   color:#7df2b1;
-
   font-size:9px;
   font-weight:800;
-
   white-space:nowrap;
 }
 
 .status-dot{
   width:6px;
   height:6px;
-
   border-radius:50%;
-
   background:var(--green);
   box-shadow:0 0 10px var(--green);
 }
 
 .section-label{
   margin:22px 2px 10px;
-
   color:#ffffff55;
-
   font-size:9px;
   font-weight:850;
   letter-spacing:2px;
@@ -506,41 +479,29 @@ h1{
 .operation-card{
   position:relative;
   overflow:hidden;
-
   min-height:160px;
-
   padding:21px;
-
   border:1px solid var(--line);
   border-radius:21px;
-
   background:
     linear-gradient(
       145deg,
       #ffffff08,
       #ffffff02
     );
-
   cursor:pointer;
-
   transition:.3s;
-
   box-shadow:0 15px 45px #0003;
 }
 
 .operation-card:before{
   content:"";
-
   position:absolute;
-
   width:130px;
   height:130px;
-
   right:-45px;
   top:-50px;
-
   border-radius:50%;
-
   background:#ff7a0010;
 }
 
@@ -550,24 +511,18 @@ h1{
 
 .operation-card:hover{
   transform:translateY(-4px);
-
   border-color:#ff7a0060;
-
   box-shadow:0 22px 55px #0006;
 }
 
 .operation-icon{
   width:43px;
   height:43px;
-
   display:grid;
   place-items:center;
-
   border-radius:13px;
-
   background:#ff7a0016;
   border:1px solid #ff7a0030;
-
   font-size:20px;
 }
 
@@ -580,39 +535,30 @@ h1{
   position:absolute;
   right:19px;
   top:18px;
-
   color:#fff2;
-
   font-size:10px;
   font-weight:900;
 }
 
 .operation-card h3{
   margin-top:20px;
-
   font-size:19px;
   letter-spacing:-.5px;
 }
 
 .operation-card p{
   margin-top:5px;
-
   color:var(--muted);
-
   font-size:10px;
   line-height:1.5;
-
   max-width:330px;
 }
 
 .operation-open{
   position:absolute;
-
   right:18px;
   bottom:17px;
-
   color:#ffb56c;
-
   font-size:9px;
   font-weight:850;
 }
@@ -629,16 +575,13 @@ h1{
 
 .status-card{
   padding:13px 15px;
-
   border:1px solid var(--line);
   border-radius:15px;
-
   background:#ffffff03;
 }
 
 .status-card-label{
   color:#fff5;
-
   font-size:8px;
   letter-spacing:1.2px;
   font-weight:850;
@@ -646,22 +589,18 @@ h1{
 
 .status-card-value{
   margin-top:6px;
-
   font-size:13px;
   font-weight:900;
 }
 
 .status-card-sub{
   margin-top:3px;
-
   color:#fff4;
-
   font-size:9px;
 }
 
-
 /* =====================================================
-   INVENTORY PAGE
+   INVENTORY
 ===================================================== */
 
 #inventoryPage{
@@ -677,7 +616,6 @@ h1{
 .inventory-view{
   width:min(900px,94%);
   margin:auto;
-
   padding:22px 0 40px;
 }
 
@@ -685,20 +623,14 @@ h1{
   display:inline-flex;
   align-items:center;
   gap:7px;
-
   border:1px solid var(--line);
   border-radius:10px;
-
   background:#ffffff07;
   color:#fff;
-
   padding:8px 12px;
-
   font-size:10px;
   font-weight:750;
-
   margin-bottom:14px;
-
   transition:.2s;
 }
 
@@ -710,17 +642,14 @@ h1{
 
 .inventory-box{
   padding:22px;
-
   border:1px solid var(--line);
   border-radius:23px;
-
   background:
     linear-gradient(
       145deg,
       #ffffff08,
       #ffffff02
     );
-
   box-shadow:0 20px 60px #0004;
 }
 
@@ -728,9 +657,7 @@ h1{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   gap:15px;
-
   margin-bottom:19px;
 }
 
@@ -743,15 +670,11 @@ h1{
 .inventory-icon{
   width:43px;
   height:43px;
-
   display:grid;
   place-items:center;
-
   border-radius:13px;
-
   background:#ff7a0017;
   border:1px solid #ff7a0038;
-
   font-size:20px;
 }
 
@@ -761,34 +684,24 @@ h1{
 
 .inventory-title p{
   color:var(--muted);
-
   font-size:10px;
-
   margin-top:3px;
 }
 
 .mode{
   display:flex;
   gap:4px;
-
   padding:4px;
-
   border-radius:11px;
-
   background:#0005;
 }
 
 .mode button{
   border:0;
-
   border-radius:8px;
-
   padding:7px 10px;
-
   background:transparent;
-
   color:var(--muted);
-
   font-size:9px;
   font-weight:750;
 }
@@ -805,52 +718,36 @@ h1{
 .barcode-area input{
   width:100%;
   height:55px;
-
   border:1px solid var(--line);
   border-radius:14px;
-
   background:#0005;
-
   color:#fff;
-
   padding:0 15px;
-
   outline:0;
 }
 
 .barcode-area input:focus{
   border-color:#ff9b45;
-
-  box-shadow:
-    0 0 0 4px #ff7a0015;
+  box-shadow:0 0 0 4px #ff7a0015;
 }
 
 .suggestions{
   position:absolute;
-
   left:0;
   right:0;
   top:62px;
-
   z-index:70;
-
   max-height:270px;
-
   overflow:auto;
-
   border:1px solid var(--line);
   border-radius:14px;
-
   background:#14171c;
-
   box-shadow:0 25px 65px #000b;
 }
 
 .suggestion{
   padding:11px 13px;
-
   cursor:pointer;
-
   border-bottom:1px solid #ffffff0a;
 }
 
@@ -860,67 +757,49 @@ h1{
 
 .suggestion strong{
   display:block;
-
   font-size:11px;
 }
 
 .suggestion span{
   display:block;
-
   margin-top:3px;
-
   color:var(--muted);
-
   font-size:10px;
 }
 
 .qty-row{
   display:grid;
-
   grid-template-columns:1fr auto;
-
   gap:9px;
-
   margin-top:10px;
 }
 
 .qty-row input{
   height:50px;
-
   border:1px solid var(--line);
   border-radius:13px;
-
   background:#0005;
-
   color:#fff;
-
   padding:0 14px;
-
   outline:0;
 }
 
 .qty-row input:focus{
   border-color:#ff9b45;
-
-  box-shadow:
-    0 0 0 4px #ff7a0015;
+  box-shadow:0 0 0 4px #ff7a0015;
 }
 
 .save-btn{
   min-width:115px;
-
   border:0;
   border-radius:13px;
-
   background:
     linear-gradient(
       135deg,
       var(--orange),
       var(--orange2)
     );
-
   color:#17100a;
-
   font-weight:950;
 }
 
@@ -930,10 +809,8 @@ h1{
 
 .history-title{
   display:flex;
-
   justify-content:space-between;
   align-items:center;
-
   margin-bottom:9px;
 }
 
@@ -943,39 +820,26 @@ h1{
 
 .reset-btn{
   border:1px solid #ff51483d;
-
   border-radius:9px;
-
   background:#ff51480d;
-
   color:#ff8179;
-
   padding:7px 10px;
-
   font-size:9px;
-
   font-weight:800;
 }
 
 .history-list{
   max-height:330px;
-
   overflow:auto;
-
   border:1px solid #ffffff0a;
-
   border-radius:13px;
 }
 
 .history-item{
   display:flex;
-
   justify-content:space-between;
-
   gap:15px;
-
   padding:12px 13px;
-
   border-bottom:1px solid #ffffff08;
 }
 
@@ -985,22 +849,25 @@ h1{
 
 .history-qty{
   color:var(--orange2);
-
   font-weight:900;
-
   white-space:nowrap;
+}
+
+.history-item.local{
+  background:#ff7a0007;
+}
+
+.history-item.local .history-qty:after{
+  content:" •";
+  color:#61efa1;
 }
 
 .loading{
   text-align:center;
-
   color:var(--muted);
-
   padding:19px;
-
   font-size:11px;
 }
-
 
 /* =====================================================
    MODAL
@@ -1008,20 +875,13 @@ h1{
 
 .modal{
   position:fixed;
-
   inset:0;
-
   z-index:100;
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   padding:18px;
-
   background:#000b;
-
   backdrop-filter:blur(14px);
 }
 
@@ -1031,30 +891,20 @@ h1{
 
 .modal-card{
   width:min(520px,100%);
-
   max-height:90vh;
-
   overflow:auto;
-
   padding:26px;
-
   border:1px solid var(--line);
-
   border-radius:24px;
-
   background:#111419;
-
   box-shadow:0 35px 100px #000c;
-
   animation:modalIn .3s ease;
 }
 
 .modal-head{
   display:flex;
-
   align-items:center;
   justify-content:space-between;
-
   margin-bottom:19px;
 }
 
@@ -1065,63 +915,43 @@ h1{
 .close{
   width:34px;
   height:34px;
-
   border:1px solid var(--line);
-
   border-radius:10px;
-
   background:#fff08;
-
   color:#fff;
-
   font-size:20px;
 }
 
 .setting-block{
   padding:15px;
-
   border:1px solid #ffffff0c;
-
   border-radius:16px;
-
   background:#ffffff03;
-
   margin-bottom:11px;
 }
 
 .setting-label{
   font-size:8px;
-
   letter-spacing:1.5px;
-
   color:#fff5;
-
   font-weight:850;
-
   margin-bottom:8px;
 }
 
 .profile-row{
   display:flex;
-
   align-items:center;
-
   gap:11px;
 }
 
 .profile-big{
   width:43px;
   height:43px;
-
   display:grid;
   place-items:center;
-
   border-radius:13px;
-
   background:#ff7a0017;
-
   color:#ffbd7c;
-
   font-weight:900;
 }
 
@@ -1131,20 +961,15 @@ h1{
 
 .profile-row span{
   display:block;
-
   color:var(--muted);
-
   font-size:10px;
-
   margin-top:3px;
 }
 
 .section-head{
   display:flex;
-
   align-items:center;
   justify-content:space-between;
-
   margin-bottom:10px;
 }
 
@@ -1154,73 +979,52 @@ h1{
 
 .refresh-btn{
   border:1px solid var(--line);
-
   border-radius:8px;
-
   background:#fff08;
-
   color:#fff;
-
   padding:6px 9px;
-
   font-size:9px;
 }
 
 .pending-list{
   display:grid;
-
   gap:8px;
 }
 
 .pending-user{
   display:flex;
-
   justify-content:space-between;
   align-items:center;
-
   gap:11px;
-
   padding:11px;
-
   border:1px solid var(--line);
-
   border-radius:12px;
-
   background:#fff04;
 }
 
 .pending-info strong{
   display:block;
-
   font-size:11px;
 }
 
 .pending-info span{
   display:block;
-
   color:var(--muted);
-
   font-size:9px;
-
   margin-top:3px;
 }
 
 .approval-actions{
   display:flex;
-
   gap:5px;
 }
 
 .approve,
 .reject{
   border:0;
-
   border-radius:7px;
-
   padding:7px 9px;
-
   font-size:8px;
-
   font-weight:850;
 }
 
@@ -1231,12 +1035,9 @@ h1{
 
 .reject{
   background:#ff514814;
-
   color:#ff8179;
-
   border:1px solid #ff51483d;
 }
-
 
 /* =====================================================
    MOBILE
@@ -1268,9 +1069,7 @@ h1{
 
   .dashboard-header{
     padding:20px;
-
     border-radius:19px;
-
     display:block;
   }
 
@@ -1280,7 +1079,6 @@ h1{
 
   .system-status{
     display:inline-flex;
-
     margin-top:13px;
   }
 
@@ -1313,7 +1111,6 @@ h1{
 
   .inventory-header{
     align-items:flex-start;
-
     flex-direction:column;
   }
 
@@ -1327,7 +1124,6 @@ h1{
 
   .pending-user{
     align-items:flex-start;
-
     flex-direction:column;
   }
 
@@ -1355,12 +1151,34 @@ h1{
     grid-column:auto;
   }
 
+  .user-area{
+    gap:5px;
+  }
+
+  .settings-btn{
+    font-size:9px;
+  }
+
+}
+
+/* =====================================================
+   SMALL NOTICE
+===================================================== */
+
+.notice{
+  padding:10px 12px;
+  border:1px solid #ff7a0025;
+  border-radius:11px;
+  background:#ff7a0009;
+  color:#ffbd7c;
+  font-size:10px;
+  line-height:1.5;
+  margin-bottom:12px;
 }
 </style>
 </head>
 
 <body>
-
 
 <!-- =====================================================
      LOGIN
@@ -1370,28 +1188,21 @@ h1{
 
   <div class="login-card">
 
-    <div class="logo">
-      TB
-    </div>
+    <div class="logo">TB</div>
 
     <div class="eyebrow">
       THE BUTCHER
     </div>
 
-    <h1>
-      Welcome Back
-    </h1>
+    <h1>Welcome Back</h1>
 
     <p class="subtitle">
       Login untuk melanjutkan ke inventory workspace.
     </p>
 
-
     <div class="field">
 
-      <label>
-        USERNAME / EMAIL
-      </label>
+      <label>USERNAME / EMAIL</label>
 
       <div class="input-wrap">
 
@@ -1406,12 +1217,9 @@ h1{
 
     </div>
 
-
     <div class="field">
 
-      <label>
-        PASSWORD
-      </label>
+      <label>PASSWORD</label>
 
       <div class="input-wrap">
 
@@ -1434,7 +1242,6 @@ h1{
 
     </div>
 
-
     <div class="options">
 
       <a
@@ -1445,7 +1252,6 @@ h1{
       </a>
 
     </div>
-
 
     <button
       class="login-btn"
@@ -1460,12 +1266,9 @@ h1{
       id="loginMessage"
     ></div>
 
-
     <div class="auth-links">
 
-      <span>
-        Belum punya akun?
-      </span>
+      <span>Belum punya akun?</span>
 
       <button onclick="openSignup()">
         Daftar
@@ -1478,15 +1281,11 @@ h1{
 </section>
 
 
-
 <!-- =====================================================
      APP
 ===================================================== -->
 
 <section id="app">
-
-
-  <!-- TOPBAR -->
 
   <header class="topbar">
 
@@ -1501,7 +1300,6 @@ h1{
       </span>
 
     </div>
-
 
     <div class="user-area">
 
@@ -1519,14 +1317,12 @@ h1{
         User
       </div>
 
-
       <button
         class="top-btn settings-btn"
         onclick="openSettings()"
       >
         ⚙ Pengaturan
       </button>
-
 
       <button
         class="top-btn"
@@ -1538,7 +1334,6 @@ h1{
     </div>
 
   </header>
-
 
 
   <!-- ===================================================
@@ -1560,9 +1355,7 @@ h1{
 
         <h2>
           Halo,
-          <span id="welcomeName">
-            User
-          </span>
+          <span id="welcomeName">User</span>
           👋
         </h2>
 
@@ -1571,7 +1364,6 @@ h1{
         </p>
 
       </div>
-
 
       <div class="system-status">
 
@@ -1584,16 +1376,12 @@ h1{
     </section>
 
 
-
     <div class="section-label">
       OPERATIONS
     </div>
 
 
     <section class="operation-cards">
-
-
-      <!-- STOCK LOSS -->
 
       <div
         class="operation-card"
@@ -1623,9 +1411,6 @@ h1{
 
       </div>
 
-
-
-      <!-- STOCK OPNAME -->
 
       <div
         class="operation-card opname"
@@ -1658,7 +1443,6 @@ h1{
     </section>
 
 
-
     <div class="section-label">
       SYSTEM STATUS
     </div>
@@ -1685,7 +1469,8 @@ h1{
 
       <div class="status-card">
 
-        <div class="status-card-label">
+        <div
+          class="status-card-label">
           MASTER DATA
         </div>
 
@@ -1727,17 +1512,13 @@ h1{
   </main>
 
 
-
   <!-- ===================================================
        INVENTORY PAGE
   ==================================================== -->
 
-  <main
-    id="inventoryPage"
-  >
+  <main id="inventoryPage">
 
     <div class="inventory-view">
-
 
       <button
         class="back-btn"
@@ -1749,9 +1530,7 @@ h1{
 
       <section class="inventory-box">
 
-
         <div class="inventory-header">
-
 
           <div class="inventory-title">
 
@@ -1795,12 +1574,8 @@ h1{
 
           </div>
 
-
         </div>
 
-
-
-        <!-- BARCODE -->
 
         <div class="barcode-area">
 
@@ -1821,9 +1596,6 @@ h1{
         </div>
 
 
-
-        <!-- QTY -->
-
         <div class="qty-row">
 
           <input
@@ -1835,6 +1607,7 @@ h1{
 
           <button
             class="save-btn"
+            id="saveBtn"
             onclick="saveInventory()"
           >
             SIMPAN
@@ -1848,9 +1621,6 @@ h1{
           id="inventoryMessage"
         ></div>
 
-
-
-        <!-- HISTORY -->
 
         <div class="history">
 
@@ -1890,7 +1660,6 @@ h1{
   </main>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -2026,7 +1795,6 @@ h1{
 </div>
 
 
-
 <!-- =====================================================
      FORGOT PASSWORD MODAL
 ===================================================== -->
@@ -2098,7 +1866,6 @@ h1{
 </div>
 
 
-
 <!-- =====================================================
      SETTINGS MODAL
 ===================================================== -->
@@ -2109,7 +1876,6 @@ h1{
 >
 
   <div class="modal-card">
-
 
     <div class="modal-head">
 
@@ -2127,7 +1893,6 @@ h1{
     </div>
 
 
-
     <!-- ACCOUNT -->
 
     <div class="setting-block">
@@ -2135,7 +1900,6 @@ h1{
       <div class="setting-label">
         ACCOUNT
       </div>
-
 
       <div class="profile-row">
 
@@ -2167,7 +1931,6 @@ h1{
     </div>
 
 
-
     <!-- PASSWORD -->
 
     <div class="setting-block">
@@ -2175,7 +1938,6 @@ h1{
       <div class="setting-label">
         PASSWORD
       </div>
-
 
       <p
         style="
@@ -2189,7 +1951,6 @@ h1{
         email asli akun.
       </p>
 
-
       <button
         class="primary-btn"
         style="height:45px"
@@ -2198,7 +1959,6 @@ h1{
         🔐 KIRIM LINK RESET PASSWORD
       </button>
 
-
       <div
         class="message"
         id="settingsMessage"
@@ -2206,6 +1966,47 @@ h1{
 
     </div>
 
+
+    <!-- MASTER -->
+
+    <div class="setting-block">
+
+      <div class="section-head">
+
+        <div>
+
+          <div
+            class="setting-label"
+            style="margin:0 0 4px"
+          >
+            MASTER DATA
+          </div>
+
+          <h3>
+            Database Produk
+          </h3>
+
+        </div>
+
+        <button
+          class="refresh-btn"
+          id="masterRefreshButton"
+          onclick="refreshMaster()"
+        >
+          ↻ Refresh
+        </button>
+
+      </div>
+
+      <div
+        class="notice"
+        style="margin:0"
+      >
+        Refresh digunakan jika ada perubahan
+        barcode atau nama produk pada MASTER.
+      </div>
+
+    </div>
 
 
     <!-- USER MANAGEMENT -->
@@ -2231,7 +2032,6 @@ h1{
           </h3>
 
         </div>
-
 
         <button
           class="refresh-btn"
@@ -2261,13 +2061,13 @@ h1{
 </div>
 
 
-
 <!-- =====================================================
-     JAVASCRIPT DIMULAI DI BAGIAN 2
+     JAVASCRIPT
 ===================================================== -->
 
 <script type="module">
-  import {
+
+import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
@@ -2294,28 +2094,44 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 
-
 /* =====================================================
-   FIREBASE CONFIG
+   FIREBASE
 ===================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAEll_xXB59TB59N--5jG1C2bxYg7yqps",
-  authDomain: "stockloss-bsd-web.firebaseapp.com",
-  projectId: "stockloss-bsd-web",
-  storageBucket: "stockloss-bsd-web.firebasestorage.app",
-  messagingSenderId: "825716539347",
-  appId: "1:825716539347:web:4f919eca31a71e72f57926",
-  measurementId: "G-X0YY0849JH"
+
+  apiKey:
+    "AIzaSyAEll_xXB59TB59N--5jG1C2bxYg7yqps",
+
+  authDomain:
+    "stockloss-bsd-web.firebaseapp.com",
+
+  projectId:
+    "stockloss-bsd-web",
+
+  storageBucket:
+    "stockloss-bsd-web.firebasestorage.app",
+
+  messagingSenderId:
+    "825716539347",
+
+  appId:
+    "1:825716539347:web:4f919eca31a71e72f57926",
+
+  measurementId:
+    "G-X0YY0849JH"
+
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+  getAuth(app);
 
-const db = getFirestore(app);
-
+const db =
+  getFirestore(app);
 
 
 /* =====================================================
@@ -2326,9 +2142,8 @@ const URL_SCRIPT =
   "https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";
 
 
-
 /* =====================================================
-   GLOBAL STATE
+   GLOBAL
 ===================================================== */
 
 let currentUser = null;
@@ -2344,28 +2159,37 @@ let selectedBarcode = "";
 let masterPromise = null;
 
 
-
 /* =====================================================
    HELPER
 ===================================================== */
 
-const $ = id => document.getElementById(id);
+const $ =
+  id => document.getElementById(id);
 
 
-function showMessage(id, text, type = "") {
+function showMessage(
+  id,
+  text,
+  type = ""
+){
 
-  const el = $(id);
+  const el =
+    $(id);
 
-  if (!el) return;
+  if(!el)return;
 
-  el.textContent = text;
+  el.textContent =
+    text;
 
-  el.className = "message " + type;
+  el.className =
+    "message " + type;
 
 }
 
 
-function normalizeUsername(value) {
+function normalizeUsername(
+  value
+){
 
   return String(value || "")
     .trim()
@@ -2374,28 +2198,30 @@ function normalizeUsername(value) {
 }
 
 
-function escapeHtml(value) {
+function escapeHtml(
+  value
+){
 
   return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
-
 /* =====================================================
-   PASSWORD TOGGLE
+   PASSWORD
 ===================================================== */
 
-function togglePassword(id) {
+function togglePassword(id){
 
-  const input = $(id);
+  const input =
+    $(id);
 
-  if (!input) return;
+  if(!input)return;
 
   input.type =
     input.type === "password"
@@ -2404,55 +2230,66 @@ function togglePassword(id) {
 
 }
 
-window.togglePassword = togglePassword;
-
+window.togglePassword =
+  togglePassword;
 
 
 /* =====================================================
-   MODAL
+   MODALS
 ===================================================== */
 
-function openSignup() {
+function openSignup(){
 
-  $("signupModal").classList.add("show");
-
-}
-
-window.openSignup = openSignup;
-
-
-
-function openForgot() {
-
-  $("forgotModal").classList.add("show");
+  $("signupModal")
+    .classList
+    .add("show");
 
 }
 
-window.openForgot = openForgot;
+window.openSignup =
+  openSignup;
 
 
+function openForgot(){
 
-function closeModal(id) {
+  $("forgotModal")
+    .classList
+    .add("show");
 
-  const modal = $(id);
+}
 
-  if (modal) {
-    modal.classList.remove("show");
+window.openForgot =
+  openForgot;
+
+
+function closeModal(id){
+
+  const modal =
+    $(id);
+
+  if(modal){
+
+    modal
+      .classList
+      .remove("show");
+
   }
 
 }
 
-window.closeModal = closeModal;
-
+window.closeModal =
+  closeModal;
 
 
 /* =====================================================
    SETTINGS
 ===================================================== */
 
-function openSettings() {
+function openSettings(){
 
-  $("settingsModal").classList.add("show");
+  $("settingsModal")
+    .classList
+    .add("show");
 
 
   const username =
@@ -2460,53 +2297,64 @@ function openSettings() {
     currentUser?.email ||
     "User";
 
+
   const email =
     currentUser?.email ||
     currentProfile?.email ||
     "";
 
 
-  $("settingsUsername").textContent =
+  $("settingsUsername")
+    .textContent =
     username;
 
-  $("settingsEmail").textContent =
+
+  $("settingsEmail")
+    .textContent =
     email;
 
-  $("settingsAvatar").textContent =
-    username.charAt(0).toUpperCase();
+
+  $("settingsAvatar")
+    .textContent =
+    username
+      .charAt(0)
+      .toUpperCase();
 
 
-
-  /* ADMIN ONLY */
-
-  if (
+  if(
     currentProfile &&
     currentProfile.role === "admin"
-  ) {
+  ){
 
-    $("userManagementBlock").style.display =
+    $("userManagementBlock")
+      .style
+      .display =
       "block";
 
     loadPendingUsers();
 
-  } else {
+  }else{
 
-    $("userManagementBlock").style.display =
+    $("userManagementBlock")
+      .style
+      .display =
       "none";
 
   }
 
 }
 
-window.openSettings = openSettings;
-
+window.openSettings =
+  openSettings;
 
 
 /* =====================================================
-   SIGN UP
+   USERNAME CHECK
 ===================================================== */
 
-async function usernameExists(username) {
+async function usernameExists(
+  username
+){
 
   const snapshot =
     await getDoc(
@@ -2522,8 +2370,12 @@ async function usernameExists(username) {
 }
 
 
+/* =====================================================
+   SIGN UP
+===================================================== */
 
-window.signup = async function () {
+window.signup =
+  async function(){
 
   const username =
     normalizeUsername(
@@ -2531,7 +2383,8 @@ window.signup = async function () {
     );
 
   const email =
-    $("signupEmail").value
+    $("signupEmail")
+      .value
       .trim()
       .toLowerCase();
 
@@ -2542,15 +2395,13 @@ window.signup = async function () {
     $("signupConfirm").value;
 
 
-
   showMessage(
     "signupMessage",
     ""
   );
 
 
-
-  if (!username) {
+  if(!username){
 
     return showMessage(
       "signupMessage",
@@ -2561,7 +2412,7 @@ window.signup = async function () {
   }
 
 
-  if (username.length < 3) {
+  if(username.length < 3){
 
     return showMessage(
       "signupMessage",
@@ -2572,7 +2423,7 @@ window.signup = async function () {
   }
 
 
-  if (!/^[a-z0-9._-]+$/.test(username)) {
+  if(!/^[a-z0-9._-]+$/.test(username)){
 
     return showMessage(
       "signupMessage",
@@ -2583,7 +2434,7 @@ window.signup = async function () {
   }
 
 
-  if (!email) {
+  if(!email){
 
     return showMessage(
       "signupMessage",
@@ -2594,7 +2445,7 @@ window.signup = async function () {
   }
 
 
-  if (password.length < 6) {
+  if(password.length < 6){
 
     return showMessage(
       "signupMessage",
@@ -2605,7 +2456,7 @@ window.signup = async function () {
   }
 
 
-  if (password !== confirm) {
+  if(password !== confirm){
 
     return showMessage(
       "signupMessage",
@@ -2616,8 +2467,7 @@ window.signup = async function () {
   }
 
 
-
-  try {
+  try{
 
     showMessage(
       "signupMessage",
@@ -2625,9 +2475,9 @@ window.signup = async function () {
     );
 
 
-    if (
+    if(
       await usernameExists(username)
-    ) {
+    ){
 
       return showMessage(
         "signupMessage",
@@ -2638,12 +2488,10 @@ window.signup = async function () {
     }
 
 
-
     showMessage(
       "signupMessage",
       "Membuat akun..."
     );
-
 
 
     const credential =
@@ -2658,46 +2506,78 @@ window.signup = async function () {
       credential.user;
 
 
+    /*
+      PROFILE USER
+    */
 
     await setDoc(
-      doc(db, "users", user.uid),
+      doc(
+        db,
+        "users",
+        user.uid
+      ),
       {
-        username: username,
-        email: email,
-        role: "user",
-        status: "pending",
-        emailVerified: false,
-        createdAt: new Date()
+        username:
+          username,
+
+        email:
+          email,
+
+        role:
+          "user",
+
+        status:
+          "pending",
+
+        emailVerified:
+          false,
+
+        createdAt:
+          new Date()
       }
     );
 
 
+    /*
+      USERNAME MAPPING
+    */
 
     await setDoc(
-      doc(db, "usernames", username),
+      doc(
+        db,
+        "usernames",
+        username
+      ),
       {
-        uid: user.uid
+        uid:
+          user.uid
       }
     );
 
 
+    /*
+      EMAIL VERIFICATION
+    */
 
-    await sendEmailVerification(user);
-
+    await sendEmailVerification(
+      user
+    );
 
 
     await signOut(auth);
 
 
+    $("signupUsername").value =
+      "";
 
-    $("signupUsername").value = "";
+    $("signupEmail").value =
+      "";
 
-    $("signupEmail").value = "";
+    $("signupPassword").value =
+      "";
 
-    $("signupPassword").value = "";
-
-    $("signupConfirm").value = "";
-
+    $("signupConfirm").value =
+      "";
 
 
     showMessage(
@@ -2707,55 +2587,57 @@ window.signup = async function () {
     );
 
 
-  } catch (error) {
+  }catch(error){
 
-    console.error(error);
+    console.error(
+      "SIGNUP ERROR:",
+      error
+    );
 
 
     let message =
       "Gagal membuat akun.";
 
 
-    if (
+    if(
       error.code ===
       "auth/email-already-in-use"
-    ) {
+    ){
 
       message =
         "Email tersebut sudah terdaftar.";
 
     }
 
-    else if (
+    else if(
       error.code ===
       "auth/invalid-email"
-    ) {
+    ){
 
       message =
         "Format email tidak valid.";
 
     }
 
-    else if (
+    else if(
       error.code ===
       "auth/weak-password"
-    ) {
+    ){
 
       message =
         "Password terlalu lemah.";
 
     }
 
-    else if (
+    else if(
       error.code ===
       "permission-denied"
-    ) {
+    ){
 
       message =
         "Firestore Rules belum mengizinkan pendaftaran.";
 
     }
-
 
 
     showMessage(
@@ -2769,18 +2651,21 @@ window.signup = async function () {
 };
 
 
-
 /* =====================================================
    LOGIN
 ===================================================== */
 
-window.login = async function () {
+window.login =
+  async function(){
 
   const identity =
-    $("loginIdentity").value.trim();
+    $("loginIdentity")
+      .value
+      .trim();
 
   const password =
-    $("loginPassword").value;
+    $("loginPassword")
+      .value;
 
 
   showMessage(
@@ -2789,7 +2674,10 @@ window.login = async function () {
   );
 
 
-  if (!identity || !password) {
+  if(
+    !identity ||
+    !password
+  ){
 
     return showMessage(
       "loginMessage",
@@ -2800,88 +2688,161 @@ window.login = async function () {
   }
 
 
-
   const button =
     $("loginBtn");
 
-  button.disabled = true;
+
+  button.disabled =
+    true;
 
   button.textContent =
     "MEMERIKSA...";
 
 
+  try{
 
-  try {
-
-    let email = identity;
-
+    let email =
+      identity;
 
 
     /*
-      Jika user memasukkan username,
-      cari username → UID → email.
+      =============================================
+      USERNAME → UID → PROFILE → EMAIL
+      =============================================
     */
 
-    if (!identity.includes("@")) {
+    if(
+      !identity.includes("@")
+    ){
+
+      const username =
+        normalizeUsername(
+          identity
+        );
+
+
+      console.log(
+        "Mencari username:",
+        username
+      );
+
+
+      const usernameRef =
+        doc(
+          db,
+          "usernames",
+          username
+        );
+
 
       const usernameSnapshot =
         await getDoc(
-          doc(
-            db,
-            "usernames",
-            normalizeUsername(identity)
-          )
+          usernameRef
         );
 
 
-      if (!usernameSnapshot.exists()) {
+      if(
+        !usernameSnapshot.exists()
+      ){
 
-        showMessage(
-          "loginMessage",
-          "Username atau password salah.",
-          "error"
+        throw new Error(
+          "USERNAME_NOT_FOUND"
         );
-
-        return;
 
       }
 
 
+      const usernameData =
+        usernameSnapshot.data();
+
+
+      console.log(
+        "Username data:",
+        usernameData
+      );
+
 
       const uid =
-        usernameSnapshot.data().uid;
+        usernameData.uid;
 
+
+      if(!uid){
+
+        throw new Error(
+          "UID_NOT_FOUND"
+        );
+
+      }
+
+
+      /*
+        AMBIL PROFILE
+      */
+
+      const profileRef =
+        doc(
+          db,
+          "users",
+          uid
+        );
 
 
       const profileSnapshot =
         await getDoc(
-          doc(
-            db,
-            "users",
-            uid
-          )
+          profileRef
         );
 
 
-      if (!profileSnapshot.exists()) {
+      if(
+        !profileSnapshot.exists()
+      ){
 
-        showMessage(
-          "loginMessage",
-          "Data akun tidak ditemukan.",
-          "error"
+        throw new Error(
+          "PROFILE_NOT_FOUND"
         );
-
-        return;
 
       }
 
 
+      const profile =
+        profileSnapshot.data();
+
+
+      console.log(
+        "Profile data:",
+        profile
+      );
+
+
+      if(!profile.email){
+
+        throw new Error(
+          "EMAIL_NOT_FOUND"
+        );
+
+      }
+
 
       email =
-        profileSnapshot.data().email;
+        String(
+          profile.email
+        )
+        .trim()
+        .toLowerCase();
 
     }
 
+
+    /*
+      =============================================
+      LOGIN FIREBASE AUTH
+      =============================================
+    */
+
+    console.log(
+      "Login menggunakan email:",
+      email
+    );
 
 
     const credential =
@@ -2896,16 +2857,16 @@ window.login = async function () {
       credential.user;
 
 
-
     await user.reload();
 
 
-
     /*
-      Email harus sudah diverifikasi.
+      EMAIL VERIFICATION
     */
 
-    if (!user.emailVerified) {
+    if(
+      !user.emailVerified
+    ){
 
       await signOut(auth);
 
@@ -2918,9 +2879,8 @@ window.login = async function () {
     }
 
 
-
     /*
-      Ambil profile Firestore.
+      PROFILE
     */
 
     const profileSnapshot =
@@ -2933,7 +2893,9 @@ window.login = async function () {
       );
 
 
-    if (!profileSnapshot.exists()) {
+    if(
+      !profileSnapshot.exists()
+    ){
 
       await signOut(auth);
 
@@ -2946,28 +2908,26 @@ window.login = async function () {
     }
 
 
-
     const profile =
       profileSnapshot.data();
 
 
-
     /*
-      Hanya approved yang boleh masuk.
+      STATUS
     */
 
-    if (
+    if(
       profile.status !==
       "approved"
-    ) {
+    ){
 
       await signOut(auth);
 
 
-      if (
+      if(
         profile.status ===
         "rejected"
-      ) {
+      ){
 
         return showMessage(
           "loginMessage",
@@ -2987,33 +2947,119 @@ window.login = async function () {
     }
 
 
+    /*
+      LOGIN BERHASIL
+    */
 
-    currentUser = user;
+    currentUser =
+      user;
 
-    currentProfile = profile;
-
+    currentProfile =
+      profile;
 
 
     showDashboard();
 
 
+  }catch(error){
 
-  } catch (error) {
-
-    console.error(error);
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
 
 
     let message =
       "Username/email atau password salah.";
 
 
-    if (
-      error.code ===
-      "auth/too-many-requests"
-    ) {
+    if(
+      error.message ===
+      "USERNAME_NOT_FOUND"
+    ){
 
       message =
-        "Terlalu banyak percobaan. Coba lagi nanti.";
+        "Username tidak ditemukan.";
+
+    }
+
+    else if(
+      error.message ===
+      "UID_NOT_FOUND"
+    ){
+
+      message =
+        "UID username tidak ditemukan.";
+
+    }
+
+    else if(
+      error.message ===
+      "PROFILE_NOT_FOUND"
+    ){
+
+      message =
+        "Data profile user tidak ditemukan.";
+
+    }
+
+    else if(
+      error.message ===
+      "EMAIL_NOT_FOUND"
+    ){
+
+      message =
+        "Email pada profile user tidak ditemukan.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/invalid-credential"
+    ){
+
+      message =
+        "Username/email atau password salah.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/invalid-email"
+    ){
+
+      message =
+        "Format email tidak valid.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/user-disabled"
+    ){
+
+      message =
+        "Akun ini dinonaktifkan.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/too-many-requests"
+    ){
+
+      message =
+        "Terlalu banyak percobaan login. Coba lagi nanti.";
+
+    }
+
+    else if(
+      error.code ===
+      "permission-denied"
+    ){
+
+      message =
+        "Firestore Rules menolak akses data akun.";
 
     }
 
@@ -3025,9 +3071,10 @@ window.login = async function () {
     );
 
 
-  } finally {
+  }finally{
 
-    button.disabled = false;
+    button.disabled =
+      false;
 
     button.textContent =
       "LOGIN";
@@ -3037,20 +3084,21 @@ window.login = async function () {
 };
 
 
-
 /* =====================================================
    FORGOT PASSWORD
 ===================================================== */
 
-window.forgotPassword = async function () {
+window.forgotPassword =
+  async function(){
 
   const email =
-    $("forgotEmail").value
+    $("forgotEmail")
+      .value
       .trim()
       .toLowerCase();
 
 
-  if (!email) {
+  if(!email){
 
     return showMessage(
       "forgotMessage",
@@ -3061,8 +3109,7 @@ window.forgotPassword = async function () {
   }
 
 
-
-  try {
+  try{
 
     await sendPasswordResetEmail(
       auth,
@@ -3077,14 +3124,52 @@ window.forgotPassword = async function () {
     );
 
 
-  } catch (error) {
+  }catch(error){
 
-    console.error(error);
+    console.error(
+      "FORGOT ERROR:",
+      error
+    );
+
+
+    let message =
+      "Gagal mengirim link reset password.";
+
+
+    if(
+      error.code ===
+      "auth/user-not-found"
+    ){
+
+      message =
+        "Email tersebut belum terdaftar di Firebase Auth.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/invalid-email"
+    ){
+
+      message =
+        "Format email tidak valid.";
+
+    }
+
+    else if(
+      error.code ===
+      "auth/too-many-requests"
+    ){
+
+      message =
+        "Terlalu banyak permintaan. Coba lagi nanti.";
+
+    }
 
 
     showMessage(
       "forgotMessage",
-      "Email tidak ditemukan atau terjadi kesalahan.",
+      message,
       "error"
     );
 
@@ -3093,22 +3178,27 @@ window.forgotPassword = async function () {
 };
 
 
-
 /* =====================================================
-   RESET PASSWORD DARI SETTINGS
+   RESET OWN PASSWORD
 ===================================================== */
 
-window.resetOwnPassword = async function () {
+window.resetOwnPassword =
+  async function(){
 
-  if (!currentUser?.email) {
+  if(
+    !currentUser?.email
+  ){
 
-    return;
+    return showMessage(
+      "settingsMessage",
+      "Email akun tidak tersedia.",
+      "error"
+    );
 
   }
 
 
-
-  try {
+  try{
 
     await sendPasswordResetEmail(
       auth,
@@ -3123,9 +3213,12 @@ window.resetOwnPassword = async function () {
     );
 
 
-  } catch (error) {
+  }catch(error){
 
-    console.error(error);
+    console.error(
+      "RESET PASSWORD ERROR:",
+      error
+    );
 
 
     showMessage(
@@ -3139,27 +3232,32 @@ window.resetOwnPassword = async function () {
 };
 
 
-
 /* =====================================================
-   SHOW DASHBOARD
+   DASHBOARD
 ===================================================== */
 
-function showDashboard() {
+function showDashboard(){
 
-  $("loginPage").style.display =
+  $("loginPage")
+    .style
+    .display =
     "none";
 
-  $("app").classList.add(
-    "show"
-  );
+
+  $("app")
+    .classList
+    .add("show");
 
 
-  $("dashboardView").style.display =
+  $("dashboardView")
+    .style
+    .display =
     "block";
 
-  $("inventoryPage").classList.remove(
-    "show"
-  );
+
+  $("inventoryPage")
+    .classList
+    .remove("show");
 
 
   const username =
@@ -3168,87 +3266,94 @@ function showDashboard() {
     "User";
 
 
-  $("userName").textContent =
+  $("userName")
+    .textContent =
     username;
 
 
-  $("welcomeName").textContent =
+  $("welcomeName")
+    .textContent =
     username;
 
 
-  $("avatar").textContent =
+  $("avatar")
+    .textContent =
     username
       .charAt(0)
       .toUpperCase();
 
 
-
-  /*
-    MASTER dijalankan di background
-    supaya dashboard tidak ikut menunggu.
-  */
-
   loadMaster();
 
 }
 
-window.showDashboard = showDashboard;
-
+window.showDashboard =
+  showDashboard;
 
 
 /* =====================================================
    LOGOUT
 ===================================================== */
 
-window.logout = async function () {
+window.logout =
+  async function(){
 
-  try {
+  try{
 
     await signOut(auth);
 
-  } catch (error) {
+  }catch(error){
 
     console.error(error);
 
   }
 
 
+  currentUser =
+    null;
 
-  currentUser = null;
-
-  currentProfile = null;
-
-
-
-  $("app").classList.remove(
-    "show"
-  );
+  currentProfile =
+    null;
 
 
-  $("dashboardView").style.display =
+  $("app")
+    .classList
+    .remove("show");
+
+
+  $("dashboardView")
+    .style
+    .display =
     "block";
 
 
-  $("inventoryPage").classList.remove(
-    "show"
-  );
+  $("inventoryPage")
+    .classList
+    .remove("show");
 
 
-  $("loginPage").style.display =
+  $("loginPage")
+    .style
+    .display =
     "flex";
 
 
-  $("loginPassword").value = "";
+  $("loginIdentity")
+    .value =
+    "";
+
+  $("loginPassword")
+    .value =
+    "";
 
 };
 
 
-
 /* =====================================================
-   ADMIN - LOAD PENDING USER
+   ADMIN - PENDING USERS
 ===================================================== */
 
-async function loadPendingUsers() {
+async function loadPendingUsers(){
 
   const list =
     $("pendingList");
@@ -3258,13 +3363,15 @@ async function loadPendingUsers() {
     '<div class="loading">Memuat user...</div>';
 
 
-
-  try {
+  try{
 
     const snapshot =
       await getDocs(
         query(
-          collection(db, "users"),
+          collection(
+            db,
+            "users"
+          ),
           where(
             "status",
             "==",
@@ -3274,8 +3381,9 @@ async function loadPendingUsers() {
       );
 
 
-
-    if (snapshot.empty) {
+    if(
+      snapshot.empty
+    ){
 
       list.innerHTML =
         '<div class="loading">Tidak ada user menunggu approval.</div>';
@@ -3285,82 +3393,86 @@ async function loadPendingUsers() {
     }
 
 
-
-    list.innerHTML = "";
-
-
-
-    snapshot.forEach(item => {
-
-      const data =
-        item.data();
+    list.innerHTML =
+      "";
 
 
-      const row =
-        document.createElement(
-          "div"
+    snapshot.forEach(
+      item => {
+
+        const data =
+          item.data();
+
+
+        const row =
+          document.createElement(
+            "div"
+          );
+
+
+        row.className =
+          "pending-user";
+
+
+        row.innerHTML = `
+
+          <div class="pending-info">
+
+            <strong>
+              ${escapeHtml(
+                data.username || "-"
+              )}
+            </strong>
+
+            <span>
+              ${escapeHtml(
+                data.email || "-"
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="approval-actions">
+
+            <button
+              class="approve"
+              data-uid="${item.id}"
+              data-action="approve"
+            >
+              APPROVE
+            </button>
+
+            <button
+              class="reject"
+              data-uid="${item.id}"
+              data-action="reject"
+            >
+              REJECT
+            </button>
+
+          </div>
+
+        `;
+
+
+        list.appendChild(
+          row
         );
 
-
-      row.className =
-        "pending-user";
-
-
-      row.innerHTML = `
-
-        <div class="pending-info">
-
-          <strong>
-            ${escapeHtml(
-              data.username || "-"
-            )}
-          </strong>
-
-          <span>
-            ${escapeHtml(
-              data.email || "-"
-            )}
-          </span>
-
-        </div>
-
-
-        <div class="approval-actions">
-
-          <button
-            class="approve"
-            data-uid="${item.id}"
-            data-action="approve"
-          >
-            APPROVE
-          </button>
-
-
-          <button
-            class="reject"
-            data-uid="${item.id}"
-            data-action="reject"
-          >
-            REJECT
-          </button>
-
-        </div>
-
-      `;
-
-
-      list.appendChild(row);
-
-    });
-
+      }
+    );
 
 
     list
-      .querySelectorAll("button")
-      .forEach(button => {
+      .querySelectorAll(
+        "button"
+      )
+      .forEach(
+        button => {
 
-        button.onclick =
-          async function () {
+          button.onclick =
+            async function(){
 
             const uid =
               button.dataset.uid;
@@ -3369,27 +3481,39 @@ async function loadPendingUsers() {
               button.dataset.action;
 
 
-            if (
+            button.disabled =
+              true;
+
+
+            if(
               action ===
               "approve"
-            ) {
+            ){
 
-              await approveUser(uid);
+              await approveUser(
+                uid
+              );
 
-            } else {
+            }else{
 
-              await rejectUser(uid);
+              await rejectUser(
+                uid
+              );
 
             }
 
           };
 
-      });
+        }
+      );
 
 
-  } catch (error) {
+  }catch(error){
 
-    console.error(error);
+    console.error(
+      "PENDING ERROR:",
+      error
+    );
 
 
     list.innerHTML =
@@ -3403,14 +3527,15 @@ window.loadPendingUsers =
   loadPendingUsers;
 
 
-
 /* =====================================================
-   ADMIN - APPROVE
+   APPROVE
 ===================================================== */
 
-async function approveUser(uid) {
+async function approveUser(
+  uid
+){
 
-  try {
+  try{
 
     await updateDoc(
       doc(
@@ -3428,7 +3553,7 @@ async function approveUser(uid) {
     await loadPendingUsers();
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(error);
 
@@ -3441,14 +3566,15 @@ async function approveUser(uid) {
 }
 
 
-
 /* =====================================================
-   ADMIN - REJECT
+   REJECT
 ===================================================== */
 
-async function rejectUser(uid) {
+async function rejectUser(
+  uid
+){
 
-  try {
+  try{
 
     await updateDoc(
       doc(
@@ -3466,7 +3592,7 @@ async function rejectUser(uid) {
     await loadPendingUsers();
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(error);
 
@@ -3479,74 +3605,75 @@ async function rejectUser(uid) {
 }
 
 
-
 /* =====================================================
    OPEN INVENTORY
 ===================================================== */
 
 window.openInventory =
-  async function (mode) {
+  async function(mode){
 
-    /*
-      Dashboard LANGSUNG ditutup.
-    */
+  /*
+    Dashboard ditutup TOTAL.
+  */
 
-    $("dashboardView").style.display =
-      "none";
-
-
-    /*
-      Inventory dibuka.
-    */
-
-    $("inventoryPage").classList.add(
-      "show"
-    );
+  $("dashboardView")
+    .style
+    .display =
+    "none";
 
 
-    /*
-      Set mode tanpa membuat
-      dashboard tampil lagi.
-    */
+  /*
+    Inventory dibuka.
+  */
 
-    currentMode =
-      mode === "opname"
-        ? "opname"
-        : "stockloss";
+  $("inventoryPage")
+    .classList
+    .add("show");
 
 
-    updateInventoryUI();
+  currentMode =
+    mode === "opname"
+      ? "opname"
+      : "stockloss";
 
 
-    /*
-      Pastikan MASTER tersedia.
-    */
-
-    if (!masterData.length) {
-
-      await loadMaster();
-
-    }
+  updateInventoryUI();
 
 
-    /*
-      Load history.
-    */
+  /*
+    Pastikan MASTER tersedia.
+  */
 
-    loadHistory();
+  if(
+    !masterData.length
+  ){
+
+    await loadMaster();
+
+  }
 
 
-    /*
-      Scroll ke atas.
-    */
+  /*
+    Load history.
+  */
 
-    window.scrollTo({
-      top: 0,
-      behavior: "instant"
-    });
+  loadHistory();
 
-  };
 
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+
+
+  setTimeout(
+    () => {
+      $("barcode").focus();
+    },
+    100
+  );
+
+};
 
 
 /* =====================================================
@@ -3554,72 +3681,69 @@ window.openInventory =
 ===================================================== */
 
 window.backToDashboard =
-  function () {
+  function(){
 
-    /*
-      Tutup inventory.
-    */
-
-    $("inventoryPage").classList.remove(
-      "show"
-    );
+  $("inventoryPage")
+    .classList
+    .remove("show");
 
 
-    /*
-      Buka dashboard.
-    */
-
-    $("dashboardView").style.display =
-      "block";
+  $("dashboardView")
+    .style
+    .display =
+    "block";
 
 
-    /*
-      Bersihkan input.
-    */
+  $("barcode").value =
+    "";
 
-    $("barcode").value = "";
+  $("qty").value =
+    "";
 
-    $("qty").value = "";
-
-    selectedBarcode = "";
-
-
-    $("suggestions").style.display =
-      "none";
+  selectedBarcode =
+    "";
 
 
-    showMessage(
-      "inventoryMessage",
-      ""
-    );
+  $("suggestions")
+    .style
+    .display =
+    "none";
 
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+  showMessage(
+    "inventoryMessage",
+    ""
+  );
 
-  };
 
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
 
 
 /* =====================================================
-   UPDATE INVENTORY UI
+   INVENTORY UI
 ===================================================== */
 
-function updateInventoryUI() {
+function updateInventoryUI(){
 
   const isOpname =
-    currentMode === "opname";
+    currentMode ===
+    "opname";
 
 
-  $("inventoryTitle").textContent =
+  $("inventoryTitle")
+    .textContent =
     isOpname
       ? "Stock Opname"
       : "Stock Loss";
 
 
-  $("inventoryIcon").textContent =
+  $("inventoryIcon")
+    .textContent =
     isOpname
       ? "📦"
       : "📉";
@@ -3643,47 +3767,49 @@ function updateInventoryUI() {
 }
 
 
-
 /* =====================================================
-   SWITCH MODE DARI HALAMAN INVENTORY
+   SET MODE
 ===================================================== */
 
 window.setMode =
-  function (mode) {
+  function(mode){
 
-    currentMode =
-      mode === "opname"
-        ? "opname"
-        : "stockloss";
-
-
-    updateInventoryUI();
+  currentMode =
+    mode === "opname"
+      ? "opname"
+      : "stockloss";
 
 
-    loadHistory();
+  updateInventoryUI();
 
 
-    $("barcode").focus();
+  loadHistory();
 
-  };
 
+  $("barcode")
+    .focus();
+
+};
 
 
 /* =====================================================
-   MASTER DATA
+   MASTER
 ===================================================== */
 
-async function loadMaster(force = false) {
+async function loadMaster(
+  force = false
+){
 
   /*
-    Jika sudah ada data,
-    tidak perlu request lagi.
+    MASTER sudah tersedia.
   */
 
-  if (
+  if(
     masterData.length &&
     !force
-  ) {
+  ){
+
+    updateMasterStatus();
 
     return masterData;
 
@@ -3694,20 +3820,18 @@ async function loadMaster(force = false) {
     Hindari request ganda.
   */
 
-  if (
+  if(
     masterPromise &&
     !force
-  ) {
+  ){
 
     return masterPromise;
 
   }
 
 
-
   /*
-    Coba gunakan cache lokal
-    terlebih dahulu.
+    LOCAL CACHE
   */
 
   const cached =
@@ -3716,23 +3840,25 @@ async function loadMaster(force = false) {
     );
 
 
-  if (
+  if(
     !force &&
     cached
-  ) {
+  ){
 
-    try {
+    try{
 
       const cachedData =
-        JSON.parse(cached);
+        JSON.parse(
+          cached
+        );
 
 
-      if (
+      if(
         Array.isArray(
           cachedData
         ) &&
         cachedData.length
-      ) {
+      ){
 
         masterData =
           cachedData;
@@ -3741,11 +3867,6 @@ async function loadMaster(force = false) {
         updateMasterStatus();
 
 
-        /*
-          Tetap update data terbaru
-          di background.
-        */
-
         refreshMasterBackground();
 
 
@@ -3753,7 +3874,7 @@ async function loadMaster(force = false) {
 
       }
 
-    } catch (error) {
+    }catch(error){
 
       console.warn(
         "Cache MASTER rusak.",
@@ -3765,43 +3886,51 @@ async function loadMaster(force = false) {
   }
 
 
-
   masterPromise =
     fetchMasterFromServer();
 
 
-  try {
+  try{
 
     return await masterPromise;
 
-  } finally {
+  }finally{
 
-    masterPromise = null;
+    masterPromise =
+      null;
 
   }
 
 }
 
 
+/* =====================================================
+   FETCH MASTER
+===================================================== */
 
-async function fetchMasterFromServer() {
+async function fetchMasterFromServer(){
 
-  try {
+  try{
 
     const response =
       await fetch(
         URL_SCRIPT,
         {
-          method: "POST",
-          body: JSON.stringify({
-            action:
-              "getAllBarcode"
-          })
+          method:
+            "POST",
+
+          body:
+            JSON.stringify({
+              action:
+                "getAllBarcode"
+            })
         }
       );
 
 
-    if (!response.ok) {
+    if(
+      !response.ok
+    ){
 
       throw new Error(
         "HTTP " +
@@ -3811,21 +3940,21 @@ async function fetchMasterFromServer() {
     }
 
 
-
     const data =
       await response.json();
 
 
-    if (
-      !Array.isArray(data)
-    ) {
+    if(
+      !Array.isArray(
+        data
+      )
+    ){
 
       throw new Error(
         "MASTER invalid"
       );
 
     }
-
 
 
     masterData =
@@ -3844,18 +3973,18 @@ async function fetchMasterFromServer() {
 
             nama:
               String(
-                item.nama || ""
+                item.nama ||
+                ""
               )
           })
         );
 
 
-
     /*
-      Simpan ke localStorage.
+      CACHE
     */
 
-    try {
+    try{
 
       localStorage.setItem(
         "THE_BUTCHER_MASTER_CACHE_V1",
@@ -3864,7 +3993,7 @@ async function fetchMasterFromServer() {
         )
       );
 
-    } catch (error) {
+    }catch(error){
 
       console.warn(
         "Cache MASTER gagal.",
@@ -3874,14 +4003,13 @@ async function fetchMasterFromServer() {
     }
 
 
-
     updateMasterStatus();
 
 
     return masterData;
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(
       "MASTER ERROR:",
@@ -3889,12 +4017,17 @@ async function fetchMasterFromServer() {
     );
 
 
-    if (!masterData.length) {
+    if(
+      !masterData.length
+    ){
 
-      $("masterStatus").textContent =
+      $("masterStatus")
+        .textContent =
         "OFFLINE";
 
-      $("masterCount").textContent =
+
+      $("masterCount")
+        .textContent =
         "Acuan belum tersedia";
 
     }
@@ -3907,18 +4040,17 @@ async function fetchMasterFromServer() {
 }
 
 
-
 /* =====================================================
-   BACKGROUND MASTER REFRESH
+   MASTER BACKGROUND
 ===================================================== */
 
-async function refreshMasterBackground() {
+async function refreshMasterBackground(){
 
-  try {
+  try{
 
     await fetchMasterFromServer();
 
-  } catch (error) {
+  }catch(error){
 
     console.warn(
       "Background MASTER refresh gagal.",
@@ -3930,85 +4062,90 @@ async function refreshMasterBackground() {
 }
 
 
-
 /* =====================================================
-   REFRESH MASTER DARI SETTINGS
+   MASTER REFRESH
 ===================================================== */
 
 window.refreshMaster =
-  async function () {
+  async function(){
 
-    const button =
-      $("masterRefreshButton");
+  const button =
+    $("masterRefreshButton");
 
 
-    if (button) {
+  if(button){
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      "Memuat...";
+
+  }
+
+
+  try{
+
+    await loadMaster(
+      true
+    );
+
+
+    alert(
+      "MASTER berhasil diperbarui."
+    );
+
+
+  }finally{
+
+    if(button){
 
       button.disabled =
-        true;
+        false;
 
       button.textContent =
-        "Memuat...";
+        "↻ Refresh";
 
     }
 
+  }
 
-    try {
-
-      await loadMaster(true);
-
-
-      alert(
-        "MASTER berhasil diperbarui."
-      );
-
-
-    } finally {
-
-      if (button) {
-
-        button.disabled =
-          false;
-
-        button.textContent =
-          "↻ Refresh";
-
-      }
-
-    }
-
-  };
-
+};
 
 
 /* =====================================================
    MASTER STATUS
 ===================================================== */
 
-function updateMasterStatus() {
+function updateMasterStatus(){
 
-  if (
+  if(
     masterData &&
     masterData.length
-  ) {
+  ){
 
-    $("masterStatus").textContent =
+    $("masterStatus")
+      .textContent =
       "READY";
 
 
-    $("masterCount").textContent =
-      masterData.length.toLocaleString(
-        "id-ID"
-      ) +
+    $("masterCount")
+      .textContent =
+      masterData.length
+        .toLocaleString(
+          "id-ID"
+        ) +
       " item acuan";
 
-  } else {
+  }else{
 
-    $("masterStatus").textContent =
+    $("masterStatus")
+      .textContent =
       "EMPTY";
 
 
-    $("masterCount").textContent =
+    $("masterCount")
+      .textContent =
       "Belum ada data";
 
   }
@@ -4016,12 +4153,13 @@ function updateMasterStatus() {
 }
 
 
-
 /* =====================================================
    AUTOCOMPLETE
 ===================================================== */
 
-function renderSuggestions(value) {
+function renderSuggestions(
+  value
+){
 
   const box =
     $("suggestions");
@@ -4033,10 +4171,10 @@ function renderSuggestions(value) {
       .toLowerCase();
 
 
-  if (
+  if(
     !keyword ||
     !masterData.length
-  ) {
+  ){
 
     box.style.display =
       "none";
@@ -4046,38 +4184,44 @@ function renderSuggestions(value) {
   }
 
 
-
   const results =
     masterData
-      .filter(item => {
+      .filter(
+        item => {
 
-        const barcode =
-          item.barcode
+          const barcode =
+            String(
+              item.barcode
+            )
             .toLowerCase();
 
-        const nama =
-          item.nama
+          const nama =
+            String(
+              item.nama
+            )
             .toLowerCase();
 
 
-        return (
-          barcode.includes(
-            keyword
-          ) ||
-          nama.includes(
-            keyword
-          )
-        );
+          return(
+            barcode.includes(
+              keyword
+            ) ||
+            nama.includes(
+              keyword
+            )
+          );
 
-      })
+        }
+      )
       .slice(
         0,
         20
       );
 
 
-
-  if (!results.length) {
+  if(
+    !results.length
+  ){
 
     box.style.display =
       "none";
@@ -4087,56 +4231,57 @@ function renderSuggestions(value) {
   }
 
 
-
   box.innerHTML =
     results
-      .map(item => `
+      .map(
+        item => `
 
-        <div
-          class="suggestion"
-          data-barcode="${escapeHtml(
-            item.barcode
-          )}"
-        >
-
-          <strong>
-            ${escapeHtml(
+          <div
+            class="suggestion"
+            data-barcode="${escapeHtml(
               item.barcode
-            )}
-          </strong>
+            )}"
+          >
 
-          <span>
-            ${escapeHtml(
-              item.nama
-            )}
-          </span>
+            <strong>
+              ${escapeHtml(
+                item.barcode
+              )}
+            </strong>
 
-        </div>
+            <span>
+              ${escapeHtml(
+                item.nama
+              )}
+            </span>
 
-      `)
+          </div>
+
+        `
+      )
       .join("");
-
 
 
   box.style.display =
     "block";
 
 
-
   box
     .querySelectorAll(
       ".suggestion"
     )
-    .forEach(item => {
+    .forEach(
+      item => {
 
-      item.onclick =
-        function () {
+        item.onclick =
+          function(){
 
           const barcode =
             item.dataset.barcode;
 
 
-          $("barcode").value =
+          $("barcode")
+            .value =
             barcode;
 
 
@@ -4148,42 +4293,38 @@ function renderSuggestions(value) {
             "none";
 
 
-          $("qty").focus();
+          $("qty")
+            .focus();
 
         };
 
-    });
+      }
+    );
 
 }
 
 
-
 /* =====================================================
-   BARCODE INPUT
+   BARCODE FOCUS
 ===================================================== */
 
 $("barcode")
   .addEventListener(
     "focus",
-    async function () {
+    async function(){
 
-      if (
+      if(
         !masterData.length
-      ) {
+      ){
 
         await loadMaster();
 
       }
 
-      /*
-        Kalau user sudah mengetik
-        sebelum MASTER selesai,
-        langsung tampilkan suggestion.
-      */
 
-      if (
+      if(
         this.value.trim()
-      ) {
+      ){
 
         renderSuggestions(
           this.value
@@ -4195,11 +4336,14 @@ $("barcode")
   );
 
 
+/* =====================================================
+   BARCODE INPUT
+===================================================== */
 
 $("barcode")
   .addEventListener(
     "input",
-    async function (event) {
+    async function(event){
 
       const value =
         event.target.value;
@@ -4209,20 +4353,29 @@ $("barcode")
         value.trim();
 
 
-
       /*
-        MASTER belum ada:
-        tunggu sebentar sampai selesai.
+        Kalau barcode timbangan sudah
+        masuk lengkap, proses otomatis.
       */
 
-      if (
+      if(
+        value.length === 13 &&
+        value.startsWith("20") &&
+        /^\d+$/.test(value)
+      ){
+
+        processWeighedBarcode();
+
+      }
+
+
+      if(
         !masterData.length
-      ) {
+      ){
 
         await loadMaster();
 
       }
-
 
 
       renderSuggestions(
@@ -4233,20 +4386,19 @@ $("barcode")
   );
 
 
-
 /* =====================================================
-   ENTER BARCODE
+   BARCODE ENTER
 ===================================================== */
 
 $("barcode")
   .addEventListener(
     "keydown",
-    function (event) {
+    function(event){
 
-      if (
+      if(
         event.key ===
         "Enter"
-      ) {
+      ){
 
         event.preventDefault();
 
@@ -4260,7 +4412,8 @@ $("barcode")
         processWeighedBarcode();
 
 
-        $("qty").focus();
+        $("qty")
+          .focus();
 
       }
 
@@ -4268,20 +4421,19 @@ $("barcode")
   );
 
 
-
 /* =====================================================
-   ENTER QTY
+   QTY ENTER
 ===================================================== */
 
 $("qty")
   .addEventListener(
     "keydown",
-    function (event) {
+    function(event){
 
-      if (
+      if(
         event.key ===
         "Enter"
-      ) {
+      ){
 
         event.preventDefault();
 
@@ -4293,20 +4445,19 @@ $("qty")
   );
 
 
-
 /* =====================================================
    CLOSE SUGGESTIONS
 ===================================================== */
 
 document.addEventListener(
   "click",
-  function (event) {
+  function(event){
 
-    if (
+    if(
       !event.target.closest(
         ".barcode-area"
       )
-    ) {
+    ){
 
       $("suggestions")
         .style
@@ -4319,33 +4470,34 @@ document.addEventListener(
 );
 
 
-
 /* =====================================================
-   WEIGHED BARCODE
+   WEIGHT BARCODE
 ===================================================== */
 
-function processWeighedBarcode() {
+function processWeighedBarcode(){
 
   const barcode =
-    $("barcode").value.trim();
+    $("barcode")
+      .value
+      .trim();
 
 
   /*
-    Format barcode timbangan:
+    Barcode timbangan:
 
     20
-    + 5 digit kode
+    + 5 digit kode barang
     + 5 digit berat
     + 1 digit check
 
     Total 13 digit.
   */
 
-  if (
+  if(
     barcode.startsWith("20") &&
     barcode.length === 13 &&
     /^\d+$/.test(barcode)
-  ) {
+  ){
 
     const searchBarcode =
       barcode.substring(
@@ -4368,11 +4520,13 @@ function processWeighedBarcode() {
       rawQty / 1000;
 
 
-    $("barcode").value =
+    $("barcode")
+      .value =
       searchBarcode;
 
 
-    $("qty").value =
+    $("qty")
+      .value =
       String(qty)
         .replace(
           ".",
@@ -4388,14 +4542,13 @@ function processWeighedBarcode() {
 }
 
 
-
 /* =====================================================
-   FIND PRODUCT NAME
+   PRODUCT NAME
 ===================================================== */
 
 function getProductName(
   barcode
-) {
+){
 
   const found =
     masterData.find(
@@ -4416,7 +4569,6 @@ function getProductName(
 }
 
 
-
 /* =====================================================
    LOCAL HISTORY
 ===================================================== */
@@ -4424,7 +4576,7 @@ function getProductName(
 function addLocalHistory(
   barcode,
   qty
-) {
+){
 
   const list =
     $("historyList");
@@ -4436,13 +4588,12 @@ function addLocalHistory(
     );
 
 
-  if (loading) {
+  if(loading){
 
     list.innerHTML =
       "";
 
   }
-
 
 
   const row =
@@ -4452,7 +4603,7 @@ function addLocalHistory(
 
 
   row.className =
-    "history-item";
+    "history-item local";
 
 
   row.dataset.local =
@@ -4471,7 +4622,6 @@ function addLocalHistory(
 
     </div>
 
-
     <div class="history-qty">
 
       ${escapeHtml(
@@ -4488,18 +4638,17 @@ function addLocalHistory(
   );
 
 
-
-  while (
+  while(
     list.children.length >
     50
-  ) {
+  ){
 
-    list.lastElementChild.remove();
+    list.lastElementChild
+      .remove();
 
   }
 
 }
-
 
 
 /* =====================================================
@@ -4507,144 +4656,147 @@ function addLocalHistory(
 ===================================================== */
 
 window.saveInventory =
-  async function () {
+  async function(){
 
-    const barcode =
-      $("barcode")
-        .value
-        .trim();
-
-
-    const qtyText =
-      $("qty")
-        .value
-        .trim();
+  const barcode =
+    $("barcode")
+      .value
+      .trim();
 
 
-
-    if (!barcode) {
-
-      showMessage(
-        "inventoryMessage",
-        "Barcode wajib diisi.",
-        "error"
-      );
+  const qtyText =
+    $("qty")
+      .value
+      .trim();
 
 
-      $("barcode").focus();
-
-      return;
-
-    }
-
-
-
-    if (!qtyText) {
-
-      showMessage(
-        "inventoryMessage",
-        "Qty wajib diisi.",
-        "error"
-      );
-
-
-      $("qty").focus();
-
-      return;
-
-    }
-
-
-
-    const qty =
-      parseFloat(
-        qtyText.replace(
-          ",",
-          "."
-        )
-      );
-
-
-    if (
-      isNaN(qty)
-    ) {
-
-      showMessage(
-        "inventoryMessage",
-        "Qty tidak valid.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-
-    const mode =
-      currentMode === "opname"
-        ? "opname"
-        : "stockloss";
-
-
-
-    /*
-      HISTORY LANGSUNG TAMPIL.
-      User tidak perlu menunggu server.
-    */
-
-    addLocalHistory(
-      barcode,
-      qtyText
-    );
-
-
-    /*
-      Bersihkan input langsung.
-    */
-
-    $("barcode").value =
-      "";
-
-    $("qty").value =
-      "";
-
-    selectedBarcode =
-      "";
-
-
-    $("suggestions")
-      .style
-      .display =
-      "none";
-
-
-    $("barcode").focus();
-
-
+  if(!barcode){
 
     showMessage(
       "inventoryMessage",
-      "Data dikirim ke server...",
-      "success"
+      "Barcode wajib diisi.",
+      "error"
     );
 
 
+    $("barcode")
+      .focus();
 
-    /*
-      Request berjalan
-      tanpa menghambat UI.
-    */
+    return;
 
-    try {
+  }
 
-      const response =
-        await fetch(
-          URL_SCRIPT,
-          {
-            method: "POST",
 
-            body: JSON.stringify({
+  if(!qtyText){
+
+    showMessage(
+      "inventoryMessage",
+      "Qty wajib diisi.",
+      "error"
+    );
+
+
+    $("qty")
+      .focus();
+
+    return;
+
+  }
+
+
+  const qty =
+    parseFloat(
+      qtyText
+        .replace(
+          ",",
+          "."
+        )
+    );
+
+
+  if(
+    isNaN(qty)
+  ){
+
+    showMessage(
+      "inventoryMessage",
+      "Qty tidak valid.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const mode =
+    currentMode ===
+    "opname"
+      ? "opname"
+      : "stockloss";
+
+
+  /*
+    HISTORY LANGSUNG
+  */
+
+  addLocalHistory(
+    barcode,
+    qtyText
+  );
+
+
+  /*
+    INPUT LANGSUNG BERSIH
+  */
+
+  $("barcode").value =
+    "";
+
+  $("qty").value =
+    "";
+
+  selectedBarcode =
+    "";
+
+
+  $("suggestions")
+    .style
+    .display =
+    "none";
+
+
+  $("barcode")
+    .focus();
+
+
+  showMessage(
+    "inventoryMessage",
+    "Data dikirim ke server...",
+    "success"
+  );
+
+
+  const saveButton =
+    $("saveBtn");
+
+
+  saveButton.disabled =
+    true;
+
+
+  try{
+
+    const response =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:
+            "POST",
+
+          body:
+            JSON.stringify({
+
               action:
                 "saveData",
 
@@ -4656,70 +4808,80 @@ window.saveInventory =
 
               mode:
                 mode
+
             })
-          }
-        );
+        }
+      );
 
 
-      const result =
-        await response.text();
+    const result =
+      await response.text();
 
 
-      if (
-        !result.includes(
-          "Success"
+    console.log(
+      "SAVE RESPONSE:",
+      result
+    );
+
+
+    if(
+      !result
+        .toLowerCase()
+        .includes(
+          "success"
         )
-      ) {
+    ){
 
-        throw new Error(
-          result
-        );
-
-      }
-
-
-
-      showMessage(
-        "inventoryMessage",
-        "✓ Data berhasil disimpan.",
-        "success"
+      throw new Error(
+        result
       );
-
-
-    } catch (error) {
-
-      console.error(
-        "SAVE ERROR:",
-        error
-      );
-
-
-      showMessage(
-        "inventoryMessage",
-        "⚠ Gagal mengirim data ke Sheets. Coba cek koneksi.",
-        "error"
-      );
-
-
-      /*
-        Jika gagal,
-        sinkronkan kembali history
-        dari server.
-      */
-
-      loadHistory();
 
     }
 
-  };
 
+    showMessage(
+      "inventoryMessage",
+      "✓ Data berhasil disimpan.",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "SAVE ERROR:",
+      error
+    );
+
+
+    showMessage(
+      "inventoryMessage",
+      "⚠ Gagal mengirim data ke Sheets. Coba cek koneksi.",
+      "error"
+    );
+
+
+    /*
+      Sinkronisasi ulang.
+    */
+
+    await loadHistory();
+
+  }finally{
+
+    saveButton.disabled =
+      false;
+
+  }
+
+};
 
 
 /* =====================================================
    LOAD HISTORY
 ===================================================== */
 
-async function loadHistory() {
+async function loadHistory(){
 
   const list =
     $("historyList");
@@ -4729,38 +4891,52 @@ async function loadHistory() {
     '<div class="loading">Memuat riwayat...</div>';
 
 
-
-  try {
+  try{
 
     const response =
       await fetch(
         URL_SCRIPT,
         {
-          method: "POST",
+          method:
+            "POST",
 
-          body: JSON.stringify({
-            action:
-              "getHistory",
+          body:
+            JSON.stringify({
 
-            mode:
-              currentMode ===
-              "opname"
-                ? "opname"
-                : "stockloss"
-          })
+              action:
+                "getHistory",
+
+              mode:
+                currentMode ===
+                "opname"
+                  ? "opname"
+                  : "stockloss"
+
+            })
         }
       );
+
+
+    if(
+      !response.ok
+    ){
+
+      throw new Error(
+        "HTTP " +
+        response.status
+      );
+
+    }
 
 
     const data =
       await response.json();
 
 
-
-    if (
+    if(
       !Array.isArray(data) ||
       !data.length
-    ) {
+    ){
 
       list.innerHTML =
         '<div class="loading">Belum ada data.</div>';
@@ -4768,7 +4944,6 @@ async function loadHistory() {
       return;
 
     }
-
 
 
     list.innerHTML =
@@ -4801,7 +4976,7 @@ async function loadHistory() {
         .join("");
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(
       "HISTORY ERROR:",
@@ -4817,69 +4992,70 @@ async function loadHistory() {
 }
 
 
-
 /* =====================================================
    RESET INVENTORY
 ===================================================== */
 
 window.resetInventory =
-  async function () {
+  async function(){
 
-    const password =
-      prompt(
-        "Masukkan password reset:"
-      );
-
-
-    if (
-      password ===
-      null
-    ) {
-
-      return;
-
-    }
+  const password =
+    prompt(
+      "Masukkan password reset:"
+    );
 
 
+  if(
+    password ===
+    null
+  ){
 
-    if (
-      password !==
-      "0800"
-    ) {
+    return;
 
-      alert(
-        "Password reset salah."
-      );
-
-      return;
-
-    }
+  }
 
 
+  if(
+    password !==
+    "0800"
+  ){
 
-    const confirmReset =
-      confirm(
-        "Yakin ingin menghapus seluruh data pada mode ini?"
-      );
+    alert(
+      "Password reset salah."
+    );
+
+    return;
+
+  }
 
 
-    if (!confirmReset) {
-
-      return;
-
-    }
-
+  const confirmReset =
+    confirm(
+      "Yakin ingin menghapus seluruh data pada mode ini?"
+    );
 
 
-    try {
+  if(
+    !confirmReset
+  ){
 
-      const response =
-        await fetch(
-          URL_SCRIPT,
-          {
-            method: "POST",
+    return;
 
-            body: JSON.stringify({
+  }
+
+
+  try{
+
+    const response =
+      await fetch(
+        URL_SCRIPT,
+        {
+          method:
+            "POST",
+
+          body:
+            JSON.stringify({
+
               action:
                 "reset",
 
@@ -4891,85 +5067,89 @@ window.resetInventory =
                 "opname"
                   ? "opname"
                   : "stockloss"
+
             })
-          }
-        );
+        }
+      );
 
 
-      const result =
-        await response.text();
+    const result =
+      await response.text();
 
 
-      if (
-        !result.includes(
+    console.log(
+      "RESET RESPONSE:",
+      result
+    );
+
+
+    if(
+      !result
+        .toLowerCase()
+        .includes(
           "berhasil"
         )
-      ) {
+    ){
 
-        throw new Error(
-          result
-        );
-
-      }
-
-
-
-      alert(
-        "Reset berhasil."
-      );
-
-
-      loadHistory();
-
-
-    } catch (error) {
-
-      console.error(
-        "RESET ERROR:",
-        error
-      );
-
-
-      alert(
-        "Reset gagal."
+      throw new Error(
+        result
       );
 
     }
 
-  };
 
+    alert(
+      "Reset berhasil."
+    );
+
+
+    loadHistory();
+
+
+  }catch(error){
+
+    console.error(
+      "RESET ERROR:",
+      error
+    );
+
+
+    alert(
+      "Reset gagal."
+    );
+
+  }
+
+};
 
 
 /* =====================================================
-   FIREBASE AUTH STATE
+   AUTH STATE
 ===================================================== */
 
 onAuthStateChanged(
   auth,
-  async function (user) {
+  async function(user){
 
-    if (!user) {
+    if(!user){
 
       return;
 
     }
 
 
-
-    try {
+    try{
 
       await user.reload();
 
 
-
-      if (
+      if(
         !user.emailVerified
-      ) {
+      ){
 
         return;
 
       }
-
 
 
       const snapshot =
@@ -4982,29 +5162,27 @@ onAuthStateChanged(
         );
 
 
-      if (
+      if(
         !snapshot.exists()
-      ) {
+      ){
 
         return;
 
       }
-
 
 
       const profile =
         snapshot.data();
 
 
-      if (
+      if(
         profile.status !==
         "approved"
-      ) {
+      ){
 
         return;
 
       }
-
 
 
       currentUser =
@@ -5017,7 +5195,7 @@ onAuthStateChanged(
       showDashboard();
 
 
-    } catch (error) {
+    }catch(error){
 
       console.error(
         "AUTH STATE ERROR:",
@@ -5030,16 +5208,9 @@ onAuthStateChanged(
 );
 
 
-
 /* =====================================================
-   START MASTER LOAD
+   START MASTER
 ===================================================== */
-
-/*
-  MASTER mulai dimuat di background.
-  Jadi ketika user membuka Stock Loss,
-  kemungkinan besar datanya sudah siap.
-*/
 
 loadMaster();
 
