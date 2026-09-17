@@ -635,7 +635,7 @@ window.signup=async function(){
     const credential=await createUserWithEmailAndPassword(auth,email,password),user=credential.user;
     verificationUser=user;verificationEmail=email;
     await setDoc(doc(db,"users",user.uid),{username,email,role:"user",status:"pending",emailVerified:false,createdAt:new Date()});
-    await setDoc(usernameRef,{uid:user.uid});
+    await setDoc(usernameRef,{uid:user.uid,email});
     await sendEmailVerification(user);
     $("signupUsername").value=$("signupEmail").value=$("signupPassword").value=$("signupConfirm").value="";
     closeModal("signupModal");
@@ -742,21 +742,13 @@ window.login=async function(){
         return;
       }
 
-      const userSnap=await getDoc(doc(db,"users",usernameData.uid));
-      if(!userSnap.exists()){
+      if(!usernameData?.email){
         message.className="message error";
-        message.textContent="Data user tidak ditemukan.";
+        message.textContent="Email username tidak ditemukan. Silakan login dengan email atau buat akun ulang.";
         return;
       }
 
-      const userData=userSnap.data();
-      if(!userData?.email){
-        message.className="message error";
-        message.textContent="Email akun tidak ditemukan.";
-        return;
-      }
-
-      email=String(userData.email).trim().toLowerCase();
+      email=String(usernameData.email).trim().toLowerCase();
     }
     const credential=await signInWithEmailAndPassword(auth,email,password),user=credential.user;
     await user.reload();
