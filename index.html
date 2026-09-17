@@ -617,564 +617,102 @@ function firebaseErrorMessage(error){
 
 let verificationUser=null;
 let verificationEmail="";
+let authFlowBusy=false;
 
 window.signup=async function(){
-
-  const username=
-    $("signupUsername")
-      .value
-      .trim()
-      .toLowerCase();
-
-  const email=
-    $("signupEmail")
-      .value
-      .trim()
-      .toLowerCase();
-
-  const password=
-    $("signupPassword")
-      .value;
-
-  const confirm=
-    $("signupConfirm")
-      .value;
-
-  const message=
-    $("signupMessage");
-
-
-  message.className="message";
-  message.textContent="";
-
-
-  /* =========================
-     VALIDASI USERNAME
-  ========================= */
-
-  if(username.length<3){
-
-    message.classList.add("error");
-
-    message.textContent=
-      "Username minimal 3 karakter.";
-
-    return;
-  }
-
-
-  if(
-    !/^[a-z0-9._-]+$/.test(username)
-  ){
-
-    message.classList.add("error");
-
-    message.textContent=
-      "Username hanya boleh huruf kecil, angka, titik, underscore, dan strip.";
-
-    return;
-  }
-
-
-  /* =========================
-     VALIDASI EMAIL
-  ========================= */
-
-  if(!email){
-
-    message.classList.add("error");
-
-    message.textContent=
-      "Email wajib diisi.";
-
-    return;
-  }
-
-
-  /* =========================
-     VALIDASI PASSWORD
-  ========================= */
-
-  if(password.length<6){
-
-    message.classList.add("error");
-
-    message.textContent=
-      "Password minimal 6 karakter.";
-
-    return;
-  }
-
-
-  if(password!==confirm){
-
-    message.classList.add("error");
-
-    message.textContent=
-      "Konfirmasi password tidak sama.";
-
-    return;
-  }
-
-
-  const signupButton=
-    document.querySelector(
-      '#signupModal .btn-primary'
-    );
-
-
-  if(signupButton){
-
-    signupButton.disabled=true;
-
-    signupButton.textContent=
-      "MEMBUAT AKUN...";
-
-  }
-
-
+  const username=$("signupUsername").value.trim().toLowerCase(),email=$("signupEmail").value.trim().toLowerCase(),password=$("signupPassword").value,confirm=$("signupConfirm").value,message=$("signupMessage"),button=document.querySelector('#signupModal .btn-primary');
+  message.className="message";message.textContent="";
+  if(username.length<3)return signupMsg(message,"Username minimal 3 karakter.");
+  if(!/^[a-z0-9._-]+$/.test(username))return signupMsg(message,"Username hanya boleh huruf kecil, angka, titik, underscore, dan strip.");
+  if(!email)return signupMsg(message,"Email wajib diisi.");
+  if(password.length<6)return signupMsg(message,"Password minimal 6 karakter.");
+  if(password!==confirm)return signupMsg(message,"Konfirmasi password tidak sama.");
+  authFlowBusy=true;
+  if(button){button.disabled=true;button.innerHTML='<span class="action-loading"><span class="action-spinner"></span> MEMBUAT AKUN...</span>'}
   try{
-
-    /* =========================
-       CEK USERNAME
-    ========================= */
-
-    const usernameRef=
-      doc(
-        db,
-        "usernames",
-        username
-      );
-
-    const usernameSnap=
-      await getDoc(
-        usernameRef
-      );
-
-
-    if(usernameSnap.exists()){
-
-      message.classList.add("error");
-
-      message.textContent=
-        "Username sudah digunakan.";
-
-      return;
-    }
-
-
-    /* =========================
-       CREATE ACCOUNT
-    ========================= */
-
-    const credential=
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-    const user=
-      credential.user;
-
-
-    /* =========================
-       SIMPAN PROFILE
-    ========================= */
-
-    await setDoc(
-      doc(
-        db,
-        "users",
-        user.uid
-      ),
-      {
-
-        username,
-
-        email,
-
-        role:"user",
-
-        status:"pending",
-
-        emailVerified:false,
-
-        createdAt:new Date()
-
-      }
-    );
-
-
-    /* =========================
-       SIMPAN USERNAME
-    ========================= */
-
-    await setDoc(
-      usernameRef,
-      {
-        uid:user.uid
-      }
-    );
-
-
-    /* =========================
-       SIMPAN USER UNTUK
-       HALAMAN VERIFIKASI
-    ========================= */
-
-    verificationUser=
-      user;
-
-    verificationEmail=
-      email;
-
-
-    /* =========================
-       KIRIM EMAIL VERIFIKASI
-    ========================= */
-
-    await sendEmailVerification(
-      user
-    );
-
-
-    /* =========================
-       BERSIHKAN FORM
-    ========================= */
-
-    $("signupUsername").value="";
-    $("signupEmail").value="";
-    $("signupPassword").value="";
-    $("signupConfirm").value="";
-
-
-    /* =========================
-       TUTUP SIGNUP
-    ========================= */
-
-    closeModal(
-      "signupModal"
-    );
-
-
-    /* =========================
-       TAMPILKAN VERIFIKASI
-    ========================= */
-
-    $("verifyEmail")
-      .textContent=
-      email;
-
-    $("verifyStatus")
-      .className=
-      "verify-status";
-
-    $("verifyStatus")
-      .textContent=
-      "MENUNGGU VERIFIKASI EMAIL";
-
-
-    openModal(
-      "verifyModal"
-    );
-
-
+    const usernameRef=doc(db,"usernames",username),usernameSnap=await getDoc(usernameRef);
+    if(usernameSnap.exists())throw new Error("Username sudah digunakan.");
+    const credential=await createUserWithEmailAndPassword(auth,email,password),user=credential.user;
+    verificationUser=user;verificationEmail=email;
+    await setDoc(doc(db,"users",user.uid),{username,email,role:"user",status:"pending",emailVerified:false,createdAt:new Date()});
+    await setDoc(usernameRef,{uid:user.uid});
+    await sendEmailVerification(user);
+    $("signupUsername").value=$("signupEmail").value=$("signupPassword").value=$("signupConfirm").value="";
+    closeModal("signupModal");
+    $("verifyEmail").textContent=email;
+    $("verifyStatus").className="verify-status success";
+    $("verifyStatus").textContent="✓ EMAIL VERIFIKASI BERHASIL DIKIRIM";
+    $("checkVerifyBtn").disabled=false;$("checkVerifyBtn").textContent="✓ CEK VERIFIKASI";
+    $("resendVerifyBtn").disabled=false;$("resendVerifyBtn").textContent="↻ KIRIM ULANG EMAIL";
+    openModal("verifyModal");
   }catch(error){
-
-    console.error(
-      "Signup error:",
-      error
-    );
-
-    message.classList.add(
-      "error"
-    );
-
-    message.textContent=
-      firebaseErrorMessage(
-        error
-      );
-
-
-  }finally{
-
-    if(signupButton){
-
-      signupButton.disabled=false;
-
-      signupButton.textContent=
-        "DAFTAR";
-
+    console.error("Signup error:",error);
+    message.className="message error";message.textContent=firebaseErrorMessage(error);
+    if(verificationUser&&verificationUser.email===email){
+      try{
+        await sendEmailVerification(verificationUser);
+        closeModal("signupModal");$("verifyEmail").textContent=email;
+        $("verifyStatus").className="verify-status success";
+        $("verifyStatus").textContent="✓ EMAIL VERIFIKASI DIKIRIM";
+        openModal("verifyModal");
+      }catch(e){console.error("Verification fallback error:",e)}
     }
-
+  }finally{
+    authFlowBusy=false;
+    if(button){button.disabled=false;button.textContent="DAFTAR"}
   }
-
 };
+function signupMsg(message,text){message.className="message error";message.textContent=text;}
 
 /* =====================================================
    CHECK EMAIL VERIFICATION
 ===================================================== */
 
-window.checkEmailVerification=
-async function(){
-
-  const status=
-    $("verifyStatus");
-
-  const button=
-    $("checkVerifyBtn");
-
-
-  if(!verificationUser){
-
-    status.className=
-      "verify-status error";
-
-    status.textContent=
-      "Sesi verifikasi tidak ditemukan.";
-
-    return;
-  }
-
-
-  button.disabled=true;
-
-  button.textContent=
-    "MEMERIKSA...";
-
-
+window.checkEmailVerification=async function(){
+  const status=$("verifyStatus"),button=$("checkVerifyBtn");
+  if(!verificationUser){status.className="verify-status error";status.textContent="Sesi verifikasi tidak ditemukan. Silakan login kembali.";return}
+  button.disabled=true;button.textContent="MEMERIKSA...";
   try{
-
-    /* =========================
-       REFRESH USER
-    ========================= */
-
     await verificationUser.reload();
-
-
-    if(
-      verificationUser.emailVerified
-    ){
-
-      /* =========================
-         UPDATE FIRESTORE
-      ========================= */
-
-      await updateDoc(
-        doc(
-          db,
-          "users",
-          verificationUser.uid
-        ),
-        {
-          emailVerified:true
-        }
-      );
-
-
-      status.className=
-        "verify-status success";
-
-      status.textContent=
-        "✓ EMAIL BERHASIL DIVERIFIKASI";
-
-
-      button.textContent=
-        "✓ TERVERIFIKASI";
-
-
-      /* =========================
-         TUNGGU SEBENTAR
-      ========================= */
-
-      setTimeout(
-        async()=>{
-
-          closeModal(
-            "verifyModal"
-          );
-
-
-          /*
-             Logout agar user harus
-             login normal setelah
-             verifikasi.
-          */
-
-          await signOut(auth);
-
-
-          verificationUser=null;
-
-          verificationEmail="";
-
-
-          $("loginMessage")
-            .className=
-            "message success";
-
-          $("loginMessage")
-            .textContent=
-            "Email berhasil diverifikasi. Silakan login dan tunggu persetujuan admin.";
-
-        },
-        1200
-      );
-
-
-    }else{
-
-      status.className=
-        "verify-status error";
-
-      status.textContent=
-        "EMAIL BELUM DIVERIFIKASI";
-
-    }
-
-
-  }catch(error){
-
-    console.error(
-      "Verification error:",
-      error
-    );
-
-    status.className=
-      "verify-status error";
-
-    status.textContent=
-      "Gagal memeriksa verifikasi.";
-
-
-  }finally{
-
-    if(
-      !verificationUser?.emailVerified
-    ){
-
-      button.disabled=false;
-
-      button.textContent=
-        "✓ CEK VERIFIKASI";
-
-    }
-
-  }
-
+    if(!verificationUser.emailVerified){status.className="verify-status error";status.textContent="EMAIL BELUM DIVERIFIKASI";return}
+    await updateDoc(doc(db,"users",verificationUser.uid),{emailVerified:true});
+    status.className="verify-status success";status.textContent="✓ EMAIL BERHASIL DIVERIFIKASI";button.textContent="✓ TERVERIFIKASI";
+    setTimeout(async()=>{
+      closeModal("verifyModal");
+      const snap=await getDoc(doc(db,"users",verificationUser.uid)),profile=snap.exists()?snap.data():null;
+      if(profile?.status==="approved"){
+        currentUser=verificationUser;currentProfile=profile;verificationUser=null;verificationEmail="";showDashboard();
+      }else{
+        await signOut(auth);verificationUser=null;verificationEmail="";
+        $("loginMessage").className="message success";
+        $("loginMessage").textContent="Email berhasil diverifikasi. Akun masih menunggu persetujuan admin.";
+      }
+    },900);
+  }catch(error){console.error("Verification error:",error);status.className="verify-status error";status.textContent=firebaseErrorMessage(error)}
+  finally{if(!verificationUser?.emailVerified){button.disabled=false;button.textContent="✓ CEK VERIFIKASI"}}
 };
 
 /* =====================================================
    RESEND VERIFICATION EMAIL
 ===================================================== */
 
-window.resendVerificationEmail=
-async function(){
-
-  const status=
-    $("verifyStatus");
-
-  const button=
-    $("resendVerifyBtn");
-
-
-  if(!verificationUser){
-
-    status.className=
-      "verify-status error";
-
-    status.textContent=
-      "Sesi verifikasi tidak ditemukan.";
-
-    return;
-  }
-
-
-  button.disabled=true;
-
-  button.textContent=
-    "MENGIRIM...";
-
-
-  try{
-
-    await sendEmailVerification(
-      verificationUser
-    );
-
-
-    status.className=
-      "verify-status success";
-
-    status.textContent=
-      "✓ EMAIL VERIFIKASI DIKIRIM ULANG";
-
-
-  }catch(error){
-
-    console.error(
-      "Resend error:",
-      error
-    );
-
-    status.className=
-      "verify-status error";
-
-
-    if(
-      error?.code===
-      "auth/too-many-requests"
-    ){
-
-      status.textContent=
-        "Terlalu banyak permintaan. Coba lagi nanti.";
-
-    }else{
-
-      status.textContent=
-        firebaseErrorMessage(
-          error
-        );
-
-    }
-
-
-  }finally{
-
-    button.disabled=false;
-
-    button.textContent=
-      "↻ KIRIM ULANG EMAIL";
-
-  }
-
+window.resendVerificationEmail=async function(){
+  const status=$("verifyStatus"),button=$("resendVerifyBtn");
+  if(!verificationUser){status.className="verify-status error";status.textContent="Sesi verifikasi tidak ditemukan. Silakan login kembali.";return}
+  button.disabled=true;button.textContent="MENGIRIM...";
+  try{await sendEmailVerification(verificationUser);status.className="verify-status success";status.textContent="✓ EMAIL VERIFIKASI DIKIRIM ULANG"}
+  catch(error){console.error("Resend error:",error);status.className="verify-status error";status.textContent=error?.code==="auth/too-many-requests"?"Terlalu banyak permintaan. Coba lagi beberapa saat.":firebaseErrorMessage(error)}
+  finally{setTimeout(()=>{button.disabled=false;button.textContent="↻ KIRIM ULANG EMAIL"},700)}
 };
 
 /* =====================================================
    BACK TO LOGIN FROM VERIFY
 ===================================================== */
 
-window.backToLoginFromVerify=
-function(){
-
-  closeModal(
-    "verifyModal"
-  );
-
-
-  verificationUser=null;
-
-  verificationEmail="";
-
-
-  $("loginMessage")
-    .className=
-    "message";
-
-  $("loginMessage")
-    .textContent="";
-
+window.backToLoginFromVerify=async function(){
+  closeModal("verifyModal");try{await signOut(auth)}catch(e){console.warn(e)}
+  verificationUser=null;verificationEmail="";
+  $("loginMessage").className="message";$("loginMessage").textContent="";$("loginIdentity").focus();
 };
 
   
@@ -1182,266 +720,63 @@ function(){
    LOGIN  
 ===================================================== */  
   
-window.login=async function(){  
-  
-  const identity=  
-    $("loginIdentity")  
-      .value  
-      .trim()  
-      .toLowerCase();  
-  
-  const password=  
-    $("loginPassword")  
-      .value;  
-  
-  const message=  
-    $("loginMessage");  
-  
-  const button=  
-    $("loginButton");  
-  
-  message.className="message";  
-  message.textContent="";  
-  
-  if(  
-    !identity||  
-    !password  
-  ){  
-  
-    message.classList.add(  
-      "error"  
-    );  
-  
-    message.textContent=  
-      "Username/email dan password wajib diisi.";  
-  
-    return;  
-  }  
-  
-  button.disabled=true;  
-  button.textContent=  
-    "LOGIN...";  
-  
-  try{  
-  
-    let email=  
-      identity;  
-  
-    if(!identity.includes("@")){  
-  
-      const usernameSnap=  
-        await getDoc(  
-          doc(  
-            db,  
-            "usernames",  
-            identity  
-          )  
-        );  
-  
-      if(!usernameSnap.exists())  
-        throw new Error(  
-          "Username tidak ditemukan."  
-        );  
-  
-      const usernameData=  
-        usernameSnap.data();  
-  
-      const userSnap=  
-        await getDoc(  
-          doc(  
-            db,  
-            "users",  
-            usernameData.uid  
-          )  
-        );  
-  
-      if(!userSnap.exists())  
-        throw new Error(  
-          "Data user tidak ditemukan."  
-        );  
-  
-      email=  
-        userSnap.data().email;  
-  
-    }  
-  
-    const credential=  
-      await signInWithEmailAndPassword(  
-        auth,  
-        email,  
-        password  
-      );  
-  
-    const user=  
-      credential.user;  
-  
-    await user.reload();  
-  
-    if(!user.emailVerified){  
-  
-      await signOut(auth);  
-  
-      message.classList.add(  
-        "error"  
-      );  
-  
-      message.textContent=  
-        "Email belum diverifikasi. Cek inbox email Anda.";  
-  
-      return;  
-    }  
-  
-    const profileSnap=  
-      await getDoc(  
-        doc(  
-          db,  
-          "users",  
-          user.uid  
-        )  
-      );  
-  
-    if(!profileSnap.exists()){  
-  
-      await signOut(auth);  
-  
-      throw new Error(  
-        "Profil user tidak ditemukan."  
-      );  
-  
-    }  
-  
-    const profile=  
-      profileSnap.data();  
-  
-    if(  
-      profile.status!=="approved"  
-    ){  
-  
-      await signOut(auth);  
-  
-      message.classList.add(  
-        "error"  
-      );  
-  
-      message.textContent=  
-        "Akun belum disetujui admin.";  
-  
-      return;  
-    }  
-  
-    currentUser=  
-      user;  
-  
-    currentProfile=  
-      profile;  
-  
-    showDashboard();  
-  
-  }catch(error){  
-  
-    console.error(error);  
-  
-    message.classList.add(  
-      "error"  
-    );  
-  
-    message.textContent=  
-      firebaseErrorMessage(  
-        error  
-      );  
-  
-  }finally{  
-  
-    button.disabled=false;  
-  
-    button.textContent=  
-      "LOGIN";  
-  
-  }  
-  
+window.login=async function(){
+  const identity=$("loginIdentity").value.trim().toLowerCase(),password=$("loginPassword").value,message=$("loginMessage"),button=$("loginButton");
+  message.className="message";message.textContent="";
+  if(!identity||!password){message.className="message error";message.textContent="Username/email dan password wajib diisi.";return}
+  authFlowBusy=true;button.disabled=true;button.innerHTML='<span class="action-loading"><span class="action-spinner"></span> LOGIN...</span>';
+  try{
+    let email=identity;
+    if(!identity.includes("@")){
+      const usernameSnap=await getDoc(doc(db,"usernames",identity));
+      if(!usernameSnap.exists())throw new Error("Username tidak ditemukan.");
+      const userSnap=await getDoc(doc(db,"users",usernameSnap.data().uid));
+      if(!userSnap.exists())throw new Error("Data user tidak ditemukan.");
+      email=userSnap.data().email;
+    }
+    const credential=await signInWithEmailAndPassword(auth,email,password),user=credential.user;
+    await user.reload();
+    if(!user.emailVerified){
+      verificationUser=user;verificationEmail=user.email||email;
+      $("verifyEmail").textContent=verificationEmail;
+      $("verifyStatus").className="verify-status error";$("verifyStatus").textContent="EMAIL BELUM DIVERIFIKASI";
+      $("checkVerifyBtn").disabled=false;$("checkVerifyBtn").textContent="✓ CEK VERIFIKASI";
+      $("resendVerifyBtn").disabled=false;$("resendVerifyBtn").textContent="↻ KIRIM ULANG EMAIL";
+      openModal("verifyModal");return;
+    }
+    const profileSnap=await getDoc(doc(db,"users",user.uid));
+    if(!profileSnap.exists())throw new Error("Profil user tidak ditemukan.");
+    const profile=profileSnap.data();
+    if(profile.status!=="approved"){
+      await signOut(auth);message.className="message error";
+      message.textContent="Email sudah diverifikasi, tetapi akun masih menunggu persetujuan admin.";return;
+    }
+    currentUser=user;currentProfile=profile;verificationUser=null;verificationEmail="";showDashboard();
+  }catch(error){console.error("Login error:",error);message.className="message error";message.textContent=firebaseErrorMessage(error)}
+  finally{authFlowBusy=false;button.disabled=false;button.textContent="LOGIN"}
 };  
   
 /* =====================================================  
    AUTH  
 ===================================================== */  
   
-onAuthStateChanged(  
-  auth,  
-  async user=>{  
-  
-    if(!user){  
-  
-      showLogin();  
-  
-      return;  
-    }  
-  
-    try{  
-  
-      await user.reload();  
-  
-      if(!user.emailVerified){  
-  
-        await signOut(auth);  
-  
-        showLogin();  
-  
-        return;  
-      }  
-  
-      const snap=  
-        await getDoc(  
-          doc(  
-            db,  
-            "users",  
-            user.uid  
-          )  
-        );  
-  
-      if(!snap.exists()){  
-  
-        await signOut(auth);  
-  
-        showLogin();  
-  
-        return;  
-      }  
-  
-      const profile=  
-        snap.data();  
-  
-      if(  
-        profile.status!=="approved"  
-      ){  
-  
-        await signOut(auth);  
-  
-        showLogin();  
-  
-        return;  
-      }  
-  
-      currentUser=  
-        user;  
-  
-      currentProfile=  
-        profile;  
-  
-      showDashboard();  
-  
-    }catch(error){  
-  
-      console.error(error);  
-  
-      await signOut(auth);  
-  
-      showLogin();  
-  
-    }  
-  
-  }  
-);  
-  
+onAuthStateChanged(auth,async user=>{
+  if(authFlowBusy)return;
+  if(!user){showLogin();return}
+  try{
+    await user.reload();
+    if(!user.emailVerified){
+      if(verificationUser?.uid===user.uid){$("verifyEmail").textContent=user.email||verificationEmail;openModal("verifyModal");return}
+      await signOut(auth);showLogin();return
+    }
+    const snap=await getDoc(doc(db,"users",user.uid));
+    if(!snap.exists()){await signOut(auth);showLogin();return}
+    const profile=snap.data();
+    if(profile.status!=="approved"){await signOut(auth);showLogin();return}
+    currentUser=user;currentProfile=profile;showDashboard();
+  }catch(error){console.error("Auth state error:",error);try{await signOut(auth)}catch(e){}showLogin()}
+});
+
 /* =====================================================  
    SHOW LOGIN  
 ===================================================== */  
