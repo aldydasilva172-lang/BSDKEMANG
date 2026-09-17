@@ -729,10 +729,34 @@ window.login=async function(){
     let email=identity;
     if(!identity.includes("@")){
       const usernameSnap=await getDoc(doc(db,"usernames",identity));
-      if(!usernameSnap.exists())throw new Error("Username tidak ditemukan.");
-      const userSnap=await getDoc(doc(db,"users",usernameSnap.data().uid));
-      if(!userSnap.exists())throw new Error("Data user tidak ditemukan.");
-      email=userSnap.data().email;
+      if(!usernameSnap.exists()){
+        message.className="message error";
+        message.textContent="Username tidak ditemukan.";
+        return;
+      }
+
+      const usernameData=usernameSnap.data();
+      if(!usernameData?.uid){
+        message.className="message error";
+        message.textContent="Data username tidak valid.";
+        return;
+      }
+
+      const userSnap=await getDoc(doc(db,"users",usernameData.uid));
+      if(!userSnap.exists()){
+        message.className="message error";
+        message.textContent="Data user tidak ditemukan.";
+        return;
+      }
+
+      const userData=userSnap.data();
+      if(!userData?.email){
+        message.className="message error";
+        message.textContent="Email akun tidak ditemukan.";
+        return;
+      }
+
+      email=String(userData.email).trim().toLowerCase();
     }
     const credential=await signInWithEmailAndPassword(auth,email,password),user=credential.user;
     await user.reload();
