@@ -5588,7 +5588,8 @@ window.signup=async function(){
     await setDoc(
       usernameRef,
       {
-        uid:user.uid
+        uid:user.uid,
+        email:email
       }
     );
 
@@ -6018,27 +6019,15 @@ window.login=async function(){
           "Username tidak ditemukan."  
         );  
   
-      const usernameData=  
-        usernameSnap.data();  
-  
-      const userSnap=  
-        await getDoc(  
-          doc(  
-            db,  
-            "users",  
-            usernameData.uid  
-          )  
-        );  
-  
-      if(!userSnap.exists())  
-        throw new Error(  
-          "Data user tidak ditemukan."  
-        );  
-  
-      email=  
-        userSnap.data().email;  
-  
-    }  
+     const usernameData=usernameSnap.data();
+
+if(!usernameData.email){
+  throw new Error(
+    "Email username belum tersimpan. Silakan daftar ulang akun."
+  );
+}
+
+email=usernameData.email; 
   
     const credential=  
       await signInWithEmailAndPassword(  
