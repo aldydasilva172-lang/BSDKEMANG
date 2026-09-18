@@ -1046,20 +1046,25 @@ import {
 from  
 "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";  
   
-import {  
-  getFirestore,  
-  doc,  
-  getDoc,  
-  setDoc,  
-  collection,  
-  query,  
-  where,  
-  getDocs,  
-  updateDoc  
-}  
-from  
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";  
-  
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+  onSnapshot,
+  deleteDoc,
+  writeBatch,
+  orderBy,
+  limit
+}
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
 /* =====================================================  
    FIREBASE  
 ===================================================== */  
@@ -1115,7 +1120,9 @@ let currentMode="opname";
 let masterData=[];  
 let selectedHistoryItem=null;  
 let historyRows=[];
-let historyRequestVersion=0;  
+let historyRequestVersion=0;
+let historyUnsubscribe=null;
+let historyFirebaseReady=false;  
   
 const MASTER_CACHE_KEY=  
   "TB_MASTER_DATA_V2";  
@@ -2377,7 +2384,9 @@ function(mode){
   
   loadMasterData(true);  
   
-  loadHistory(true);  
+  stopHistoryRealtime();
+  startHistoryRealtime(currentMode);
+  loadHistoryFromSheetAndSeed(currentMode);  
   
   setTimeout(  
     ()=>{  
@@ -3279,183 +3288,144 @@ function renderHistory(){
   
 }  
   
-/* =====================================================  
-   LOAD HISTORY  
-===================================================== */  
-  
-async function loadHistory(  
-  background=false  
-){
-
-  const requestVersion=++historyRequestVersion;
-  const requestMode=currentMode;  
-  
-  if(!background){  
-  
-    const cached=  
-      readHistoryCache(  
-        requestMode  
-      );  
-  
-    if(cached.length){  
-  
-      historyRows=  
-        cached;  
-  
-      renderHistory();  
-  
-    }  
-  
-  }  
-  
-  try{  
-  
-    const response=  
-      await fetch(  
-        URL_SCRIPT,  
-        {  
-          method:"POST",  
-  
-          body:  
-            JSON.stringify({  
-  
-              action:  
-                "getHistory",  
-  
-              mode:  
-                requestMode  
-  
-            })  
-  
-        }  
-      );  
-  
-    const data=  
-      await response.json();
-
-    if(
-      requestVersion!==historyRequestVersion ||
-      requestMode!==currentMode
-    ){
-      return;
-    }  
-  
-    let rows=[];  
-  
-    if(  
-      Array.isArray(data)  
-    ){  
-  
-      rows=data;  
-  
-    }else if(  
-      Array.isArray(data.data)  
-    ){  
-  
-      rows=data.data;  
-  
-    }  
-  
-    const pendingLocal=  
-      historyRows.filter(  
-        item=>  
-          item.__localId &&  
-          item.__status===  
-          "pending"  
-      );  
-  
-    const failedLocal=  
-      historyRows.filter(  
-        item=>  
-          item.__localId &&  
-          item.__status===  
-          "failed"  
-      );  
-  
-    const serverRows=
-      rows
-        .slice(0,HISTORY_LIMIT)
-        .map(item=>({
-          ...item,
-          __status:"sent"
-        }));
-
-    /* RECONCILE LOCAL QUEUE AFTER RELOAD */
-    const now=Date.now();
-    const pendingResolved=[];
-
-    pendingLocal.forEach(item=>{
-      const code=barcodeKey(item.barcode||item.kode||item.article||"");
-      const itemQty=String(item.qty??item.quantity??item.Qty??"");
-      const itemMode=String(item.mode||"");
-
-      const matched=serverRows.some(server=>{
-        const serverCode=barcodeKey(server.barcode||server.kode||server.article||"");
-        const serverQty=String(server.qty??server.quantity??server.Qty??"");
-        const serverMode=String(server.mode||"");
-        return serverCode===code && serverQty===itemQty &&
-          (!itemMode || !serverMode || serverMode===itemMode);
-      });
-
-      if(matched) return;
-
-      /* A request cannot stay "MENGIRIM" forever. */
-      if(Number(item.createdAt)>0 && now-Number(item.createdAt)>60000){
-        item.__status="failed";
-      }
-      pendingResolved.push(item);
-    });
-
-    historyRows=[
-      ...pendingResolved,
-      ...failedLocal,
-      ...serverRows
-    ].slice(0,HISTORY_LIMIT);
-
-    selectedHistoryItem=  
-      null;  
-  
-    if(
-      requestVersion!==historyRequestVersion ||
-      requestMode!==currentMode
-    ){
-      return;
-    }
-
-    saveHistoryCache();
-    renderHistory();  
-  
-  }catch(error){  
-  
-    console.warn(  
-      "History background error:",  
-      error  
-    );  
-  
-    renderHistory();  
-  
-  }  
-  
-}  
-  
 /* =====================================================
-   SHARED HISTORY SYNC
+   FIREBASE REAL-TIME HISTORY
 ===================================================== */
 
-let historySyncTimer=null;
-
-function startHistorySync(){
-  if(historySyncTimer) return;
-
-  historySyncTimer=setInterval(()=>{
-    const page=$("inventoryPage");
-    if(!page || !page.classList.contains("show")) return;
-
-    loadHistory(true);
-  },7000);
+function historyCollection(mode=currentMode){
+  return collection(db,"inventoryHistory",mode,"items");
 }
 
-startHistorySync();
+function historyFirebaseId(item){
+  const raw=[
+    item.row,
+    item.timestamp,
+    item.barcode,
+    item.qty
+  ].join("_");
+  return "r_"+btoa(unescape(encodeURIComponent(raw)))
+    .replace(/[^a-zA-Z0-9_-]/g,"")
+    .slice(0,140);
+}
+
+function stopHistoryRealtime(){
+  if(historyUnsubscribe){
+    historyUnsubscribe();
+    historyUnsubscribe=null;
+  }
+  historyFirebaseReady=false;
+}
+
+function startHistoryRealtime(mode=currentMode){
+  stopHistoryRealtime();
+
+  const q=query(
+    historyCollection(mode),
+    orderBy("timestampMs","desc"),
+    limit(HISTORY_LIMIT)
+  );
+
+  historyUnsubscribe=onSnapshot(
+    q,
+    snapshot=>{
+      if(mode!==currentMode) return;
+
+      const rows=snapshot.docs.map(docSnap=>({
+        ...docSnap.data(),
+        __firebaseId:docSnap.id,
+        __status:"sent"
+      }));
+
+      const pendingLocal=historyRows.filter(item=>
+        item.__localId && item.__status==="pending"
+      );
+      const failedLocal=historyRows.filter(item=>
+        item.__localId && item.__status==="failed"
+      );
+
+      historyRows=[
+        ...pendingLocal,
+        ...failedLocal,
+        ...rows
+      ].slice(0,HISTORY_LIMIT);
+
+      historyFirebaseReady=true;
+      selectedHistoryItem=null;
+      saveHistoryCache();
+      renderHistory();
+    },
+    error=>{
+      console.warn("Firebase history sync error:",error);
+      historyFirebaseReady=false;
+    }
+  );
+}
+
+async function seedHistoryToFirebase(rows,mode=currentMode){
+  if(mode!==currentMode) return;
+
+  for(const item of rows.slice(0,HISTORY_LIMIT)){
+    if(!item || !item.barcode) continue;
+
+    const id=historyFirebaseId(item);
+    const ref=doc(historyCollection(mode),id);
+
+    try{
+      await setDoc(ref,{
+        row:Number(item.row)||0,
+        timestamp:String(item.timestamp||""),
+        timestampMs:Date.parse(item.timestamp||"")||0,
+        barcode:String(item.barcode||""),
+        searchBarcode:String(item.searchBarcode||""),
+        nama:String(item.nama||""),
+        qty:Number(item.qty)||0,
+        mode,
+        syncedAt:Date.now()
+      },{merge:true});
+    }catch(error){
+      console.warn("Seed history Firebase gagal:",error);
+    }
+  }
+}
+
+async function loadHistoryFromSheetAndSeed(mode=currentMode){
+  const requestVersion=++historyRequestVersion;
+  const requestMode=mode;
+
+  try{
+    const response=await fetch(URL_SCRIPT,{
+      method:"POST",
+      body:JSON.stringify({
+        action:"getHistory",
+        mode:requestMode
+      })
+    });
+
+    const data=await response.json();
+    if(requestVersion!==historyRequestVersion || requestMode!==currentMode) return;
+
+    let rows=[];
+    if(Array.isArray(data)) rows=data;
+    else if(Array.isArray(data.data)) rows=data.data;
+
+    await seedHistoryToFirebase(rows,requestMode);
+  }catch(error){
+    console.warn("Load history sheet error:",error);
+  }
+}
+
+async function loadHistory(background=false){
+  if(!background){
+    const cached=readHistoryCache(currentMode);
+    if(cached.length){
+      historyRows=cached;
+      renderHistory();
+    }
+  }
+
+  startHistoryRealtime(currentMode);
+  await loadHistoryFromSheetAndSeed(currentMode);
+}
 
 /* =====================================================  
    SAVE INVENTORY  
@@ -3657,18 +3627,43 @@ async function sendInventoryQueueItem(
       lower.includes("ok")  
   
     ){  
-  
-      markLocalItemStatus(  
-        localItem.__localId,  
-        "sent"  
+let savedRow=null;
+      try{
+        const parsed=JSON.parse(text);
+        if(parsed && (parsed.status==="success" || parsed.success)) savedRow=parsed;
+      }catch(_){}
+
+      markLocalItemStatus(
+        localItem.__localId,
+        "sent"
+      );
+
+      try{
+        const timestamp=savedRow?.timestamp||new Date().toISOString();
+        const item={
+          row:Number(savedRow?.row)||0,
+          timestamp,
+          timestampMs:Date.parse(timestamp)||Date.now(),
+          barcode:localItem.barcode,
+          searchBarcode:localItem.barcode,
+          nama:localItem.nama||"",
+          qty:Number(localItem.qty)||0,
+          mode:localItem.mode,
+          syncedAt:Date.now()
+        };
+        await setDoc(
+          doc(historyCollection(localItem.mode),historyFirebaseId(item)),
+          item,
+          {merge:true}
+        );
+      }catch(firebaseError){
+        console.warn("Firebase save history gagal:",firebaseError);
+      }
+
+      showToast(
+        "Data berhasil dikirim.",
+        "success"
       );  
-  
-      showToast(  
-        "Data berhasil dikirim.",  
-        "success"  
-      );  
-  
-      loadHistory(true);  
   
     }else{  
   
@@ -3808,9 +3803,43 @@ async function deleteHistoryItem(
         )  
     );  
   
-    historyRows.splice(  
-      index,  
-      1  
+    if(item.__firebaseId){
+  
+  
+      try{
+  
+  
+        await deleteDoc(
+  
+  
+          doc(historyCollection(currentMode),item.__firebaseId)
+  
+  
+        );
+  
+  
+      }catch(firebaseError){
+  
+  
+        console.warn("Firebase delete history gagal:",firebaseError);
+  
+  
+      }
+  
+  
+    }
+
+  
+  
+    historyRows.splice(
+  
+  
+      index,
+  
+  
+      1
+  
+  
     );  
   
     selectedHistoryItem=  
@@ -4133,9 +4162,11 @@ async function(){
 
   const resetButton=document.querySelector(".reset-button");
   const originalText=resetButton.innerHTML;
+
   resetButton.disabled=true;
   resetButton.classList.add("loading");
-  resetButton.innerHTML=`<span class="action-loading"><span class="action-spinner"></span>RESETTING...</span>`;
+  resetButton.innerHTML=
+    `<span class="action-loading"><span class="action-spinner"></span>RESETTING...</span>`;
 
   try{
     const response=await fetch(URL_SCRIPT,{
@@ -4155,12 +4186,49 @@ async function(){
       return;
     }
 
-    if(lower.includes("reset berhasil") || lower.includes("berhasil") || lower.includes("success")){
+    if(
+      lower.includes("reset berhasil")||
+      lower.includes("berhasil")||
+      lower.includes("success")
+    ){
+
+      /* Batalkan request Sheet lama. */
       historyRequestVersion++;
+
       historyRows=[];
       selectedHistoryItem=null;
-      localStorage.removeItem(historyCacheKey(currentMode));
+
+      localStorage.removeItem(
+        historyCacheKey(currentMode)
+      );
+
       renderHistory();
+
+      /*
+        Firebase adalah history real-time.
+        Menghapus collection mode aktif akan memicu
+        onSnapshot() pada semua user yang sedang online.
+      */
+      try{
+        const snapshot=await getDocs(
+          historyCollection(currentMode)
+        );
+
+        if(!snapshot.empty){
+          const batch=writeBatch(db);
+
+          snapshot.forEach(docSnap=>{
+            batch.delete(docSnap.ref);
+          });
+
+          await batch.commit();
+        }
+      }catch(firebaseError){
+        console.warn(
+          "Firebase reset history gagal:",
+          firebaseError
+        );
+      }
 
       $("barcode").value="";
       $("qty").value="";
@@ -4168,21 +4236,44 @@ async function(){
       $("suggestions").innerHTML="";
       $("suggestions").style.display="none";
 
-      showToast("Data berhasil di-reset.","success");
-      await loadHistory(true);
-      setTimeout(()=>$("barcode").focus(),100);
+      showToast(
+        "Data berhasil di-reset.",
+        "success"
+      );
+
+      setTimeout(
+        ()=>$("barcode").focus(),
+        100
+      );
+
       return;
     }
 
-    showToast(text||"Reset gagal.","error");
+    showToast(
+      text||"Reset gagal.",
+      "error"
+    );
+
   }catch(error){
-    console.error("Reset error:",error);
-    showToast("Gagal melakukan reset.","error");
+
+    console.error(
+      "Reset error:",
+      error
+    );
+
+    showToast(
+      "Gagal melakukan reset.",
+      "error"
+    );
+
   }finally{
+
     resetButton.disabled=false;
     resetButton.classList.remove("loading");
     resetButton.innerHTML=originalText;
+
   }
+
 };
 
 /* =====================================================  
