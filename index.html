@@ -4040,6 +4040,29 @@ async function deleteHistoryItem(
   
       }  
   
+      /*
+        Hapus juga dokumen Firebase.
+        Ini penting agar onSnapshot() di user lain
+        menerima event DELETE secara real-time.
+      */
+      try{
+        const firebaseId =
+          item.__firebaseId ||
+          historyFirebaseId(item);
+
+        await deleteDoc(
+          doc(
+            historyCollection(currentMode),
+            firebaseId
+          )
+        );
+      }catch(firebaseError){
+        console.warn(
+          "Firebase delete history gagal:",
+          firebaseError
+        );
+      }
+
       historyRows.splice(  
         index,  
         1  
