@@ -3438,6 +3438,25 @@ async function loadHistory(
   
 }  
   
+/* =====================================================
+   SHARED HISTORY SYNC
+===================================================== */
+
+let historySyncTimer=null;
+
+function startHistorySync(){
+  if(historySyncTimer) return;
+
+  historySyncTimer=setInterval(()=>{
+    const page=$("inventoryPage");
+    if(!page || !page.classList.contains("show")) return;
+
+    loadHistory(true);
+  },7000);
+}
+
+startHistorySync();
+
 /* =====================================================  
    SAVE INVENTORY  
 ===================================================== */  
