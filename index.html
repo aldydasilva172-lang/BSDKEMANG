@@ -4038,37 +4038,72 @@ async function deleteHistoryItem(
             )  
         );  
   
-      }  
-  
+      }      
       /*
-        Hapus juga dokumen Firebase.
-        Ini penting agar onSnapshot() di user lain
-        menerima event DELETE secara real-time.
+        Hapus dokumen history yang sama dari Firebase.
+        onSnapshot() di semua user akan otomatis menerima
+        perubahan ini dan menghilangkan item tersebut.
       */
       try{
-        const firebaseId =
-          item.__firebaseId ||
-          historyFirebaseId(item);
-
-        await deleteDoc(
-          doc(
+        if(item.__firebaseId){
+          await deleteDoc(
+            doc(
+              historyCollection(currentMode),
+              item.__firebaseId
+            )
+          );
+        }else{
+          /*
+            Fallback untuk history lama yang belum memiliki
+            __firebaseId di cache lokal.
+          */
+          const firebaseQuery=query(
             historyCollection(currentMode),
-            firebaseId
-          )
-        );
+            where("row","==",Number(row)),
+            where("barcode","==",String(barcode)),
+            where("qty","==",Number(qty))
+          );
+
+          const firebaseSnapshot=await getDocs(firebaseQuery);
+
+          if(!firebaseSnapshot.empty){
+            const batch=writeBatch(db);
+
+            firebaseSnapshot.forEach(docSnap=>{
+              batch.delete(docSnap.ref);
+            });
+
+            await batch.commit();
+          }
+        }
       }catch(firebaseError){
-        console.warn(
+        console.error(
           "Firebase delete history gagal:",
           firebaseError
         );
+
+        /*
+          Jangan menghapus item lokal jika Firebase gagal,
+          supaya status tidak terlihat berhasil padahal
+          user lain masih melihat item tersebut.
+        */
+        item.__tempDeleting=false;
+        renderHistory();
+
+        showToast(
+          "Data Sheet berhasil dihapus, tetapi sinkronisasi Firebase gagal.",
+          "error"
+        );
+
+        return;
       }
 
-      historyRows.splice(  
-        index,  
-        1  
-      );  
-  
-      selectedHistoryItem=  
+      historyRows.splice(
+        index,
+        1
+      );
+
+selectedHistoryItem=  
         null;  
   
       saveHistoryCache();  
