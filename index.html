@@ -1114,7 +1114,8 @@ let currentMode="opname";
   
 let masterData=[];  
 let selectedHistoryItem=null;  
-let historyRows=[];  
+let historyRows=[];
+let historyRequestVersion=0;  
   
 const MASTER_CACHE_KEY=  
   "TB_MASTER_DATA_V2";  
@@ -3284,13 +3285,16 @@ function renderHistory(){
   
 async function loadHistory(  
   background=false  
-){  
+){
+
+  const requestVersion=++historyRequestVersion;
+  const requestMode=currentMode;  
   
   if(!background){  
   
     const cached=  
       readHistoryCache(  
-        currentMode  
+        requestMode  
       );  
   
     if(cached.length){  
@@ -3319,7 +3323,7 @@ async function loadHistory(
                 "getHistory",  
   
               mode:  
-                currentMode  
+                requestMode  
   
             })  
   
@@ -3327,7 +3331,14 @@ async function loadHistory(
       );  
   
     const data=  
-      await response.json();  
+      await response.json();
+
+    if(
+      requestVersion!==historyRequestVersion ||
+      requestMode!==currentMode
+    ){
+      return;
+    }  
   
     let rows=[];  
   
@@ -3404,8 +3415,14 @@ async function loadHistory(
     selectedHistoryItem=  
       null;  
   
-    saveHistoryCache();  
-  
+    if(
+      requestVersion!==historyRequestVersion ||
+      requestMode!==currentMode
+    ){
+      return;
+    }
+
+    saveHistoryCache();
     renderHistory();  
   
   }catch(error){  
@@ -4084,172 +4101,71 @@ document.addEventListener(
    RESET  
 ===================================================== */  
   
-window.resetInventory=  
-async function(){  
-  
-  const confirmation=  
-    prompt(  
-      "Masukkan password reset:"  
-    );  
-  
-  if(  
-    confirmation===  
-    null  
-  )  
-    return;  
-  
-  if(!confirmation){  
-  
-    showToast(  
-      "Password wajib diisi.",  
-      "error"  
-    );  
-  
-    return;  
-  }  
-  
-  const resetButton=  
-    document.querySelector(  
-      ".reset-button"  
-    );  
-  
-  const originalText=  
-    resetButton.innerHTML;  
-  
-  resetButton.disabled=  
-    true;  
-  
-  resetButton.classList.add(  
-    "loading"  
-  );  
-  
-  resetButton.innerHTML=`  
-  
-    <span class="action-loading">  
-  
-      <span class="action-spinner"></span>  
-  
-      RESETTING...  
-  
-    </span>  
-  
-  `;  
-  
-  try{  
-  
-    const response=  
-      await fetch(  
-        URL_SCRIPT,  
-        {  
-          method:"POST",  
-  
-          body:  
-            JSON.stringify({  
-  
-              action:  
-                "reset",  
-  
-              password:  
-                confirmation,  
-  
-              mode:  
-                currentMode  
-  
-            })  
-  
-        }  
-      );  
-  
-    const text=  
-      await response.text();  
-  
-    const lower=  
-      text.toLowerCase();  
-  
-    if(  
-  
-      lower.includes(  
-        "berhasil"  
-      )||  
-  
-      lower.includes(  
-        "success"  
-      )  
-  
-    ){  
-  
-      historyRows=[];  
-  
-      localStorage.removeItem(  
-        historyCacheKey(  
-          currentMode  
-        )  
-      );  
-  
-      selectedHistoryItem=  
-        null;  
-  
-      renderHistory();  
-  
-      $("barcode").value="";  
-  
-      $("qty").value="";  
-  
-      clearProductName();  
-  
-      $("suggestions")  
-        .innerHTML="";  
-  
-      $("suggestions")  
-        .style.display=  
-          "none";  
-  
-      showToast(  
-        "Data berhasil di-reset.",  
-        "success"  
-      );  
-  
-      setTimeout(  
-        ()=>$("barcode").focus(),  
-        100  
-      );  
-  
-    }else{  
-  
-      showToast(  
-        "Reset gagal. Password mungkin salah.",  
-        "error"  
-      );  
-  
-    }  
-  
-  }catch(error){  
-  
-    console.error(  
-      error  
-    );  
-  
-    showToast(  
-      "Gagal melakukan reset.",  
-      "error"  
-    );  
-  
-  }finally{  
-  
-    resetButton.disabled=  
-      false;  
-  
-    resetButton.classList.remove(  
-      "loading"  
-    );  
-  
-    resetButton.innerHTML=  
-      originalText;  
-  
-  }  
-  
-};  
-  
+window.resetInventory=
+async function(){
+
+  const confirmation=prompt("Masukkan password reset:");
+  if(confirmation===null) return;
+
+  if(!confirmation.trim()){
+    showToast("Password wajib diisi.","error");
+    return;
+  }
+
+  const resetButton=document.querySelector(".reset-button");
+  const originalText=resetButton.innerHTML;
+  resetButton.disabled=true;
+  resetButton.classList.add("loading");
+  resetButton.innerHTML=`<span class="action-loading"><span class="action-spinner"></span>RESETTING...</span>`;
+
+  try{
+    const response=await fetch(URL_SCRIPT,{
+      method:"POST",
+      body:JSON.stringify({
+        action:"reset",
+        password:confirmation,
+        mode:currentMode
+      })
+    });
+
+    const text=(await response.text()).trim();
+    const lower=text.toLowerCase();
+
+    if(lower.includes("password salah")){
+      showToast("Password salah.","error");
+      return;
+    }
+
+    if(lower.includes("reset berhasil") || lower.includes("berhasil") || lower.includes("success")){
+      historyRequestVersion++;
+      historyRows=[];
+      selectedHistoryItem=null;
+      localStorage.removeItem(historyCacheKey(currentMode));
+      renderHistory();
+
+      $("barcode").value="";
+      $("qty").value="";
+      clearProductName();
+      $("suggestions").innerHTML="";
+      $("suggestions").style.display="none";
+
+      showToast("Data berhasil di-reset.","success");
+      await loadHistory(true);
+      setTimeout(()=>$("barcode").focus(),100);
+      return;
+    }
+
+    showToast(text||"Reset gagal.","error");
+  }catch(error){
+    console.error("Reset error:",error);
+    showToast("Gagal melakukan reset.","error");
+  }finally{
+    resetButton.disabled=false;
+    resetButton.classList.remove("loading");
+    resetButton.innerHTML=originalText;
+  }
+};
+
 /* =====================================================  
    DATA BSD  
 ===================================================== */  
