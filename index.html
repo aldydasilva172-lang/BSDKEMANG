@@ -3705,11 +3705,21 @@ async function loadHistory(
       unresolvedPending.push(item);
     });
 
-    historyRows=[
-      ...unresolvedPending,
-      ...failedLocal,
-      ...serverRows
-    ].slice(0,HISTORY_LIMIT);  
+    /* SERVER ADALAH SUMBER DATA UTAMA.
+       Jika spreadsheet kosong, hapus seluruh history lokal agar
+       data lama tidak muncul lagi di web. */
+    if(serverRows.length===0){
+      historyRows=[];
+      localStorage.removeItem(
+        historyCacheKey(currentMode)
+      );
+    }else{
+      historyRows=[
+        ...unresolvedPending,
+        ...failedLocal,
+        ...serverRows
+      ].slice(0,HISTORY_LIMIT);
+    }  
   
     selectedHistoryItem=  
       null;  
@@ -3871,91 +3881,155 @@ function(){
   
 };  
   
-/* =====================================================  
-   SEND DATA — POLA ALDI6 (LANGSUNG)
+/* =====================================================
+   BACKGROUND SEND QUEUE
+   Input langsung bebas; maksimal 3 pengiriman bersamaan.
 ===================================================== */
+const inventorySendQueue=[];
+let inventoryActiveSends=0;
+const INVENTORY_MAX_CONCURRENT=3;
 
-async function sendInventoryQueueItem(
-  localItem
-){
-
-  try{
-
-    const response=
-      await fetch(
-        URL_SCRIPT,
-        {
-          method:"POST",
-          body:
-            JSON.stringify({
-              action:"saveData",
-              barcode:localItem.barcode,
-              qty:localItem.qty,
-              mode:localItem.mode
-            })
-        }
-      );
-
-    const text=
-      await response.text();
-
-    console.log(
-      "Save response:",
-      text
-    );
-
-    const lower=
-      text.toLowerCase();
-
-    if(
-      lower.includes("success")||
-      lower.includes("berhasil")||
-      lower.includes("saved")||
-      lower.includes("ok")
-    ){
-
-      markLocalItemStatus(
-        localItem.__localId,
-        "sent"
-      );
-
-      showToast(
-        "Data berhasil dikirim.",
-        "success"
-      );
-
-      /* Tidak refresh history agar pengiriman tetap cepat. */
-
-    }else{
-
-      throw new Error(
-        text||
-        "Gagal menyimpan data."
-      );
-
-    }
-
-  }catch(error){
-
-    console.error(
-      "Send error:",
-      error
-    );
-
-    markLocalItemStatus(
-      localItem.__localId,
-      "failed"
-    );
-
-    showToast(
-      "Data gagal dikirim. Tekan item untuk coba lagi.",
-      "error"
-    );
-
-  }
-
+function enqueueInventoryItem(item){
+  if(!item||item.__sending||item.__queued) return;
+  item.__queued=true;
+  inventorySendQueue.push(item);
+  renderHistory();
+  processInventorySendQueue();
 }
 
+function processInventorySendQueue(){
+  while(
+    inventoryActiveSends<INVENTORY_MAX_CONCURRENT &&
+    inventorySendQueue.length
+  ){
+    const item=inventorySendQueue.shift();
+    if(!item) continue;
+    item.__queued=false;
+    inventoryActiveSends++;
+    sendInventoryQueueItem(item).finally(()=>{
+      inventoryActiveSends--;
+      processInventorySendQueue();
+    });
+  }
+}
+
+/* =====================================================  
+   SEND QUEUE  
+===================================================== */  
+  
+async function sendInventoryQueueItem(  
+  localItem  
+){  
+  
+  if(!localItem||localItem.__sending)  
+    return;  
+  
+  localItem.__sending=true;  
+  const controller=new AbortController();  
+  const timeout=setTimeout(  
+    ()=>controller.abort(),  
+    60000  
+  );  
+  
+  try{  
+  
+    const response=  
+      await fetch(  
+        URL_SCRIPT,  
+        {  
+          method:"POST",  
+          signal:controller.signal,  
+  
+          body:  
+            JSON.stringify({  
+  
+              action:  
+                "saveData",  
+  
+              barcode:  
+                localItem.barcode,  
+  
+              qty:  
+                localItem.qty,  
+  
+              mode:  
+                localItem.mode  
+  
+            })  
+  
+        }  
+      );  
+  
+    const text=  
+      await response.text();  
+  
+    console.log(  
+      "Save response:",  
+      text  
+    );  
+  
+    const lower=  
+      text.toLowerCase();  
+  
+    if(  
+  
+      lower.includes("success")||  
+  
+      lower.includes("berhasil")||  
+  
+      lower.includes("saved")||  
+  
+      lower.includes("ok")  
+  
+    ){  
+  
+      markLocalItemStatus(  
+        localItem.__localId,  
+        "sent"  
+      );  
+  
+      showToast(  
+        "Data berhasil dikirim.",  
+        "success"  
+      );  
+  
+      /* History tidak direfresh setiap item agar pengiriman tetap ringan. */  
+  
+    }else{  
+  
+      throw new Error(  
+        text||  
+        "Gagal menyimpan data."  
+      );  
+  
+    }  
+  
+  }catch(error){  
+  
+    console.error(  
+      "Send queue error:",  
+      error  
+    );  
+  
+    markLocalItemStatus(  
+      localItem.__localId,  
+      "failed"  
+    );  
+  
+    showToast(  
+      error?.name==="AbortError"  
+        ? "Pengiriman masih diproses. Cek riwayat sebelum mengirim ulang."  
+        : "Data gagal dikirim. Tekan KIRIM ULANG di riwayat.",  
+      "error"  
+    );  
+  
+  }finally{  
+    clearTimeout(timeout);  
+    localItem.__sending=false;  
+  }  
+  
+}  
+  
 /* =====================================================  
    UPDATE LOCAL STATUS  
 ===================================================== */  
@@ -4374,130 +4448,75 @@ document.addEventListener(
    RESET  
 ===================================================== */  
   
-window.resetInventory=
-async function(){
+window.resetInventory=async function(){
 
-  const confirmation=
-    prompt(
-      "Masukkan password reset:"
-    );
+  const confirmation=prompt(
+    "Masukkan password reset:"
+  );
 
-  if(confirmation===null)
-    return;
+  if(confirmation===null)return;
 
   if(!confirmation){
-    showToast(
-      "Password wajib diisi.",
-      "error"
-    );
+    showToast("Password wajib diisi.","error");
     return;
   }
 
-  const resetButton=
-    document.querySelector(
-      ".reset-button"
-    );
+  const resetButton=document.querySelector(".reset-button");
+  if(!resetButton)return;
 
-  const originalText=
-    resetButton.innerHTML;
-
+  const originalText=resetButton.innerHTML;
   resetButton.disabled=true;
   resetButton.classList.add("loading");
   resetButton.innerHTML=`
     <span class="action-loading">
       <span class="action-spinner"></span>
       RESETTING...
-    </span>
-  `;
+    </span>`;
 
   try{
+    const response=await fetch(URL_SCRIPT,{
+      method:"POST",
+      body:JSON.stringify({
+        action:"reset",
+        password:confirmation,
+        mode:currentMode
+      })
+    });
 
-    const response=
-      await fetch(
-        URL_SCRIPT,
-        {
-          method:"POST",
-          body:
-            JSON.stringify({
-              action:"reset",
-              password:confirmation,
-              mode:currentMode
-            })
-        }
-      );
+    const text=await response.text();
+    const lower=text.toLowerCase();
+    console.log("Reset response:",text);
 
-    const text=
-      await response.text();
-
-    console.log(
-      "Reset response:",
-      text
-    );
-
-    const lower=
-      text.toLowerCase();
-
-    if(
-      lower.includes("berhasil")||
-      lower.includes("success")
-    ){
-
+    if(lower.includes("berhasil")||lower.includes("success")){
       historyRows=[];
-
-      localStorage.removeItem(
-        historyCacheKey(currentMode)
-      );
-
       selectedHistoryItem=null;
+      localStorage.removeItem(historyCacheKey(currentMode));
       renderHistory();
 
       $("barcode").value="";
       $("qty").value="";
-
       clearProductName();
-
       $("suggestions").innerHTML="";
       $("suggestions").style.display="none";
 
-      showToast(
-        "Data berhasil di-reset.",
-        "success"
-      );
+      showToast("Data berhasil di-reset.","success");
 
-      setTimeout(
-        ()=>$("barcode").focus(),
-        100
-      );
-
+      /* Pastikan tampilan mengikuti spreadsheet setelah reset. */
+      setTimeout(()=>loadHistory(true),250);
+      setTimeout(()=>$("barcode").focus(),350);
     }else{
-
-      showToast(
-        text||"Reset gagal. Password mungkin salah.",
-        "error"
-      );
-
+      console.error("Reset gagal:",text);
+      showToast(text||"Reset gagal. Password mungkin salah.","error");
     }
 
   }catch(error){
-
-    console.error(
-      "Reset error:",
-      error
-    );
-
-    showToast(
-      "Gagal melakukan reset.",
-      "error"
-    );
-
+    console.error("Reset error:",error);
+    showToast("Gagal melakukan reset.","error");
   }finally{
-
     resetButton.disabled=false;
     resetButton.classList.remove("loading");
     resetButton.innerHTML=originalText;
-
   }
-
 };
 
 /* =====================================================  
