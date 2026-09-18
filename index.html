@@ -3865,12 +3865,40 @@ function(){
     0  
   );  
   
-  sendInventoryQueueItem(  
-    localItem  
-  );  
+  enqueueInventoryItem(localItem);  
   
 };  
   
+/* =====================================================
+   BACKGROUND SEND QUEUE
+   Input tetap langsung bisa dipakai; pengiriman diproses satu per satu.
+===================================================== */
+const inventorySendQueue=[];
+let inventoryQueueRunning=false;
+
+function enqueueInventoryItem(item){
+  if(!item||item.__sending||item.__queued) return;
+  item.__queued=true;
+  inventorySendQueue.push(item);
+  renderHistory();
+  processInventorySendQueue();
+}
+
+async function processInventorySendQueue(){
+  if(inventoryQueueRunning) return;
+  inventoryQueueRunning=true;
+  try{
+    while(inventorySendQueue.length){
+      const item=inventorySendQueue.shift();
+      if(!item) continue;
+      item.__queued=false;
+      await sendInventoryQueueItem(item);
+    }
+  }finally{
+    inventoryQueueRunning=false;
+  }
+}
+
 /* =====================================================  
    SEND QUEUE  
 ===================================================== */  
@@ -3886,7 +3914,7 @@ async function sendInventoryQueueItem(
   const controller=new AbortController();  
   const timeout=setTimeout(  
     ()=>controller.abort(),  
-    20000  
+    60000  
   );  
   
   try{  
@@ -3951,7 +3979,7 @@ async function sendInventoryQueueItem(
         "success"  
       );  
   
-      loadHistory(true);  
+      /* History tidak direfresh setiap item agar pengiriman tetap ringan. */  
   
     }else{  
   
@@ -3976,7 +4004,7 @@ async function sendInventoryQueueItem(
   
     showToast(  
       error?.name==="AbortError"  
-        ? "Pengiriman timeout. Tekan KIRIM ULANG di riwayat."  
+        ? "Pengiriman masih diproses. Cek riwayat sebelum mengirim ulang."  
         : "Data gagal dikirim. Tekan KIRIM ULANG di riwayat.",  
       "error"  
     );  
@@ -4040,9 +4068,7 @@ async function retryHistoryItem(
   
   renderHistory();  
   
-  await sendInventoryQueueItem(  
-    item  
-  );  
+  enqueueInventoryItem(item);  
   
 }  
   
@@ -4459,13 +4485,22 @@ async function(){
   
   `;  
   
+  let resetTimeout=null;
+  
   try{  
+  
+    const resetController=new AbortController();
+    resetTimeout=setTimeout(
+      ()=>resetController.abort(),
+      60000
+    );
   
     const response=  
       await fetch(  
         URL_SCRIPT,  
         {  
           method:"POST",  
+          signal:resetController.signal,
   
           body:  
             JSON.stringify({  
@@ -4554,12 +4589,15 @@ async function(){
     );  
   
     showToast(  
-      "Gagal melakukan reset.",  
+      error?.name==="AbortError"
+        ? "Reset masih diproses. Cek kembali sebelum mengulang."
+        : "Gagal melakukan reset.",  
       "error"  
     );  
   
   }finally{  
   
+    clearTimeout(resetTimeout);
     resetButton.disabled=  
       false;  
   
