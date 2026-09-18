@@ -1022,270 +1022,7 @@ body{overflow-x:hidden}
   #dashboard .dashboard-toggle-text{font-size:7px}
 }
 </style>
-
-<style id="PRO-UI-FINAL-PATCH">
-/* =========================================================
-   THE BUTCHER — PRO RESPONSIVE PATCH
-   • Stock Opname = blue identity
-   • BSD All button readable
-   • Sidebar closed/open branding
-   • Full-height sidebar
-   • Landscape-safe controls
-========================================================= */
-
-/* ---------- STOCK OPNAME: BLUE IDENTITY ---------- */
-#inventoryPage.opname .inventory-heading-icon{
-  background:linear-gradient(145deg,rgba(75,145,255,.12),rgba(75,145,255,.045))!important;
-  border-color:#bcd8ff!important;
-  color:#2870df!important;
-  box-shadow:0 8px 22px rgba(75,145,255,.10)!important;
-}
-#inventoryPage.opname .inventory-heading h1{color:#20242b!important}
-#inventoryPage.opname .inventory-heading p{color:#72819a!important}
-#inventoryPage.opname .inventory-input-group label{color:#52657e!important}
-#inventoryPage.opname .inventory-input{
-  border-color:#d9e7f8!important;
-  box-shadow:0 3px 12px rgba(75,145,255,.045)!important;
-}
-#inventoryPage.opname .inventory-input:focus{
-  border-color:#4b91ff!important;
-  box-shadow:0 0 0 4px rgba(75,145,255,.10),0 5px 16px rgba(75,145,255,.08)!important;
-}
-#inventoryPage.opname .history-section{border-top-color:#dce8f7!important}
-#inventoryPage.opname .history-counter.pending{
-  color:#4b82d8!important;
-  background:#f1f7ff!important;
-  border-color:#d8e8ff!important;
-}
-#inventoryPage.opname .history-item:hover,
-#inventoryPage.opname .history-item.selected{
-  border-color:rgba(75,145,255,.35)!important;
-  background:#f5f9ff!important;
-}
-
-/* ---------- BSD: ALL BUTTON MUST BE VISIBLE ---------- */
-#dataBsdPage .bsd-all-btn{
-  color:#46576d!important;
-  background:#f5f8fc!important;
-  border:1px solid #cfd9e5!important;
-  box-shadow:0 3px 10px rgba(15,23,42,.05)!important;
-  font-weight:900!important;
-}
-#dataBsdPage .bsd-all-btn:hover,
-#dataBsdPage .bsd-all-btn:active{
-  color:#1f6fd6!important;
-  background:#edf5ff!important;
-  border-color:#a9cdf8!important;
-}
-
-/* ---------- SIDEBAR BRAND ---------- */
-#dashboard .dashboard-sidebar{
-  height:100dvh!important;
-  min-height:100svh!important;
-  align-self:stretch!important;
-}
-#dashboard .sidebar-brand{
-  flex-direction:column!important;
-  align-items:center!important;
-  justify-content:flex-start!important;
-  gap:6px!important;
-  text-align:center!important;
-}
-#dashboard .sidebar-brand-text{
-  min-width:0!important;
-  width:100%!important;
-  overflow:hidden!important;
-}
-#dashboard .sidebar-brand-text strong,
-#dashboard .sidebar-brand-text span{
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-}
-
-/* OPEN SIDEBAR: LOGO + THE BUTCHER SIDE BY SIDE */
-#dashboard .dashboard-shell.sidebar-open .sidebar-brand{
-  flex-direction:row!important;
-  align-items:center!important;
-  justify-content:flex-start!important;
-  text-align:left!important;
-  gap:10px!important;
-}
-#dashboard .dashboard-shell.sidebar-open .sidebar-brand-text{
-  width:auto!important;
-  flex:1 1 auto!important;
-}
-
-/* CLOSED SIDEBAR: keep brand centered and compact */
-#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-brand-text{
-  opacity:1!important;
-  visibility:visible!important;
-  display:block!important;
-}
-#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-logo{
-  margin:0 auto!important;
-}
-
-/* ---------- FULL HEIGHT / SAFARI SAFE ---------- */
-#dashboard .dashboard-shell{
-  height:100dvh!important;
-  min-height:100svh!important;
-  overflow:hidden!important;
-}
-#dashboard .dashboard-sidebar{
-  overflow:hidden!important;
-}
-#dashboard .dashboard-content{
-  min-height:0!important;
-  height:100dvh!important;
-  overflow-y:auto!important;
-  overflow-x:hidden!important;
-  -webkit-overflow-scrolling:touch!important;
-  overscroll-behavior-x:none!important;
-}
-
-/* ---------- LANDSCAPE: PROFESSIONAL TWO-PANE LAYOUT ---------- */
-@media (orientation:landscape) and (max-width:1100px){
-  #dashboard .dashboard-shell{
-    grid-template-columns:150px minmax(0,1fr)!important;
-    width:100vw!important;
-    height:100dvh!important;
-  }
-  #dashboard .dashboard-shell.sidebar-open{
-    grid-template-columns:235px minmax(0,1fr)!important;
-  }
-  #dashboard .dashboard-sidebar{
-    width:150px!important;
-    height:100dvh!important;
-    min-height:100svh!important;
-    padding:12px 9px!important;
-  }
-  #dashboard .dashboard-shell.sidebar-open .dashboard-sidebar{
-    width:235px!important;
-  }
-  #dashboard .sidebar-logo{width:32px!important;height:32px!important}
-  #dashboard .sidebar-brand-text strong{font-size:10px!important}
-  #dashboard .sidebar-brand-text span{font-size:6px!important}
-  #dashboard .dashboard-toggle{height:32px!important;margin-top:10px!important;font-size:8px!important}
-  #dashboard .sidebar-item{min-height:44px!important;height:44px!important;padding:6px 7px!important;gap:7px!important}
-  #dashboard .sidebar-icon{width:26px!important;height:26px!important;font-size:12px!important}
-  #dashboard .sidebar-item-text strong{font-size:8px!important}
-  #dashboard .sidebar-item-text small{font-size:5.5px!important}
-  #dashboard .dashboard-content{height:100dvh!important;padding:12px 16px 14px!important}
-
-  #inventoryPage .inventory-top{
-    height:54px!important;
-    min-height:54px!important;
-    padding:0 14px!important;
-  }
-  #inventoryPage .inventory-card{
-    max-width:1050px!important;
-    padding:16px 22px 26px!important;
-  }
-  #inventoryPage .inventory-heading{
-    margin:3px 0 13px!important;
-  }
-  #inventoryPage .inventory-heading-icon{width:38px!important;height:38px!important;font-size:17px!important}
-  #inventoryPage .inventory-heading h1{font-size:23px!important}
-  #inventoryPage .inventory-heading p{font-size:9px!important}
-  #inventoryPage .inventory-form-grid{grid-template-columns:minmax(0,1.7fr) minmax(190px,.7fr)!important;gap:10px!important}
-  #inventoryPage .inventory-input{height:44px!important}
-  #inventoryPage .send-button,#inventoryPage .reset-button{height:44px!important;min-height:44px!important}
-  #inventoryPage .history-section{margin-top:14px!important;padding-top:12px!important}
-  #inventoryPage .history-list{max-height:calc(100dvh - 300px)!important}
-
-  #dataBsdPage .data-bsd-topbar{height:54px!important;min-height:54px!important;padding:0 12px!important}
-  #dataBsdPage .data-bsd-body{padding:10px 14px!important}
-  #dataBsdPage .data-page-heading{margin-bottom:8px!important}
-  #dataBsdPage .data-page-title{font-size:19px!important}
-  #dataBsdPage .data-page-subtitle{font-size:7px!important}
-  #dataBsdPage .data-stats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important}
-  #dataBsdPage .data-stat{min-height:58px!important;padding:8px!important}
-  #dataBsdPage .data-stat-value{font-size:17px!important}
-  #dataBsdPage .data-table-scroll{max-height:calc(100dvh - 215px)!important}
-}
-
-/* SMALL LANDSCAPE PHONES: prevent buttons from being squeezed */
-@media (orientation:landscape) and (max-height:500px){
-  #dashboard .dashboard-shell{grid-template-columns:132px minmax(0,1fr)!important}
-  #dashboard .dashboard-shell.sidebar-open{grid-template-columns:215px minmax(0,1fr)!important}
-  #dashboard .dashboard-sidebar{width:132px!important;padding:8px 7px!important}
-  #dashboard .dashboard-shell.sidebar-open .dashboard-sidebar{width:215px!important}
-  #dashboard .sidebar-logo{width:28px!important;height:28px!important}
-  #dashboard .sidebar-brand{gap:4px!important}
-  #dashboard .dashboard-toggle{height:28px!important;margin-top:7px!important}
-  #dashboard .sidebar-menu{gap:4px!important}
-  #dashboard .sidebar-item{min-height:38px!important;height:38px!important;padding:4px 5px!important}
-  #dashboard .sidebar-icon{width:23px!important;height:23px!important;font-size:10px!important}
-  #dashboard .sidebar-item-text strong{font-size:7px!important}
-  #dashboard .sidebar-item-text small{font-size:4.8px!important}
-  #dashboard .sidebar-section-title{margin-top:10px!important;padding-bottom:5px!important;font-size:7px!important}
-  #dashboard .sidebar-spacer{min-height:6px!important}
-  #dashboard .sidebar-action{height:25px!important;min-height:25px!important;font-size:6.5px!important}
-
-  #inventoryPage .inventory-top{height:46px!important;min-height:46px!important}
-  #inventoryPage .inventory-logo{width:27px!important;height:27px!important}
-  #inventoryPage .back-button{height:28px!important;font-size:7px!important}
-  #inventoryPage .inventory-card{padding:9px 15px 18px!important}
-  #inventoryPage .inventory-heading{margin:0 0 8px!important}
-  #inventoryPage .inventory-heading-icon{width:31px!important;height:31px!important;margin-bottom:4px!important;font-size:14px!important}
-  #inventoryPage .inventory-heading h1{font-size:18px!important}
-  #inventoryPage .inventory-heading p{margin-top:3px!important;font-size:7px!important}
-  #inventoryPage .inventory-input-group{margin-bottom:7px!important}
-  #inventoryPage .inventory-input-group label{font-size:7px!important;margin-bottom:3px!important}
-  #inventoryPage .inventory-input{height:36px!important}
-  #inventoryPage .send-button,#inventoryPage .reset-button{height:36px!important;min-height:36px!important;font-size:9px!important}
-  #inventoryPage .reset-row{margin-top:5px!important}
-  #inventoryPage .history-section{margin-top:8px!important;padding-top:7px!important}
-  #inventoryPage .history-summary{margin-bottom:6px!important}
-  #inventoryPage .history-list{max-height:150px!important}
-
-  #dataBsdPage .data-bsd-topbar{height:44px!important;min-height:44px!important}
-  #dataBsdPage .data-bsd-logo{width:27px!important;height:27px!important}
-  #dataBsdPage .data-bsd-back,#dataBsdPage .data-bsd-refresh{height:26px!important;font-size:7px!important}
-  #dataBsdPage .data-bsd-body{padding:7px 10px!important}
-  #dataBsdPage .data-page-heading{margin-bottom:5px!important}
-  #dataBsdPage .data-page-title{font-size:16px!important}
-  #dataBsdPage .data-stats{gap:5px!important}
-  #dataBsdPage .data-stat{min-height:48px!important;padding:6px!important}
-  #dataBsdPage .data-stat-label{font-size:5.5px!important}
-  #dataBsdPage .data-stat-value{font-size:14px!important}
-  #dataBsdPage .data-stat-desc{font-size:5.5px!important}
-  #dataBsdPage #bsdNavigation{margin-top:5px!important;gap:4px!important}
-  #dataBsdPage #bsdNavigation button{height:25px!important;min-height:25px!important;font-size:6.5px!important;padding:0 7px!important}
-  #dataBsdPage .data-table-scroll{max-height:calc(100dvh - 165px)!important}
-}
-
-/* ---------- TOUCH / BUTTON STABILITY ---------- */
-#dashboard button,
-#inventoryPage button,
-#dataBsdPage button{
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-}
-#dashboard .dashboard-toggle,
-#inventoryPage .send-button,
-#inventoryPage .reset-button,
-#inventoryPage .back-button,
-#dataBsdPage .data-bsd-back,
-#dataBsdPage .data-bsd-refresh,
-#dataBsdPage .bsd-all-btn,
-#dataBsdPage #bsdNavigation button{
-  flex:none!important;
-  user-select:none!important;
-  -webkit-user-select:none!important;
-}
-</style>
-
-<style id="HISTORY-QUEUE-PATCH">
-#inventoryPage .history-counter.disconnected{color:#c78300;background:#fff8e9;border-color:#f3dfad}
-#inventoryPage .history-status.disconnected{color:#c78300;font-weight:900}
-#inventoryPage .history-retry{display:inline-flex;align-items:center;justify-content:center;margin-top:7px;height:28px;padding:0 10px;border:1px solid #bcd8ff;border-radius:8px;background:#edf5ff;color:#2870df;font-size:9px;font-weight:950;cursor:pointer;box-shadow:0 3px 9px rgba(75,145,255,.07)}
-#inventoryPage .history-retry:hover{background:#e3f0ff;border-color:#91bdf5}
-#inventoryPage.opname .history-retry{border-color:#bcd8ff;background:#edf5ff;color:#2870df}
-#inventoryPage.stockloss .history-retry{border-color:#ffd2ad;background:#fff4e9;color:#d46610}
-</style>
-</head><body><section id="loginPage"><div class="login-card"><div class="brand"><div class="brand-logo"><span>T B</span></div><h1>THE BUTCHER</h1><p>Management System Bsd </p></div><div class="input-group"><label>USERNAME / EMAIL</label><input id="loginIdentity" class="input" type="text" autocomplete="username" placeholder="Masukkan username atau email" ></div><div class="input-group"><label>PASSWORD</label><input id="loginPassword" class="input" type="password" autocomplete="current-password" placeholder="Masukkan password" ></div><button id="loginButton" class="btn btn-primary" onclick="login()" > LOGIN </button><div class="login-actions"><button class="text-button" onclick="openModal('forgotModal')" > Lupa Password? </button><button class="text-button" onclick="openModal('signupModal')" > Buat Akun </button></div><div id="loginMessage" class="message" ></div></div></section><section id="dashboard" class="hidden"><div class="dashboard-shell"><aside class="dashboard-sidebar" id="dashboardSidebar"><div class="sidebar-brand"><div class="sidebar-logo">TB</div><div class="sidebar-brand-text"><strong>THE BUTCHER</strong><span>INVENTORY SYSTEM</span></div></div><button type="button" class="dashboard-toggle" id="dashboardToggle" onclick="toggleDashboardSidebar()" aria-expanded="false" aria-controls="dashboardSidebar"><span class="dashboard-toggle-icon">☰</span><span class="dashboard-toggle-text">DASHBOARD</span></button><div class="sidebar-divider"></div><div class="sidebar-section-title">OPERATIONS</div><div class="sidebar-menu"><button class="sidebar-item active" onclick="openInventory('stockloss')"><span class="sidebar-icon">📉</span><span class="sidebar-item-text"><strong>STOCK LOSS</strong><small>Stock Loss BSD</small></span></button><button class="sidebar-item" onclick="openInventory('opname')"><span class="sidebar-icon blue">📦</span><span class="sidebar-item-text"><strong>STOCK OPNAME</strong><small>Stock Opname BSD</small></span></button><button class="sidebar-item" onclick="openDataBSD()"><span class="sidebar-icon green">📊</span><span class="sidebar-item-text"><strong>DATA BSD</strong><small>Monitoring Data</small></span></button></div><div class="sidebar-spacer"></div><div class="sidebar-user"><div id="avatar" class="sidebar-avatar">TB</div><div class="sidebar-user-info"><strong id="userName">User</strong><span>Active User</span></div></div><div class="sidebar-actions"><button class="sidebar-action" onclick="openSettings()"><span>⚙</span> SETTINGS</button><button class="sidebar-action logout-action" onclick="logout()"><span>⇥</span> LOGOUT</button></div></aside><main class="dashboard-content"><div class="dashboard-topbar"><div id="connectionStatus" class="system-status"><span class="status-dot"></span> SYSTEM ONLINE</div></div><div class="welcome-block"><span class="welcome-label">INVENTORY MANAGEMENT</span><h1 id="welcomeName" class="welcome-title">WELCOME</h1><p class="welcome-sub">Kelola stock loss, stock opname, dan monitoring data stock BSD melalui satu sistem.</p></div><div class="dashboard-overview"><div class="overview-card"><span class="overview-icon">📋</span><div><strong>Inventory Operations</strong><p>Pilih menu di sidebar untuk mulai bekerja.</p></div></div><div class="overview-card"><span class="overview-icon green">●</span><div><strong>System Status</strong><p>Sistem siap digunakan dan terhubung.</p></div></div></div><div class="dashboard-footer"><span>THE BUTCHER • INVENTORY MANAGEMENT</span><span>v1.0</span></div></main></div></section><section id="inventoryPage"><div class="inventory-center"><div class="inventory-top"><div class="inventory-brand"><div class="inventory-logo"> TB </div><div><strong> THE BUTCHER </strong><span> INVENTORY SYSTEM </span></div></div><button class="back-button" onclick="backToDashboard()" > ← Dashboard </button></div><div class="inventory-card"><div class="inventory-heading"><div id="inventoryIcon" class="inventory-heading-icon" > 📦 </div><h1 id="inventoryTitle"> STOCK OPNAME </h1><p id="inventorySubtitle"> Input data inventory </p></div><div class="inventory-form-grid"><div class="inventory-input-group"><label> BARCODE / ARTICLE </label><input id="barcode" class="inventory-input" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Scan atau masukkan barcode / article" ><div id="suggestions" class="suggestions" ></div><div id="productName" class="product-name" ></div></div><div class="inventory-input-group"><label> QUANTITY </label><input id="qty" class="inventory-input" type="text" inputmode="decimal" autocomplete="off" placeholder="Masukan Qty" ></div></div><button id="sendButton" class="send-button" onclick="saveInventory()" > KIRIM DATA </button><div class="reset-row"><button class="reset-button" onclick="resetInventory()" > ↻ RESET DATA </button></div><div id="inventoryMessage" class="inventory-message" ></div><div class="history-section"><div class="history-header"><strong> RIWAYAT INPUT </strong><span id="historyMode"> - </span></div><div class="history-summary"><div id="pendingCounter" class="history-counter pending" > ⏳ 0 MENGIRIM </div><div id="sentCounter" class="history-counter sent" > ✓ 0 TERKIRIM </div><div id="failedCounter" class="history-counter failed" > ✕ 0 GAGAL </div><div id="disconnectedCounter" class="history-counter disconnected" > ⚠ 0 TERPUTUS </div></div><div id="historyList" class="history-list" ><div class="history-empty"> Belum ada data </div></div></div></div></div></section><section id="dataBsdPage"><div class="data-bsd-topbar"><div class="data-bsd-brand"><div class="data-bsd-logo"> TB </div><div><strong> DATA BSD </strong><span> STOCK MONITORING </span></div></div><div class="data-bsd-actions"><button class="data-bsd-refresh" id="bsdRefreshButton" onclick="refreshBSD()" > ↻ Refresh </button><button class="data-bsd-back" onclick="closeDataBSD()" > ← Dashboard </button></div></div><div class="data-bsd-body"><div class="data-dashboard"><div class="data-page-heading"><div class="data-page-title" id="bsdPageTitle" > MEAT </div><div class="data-page-subtitle"> Monitoring stock BSD </div></div><section class="data-stats"><div class="data-stat"><div class="data-stat-label"> SHEET </div><div class="data-stat-value" id="bsdSheetValue" > MEAT </div><div class="data-stat-desc"> Sheet aktif </div></div><div id="bsdNegativeCard" class="data-stat clickable" onclick="bsdShowNegative()" ><div class="data-stat-label"> NEGATIVE STOCK </div><div class="data-stat-value" id="bsdNegativeValue" > 0 </div><div class="data-stat-desc"> Klik untuk melihat </div></div><div class="data-stat"><div class="data-stat-label"> UPDATE </div><div class="data-stat-value" id="bsdUpdateValue" style="font-size:10px;" > — </div><div class="data-stat-desc"> Informasi update </div></div><div id="bsdLowCard" class="data-stat clickable" onclick="bsdShowLow()" ><div class="data-stat-label"> LOW STOCK </div><div class="data-stat-value" id="bsdLowValue" > 0 </div><div class="data-stat-desc"> Klik untuk melihat </div></div></section><section class="data-table-container"><div class="data-table-header"><div><div class="data-table-title" id="bsdTableTitle" > Semua Barang </div><div class="data-info" id="bsdDataInfo" > 0 data </div></div><div class="data-table-actions"><button id="bsdAllBtn" class="bsd-all-btn" onclick="bsdShowAll()" > ← Semua Barang </button><input id="bsdSearch" class="bsd-search" type="text" placeholder="Cari barang..." oninput="bsdFilter()" ></div></div><div class="data-table-scroll"><table class="data-table"><thead><tr id="bsdTableHead"><th>#</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead><tbody id="bsdTableBody"><tr><td colspan="8" class="bsd-empty" > Memuat data... </td></tr></tbody></table></div></section></div></div></section><div id="signupModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Buat Akun </h2><button class="modal-close" onclick="closeModal('signupModal')" > × </button></div><div class="input-group"><label> USERNAME </label><input id="signupUsername" class="input" type="text" placeholder="username" ></div><div class="input-group"><label> EMAIL </label><input id="signupEmail" class="input" type="email" placeholder="email" ></div><div class="input-group"><label> PASSWORD </label><input id="signupPassword" class="input" type="password" placeholder="Minimal 6 karakter" ></div><div class="input-group"><label> KONFIRMASI PASSWORD </label><input id="signupConfirm" class="input" type="password" placeholder="Ulangi password" ></div><button class="btn btn-primary" onclick="signup()" > DAFTAR </button><div id="signupMessage" class="message" ></div></div></div><div id="verifyModal" class="modal" ><div class="modal-card verify-card"><div class="verify-icon"> ✓ </div><div class="brand verify-brand"><div class="brand-logo"><span>TB</span></div><h1> VERIFIKASI EMAIL </h1><p> THE BUTCHER • INVENTORY SYSTEM </p></div><div class="verify-content"><div class="verify-title"> PENDAFTARAN BERHASIL </div><div class="verify-text"> Link verifikasi telah dikirim ke: </div><div id="verifyEmail" class="verify-email" > — </div><div class="verify-info"> 📧 Silakan buka email Anda, lalu klik link verifikasi yang dikirim oleh <b>THE BUTCHER</b>. <br><br> Setelah selesai, kembali ke sini dan klik <b>CEK VERIFIKASI</b>. </div><div id="verifyStatus" class="verify-status" > MENUNGGU VERIFIKASI EMAIL </div><button id="checkVerifyBtn" class="btn btn-primary" onclick="checkEmailVerification()" > ✓ CEK VERIFIKASI </button><button id="resendVerifyBtn" class="btn btn-secondary" style="margin-top:8px" onclick="resendVerificationEmail()" > ↻ KIRIM ULANG EMAIL </button><button class="back-login-button" onclick="backToLoginFromVerify()" > ← KEMBALI KE LOGIN </button></div></div></div><div id="forgotModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Reset Password </h2><button class="modal-close" onclick="closeModal('forgotModal')" > × </button></div><div class="input-group"><label> EMAIL </label><input id="forgotEmail" class="input" type="email" placeholder="Masukkan email" ></div><button class="btn btn-primary" onclick="forgotPassword()" > KIRIM LINK RESET </button><div id="forgotMessage" class="message" ></div></div></div><div id="settingsModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Settings </h2><button class="modal-close" onclick="closeModal('settingsModal')" > × </button></div><div class="profile-box"><div class="profile-row"><span class="profile-label"> Username </span><span id="settingsUsername" class="profile-value" > - </span></div><div class="profile-row"><span class="profile-label"> Email </span><span id="settingsEmail" class="profile-value" > - </span></div><div class="profile-row"><span class="profile-label"> Role </span><span id="settingsRole" class="profile-value" > - </span></div></div><button class="btn btn-secondary" onclick="resetOwnPassword()" > KIRIM RESET PASSWORD </button><div id="adminSection" class="admin-section hidden" ><h3> USER MENUNGGU PERSETUJUAN </h3><div id="pendingList" class="pending-list" ><div class="history-empty"> Tidak ada user pending </div></div></div></div></div><div id="toastContainer"></div><script type="module">  
+</head><body><section id="loginPage"><div class="login-card"><div class="brand"><div class="brand-logo"><span>T B</span></div><h1>THE BUTCHER</h1><p>Management System Bsd </p></div><div class="input-group"><label>USERNAME / EMAIL</label><input id="loginIdentity" class="input" type="text" autocomplete="username" placeholder="Masukkan username atau email" ></div><div class="input-group"><label>PASSWORD</label><input id="loginPassword" class="input" type="password" autocomplete="current-password" placeholder="Masukkan password" ></div><button id="loginButton" class="btn btn-primary" onclick="login()" > LOGIN </button><div class="login-actions"><button class="text-button" onclick="openModal('forgotModal')" > Lupa Password? </button><button class="text-button" onclick="openModal('signupModal')" > Buat Akun </button></div><div id="loginMessage" class="message" ></div></div></section><section id="dashboard" class="hidden"><div class="dashboard-shell"><aside class="dashboard-sidebar" id="dashboardSidebar"><div class="sidebar-brand"><div class="sidebar-logo">TB</div><div class="sidebar-brand-text"><strong>THE BUTCHER</strong><span>INVENTORY SYSTEM</span></div></div><button type="button" class="dashboard-toggle" id="dashboardToggle" onclick="toggleDashboardSidebar()" aria-expanded="false" aria-controls="dashboardSidebar"><span class="dashboard-toggle-icon">☰</span><span class="dashboard-toggle-text">DASHBOARD</span></button><div class="sidebar-divider"></div><div class="sidebar-section-title">OPERATIONS</div><div class="sidebar-menu"><button class="sidebar-item active" onclick="openInventory('stockloss')"><span class="sidebar-icon">📉</span><span class="sidebar-item-text"><strong>STOCK LOSS</strong><small>Stock Loss BSD</small></span></button><button class="sidebar-item" onclick="openInventory('opname')"><span class="sidebar-icon blue">📦</span><span class="sidebar-item-text"><strong>STOCK OPNAME</strong><small>Stock Opname BSD</small></span></button><button class="sidebar-item" onclick="openDataBSD()"><span class="sidebar-icon green">📊</span><span class="sidebar-item-text"><strong>DATA BSD</strong><small>Monitoring Data</small></span></button></div><div class="sidebar-spacer"></div><div class="sidebar-user"><div id="avatar" class="sidebar-avatar">TB</div><div class="sidebar-user-info"><strong id="userName">User</strong><span>Active User</span></div></div><div class="sidebar-actions"><button class="sidebar-action" onclick="openSettings()"><span>⚙</span> SETTINGS</button><button class="sidebar-action logout-action" onclick="logout()"><span>⇥</span> LOGOUT</button></div></aside><main class="dashboard-content"><div class="dashboard-topbar"><div id="connectionStatus" class="system-status"><span class="status-dot"></span> SYSTEM ONLINE</div></div><div class="welcome-block"><span class="welcome-label">INVENTORY MANAGEMENT</span><h1 id="welcomeName" class="welcome-title">WELCOME</h1><p class="welcome-sub">Kelola stock loss, stock opname, dan monitoring data stock BSD melalui satu sistem.</p></div><div class="dashboard-overview"><div class="overview-card"><span class="overview-icon">📋</span><div><strong>Inventory Operations</strong><p>Pilih menu di sidebar untuk mulai bekerja.</p></div></div><div class="overview-card"><span class="overview-icon green">●</span><div><strong>System Status</strong><p>Sistem siap digunakan dan terhubung.</p></div></div></div><div class="dashboard-footer"><span>THE BUTCHER • INVENTORY MANAGEMENT</span><span>v1.0</span></div></main></div></section><section id="inventoryPage"><div class="inventory-center"><div class="inventory-top"><div class="inventory-brand"><div class="inventory-logo"> TB </div><div><strong> THE BUTCHER </strong><span> INVENTORY SYSTEM </span></div></div><button class="back-button" onclick="backToDashboard()" > ← Dashboard </button></div><div class="inventory-card"><div class="inventory-heading"><div id="inventoryIcon" class="inventory-heading-icon" > 📦 </div><h1 id="inventoryTitle"> STOCK OPNAME </h1><p id="inventorySubtitle"> Input data inventory </p></div><div class="inventory-form-grid"><div class="inventory-input-group"><label> BARCODE / ARTICLE </label><input id="barcode" class="inventory-input" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Scan atau masukkan barcode / article" ><div id="suggestions" class="suggestions" ></div><div id="productName" class="product-name" ></div></div><div class="inventory-input-group"><label> QUANTITY </label><input id="qty" class="inventory-input" type="text" inputmode="decimal" autocomplete="off" placeholder="Masukan Qty" ></div></div><button id="sendButton" class="send-button" onclick="saveInventory()" > KIRIM DATA </button><div class="reset-row"><button class="reset-button" onclick="resetInventory()" > ↻ RESET DATA </button></div><div id="inventoryMessage" class="inventory-message" ></div><div class="history-section"><div class="history-header"><strong> RIWAYAT INPUT </strong><span id="historyMode"> - </span></div><div class="history-summary"><div id="pendingCounter" class="history-counter pending" > ⏳ 0 MENGIRIM </div><div id="sentCounter" class="history-counter sent" > ✓ 0 TERKIRIM </div><div id="failedCounter" class="history-counter failed" > ✕ 0 GAGAL </div></div><div id="historyList" class="history-list" ><div class="history-empty"> Belum ada data </div></div></div></div></div></section><section id="dataBsdPage"><div class="data-bsd-topbar"><div class="data-bsd-brand"><div class="data-bsd-logo"> TB </div><div><strong> DATA BSD </strong><span> STOCK MONITORING </span></div></div><div class="data-bsd-actions"><button class="data-bsd-refresh" id="bsdRefreshButton" onclick="refreshBSD()" > ↻ Refresh </button><button class="data-bsd-back" onclick="closeDataBSD()" > ← Dashboard </button></div></div><div class="data-bsd-body"><div class="data-dashboard"><div class="data-page-heading"><div class="data-page-title" id="bsdPageTitle" > MEAT </div><div class="data-page-subtitle"> Monitoring stock BSD </div></div><section class="data-stats"><div class="data-stat"><div class="data-stat-label"> SHEET </div><div class="data-stat-value" id="bsdSheetValue" > MEAT </div><div class="data-stat-desc"> Sheet aktif </div></div><div id="bsdNegativeCard" class="data-stat clickable" onclick="bsdShowNegative()" ><div class="data-stat-label"> NEGATIVE STOCK </div><div class="data-stat-value" id="bsdNegativeValue" > 0 </div><div class="data-stat-desc"> Klik untuk melihat </div></div><div class="data-stat"><div class="data-stat-label"> UPDATE </div><div class="data-stat-value" id="bsdUpdateValue" style="font-size:10px;" > — </div><div class="data-stat-desc"> Informasi update </div></div><div id="bsdLowCard" class="data-stat clickable" onclick="bsdShowLow()" ><div class="data-stat-label"> LOW STOCK </div><div class="data-stat-value" id="bsdLowValue" > 0 </div><div class="data-stat-desc"> Klik untuk melihat </div></div></section><section class="data-table-container"><div class="data-table-header"><div><div class="data-table-title" id="bsdTableTitle" > Semua Barang </div><div class="data-info" id="bsdDataInfo" > 0 data </div></div><div class="data-table-actions"><button id="bsdAllBtn" class="bsd-all-btn" onclick="bsdShowAll()" > ← Semua Barang </button><input id="bsdSearch" class="bsd-search" type="text" placeholder="Cari barang..." oninput="bsdFilter()" ></div></div><div class="data-table-scroll"><table class="data-table"><thead><tr id="bsdTableHead"><th>#</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead><tbody id="bsdTableBody"><tr><td colspan="8" class="bsd-empty" > Memuat data... </td></tr></tbody></table></div></section></div></div></section><div id="signupModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Buat Akun </h2><button class="modal-close" onclick="closeModal('signupModal')" > × </button></div><div class="input-group"><label> USERNAME </label><input id="signupUsername" class="input" type="text" placeholder="username" ></div><div class="input-group"><label> EMAIL </label><input id="signupEmail" class="input" type="email" placeholder="email" ></div><div class="input-group"><label> PASSWORD </label><input id="signupPassword" class="input" type="password" placeholder="Minimal 6 karakter" ></div><div class="input-group"><label> KONFIRMASI PASSWORD </label><input id="signupConfirm" class="input" type="password" placeholder="Ulangi password" ></div><button class="btn btn-primary" onclick="signup()" > DAFTAR </button><div id="signupMessage" class="message" ></div></div></div><div id="verifyModal" class="modal" ><div class="modal-card verify-card"><div class="verify-icon"> ✓ </div><div class="brand verify-brand"><div class="brand-logo"><span>TB</span></div><h1> VERIFIKASI EMAIL </h1><p> THE BUTCHER • INVENTORY SYSTEM </p></div><div class="verify-content"><div class="verify-title"> PENDAFTARAN BERHASIL </div><div class="verify-text"> Link verifikasi telah dikirim ke: </div><div id="verifyEmail" class="verify-email" > — </div><div class="verify-info"> 📧 Silakan buka email Anda, lalu klik link verifikasi yang dikirim oleh <b>THE BUTCHER</b>. <br><br> Setelah selesai, kembali ke sini dan klik <b>CEK VERIFIKASI</b>. </div><div id="verifyStatus" class="verify-status" > MENUNGGU VERIFIKASI EMAIL </div><button id="checkVerifyBtn" class="btn btn-primary" onclick="checkEmailVerification()" > ✓ CEK VERIFIKASI </button><button id="resendVerifyBtn" class="btn btn-secondary" style="margin-top:8px" onclick="resendVerificationEmail()" > ↻ KIRIM ULANG EMAIL </button><button class="back-login-button" onclick="backToLoginFromVerify()" > ← KEMBALI KE LOGIN </button></div></div></div><div id="forgotModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Reset Password </h2><button class="modal-close" onclick="closeModal('forgotModal')" > × </button></div><div class="input-group"><label> EMAIL </label><input id="forgotEmail" class="input" type="email" placeholder="Masukkan email" ></div><button class="btn btn-primary" onclick="forgotPassword()" > KIRIM LINK RESET </button><div id="forgotMessage" class="message" ></div></div></div><div id="settingsModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Settings </h2><button class="modal-close" onclick="closeModal('settingsModal')" > × </button></div><div class="profile-box"><div class="profile-row"><span class="profile-label"> Username </span><span id="settingsUsername" class="profile-value" > - </span></div><div class="profile-row"><span class="profile-label"> Email </span><span id="settingsEmail" class="profile-value" > - </span></div><div class="profile-row"><span class="profile-label"> Role </span><span id="settingsRole" class="profile-value" > - </span></div></div><button class="btn btn-secondary" onclick="resetOwnPassword()" > KIRIM RESET PASSWORD </button><div id="adminSection" class="admin-section hidden" ><h3> USER MENUNGGU PERSETUJUAN </h3><div id="pendingList" class="pending-list" ><div class="history-empty"> Tidak ada user pending </div></div></div></div></div><div id="toastContainer"></div><script type="module">  
   
 /* =====================================================  
    FIREBASE IMPORT  
@@ -1535,11 +1272,7 @@ function readHistoryCache(mode){
       ? data.slice(  
           0,  
           HISTORY_LIMIT  
-        ).map(item=>{  
-          if(item?.__status==="pending")  
-            item.__status="disconnected";  
-          return item;  
-        })  
+        )  
       : [];  
   
   }catch(e){  
@@ -1855,6 +1588,19 @@ function firebaseErrorMessage(error){
     )  
   )  
     return "Email sudah digunakan.";  
+  
+  if(  
+    code.includes(  
+      "invalid-credential"  
+    ) ||  
+    code.includes(  
+      "wrong-password"  
+    ) ||  
+    code.includes(  
+      "user-not-found"  
+    )  
+  )  
+    return "Username atau password salah.";  
   
   if(  
     code.includes(  
@@ -3322,12 +3068,6 @@ function renderHistory(){
         historyStatus(x)==="failed"  
     ).length;  
   
-  const disconnected=  
-    historyRows.filter(  
-      x=>  
-        historyStatus(x)==="disconnected"  
-    ).length;  
-  
   $("pendingCounter")  
     .textContent=  
       "⏳ "+  
@@ -3345,13 +3085,6 @@ function renderHistory(){
       "✕ "+  
       failed+  
       " GAGAL";  
-  
-  if($("disconnectedCounter"))  
-    $("disconnectedCounter")  
-      .textContent=  
-        "⚠ "+  
-        disconnected+  
-        " TERPUTUS";  
   
   if(!historyRows.length){  
   
@@ -3407,15 +3140,6 @@ function renderHistory(){
               </span>`;  
   
           }else if(  
-            status==="disconnected"  
-          ){  
-  
-            statusHtml=  
-              `<span class="history-status disconnected">  
-                ⚠ TERPUTUS  
-              </span>`;  
-  
-          }else if(  
             status==="failed"  
           ){  
   
@@ -3454,17 +3178,6 @@ function renderHistory(){
                   ${statusHtml}  
                 </div>  
   
-                ${  
-                  (status==="failed"||status==="disconnected")  
-                    ? `<button  
-                        class="history-retry"  
-                        type="button"  
-                        data-history-index="${index}"  
-                      >  
-                        ↻ KIRIM ULANG  
-                      </button>`  
-                    : ""  
-                }  
                 <button  
                   class="history-delete"  
                   type="button"  
@@ -3562,22 +3275,6 @@ function renderHistory(){
   
       }  
     );  
-  list  
-    .querySelectorAll(  
-      ".history-retry"  
-    )  
-    .forEach(  
-      button=>{  
-        button.addEventListener(  
-          "click",  
-          async e=>{  
-            e.stopPropagation();  
-            const index=Number(button.dataset.historyIndex);  
-            await retryHistoryItem(index);  
-          }  
-        );  
-      }  
-    );  
   
 }  
   
@@ -3654,10 +3351,7 @@ async function loadHistory(
           item.__localId &&  
           item.__status===  
           "pending"  
-      ).map(item=>({  
-        ...item,  
-        __status:"disconnected"  
-      }));  
+      );  
   
     const failedLocal=  
       historyRows.filter(  
@@ -3667,36 +3361,46 @@ async function loadHistory(
           "failed"  
       );  
   
-    const serverRows=  
-      rows  
-        .slice(  
-          0,  
-          HISTORY_LIMIT  
-        )  
-        .map(  
-          item=>({  
-  
-            ...item,  
-  
-            __status:  
-              "sent"  
-  
-          })  
-        );  
-  
-    historyRows=[  
-  
-      ...pendingLocal,  
-  
-      ...failedLocal,  
-  
-      ...serverRows  
-  
-    ].slice(  
-      0,  
-      HISTORY_LIMIT  
-    );  
-  
+    const serverRows=
+      rows
+        .slice(0,HISTORY_LIMIT)
+        .map(item=>({
+          ...item,
+          __status:"sent"
+        }));
+
+    /* RECONCILE LOCAL QUEUE AFTER RELOAD */
+    const now=Date.now();
+    const pendingResolved=[];
+
+    pendingLocal.forEach(item=>{
+      const code=barcodeKey(item.barcode||item.kode||item.article||"");
+      const itemQty=String(item.qty??item.quantity??item.Qty??"");
+      const itemMode=String(item.mode||"");
+
+      const matched=serverRows.some(server=>{
+        const serverCode=barcodeKey(server.barcode||server.kode||server.article||"");
+        const serverQty=String(server.qty??server.quantity??server.Qty??"");
+        const serverMode=String(server.mode||"");
+        return serverCode===code && serverQty===itemQty &&
+          (!itemMode || !serverMode || serverMode===itemMode);
+      });
+
+      if(matched) return;
+
+      /* A request cannot stay "MENGIRIM" forever. */
+      if(Number(item.createdAt)>0 && now-Number(item.createdAt)>60000){
+        item.__status="failed";
+      }
+      pendingResolved.push(item);
+    });
+
+    historyRows=[
+      ...pendingResolved,
+      ...failedLocal,
+      ...serverRows
+    ].slice(0,HISTORY_LIMIT);
+
     selectedHistoryItem=  
       null;  
   
@@ -3867,16 +3571,6 @@ async function sendInventoryQueueItem(
   localItem  
 ){  
   
-  if(!localItem||localItem.__sending)  
-    return;  
-  
-  localItem.__sending=true;  
-  const controller=new AbortController();  
-  const timeout=setTimeout(  
-    ()=>controller.abort(),  
-    20000  
-  );  
-  
   try{  
   
     const response=  
@@ -3884,7 +3578,6 @@ async function sendInventoryQueueItem(
         URL_SCRIPT,  
         {  
           method:"POST",  
-          signal:controller.signal,  
   
           body:  
             JSON.stringify({  
@@ -3963,15 +3656,10 @@ async function sendInventoryQueueItem(
     );  
   
     showToast(  
-      error?.name==="AbortError"  
-        ? "Pengiriman timeout. Tekan KIRIM ULANG di riwayat."  
-        : "Data gagal dikirim. Tekan KIRIM ULANG di riwayat.",  
+      "Data gagal dikirim. Tekan 2x item untuk coba lagi.",  
       "error"  
     );  
   
-  }finally{  
-    clearTimeout(timeout);  
-    localItem.__sending=false;  
   }  
   
 }  
@@ -4017,7 +3705,7 @@ async function retryHistoryItem(
   
   if(  
     !item||  
-    (item.__status!=="failed"&&item.__status!=="disconnected")  
+    item.__status!=="failed"  
   )  
     return;  
   
@@ -4062,7 +3750,7 @@ async function deleteHistoryItem(
   }  
   
   if(  
-    (item.__status==="failed"||item.__status==="disconnected")&&  
+    item.__status==="failed"&&  
     item.__localId  
   ){  
   
@@ -4379,8 +4067,8 @@ document.addEventListener(
       );  
   
     if(  
-      (historyRows[index]?.__status==="failed"||  
-       historyRows[index]?.__status==="disconnected")  
+      historyRows[index]?.__status===  
+      "failed"  
     ){  
   
       retryHistoryItem(  
