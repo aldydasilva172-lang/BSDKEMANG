@@ -1591,6 +1591,19 @@ function firebaseErrorMessage(error){
   
   if(  
     code.includes(  
+      "invalid-credential"  
+    ) ||  
+    code.includes(  
+      "wrong-password"  
+    ) ||  
+    code.includes(  
+      "user-not-found"  
+    )  
+  )  
+    return "Username atau password salah.";  
+  
+  if(  
+    code.includes(  
       "invalid-email"  
     )  
   )  
@@ -3348,36 +3361,46 @@ async function loadHistory(
           "failed"  
       );  
   
-    const serverRows=  
-      rows  
-        .slice(  
-          0,  
-          HISTORY_LIMIT  
-        )  
-        .map(  
-          item=>({  
-  
-            ...item,  
-  
-            __status:  
-              "sent"  
-  
-          })  
-        );  
-  
-    historyRows=[  
-  
-      ...pendingLocal,  
-  
-      ...failedLocal,  
-  
-      ...serverRows  
-  
-    ].slice(  
-      0,  
-      HISTORY_LIMIT  
-    );  
-  
+    const serverRows=
+      rows
+        .slice(0,HISTORY_LIMIT)
+        .map(item=>({
+          ...item,
+          __status:"sent"
+        }));
+
+    /* RECONCILE LOCAL QUEUE AFTER RELOAD */
+    const now=Date.now();
+    const pendingResolved=[];
+
+    pendingLocal.forEach(item=>{
+      const code=barcodeKey(item.barcode||item.kode||item.article||"");
+      const itemQty=String(item.qty??item.quantity??item.Qty??"");
+      const itemMode=String(item.mode||"");
+
+      const matched=serverRows.some(server=>{
+        const serverCode=barcodeKey(server.barcode||server.kode||server.article||"");
+        const serverQty=String(server.qty??server.quantity??server.Qty??"");
+        const serverMode=String(server.mode||"");
+        return serverCode===code && serverQty===itemQty &&
+          (!itemMode || !serverMode || serverMode===itemMode);
+      });
+
+      if(matched) return;
+
+      /* A request cannot stay "MENGIRIM" forever. */
+      if(Number(item.createdAt)>0 && now-Number(item.createdAt)>60000){
+        item.__status="failed";
+      }
+      pendingResolved.push(item);
+    });
+
+    historyRows=[
+      ...pendingResolved,
+      ...failedLocal,
+      ...serverRows
+    ].slice(0,HISTORY_LIMIT);
+
     selectedHistoryItem=  
       null;  
   
@@ -3633,7 +3656,7 @@ async function sendInventoryQueueItem(
     );  
   
     showToast(  
-      "Data gagal dikirim. Tekan item untuk coba lagi.",  
+      "Data gagal dikirim. Tekan 2x item untuk coba lagi.",  
       "error"  
     );  
   
