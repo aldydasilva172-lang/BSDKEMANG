@@ -3606,6 +3606,102 @@ async function sendInventoryQueueItem(localItem){
 
   }catch(error){
     console.error("Send queue error:",error);
+
+    /*
+      PENTING:
+      Request bisa gagal menerima response karena jaringan / timeout,
+      padahal Apps Script sudah sempat menulis data ke Spreadsheet.
+      Jadi JANGAN langsung menandai GAGAL.
+
+      Cek Transaction ID ke server terlebih dahulu.
+      Kalau transaksi ternyata sudah ada, status langsung TERKIRIM
+      tanpa mengirim ulang sehingga tidak membuat qty dobel.
+    */
+    try{
+      const checkResponse=await fetch(URL_SCRIPT,{
+        method:"POST",
+        body:JSON.stringify({
+          action:"checkTransaction",
+          mode:localItem.mode||currentMode,
+          transactionId:transactionId
+        })
+      });
+
+      const checkText=(await checkResponse.text()).trim();
+      let check=null;
+      try{ check=JSON.parse(checkText); }catch(_){ }
+
+      const barcodeMatch=
+        check &&
+        normalizeBarcode(check.barcode||"")===
+        normalizeBarcode(localItem.barcode||"");
+
+      const qtyMatch=
+        check &&
+        Number.isFinite(Number(check.qty)) &&
+        Math.abs(Number(check.qty)-Number(localItem.qty))<0.0000001;
+
+      if(
+        check &&
+        check.success===true &&
+        check.exists===true &&
+        barcodeMatch &&
+        qtyMatch
+      ){
+        localItem.__status="sent";
+        localItem.row=Number(check.row)||localItem.row||0;
+        localItem.timestamp=
+          check.timestamp||
+          localItem.timestamp||
+          new Date().toISOString();
+        localItem.timestampMs=
+          Date.parse(localItem.timestamp)||
+          localItem.timestampMs||
+          Date.now();
+        localItem.transactionId=transactionId;
+        localItem.__transactionId=transactionId;
+
+        saveHistoryCache();
+        renderHistory();
+
+        try{
+          const firebaseId=
+            localItem.__firebaseId||
+            historyFirebaseId(localItem);
+
+          localItem.__firebaseId=firebaseId;
+
+          await setDoc(
+            doc(historyCollection(localItem.mode),firebaseId),
+            {
+              row:Number(check.row)||0,
+              timestamp:localItem.timestamp,
+              timestampMs:localItem.timestampMs,
+              barcode:String(localItem.barcode||""),
+              searchBarcode:String(localItem.barcode||""),
+              nama:String(localItem.nama||""),
+              qty:Number(localItem.qty)||0,
+              mode:localItem.mode,
+              transactionId:transactionId,
+              status:"sent",
+              syncedAt:Date.now()
+            },
+            {merge:true}
+          );
+        }catch(firebaseError){
+          console.warn("Firebase reconcile history gagal:",firebaseError);
+        }
+
+        showToast(
+          "Data sudah tersimpan. Tidak dibuat duplikat.",
+          "success"
+        );
+        return;
+      }
+    }catch(checkError){
+      console.warn("Check transaction setelah gagal kirim gagal:",checkError);
+    }
+
     localItem.__status="failed";
     saveHistoryCache();
     renderHistory();
