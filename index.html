@@ -5168,9 +5168,11 @@ function toggleDashboardSidebar(force){
 <style id="incoming-module-shell-style">
 #incomingModuleOverlay{
   position:fixed;inset:0;z-index:999999;display:none;
+  width:100vw;height:100dvh;
   background:#f5f6f8;
 }
 #incomingModuleOverlay.show{display:block}
+body.incoming-screen-active{overflow:hidden!important}
 #incomingModuleOverlay .incoming-module-frame{
   position:relative;width:100%;height:100%;
 }
@@ -5197,7 +5199,13 @@ let incomingModuleLoaded=false;
 function openIncomingModule(){
   const overlay=document.getElementById('incomingModuleOverlay');
   const frame=document.getElementById('incomingModuleFrame');
+  const dashboard=document.getElementById('dashboard');
   if(!overlay||!frame)return;
+
+  /* INCOMING = layar/module terpisah. Dashboard benar-benar disembunyikan. */
+  if(dashboard) dashboard.classList.add('hidden');
+  document.body.classList.add('incoming-screen-active');
+
   if(!incomingModuleLoaded){
     frame.srcdoc=INCOMING_MODULE_HTML;
     incomingModuleLoaded=true;
@@ -5207,9 +5215,12 @@ function openIncomingModule(){
 }
 function closeIncomingModule(){
   const overlay=document.getElementById('incomingModuleOverlay');
+  const dashboard=document.getElementById('dashboard');
   if(!overlay)return;
   overlay.classList.remove('show');
   overlay.setAttribute('aria-hidden','true');
+  document.body.classList.remove('incoming-screen-active');
+  if(dashboard) dashboard.classList.remove('hidden');
 }
 </script>
 
