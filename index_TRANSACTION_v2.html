@@ -1,0 +1,5024 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><title>THE BUTCHER</title><style>:root{--orange:#ff7a00;--orange2:#ffb347;--red:#ff3b30;--green:#35e889;--blue:#4b91ff;--bg:#08090c;--card:rgba(255,255,255,.065);--border:rgba(255,255,255,.11);--text:#fff;--muted:#858c98}*{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;min-height:100%}body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 15% 15%,rgba(255,122,0,.10),transparent 30%),radial-gradient(circle at 90% 85%,rgba(75,145,255,.08),transparent 30%),var(--bg);overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}#loginPage{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}.login-card{width:100%;max-width:420px;padding:36px;border-radius:28px;border:1px solid var(--border);background:linear-gradient( 145deg,rgba(255,255,255,.08),rgba(255,255,255,.025) );box-shadow:0 30px 90px rgba(0,0,0,.5);backdrop-filter:blur(22px);animation:loginIn .45s ease}@keyframes loginIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}.brand{text-align:center;margin-bottom:35px}.brand-logo{width:86px;height:86px;margin:0 auto 15px;border-radius:22px;display:flex;align-items:center;justify-content:center;background:linear-gradient( 135deg,var(--orange),#ff4700 );box-shadow:0 15px 40px rgba(255,122,0,.25)}.brand-logo span{font-size:27px;font-weight:950;letter-spacing:-2px}.brand h1{font-size:38px;font-weight:950;letter-spacing:2px}.brand p{margin-top:6px;color:var(--muted);font-size:25px}.input-group{margin-bottom:15px}.input-group label{display:block;margin-bottom:7px;font-size:10px;font-weight:800;color:#bdc1c8;letter-spacing:.7px}.input{width:100%;height:50px;padding:0 14px;border-radius:14px;border:1px solid var(--border);outline:none;background:rgba(0,0,0,.25);color:#fff;transition:.2s}.input:focus{border-color:rgba(255,122,0,.7);box-shadow:0 0 0 3px rgba(255,122,0,.08)}.btn{width:100%;min-height:50px;border-radius:14px;font-size:12px;font-weight:900;border:0;transition:.2s}.btn:hover{transform:translateY(-1px)}.btn-primary{color:#fff;background:linear-gradient( 135deg,var(--orange),#ff4700 );box-shadow:0 12px 30px rgba(255,122,0,.18)}.btn-secondary{color:#fff;background:rgba(255,255,255,.06);border:1px solid var(--border)}.login-actions{display:flex;justify-content:space-between;gap:10px;margin-top:16px}.text-button{border:0;background:none;color:#ff9c45;font-size:11px;font-weight:800}.message{min-height:18px;margin-top:12px;text-align:center;color:var(--muted);font-size:11px}.message.error{color:#ff6b61}.message.success{color:#52e99a}#dashboard{min-height:100vh;padding:10px}.dashboard-layout{width:100%;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:12px;align-items:stretch}.dashboard-main{position:relative;min-width:0;height:200px;min-height:200px;padding:14px 17px;display:flex;flex-direction:column;border-radius:18px;border:1px solid var(--border);background:linear-gradient( 145deg,rgba(255,255,255,.065),rgba(255,255,255,.018) );box-shadow:0 18px 50px rgba(0,0,0,.34);overflow:hidden}.dashboard-main:after{content:"";position:absolute;right:-85px;bottom:-105px;width:210px;height:210px;border-radius:50%;background:radial-gradient( circle,rgba(255,122,0,.15),transparent 70% );pointer-events:none}.topbar{position:relative;z-index:5;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}.top-brand,.user-area{display:flex;align-items:center}.top-brand{gap:7px}.top-brand-icon{width:29px;height:29px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:9px;font-weight:950;background:linear-gradient( 135deg,var(--orange),#ff4700 );box-shadow:0 6px 15px rgba(255,122,0,.16)}.top-brand-text strong{display:block;font-size:22px;letter-spacing:.7px}.top-brand-text span{display:block;margin-top:1px;font-size:9px;color:#727984;letter-spacing:.7px}.user-area{gap:8px;min-width:0}.system-status{display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:5px 7px;border-radius:999px;background:rgba(53,232,137,.055);border:1px solid rgba(53,232,137,.15);color:#70eda8;font-size:6px;font-weight:800;white-space:nowrap}.status-dot{width:4px;height:4px;flex:none;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green)}.system-status.offline{background:rgba(255,59,48,.055);border-color:rgba(255,59,48,.18);color:#ff6b61}.system-status.offline .status-dot{background:var(--red);box-shadow:0 0 7px var(--red)}.avatar{width:28px;height:28px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient( 135deg,#373b43,#181a1f );border:1px solid var(--border);font-size:7px;font-weight:900}.user-name{max-width:70px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:7px;font-weight:800}.icon-button{width:40px;height:28px;flex:none;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,.045);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;transition:.2s}.icon-button:hover{border-color:rgba(255,122,0,.35);background:rgba(255,122,0,.07);transform:translateY(-1px)}.welcome-block{position:relative;z-index:2;width:100%;margin:auto 0;padding-top:18px;text-align:left}.welcome-title{font-size:31px;line-height:1;font-weight:950;letter-spacing:-1.5px}.welcome-title span{background:linear-gradient( 135deg,#fff,var(--orange2) );color:transparent;-webkit-background-clip:text;background-clip:text}.welcome-sub{max-width:680px;margin:8px 0 26px;text-align:left;color:#858c98;font-size:11px;line-height:1.4}.dashboard-footer{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;gap:15px;padding-top:7px;margin-top:auto;border-top:1px solid rgba(255,255,255,.06);color:#626974;font-size:7px;text-align:center}.operations-panel{display:flex;flex-direction:column;gap:6px;min-width:0}.operations-heading{height:20px;display:flex;align-items:center;justify-content:space-between;padding:0 2px}.operations-heading h2{font-size:10px;font-weight:950;letter-spacing:.5px}.operations-heading span{font-size:6px;color:#656c77}.operation-card{position:relative;min-height:36px;padding:7px 27px 7px 38px;border-radius:10px;border:1px solid var(--border);background:linear-gradient( 145deg,rgba(255,255,255,.065),rgba(255,255,255,.022) );box-shadow:0 8px 20px rgba(0,0,0,.20);overflow:hidden;cursor:pointer;transition:transform .2s ease,border-color .2s ease,background .2s ease}.operation-card:hover{transform:translateX(-3px);border-color:rgba(255,122,0,.4);background:linear-gradient( 145deg,rgba(255,122,0,.09),rgba(255,255,255,.025) )}.operation-card:after{content:"";position:absolute;width:80px;height:80px;right:-45px;bottom:-50px;border-radius:50%;background:radial-gradient( circle,rgba(255,122,0,.13),transparent 70% )}.operation-icon{position:absolute;left:7px;top:50%;transform:translateY(-50%);width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:7px;margin:0;font-size:15px;background:rgba(255,122,0,.10);border:1px solid rgba(255,122,0,.17)}.operation-card.opname .operation-icon{background:rgba(75,145,255,.10);border-color:rgba(75,145,255,.17)}.operation-card.data .operation-icon{background:rgba(53,232,137,.08);border-color:rgba(53,232,137,.16)}.operation-title{font-size:16px;font-weight:950;line-height:1.1;margin-top:5px}.operation-desc{margin-top:2px;color:#747c88;font-size:8px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.operation-arrow{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:17px;height:17px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:rgba(255,255,255,.04);color:#999;font-size:8px}@media(max-width:900px){#dashboard{padding:8px}.dashboard-layout{grid-template-columns:1fr;gap:7px}.dashboard-main{height:120px;min-height:120px;padding:9px 11px;border-radius:13px}.welcome-title{font-size:23px}.welcome-sub{font-size:9px;max-width:550px}.operations-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.operations-heading{grid-column:1/-1;height:19px}.operation-card{min-height:44px;padding:9px 32px 9px 47px;border-radius:11px}.operation-icon{left:9px;width:29px;height:29px;border-radius:8px;font-size:13px}.operation-title{font-size:9px}.operation-desc{margin-top:3px;font-size:7px}.operation-arrow{right:8px;width:19px;height:19px;font-size:9px}.topbar .system-status{display:inline-flex}}@media(max-width:600px) and (orientation:portrait){#dashboard{padding:7px}.dashboard-layout{width:100%;display:flex;flex-direction:column;gap:7px}.dashboard-main{width:100%;height:125px;min-height:125px;padding:8px 10px;border-radius:12px;box-sizing:border-box}.top-brand{gap:6px}.top-brand-icon{width:25px;height:25px;border-radius:7px;font-size:8px}.top-brand-text strong{font-size:9px}.top-brand-text span{font-size:5.5px}.topbar .system-status{display:inline-flex;padding:4px 7px;font-size:5.5px;gap:3px}.topbar .status-dot{width:4px;height:4px}.user-name{display:none}.avatar,.icon-button{width:23px;height:23px}.avatar{font-size:6.5px}.icon-button{font-size:7.5px}.welcome-block{margin:auto 0}.welcome-title{font-size:21px;line-height:1;letter-spacing:-.9px}.welcome-sub{margin-top:4px;width:100%;max-width:360px;font-size:8px;line-height:1.35}.dashboard-footer{padding-top:4px;font-size:5.5px;gap:9px}.operations-panel{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.operations-heading{grid-column:1/-1;height:18px}.operations-heading h2{font-size:9px}.operations-heading span{font-size:6px}.operation-card{width:100%;min-width:0;min-height:68px;padding:31px 4px 5px;border-radius:9px;box-sizing:border-box}.operation-icon{left:7px;top:7px;transform:none;width:23px;height:23px;margin:0;border-radius:7px;font-size:10px}.operation-title{width:100%;font-size:6.5px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.operation-desc{width:100%;margin-top:3px;font-size:5px;line-height:1.2;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.operation-arrow{right:5px;bottom:5px;top:auto;transform:none;width:15px;height:15px;border-radius:5px;font-size:7px}}@media(max-width:380px) and (orientation:portrait){#dashboard{padding:6px}.dashboard-layout{gap:6px}.dashboard-main{height:116px;min-height:116px;padding:7px 8px}.welcome-title{font-size:19px}.welcome-sub{font-size:7px}.operation-card{min-height:62px;padding:29px 3px 4px}.operation-icon{left:6px;top:6px;width:21px;height:21px;font-size:9px}.operation-title{font-size:6px}.operation-desc{font-size:4.5px}.operation-arrow{right:4px;bottom:4px;width:14px;height:14px;font-size:6px}}@media(max-width:900px) and (orientation:landscape){#dashboard{padding:8px 10px}.dashboard-layout{width:100%;max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:10px;align-items:stretch}.dashboard-main{width:auto;height:145px;min-height:145px;padding:11px 14px;border-radius:16px}.topbar{gap:7px}.top-brand{gap:6px}.top-brand-icon{width:26px;height:26px;border-radius:7px;font-size:8px}.top-brand-text strong{font-size:9px}.top-brand-text span{font-size:5.5px}.user-area{gap:5px}.user-name{display:block;max-width:70px;font-size:7px}.avatar,.icon-button{width:25px;height:25px}.avatar{font-size:7px}.icon-button{font-size:9px}.topbar .system-status{display:inline-flex;padding:5px 7px;font-size:6px;gap:4px}.topbar .status-dot{width:4px;height:4px}.welcome-block{margin:auto 0}.welcome-title{font-size:27px;line-height:1;letter-spacing:-1.2px}.welcome-sub{margin-top:6px;max-width:600px;font-size:9px;line-height:1.35}.dashboard-footer{padding-top:5px;font-size:6px;gap:12px}.operations-panel{width:auto;display:flex;flex-direction:column;gap:6px}.operations-heading{height:20px;grid-column:auto}.operations-heading h2{font-size:10px}.operations-heading span{font-size:6px}.operation-card{width:auto;min-height:36px;padding:7px 27px 7px 38px;border-radius:10px}.operation-icon{left:7px;top:50%;transform:translateY(-50%);width:24px;height:24px;margin:0;border-radius:7px;font-size:11px}.operation-title{font-size:8px;line-height:1.1;white-space:nowrap}.operation-desc{margin-top:2px;font-size:6px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.operation-arrow{right:6px;top:50%;bottom:auto;transform:translateY(-50%);width:17px;height:17px;font-size:8px}}#inventoryPage{position:fixed;inset:0;z-index:120;display:none;flex-direction:column;width:100%;height:100dvh;min-height:100vh;overflow:hidden;background:radial-gradient(circle at 15% 10%,rgba(255,122,0,.13),transparent 30%),radial-gradient(circle at 90% 90%,rgba(255,59,48,.06),transparent 30%),#070b12}#inventoryPage.show{display:flex}#inventoryPage.opname{background:radial-gradient(circle at 15% 10%,rgba(75,145,255,.13),transparent 30%),radial-gradient(circle at 90% 90%,rgba(53,232,137,.06),transparent 30%),#070b12}.inventory-center{width:100%;height:100%;min-height:0;margin:0;display:flex;flex-direction:column;animation:inventoryScreenIn .25s ease}@keyframes inventoryScreenIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.inventory-top{flex:none;width:100%;height:64px;min-height:64px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(7,11,18,.88);backdrop-filter:blur(20px);z-index:10}.inventory-brand{display:flex;align-items:center;gap:10px;min-width:0}.inventory-logo{width:38px;height:38px;flex:none;border-radius:11px;display:flex;align-items:center;justify-content:center;background:linear-gradient( 135deg,var(--orange),#ff4700 );font-size:11px;font-weight:950;box-shadow:0 8px 24px rgba(255,122,0,.15)}.inventory-brand strong{display:block;font-size:13px;letter-spacing:1px;white-space:nowrap}.inventory-brand span{display:block;margin-top:2px;color:#6d7480;font-size:8px;letter-spacing:1px}.back-button{flex:none;height:36px;padding:0 12px;border-radius:10px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);color:#fff;font-size:10px;font-weight:800;transition:.2s}.back-button:hover{background:rgba(255,255,255,.09);transform:translateY(-1px)}.inventory-card{flex:1;min-height:0;width:100%;max-width:1100px;margin:0 auto;padding:24px 18px 35px;border:0;border-radius:0;background:transparent;box-shadow:none;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}.inventory-heading{text-align:left;margin:0 0 22px}.inventory-heading-icon{width:44px;height:44px;margin:0 0 12px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(255,122,0,.09);border:1px solid rgba(255,122,0,.17)}#inventoryPage.opname .inventory-heading-icon{background:rgba(75,145,255,.09);border-color:rgba(75,145,255,.17)}.inventory-heading h1{font-size:26px;line-height:1.1;font-weight:950;letter-spacing:.3px}.inventory-heading p{margin-top:6px;color:rgba(255,255,255,.42);font-size:11px}.inventory-form-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(180px,.7fr);gap:12px;align-items:start}.inventory-input-group{position:relative;margin-bottom:15px}.inventory-input-group label{display:block;margin-bottom:7px;color:rgba(255,255,255,.52);font-size:9px;font-weight:900;letter-spacing:1px}.inventory-input{width:100%;height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,.10);outline:none;background:rgba(255,255,255,.045);color:#fff;font-size:16px!important;line-height:1.2;text-align:center;touch-action:manipulation;transition:.2s ease}.inventory-input::placeholder{color:rgba(255,255,255,.25);text-align:center}.inventory-input:focus{border-color:rgba(255,122,0,.60);background:rgba(255,255,255,.065);box-shadow:0 0 0 3px rgba(255,122,0,.08)}#inventoryPage.opname .inventory-input:focus{border-color:rgba(75,145,255,.60);box-shadow:0 0 0 3px rgba(75,145,255,.08)}.product-name{display:none;margin-top:7px;padding:9px 11px;border-radius:10px;background:rgba(53,232,137,.055);border:1px solid rgba(53,232,137,.15);color:#65eca7;font-size:10px;font-weight:800;line-height:1.4;text-align:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;animation:productNameIn .18s ease}.product-name.show{display:block}@keyframes productNameIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}.send-button{width:100%;height:54px;border:0;border-radius:14px;background:linear-gradient( 135deg,var(--orange),#ff4700 );color:#fff;font-size:12px;font-weight:950;box-shadow:0 14px 32px rgba(255,122,0,.18);transition:.2s}.send-button:hover{transform:translateY(-1px)}.send-button:active{transform:scale(.99)}#inventoryPage.opname .send-button{background:linear-gradient( 135deg,#4b91ff,#2870df );box-shadow:0 14px 32px rgba(75,145,255,.16)}.inventory-message{min-height:17px;margin-top:10px;text-align:center;color:#737b86;font-size:10px}.inventory-message.error{color:#ff6b61}.inventory-message.success{color:#52e99a}.suggestions{position:absolute;left:0;right:0;top:77px;z-index:100;display:none;max-height:220px;overflow-y:auto;padding:5px;border-radius:14px;border:1px solid rgba(255,255,255,.11);background:rgba(18,20,25,.98);box-shadow:0 20px 50px rgba(0,0,0,.5)}.suggestion-item{padding:10px;border-radius:10px;cursor:pointer;transition:.15s}.suggestion-item:hover{background:rgba(255,122,0,.10)}.suggestion-barcode{font-size:11px;font-weight:900}.suggestion-name{margin-top:3px;color:#747c88;font-size:9px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.history-section{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07)}.history-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}.history-header strong{font-size:11px}.history-header span{color:#626974;font-size:8px}.history-summary{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}.history-counter{padding:5px 8px;border-radius:7px;font-size:8px;font-weight:900;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.035)}.history-counter.pending{color:#ffbd69}.history-counter.sent{color:#65eca7}.history-counter.failed{color:#ff7169}.history-list{
+  max-height:390px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  touch-action:pan-y;
+  scrollbar-width:thin;
+  will-change:scroll-position;
+}.history-item{touch-action:pan-y;position:relative;padding:10px 11px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:11px;border:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.035);cursor:pointer;transition:.18s ease}.history-item:hover{border-color:rgba(255,122,0,.25);background:rgba(255,122,0,.055)}.history-item.selected{border-color:rgba(255,122,0,.4);background:rgba(255,122,0,.075)}.history-main{min-width:0;flex:1}.history-code{font-size:10px;font-weight:800}.history-name{margin-top:2px;color:#707783;font-size:8px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.history-meta{display:flex;align-items:center;gap:7px;margin-top:5px}.history-status{font-size:8px;font-weight:900}.history-status.pending{color:#ffbd69}.history-status.sent{color:#65eca7}.history-status.failed{color:#ff7169}.history-delete{display:none;margin-top:8px;padding:7px 10px;border:0;border-radius:8px;background:rgba(255,59,48,.12);color:#ff7169;font-size:9px;font-weight:900;cursor:pointer}.history-item.selected .history-delete{display:inline-flex;align-items:center;justify-content:center}.history-delete:hover{background:rgba(255,59,48,.20);color:#fff}.history-delete:disabled{opacity:.5;cursor:not-allowed}.history-qty{flex:none;color:var(--orange2);font-size:10px;font-weight:900;text-align:right}.history-item.pending{border-color:rgba(255,179,71,.16)}.history-item.failed{border-color:rgba(255,59,48,.20)}.history-item.sent{border-color:rgba(53,232,137,.08)}.history-spinner{display:inline-block;width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(255,255,255,.20);border-top-color:#ffb347;animation:spin .7s linear infinite;margin-right:4px;vertical-align:-1px}@keyframes spin{to{transform:rotate(360deg)}}.history-empty{padding:22px 17px;text-align:center;color:#626974;font-size:9px}.reset-row{margin-top:14px;display:flex;justify-content:flex-start}.reset-button{min-width:150px;min-height:40px;padding:0 16px;border:1px solid rgba(255,255,255,.08);border-radius:11px;background:rgba(255,255,255,.045);color:#858c98;font-size:10px;font-weight:900;transition:.2s}.reset-button:hover{color:#fff;border-color:rgba(255,59,48,.25);background:rgba(255,59,48,.07)}#dataBsdPage{position:fixed;inset:0;z-index:120;display:none;flex-direction:column;background:radial-gradient(circle at 15% 10%,rgba(0,140,255,.10),transparent 30%),radial-gradient(circle at 90% 90%,rgba(0,255,180,.06),transparent 30%),#070b12}#dataBsdPage.show{display:flex}.data-bsd-topbar{flex:none;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(7,11,18,.88);backdrop-filter:blur(20px);z-index:10}.data-bsd-brand{display:flex;align-items:center;gap:10px}.data-bsd-logo{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:linear-gradient( 135deg,var(--orange),#ff4700 );font-size:11px;font-weight:950}.data-bsd-brand strong{display:block;font-size:13px;letter-spacing:1px}.data-bsd-brand span{display:block;margin-top:2px;color:#6d7480;font-size:8px;letter-spacing:1px}.data-bsd-actions{display:flex;align-items:center;gap:8px}.data-bsd-back,.data-bsd-refresh{height:36px;padding:0 12px;border-radius:10px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);color:#fff;font-size:10px;font-weight:800}.data-bsd-body{flex:1;min-height:0;overflow:auto;padding:18px}.data-dashboard{width:100%;max-width:1500px;margin:auto}.data-page-heading{margin-bottom:17px}.data-page-title{font-size:25px;font-weight:900;letter-spacing:-.5px}.data-page-subtitle{margin-top:4px;color:rgba(255,255,255,.42);font-size:11px}.data-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:15px}.data-stat{position:relative;min-height:95px;padding:15px;border-radius:15px;border:1px solid rgba(255,255,255,.08);background:linear-gradient( 145deg,rgba(255,255,255,.055),rgba(255,255,255,.018) );overflow:hidden}.data-stat.clickable{cursor:pointer;transition:.2s}.data-stat.clickable:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.17)}.data-stat.selected{border-color:rgba(0,180,255,.45);background:linear-gradient( 145deg,rgba(0,150,255,.13),rgba(0,220,180,.04) )}.data-stat-label{color:rgba(255,255,255,.43);font-size:9px;font-weight:900;letter-spacing:1.1px}.data-stat-value{margin-top:8px;font-size:25px;line-height:1;font-weight:900}.data-stat-desc{margin-top:7px;color:rgba(255,255,255,.32);font-size:9px}#bsdNegativeValue{color:#ff6666}#bsdLowValue{color:#f4d35e}.data-table-container{border:1px solid rgba(255,255,255,.08);border-radius:15px;background:rgba(8,13,21,.72);backdrop-filter:blur(18px);overflow:hidden;box-shadow:0 18px 45px rgba(0,0,0,.18)}.data-table-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 16px;border-bottom:1px solid rgba(255,255,255,.07)}.data-table-title{font-size:14px;font-weight:900}.data-info{margin-top:3px;color:rgba(255,255,255,.36);font-size:9px}.data-table-actions{display:flex;align-items:center;gap:8px}.bsd-all-btn{display:none;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.75);font-size:9px;font-weight:800}.bsd-search{width:220px;height:34px;padding:0 11px;border-radius:8px;border:1px solid rgba(255,255,255,.10);outline:none;background:rgba(255,255,255,.045);color:#fff;font-size:10px}.data-table-scroll{width:100%;overflow:auto}.data-table{width:100%;min-width:850px;border-collapse:collapse}.data-table thead{background:rgba(255,255,255,.035)}.data-table th{padding:11px 13px;text-align:left;white-space:nowrap;color:rgba(255,255,255,.40);font-size:9px;font-weight:900;letter-spacing:.7px;border-bottom:1px solid rgba(255,255,255,.07)}.data-table td{padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.045);color:rgba(255,255,255,.80);font-size:11px;white-space:nowrap}.data-table tbody tr:hover{background:rgba(255,255,255,.035)}.bsd-row-number{color:rgba(255,255,255,.22);font-size:9px}.bsd-low-row{background:rgba(245,211,94,.025)}.bsd-low-value{color:#f1d96a!important;font-weight:900;background:rgba(245,211,94,.055)}.bsd-negative-row{background:rgba(255,70,70,.035)}.bsd-negative-value{color:#ff5c5c!important;font-weight:950;background:rgba(255,70,70,.085)}.bsd-empty{padding:45px 20px!important;text-align:center;color:rgba(255,255,255,.28)!important;font-size:11px!important}.modal{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.72);backdrop-filter:blur(12px)}.modal.show{display:flex}.modal-card{width:100%;max-width:450px;max-height:calc(100vh - 36px);overflow:auto;padding:25px;border-radius:23px;border:1px solid var(--border);background:linear-gradient( 145deg,rgba(25,27,32,.98),rgba(13,14,18,.98) );box-shadow:0 30px 100px rgba(0,0,0,.65)}.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.modal-head h2{font-size:18px;font-weight:900}.modal-close{width:34px;height:34px;border-radius:9px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:#fff}.profile-box{padding:14px;margin-bottom:16px;border-radius:15px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06)}.profile-row{display:flex;justify-content:space-between;gap:15px;margin-bottom:8px}.profile-row:last-child{margin-bottom:0}.profile-label{color:#6e7580;font-size:9px}.profile-value{color:#e8eaed;font-size:10px;font-weight:800;text-align:right}.admin-section{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.06)}.admin-section h3{margin-bottom:9px;font-size:12px}.pending-list{display:flex;flex-direction:column;gap:7px;max-height:220px;overflow:auto}.pending-user{padding:10px;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.05)}.pending-user-name{font-size:10px;font-weight:900}.pending-user-email{margin-top:3px;color:#6f7782;font-size:8px}.pending-actions{display:flex;gap:5px;margin-top:8px}.small-btn{padding:6px 9px;border:0;border-radius:8px;font-size:8px;font-weight:900}.approve-btn{color:#52e99a;background:rgba(53,232,137,.12)}.reject-btn{color:#ff7169;background:rgba(255,59,48,.12)}#toastContainer{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:1000;width:min(420px,calc(100% - 30px));pointer-events:none}.toast{padding:11px 14px;border-radius:12px;background:rgba(25,27,32,.97);border:1px solid var(--border);box-shadow:0 15px 40px rgba(0,0,0,.4);text-align:center;font-size:10px;font-weight:800}.toast.success{color:#65eca7;border-color:rgba(53,232,137,.2)}.toast.error{color:#ff726b;border-color:rgba(255,59,48,.2)}@media(max-width:700px){.inventory-form-grid{grid-template-columns:1fr}}@media(max-width:650px){.data-bsd-topbar{height:50px;min-height:50px;padding:0 8px;gap:6px;background:rgba(7,11,18,.94);backdrop-filter:blur(18px)}.data-bsd-brand{gap:7px;min-width:0}.data-bsd-logo{width:30px;height:30px;min-width:30px;border-radius:8px;font-size:8px}.data-bsd-brand strong{font-size:10px;letter-spacing:.7px;white-space:nowrap}.data-bsd-brand span{margin-top:1px;font-size:6px;letter-spacing:.7px}.data-bsd-actions{gap:4px}.data-bsd-back,.data-bsd-refresh{height:30px;padding:0 7px;border-radius:8px;font-size:8px;white-space:nowrap}.data-bsd-body{padding:8px;overflow:auto}.data-dashboard{width:100%}.data-page-heading{margin-bottom:9px}.data-page-title{font-size:17px;line-height:1.1;letter-spacing:-.3px}.data-page-subtitle{margin-top:3px;font-size:8px}.data-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:9px}.data-stat{min-height:60px;padding:9px;border-radius:10px;border-color:rgba(255,255,255,.07);background:linear-gradient( 145deg,rgba(255,255,255,.05),rgba(255,255,255,.015) )}.data-stat-label{font-size:7px;letter-spacing:.7px}.data-stat-value{margin-top:5px;font-size:18px}.data-stat-desc{margin-top:4px;font-size:7px}.data-table-container{border-radius:11px;box-shadow:0 10px 25px rgba(0,0,0,.18)}.data-table-header{display:flex;flex-direction:column;align-items:stretch;gap:7px;padding:9px}.data-table-title{font-size:11px}.data-info{margin-top:2px;font-size:7px}.data-table-actions{width:100%;gap:5px}.bsd-search{width:auto;flex:1;height:30px;padding:0 9px;border-radius:7px;font-size:9px}.bsd-all-btn{padding:6px 8px;border-radius:7px;font-size:7px}#bsdNavigation{gap:5px!important;margin-bottom:8px!important}#bsdNavigation button{min-height:29px!important;height:29px!important;padding:0 8px!important;border-radius:7px!important;font-size:7px!important;letter-spacing:.2px!important}.data-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.data-table{min-width:720px}.data-table th{padding:8px 9px;font-size:7px;letter-spacing:.4px}.data-table td{padding:8px 9px;font-size:9px}.bsd-row-number{font-size:7px}.bsd-empty{padding:30px 12px!important;font-size:9px!important}.data-table tbody tr{height:32px}.bsd-low-value,.bsd-negative-value{font-weight:900}}@media(max-width:380px){.data-bsd-topbar{height:48px;min-height:48px;padding:0 7px}.data-bsd-logo{width:28px;height:28px;min-width:28px}.data-bsd-brand strong{font-size:9px}.data-bsd-brand span{font-size:5.5px}.data-bsd-back,.data-bsd-refresh{height:28px;padding:0 6px;font-size:7px}.data-bsd-body{padding:7px}.data-page-title{font-size:16px}.data-page-subtitle{font-size:7px}.data-stats{gap:5px}.data-stat{min-height:56px;padding:8px;border-radius:9px}.data-stat-label{font-size:6.5px}.data-stat-value{font-size:17px}.data-stat-desc{font-size:6.5px}#bsdNavigation{gap:4px!important}#bsdNavigation button{height:27px!important;min-height:27px!important;padding:0 6px!important;font-size:6.5px!important}.data-table-header{padding:8px}.data-table-title{font-size:10px}.data-info{font-size:6.5px}.bsd-search{height:28px;font-size:8px}} .history-item.stale{border-color:rgba(255,159,67,.28);background:rgba(255,159,67,.045)}
+.history-status.stale{color:#d8892f}
+.history-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.history-retry{display:none;padding:7px 10px;border:0;border-radius:8px;background:rgba(75,145,255,.12);color:#4b91ff;font-size:9px;font-weight:900;cursor:pointer}
+.history-item.selected .history-retry{display:inline-flex;align-items:center;justify-content:center}
+.history-retry:hover{background:rgba(75,145,255,.20);color:#1f6ee8}
+.history-retry:disabled{opacity:.5;cursor:not-allowed}
+.action-loading{display:inline-flex;align-items:center;justify-content:center;gap:8px}.action-spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.20);border-top-color:#fff;border-radius:50%;animation:actionSpin .7s linear infinite;flex:none}@keyframes actionSpin{to{transform:rotate(360deg)}}.reset-button.loading,.history-delete.loading{pointer-events:none;opacity:.75}.history-delete.loading{display:inline-flex!important}.history-item.deleting{pointer-events:none;border-color:rgba(255,59,48,.35);background:rgba(255,59,48,.06);animation:deletePulse 1s ease-in-out infinite}@keyframes deletePulse{0%,100%{opacity:1}50%{opacity:.55}}.reset-button.loading{color:#fff;border-color:rgba(255,122,0,.35);background:rgba(255,122,0,.08)}.verify-card{text-align:center;max-width:420px}.verify-icon{width:62px;height:62px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--green);font-size:30px;font-weight:950;background:rgba(53,232,137,.10);border:1px solid rgba(53,232,137,.28);box-shadow:0 0 35px rgba(53,232,137,.12);animation:verifyPulse 2s ease-in-out infinite}@keyframes verifyPulse{0%,100%{transform:scale(1);box-shadow:0 0 25px rgba(53,232,137,.10)}50%{transform:scale(1.04);box-shadow:0 0 40px rgba(53,232,137,.20)}}.verify-brand{margin-bottom:20px}.verify-brand .brand-logo{width:52px;height:52px;margin-bottom:10px;border-radius:15px}.verify-brand .brand-logo span{font-size:20px}.verify-brand h1{font-size:22px}.verify-brand p{font-size:9px;margin-top:4px}.verify-content{margin-top:5px}.verify-title{font-size:14px;font-weight:950;letter-spacing:.8px;color:#fff;margin-bottom:9px}.verify-text{color:#858c98;font-size:10px;line-height:1.5}.verify-email{margin:10px 0 13px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,179,71,.18);background:rgba(255,122,0,.055);color:var(--orange2);font-size:11px;font-weight:900;word-break:break-all}.verify-info{padding:11px;border-radius:11px;background:rgba(75,145,255,.055);border:1px solid rgba(75,145,255,.13);color:#7f8998;font-size:9px;line-height:1.55;margin-bottom:12px}.verify-info b{color:#b8c5d8}.verify-status{min-height:17px;margin-bottom:10px;color:var(--orange2);font-size:9px;font-weight:900;letter-spacing:.6px}.verify-status.success{color:var(--green)}.verify-status.error{color:#ff6b61}.back-login-button{width:100%;margin-top:13px;padding:7px;border:0;background:none;color:#727985;font-size:10px;font-weight:800;cursor:pointer}.back-login-button:hover{color:var(--orange2)}@media(max-width:500px){#verifyModal{padding:10px}.verify-card{padding:22px 18px;border-radius:20px}.verify-icon{width:54px;height:54px;font-size:27px}.verify-brand{margin-bottom:16px}.verify-brand .brand-logo{width:45px;height:45px;border-radius:13px}.verify-brand h1{font-size:19px}.verify-brand p{font-size:8px}.verify-title{font-size:12px}.verify-text{font-size:9px}.verify-email{font-size:10px}.verify-info{font-size:8px}.verify-status{font-size:8px}}</style><style>
+/* DASHBOARD PROFESSIONAL WHITE THEME */
+#dashboard{background:#f4f6f8!important;color:#1f2937!important;min-height:100vh;padding:0!important}
+#dashboard .dashboard-shell{width:100%;min-height:100vh;display:grid;grid-template-columns:270px minmax(0,1fr);background:#f4f6f8}
+#dashboard .dashboard-sidebar{height:100vh;position:sticky;top:0;display:flex;flex-direction:column;padding:26px 18px 20px;background:#fff;border-right:1px solid #e5e7eb;box-shadow:5px 0 24px rgba(15,23,42,.06);z-index:10}
+#dashboard .sidebar-brand{display:flex;align-items:center;gap:11px;padding:0 7px}
+#dashboard .sidebar-logo,#dashboard .top-brand-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex:none;border-radius:11px;background:linear-gradient(135deg,#ff7a00,#ff4b00);color:#fff;font-family:Orbitron,sans-serif;font-size:11px;font-weight:900;box-shadow:0 7px 18px rgba(255,122,0,.2)}
+#dashboard .sidebar-brand-text strong{display:block;font-family:Orbitron,sans-serif;font-size:15px;letter-spacing:.7px;color:#171a1f}
+#dashboard .sidebar-brand-text span{display:block;margin-top:3px;font-size:9px;font-weight:600;letter-spacing:.8px;color:#8a919c}
+#dashboard .sidebar-divider{height:1px;background:#edf0f2;margin:25px 7px 21px}
+#dashboard .sidebar-section-title{padding:0 10px 11px;font-size:11px;font-weight:800;letter-spacing:1.1px;color:#8b929d}
+#dashboard .sidebar-menu{display:flex;flex-direction:column;gap:8px}
+#dashboard .sidebar-item{width:100%;min-height:64px;display:flex;align-items:center;gap:12px;padding:10px 11px;text-align:left;border:1px solid transparent;border-radius:13px;background:#fff;color:#252a31;cursor:pointer;transition:.2s ease;font-family:Poppins,sans-serif}
+#dashboard .sidebar-item:hover{background:#fff8f2;border-color:#ffe1c7;transform:translateX(2px)}
+#dashboard .sidebar-item.active{background:#fff5eb;border-color:#ffd9b5;box-shadow:0 5px 15px rgba(255,122,0,.07)}
+#dashboard .sidebar-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex:none;border-radius:10px;background:#fff0e4;border:1px solid #ffe0c7;font-size:18px}
+#dashboard .sidebar-icon.blue{background:#edf5ff;border-color:#d8e9ff}#dashboard .sidebar-icon.green{background:#ecfbf3;border-color:#d4f2e1}
+#dashboard .sidebar-item-text{min-width:0}.sidebar-item-text strong{display:block;font-size:12px;font-weight:800;letter-spacing:.2px;white-space:nowrap}.sidebar-item-text small{display:block;margin-top:3px;font-size:9px;font-weight:500;color:#8a919c;white-space:nowrap}
+#dashboard .sidebar-spacer{flex:1;min-height:25px}
+#dashboard .sidebar-user{display:flex;align-items:center;gap:10px;padding:12px 9px;margin-bottom:8px;border-top:1px solid #edf0f2}
+#dashboard .sidebar-avatar{width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex:none;border-radius:50%;background:#20242b;color:#fff;font-family:Orbitron,sans-serif;font-size:9px;font-weight:900}
+#dashboard .sidebar-user-info{min-width:0}.sidebar-user-info strong{display:block;font-size:12px;font-weight:800;color:#242930;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sidebar-user-info span{display:block;margin-top:2px;font-size:9px;color:#9299a3}
+#dashboard .sidebar-actions{display:flex;flex-direction:column;gap:5px}
+#dashboard .sidebar-action{height:40px;display:flex;align-items:center;gap:10px;padding:0 11px;border:1px solid transparent;border-radius:10px;background:#fff;color:#4d5560;font-family:Poppins,sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;cursor:pointer;text-align:left}
+#dashboard .sidebar-action:hover{background:#f7f8fa;border-color:#e5e7eb}.sidebar-action span{width:18px;text-align:center;font-size:16px}.logout-action{color:#d34a43!important}
+#dashboard .dashboard-content{position:relative;min-width:0;min-height:100vh;padding:28px 34px 20px;display:flex;flex-direction:column;background:#f8f9fa;overflow:hidden}
+#dashboard .dashboard-topbar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-bottom:24px;border-bottom:1px solid #e8ebee}
+#dashboard .mobile-brand{display:flex;align-items:center;gap:10px}.mobile-brand strong{display:block;font-family:Orbitron,sans-serif;font-size:14px;letter-spacing:.5px;color:#20242a}.mobile-brand span{display:block;margin-top:3px;font-size:9px;color:#9299a3;letter-spacing:.6px}
+#dashboard .system-status{display:inline-flex!important;align-items:center;justify-content:center;gap:6px;padding:8px 11px;border-radius:999px;background:#effbf4!important;border:1px solid #d3f1df!important;color:#2b9a5d!important;font-size:10px!important;font-weight:700!important;white-space:nowrap}
+#dashboard .status-dot{width:6px;height:6px;background:#35b86f!important;box-shadow:0 0 7px rgba(53,184,111,.45)!important}
+#dashboard .welcome-block{padding:48px 4px 32px;position:relative;z-index:2}.welcome-label{display:block;margin-bottom:10px;font-size:11px;font-weight:800;letter-spacing:1.5px;color:#ff7a00}.welcome-title{font-family:Poppins,sans-serif!important;font-size:38px!important;line-height:1.1!important;font-weight:800!important;letter-spacing:-1.2px!important;color:#171b20!important}.welcome-title span{color:#ff7a00!important;background:none!important}.welcome-sub{max-width:720px;margin:12px 0 0!important;color:#737b86!important;font-size:13px!important;line-height:1.6!important}
+#dashboard .dashboard-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:900px}.overview-card{display:flex;align-items:center;gap:13px;padding:18px 20px;background:#fff;border:1px solid #e5e8eb;border-radius:15px;box-shadow:0 7px 22px rgba(15,23,42,.045)}.overview-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex:none;border-radius:11px;background:#fff1e6;font-size:19px}.overview-icon.green{background:#ebfaf2;color:#31a767;font-size:18px}.overview-card strong{display:block;font-size:13px;font-weight:800;color:#292f36}.overview-card p{margin:4px 0 0;font-size:10px;line-height:1.4;color:#89919c}
+#dashboard .dashboard-footer{margin-top:auto;padding-top:18px!important;border-top:1px solid #e7eaed!important;color:#9299a3!important;font-size:9px!important}
+@media(max-width:800px){#dashboard .dashboard-shell{grid-template-columns:158px minmax(0,1fr)}#dashboard .dashboard-sidebar{padding:18px 10px 14px}#dashboard .sidebar-brand{gap:8px;padding:0 3px}.sidebar-logo{width:34px!important;height:34px!important;border-radius:9px!important;font-size:9px!important}.sidebar-brand-text strong{font-size:11px}.sidebar-brand-text span{font-size:6.5px}.sidebar-divider{margin:18px 3px 16px!important}.sidebar-section-title{padding:0 6px 9px!important;font-size:8px!important;letter-spacing:.9px!important}.sidebar-menu{gap:6px!important}.sidebar-item{min-height:58px!important;padding:8px 7px!important;gap:8px!important;border-radius:10px!important}.sidebar-icon{width:30px!important;height:30px!important;border-radius:8px!important;font-size:14px!important}.sidebar-item-text strong{font-size:9px!important}.sidebar-item-text small{font-size:6.5px!important;margin-top:2px!important}.sidebar-user{padding:9px 4px!important}.sidebar-avatar{width:29px!important;height:29px!important;font-size:7px!important}.sidebar-user-info strong{font-size:9px}.sidebar-user-info span{font-size:6.5px}.sidebar-action{height:34px!important;padding:0 7px!important;gap:6px!important;font-size:8px!important}.sidebar-action span{font-size:13px}.dashboard-content{padding:18px 16px 12px!important}.dashboard-topbar{padding-bottom:16px!important}.mobile-brand strong{font-size:11px}.mobile-brand span{font-size:7px}.system-status{padding:6px 8px!important;font-size:8px!important}.welcome-block{padding:32px 2px 24px!important}.welcome-label{font-size:8px;margin-bottom:7px}.welcome-title{font-size:27px!important}.welcome-sub{font-size:10px!important;line-height:1.5!important;margin-top:9px!important}.dashboard-overview{grid-template-columns:1fr!important;gap:9px!important}.overview-card{padding:13px!important;border-radius:11px!important}.overview-icon{width:32px;height:32px;border-radius:9px;font-size:15px}.overview-card strong{font-size:10px}.overview-card p{font-size:8px}.dashboard-footer{font-size:7px!important;gap:8px!important}}
+@media(max-width:430px){#dashboard .dashboard-shell{grid-template-columns:142px minmax(0,1fr)}#dashboard .dashboard-sidebar{padding-left:8px;padding-right:8px}.sidebar-brand-text strong{font-size:10px}.sidebar-brand-text span{font-size:6px}.sidebar-item{min-height:54px!important}.sidebar-icon{width:28px!important;height:28px!important;font-size:13px!important}.sidebar-item-text strong{font-size:8px!important}.sidebar-item-text small{font-size:6px!important}.dashboard-content{padding:15px 12px 10px!important}.system-status{font-size:7px!important;padding:5px 7px!important}.welcome-title{font-size:24px!important}.welcome-sub{font-size:9px!important}.dashboard-footer{font-size:6px!important}}
+</style>
+<style>
+/* FINAL DASHBOARD POLISH — WHITE PROFESSIONAL */
+#dashboard .dashboard-sidebar{
+  background:#ffffff!important;
+  border-right:1px solid #e2e6ea!important;
+  box-shadow:6px 0 26px rgba(15,23,42,.07)!important;
+}
+#dashboard .sidebar-spacer{
+  flex:0 0 clamp(45px,9vh,95px)!important;
+  min-height:0!important;
+}
+#dashboard .sidebar-user{
+  margin-bottom:10px!important;
+  padding:12px 9px!important;
+}
+#dashboard .sidebar-actions{
+  gap:7px!important;
+}
+#dashboard .sidebar-action{
+  height:42px!important;
+  color:#343a43!important;
+  background:#fff!important;
+  border:1px solid #e5e8eb!important;
+}
+#dashboard .sidebar-action:hover{
+  background:#fff6ed!important;
+  border-color:#ffc98f!important;
+  color:#e96d00!important;
+}
+#dashboard .logout-action{color:#c74b43!important}
+#dashboard .sidebar-menu{gap:10px!important}
+#dashboard .sidebar-item{
+  min-height:70px!important;
+  background:linear-gradient(145deg,#fffaf5,#ffffff)!important;
+  border:1px solid #f3d7bd!important;
+  box-shadow:0 7px 18px rgba(255,122,0,.055)!important;
+}
+#dashboard .sidebar-item:hover,
+#dashboard .sidebar-item.active{
+  background:linear-gradient(145deg,#fff1e4,#fff9f4)!important;
+  border-color:#ffbf7a!important;
+  box-shadow:0 9px 24px rgba(255,122,0,.12)!important;
+  transform:translateX(2px);
+}
+#dashboard .sidebar-icon,
+#dashboard .sidebar-icon.blue,
+#dashboard .sidebar-icon.green{
+  background:#fff0e3!important;
+  border-color:#ffd0a5!important;
+  color:#f47a00!important;
+  box-shadow:0 5px 14px rgba(255,122,0,.10)!important;
+}
+#dashboard .sidebar-item-text strong{
+  font-size:13px!important;
+  color:#252a31!important;
+}
+#dashboard .sidebar-item-text small{
+  font-size:9.5px!important;
+}
+#dashboard .dashboard-content{
+  background:#f8f9fa!important;
+}
+#dashboard .dashboard-topbar{
+  justify-content:flex-end!important;
+  min-height:42px!important;
+  padding-bottom:18px!important;
+}
+#dashboard .mobile-brand{display:none!important}
+#dashboard .system-status{
+  font-size:12px!important;
+  padding:9px 14px!important;
+}
+#dashboard .welcome-block{
+  margin:0!important;
+  padding:62px 4px 28px!important;
+}
+#dashboard .welcome-label{font-size:12px!important}
+#dashboard .welcome-title{font-size:42px!important;letter-spacing:-1.6px!important}
+#dashboard .welcome-sub{font-size:14px!important;max-width:760px!important}
+#dashboard .dashboard-overview{margin-top:16px!important}
+@media(max-width:800px){
+  #dashboard .dashboard-sidebar{padding:16px 9px 13px!important}
+  #dashboard .sidebar-spacer{flex-basis:clamp(28px,7vh,65px)!important}
+  #dashboard .sidebar-user{padding:9px 4px!important;margin-bottom:7px!important}
+  #dashboard .sidebar-action{height:38px!important;font-size:9px!important}
+  #dashboard .sidebar-menu{gap:7px!important}
+  #dashboard .sidebar-item{min-height:62px!important;padding:8px 7px!important}
+  #dashboard .sidebar-icon{width:31px!important;height:31px!important;font-size:14px!important}
+  #dashboard .sidebar-item-text strong{font-size:9.5px!important}
+  #dashboard .sidebar-item-text small{font-size:7px!important}
+  #dashboard .dashboard-content{padding:14px 14px 10px!important}
+  #dashboard .dashboard-topbar{padding-bottom:12px!important}
+  #dashboard .system-status{font-size:8.5px!important;padding:6px 9px!important}
+  #dashboard .welcome-block{padding:30px 2px 20px!important}
+  #dashboard .welcome-label{font-size:9px!important;letter-spacing:1.3px!important}
+  #dashboard .welcome-title{font-size:29px!important}
+  #dashboard .welcome-sub{font-size:10.5px!important;line-height:1.5!important}
+}
+@media(max-width:430px){
+  #dashboard .dashboard-shell{grid-template-columns:145px minmax(0,1fr)!important}
+  #dashboard .sidebar-item{min-height:59px!important}
+  #dashboard .sidebar-item-text strong{font-size:9px!important}
+  #dashboard .sidebar-item-text small{font-size:6.5px!important}
+  #dashboard .welcome-title{font-size:26px!important}
+  #dashboard .welcome-sub{font-size:9.5px!important}
+}
+</style>
+
+<style id="THE-BUTCHER-ALL-WHITE">
+/* =========================================================
+   THE BUTCHER — UNIFIED WHITE DESIGN SYSTEM
+   Login + Dashboard + Operations + Data BSD + Modals
+========================================================= */
+:root{
+  --bg:#f5f7fa!important;
+  --text:#20242a!important;
+  --muted:#7b8490!important;
+  --border:#e2e6eb!important;
+  --green:#2eae68!important;
+  --orange:#ff7a00!important;
+  --orange2:#ff9b38!important;
+}
+html,body{
+  background:#f5f7fa!important;
+  color:#20242a!important;
+}
+
+/* ---------- LOGIN ---------- */
+#loginPage,
+#verifyModal{
+  background:#f5f7fa!important;
+}
+#loginPage .login-card,
+#verifyModal .modal-card{
+  background:#fff!important;
+  border:1px solid #e1e5e9!important;
+  box-shadow:0 24px 70px rgba(25,35,45,.10)!important;
+  backdrop-filter:none!important;
+}
+#loginPage .brand h1,
+#verifyModal .verify-brand h1,
+#loginPage .input-group label,
+#verifyModal .verify-title{
+  color:#20242a!important;
+}
+#loginPage .brand p,
+#verifyModal .verify-text,
+#verifyModal .verify-info{
+  color:#7d8792!important;
+}
+#loginPage .input,
+.modal .input{
+  background:#fff!important;
+  color:#20242a!important;
+  border-color:#dfe4e9!important;
+  box-shadow:inset 0 1px 2px rgba(20,30,40,.03)!important;
+}
+#loginPage .input::placeholder,
+.modal .input::placeholder{
+  color:#a0a8b2!important;
+}
+#loginPage .btn-secondary,
+.modal .btn-secondary{
+  color:#4f5863!important;
+  background:#f7f8fa!important;
+  border-color:#dfe4e9!important;
+}
+#loginPage .btn-secondary:hover,
+.modal .btn-secondary:hover{
+  background:#fff2e6!important;
+  border-color:#ffd3ad!important;
+  color:#e66b00!important;
+}
+#loginPage .message{color:#7b8490!important}
+
+/* ---------- DASHBOARD ---------- */
+#dashboard{
+  background:#f5f7fa!important;
+}
+#dashboard .dashboard-sidebar{
+  background:#fff!important;
+  border-right:1px solid #e0e5ea!important;
+  box-shadow:6px 0 26px rgba(15,23,42,.055)!important;
+}
+#dashboard .sidebar-item{
+  color:#252a31!important;
+  background:#fff!important;
+}
+#dashboard .sidebar-item,
+#dashboard .sidebar-item.blue,
+#dashboard .sidebar-item.green{
+  border-color:#f0f2f4!important;
+}
+#dashboard .sidebar-item:hover,
+#dashboard .sidebar-item.active,
+#dashboard .sidebar-item.blue:hover,
+#dashboard .sidebar-item.green:hover{
+  background:#fff6ed!important;
+  border-color:#ffd2a8!important;
+  box-shadow:0 7px 20px rgba(255,122,0,.08)!important;
+}
+#dashboard .sidebar-item.active .sidebar-icon,
+#dashboard .sidebar-item:hover .sidebar-icon,
+#dashboard .sidebar-item.blue .sidebar-icon,
+#dashboard .sidebar-item.green .sidebar-icon{
+  background:#fff0e1!important;
+  border-color:#ffd0a4!important;
+}
+#dashboard .sidebar-item.blue .sidebar-icon,
+#dashboard .sidebar-item.green .sidebar-icon{
+  color:#20242a!important;
+}
+#dashboard .sidebar-item-text strong{color:#252a31!important;font-size:13px!important}
+#dashboard .sidebar-item-text small{color:#8b949f!important;font-size:9.5px!important}
+#dashboard .sidebar-section-title{color:#858e99!important;font-size:12px!important}
+#dashboard .sidebar-brand-text strong{color:#20242a!important}
+#dashboard .sidebar-brand-text span{color:#8b949f!important}
+#dashboard .sidebar-divider{background:#e9edf1!important}
+#dashboard .sidebar-user{border-top-color:#e9edf1!important}
+#dashboard .sidebar-user-info strong{color:#252a31!important;font-size:13px!important}
+#dashboard .sidebar-user-info span{color:#929aa4!important;font-size:9.5px!important}
+#dashboard .sidebar-action{
+  color:#4e5762!important;
+  background:#fff!important;
+  font-size:12px!important;
+}
+#dashboard .sidebar-action:hover{
+  background:#fff6ed!important;
+  border-color:#ffd8b5!important;
+  color:#e96e00!important;
+}
+#dashboard .logout-action{color:#c34c45!important}
+#dashboard .logout-action:hover{color:#b63d36!important}
+#dashboard .sidebar-spacer{flex:0 0 48px!important;min-height:0!important}
+#dashboard .dashboard-content{
+  background:#f7f8fa!important;
+  color:#20242a!important;
+}
+#dashboard .dashboard-topbar{border-bottom-color:#e3e7eb!important}
+#dashboard .welcome-block{
+  padding-top:34px!important;
+  padding-bottom:26px!important;
+}
+#dashboard .welcome-label{font-size:12px!important;color:#f17400!important}
+#dashboard .welcome-title{font-size:40px!important;color:#171b20!important}
+#dashboard .welcome-sub{font-size:14px!important;color:#727c87!important}
+#dashboard .overview-card{
+  background:#fff!important;
+  border-color:#e0e5ea!important;
+  box-shadow:0 10px 28px rgba(20,30,40,.055)!important;
+}
+#dashboard .overview-card strong{color:#293039!important;font-size:16px!important}
+#dashboard .overview-card p{color:#89929d!important;font-size:12px!important}
+#dashboard .dashboard-footer{border-top-color:#e2e6ea!important;color:#8d959e!important}
+
+/* All operation cards share the same orange visual language */
+#dashboard .sidebar-item.active,
+#dashboard .sidebar-item.blue,
+#dashboard .sidebar-item.green{
+  --op-orange:#ff7a00;
+}
+#dashboard .sidebar-item.blue:hover,
+#dashboard .sidebar-item.green:hover,
+#dashboard .sidebar-item.active:hover{
+  background:#fff6ed!important;
+  border-color:#ffd0a2!important;
+}
+#dashboard .sidebar-icon.blue,
+#dashboard .sidebar-icon.green,
+#dashboard .sidebar-icon{
+  background:#fff0e1!important;
+  border-color:#ffd0a2!important;
+}
+
+/* ---------- STOCK LOSS / STOCK OPNAME ---------- */
+#inventoryPage,
+#inventoryPage.opname{
+  background:#f5f7fa!important;
+  color:#20242a!important;
+}
+#inventoryPage .inventory-top{
+  background:rgba(255,255,255,.96)!important;
+  border-bottom:1px solid #e1e6eb!important;
+  backdrop-filter:blur(18px)!important;
+}
+#inventoryPage .inventory-brand strong,
+#inventoryPage .inventory-heading h1,
+#inventoryPage .inventory-input-group label,
+#inventoryPage .history-header strong{
+  color:#20242a!important;
+}
+#inventoryPage .inventory-brand span,
+#inventoryPage .inventory-heading p,
+#inventoryPage .inventory-message,
+#inventoryPage .history-mode,
+#inventoryPage .history-empty{
+  color:#7e8792!important;
+}
+#inventoryPage .back-button,
+#inventoryPage .reset-button{
+  color:#4e5762!important;
+  background:#fff!important;
+  border-color:#dfe4e9!important;
+}
+#inventoryPage .back-button:hover,
+#inventoryPage .reset-button:hover{
+  color:#e86d00!important;
+  background:#fff6ed!important;
+  border-color:#ffd2a8!important;
+}
+#inventoryPage .inventory-input{
+  background:#fff!important;
+  color:#20242a!important;
+  border-color:#dfe4e9!important;
+}
+#inventoryPage .inventory-input::placeholder{color:#a0a8b2!important}
+#inventoryPage .inventory-input:focus{
+  border-color:#ff9b38!important;
+  box-shadow:0 0 0 3px rgba(255,122,0,.10)!important;
+}
+#inventoryPage .inventory-heading-icon{
+  background:#fff0e1!important;
+  border-color:#ffd0a2!important;
+}
+#inventoryPage.opname .inventory-heading-icon{
+  background:#fff0e1!important;
+  border-color:#ffd0a2!important;
+}
+#inventoryPage .send-button,
+#inventoryPage.opname .send-button{
+  background:linear-gradient(135deg,#ff7a00,#ff4b00)!important;
+  box-shadow:0 12px 28px rgba(255,122,0,.18)!important;
+}
+#inventoryPage .history-section{
+  background:#fff!important;
+  border-color:#e1e6eb!important;
+}
+#inventoryPage .history-summary > *{
+  background:#f8f9fa!important;
+  border-color:#e2e6ea!important;
+}
+#inventoryPage .suggestions{
+  background:#fff!important;
+  border-color:#dfe4e9!important;
+  box-shadow:0 18px 40px rgba(20,30,40,.12)!important;
+}
+#inventoryPage .suggestion-item{color:#30363d!important}
+#inventoryPage .suggestion-item:hover{background:#fff4e8!important}
+
+/* ---------- DATA BSD ---------- */
+#dataBsdPage{
+  background:#f5f7fa!important;
+  color:#20242a!important;
+}
+#dataBsdPage .data-bsd-topbar{
+  background:rgba(255,255,255,.96)!important;
+  border-bottom-color:#e1e6eb!important;
+  backdrop-filter:blur(18px)!important;
+}
+#dataBsdPage .data-bsd-brand strong,
+#dataBsdPage .data-page-title,
+#dataBsdPage .data-stat-value,
+#dataBsdPage .data-stat-label{
+  color:#20242a!important;
+}
+#dataBsdPage .data-bsd-brand span,
+#dataBsdPage .data-page-subtitle,
+#dataBsdPage .data-stat-desc{
+  color:#818a95!important;
+}
+#dataBsdPage .data-bsd-back,
+#dataBsdPage .data-bsd-refresh{
+  color:#4e5762!important;
+  background:#fff!important;
+  border-color:#dfe4e9!important;
+}
+#dataBsdPage .data-bsd-back:hover,
+#dataBsdPage .data-bsd-refresh:hover{
+  background:#fff6ed!important;
+  border-color:#ffd2a8!important;
+  color:#e86d00!important;
+}
+#dataBsdPage .data-stat{
+  background:#fff!important;
+  border-color:#e0e5ea!important;
+  box-shadow:0 8px 24px rgba(20,30,40,.045)!important;
+}
+#dataBsdPage .data-stat.selected{
+  background:#fff6ed!important;
+  border-color:#ffc98f!important;
+}
+#dataBsdPage .data-table-wrap,
+#dataBsdPage .data-table-container,
+#dataBsdPage .data-table-card{
+  background:#fff!important;
+  border-color:#e0e5ea!important;
+}
+#dataBsdPage table{color:#30363d!important}
+#dataBsdPage th{
+  background:#fff7ef!important;
+  color:#555e68!important;
+  border-color:#e5e8eb!important;
+}
+#dataBsdPage td{color:#343b43!important;border-color:#edf0f2!important}
+#dataBsdPage tr:hover{background:#fffaf5!important}
+#dataBsdPage .bsd-row-number{color:#a0a7af!important}
+#dataBsdPage .bsd-empty{color:#8a939d!important}
+#dataBsdPage .bsd-low-row{background:#fffaf2!important}
+#dataBsdPage .bsd-low-value{color:#c37b00!important;background:#fff3d9!important}
+#dataBsdPage .bsd-negative-row{background:#fff6f5!important}
+#dataBsdPage .bsd-negative-value{color:#c23f38!important;background:#ffe8e6!important}
+
+/* ---------- MODALS / SETTINGS / SIGNUP / FORGOT ---------- */
+.modal{
+  background:rgba(20,25,30,.24)!important;
+  backdrop-filter:blur(10px)!important;
+}
+.modal .modal-card{
+  background:#fff!important;
+  border-color:#dfe4e9!important;
+  box-shadow:0 28px 80px rgba(20,30,40,.16)!important;
+  color:#20242a!important;
+}
+.modal .modal-head h2{color:#20242a!important}
+.modal .modal-close{
+  color:#505963!important;
+  background:#f7f8fa!important;
+  border-color:#dfe4e9!important;
+}
+.modal .modal-close:hover{background:#fff1e5!important;color:#e86d00!important;border-color:#ffd0a2!important}
+.modal .profile-box{
+  background:#f8f9fa!important;
+  border-color:#e4e8ec!important;
+}
+.modal .profile-label{color:#818a95!important}
+.modal .profile-value{color:#252b32!important}
+.modal .admin-section{border-top-color:#e5e8eb!important}
+.modal .admin-section h3{color:#4f5863!important}
+.modal .pending-list .history-empty{color:#8a939d!important}
+
+/* ---------- CONSISTENT BUTTONS ---------- */
+.btn-primary{
+  background:linear-gradient(135deg,#ff7a00,#ff4b00)!important;
+  color:#fff!important;
+  border:0!important;
+  box-shadow:0 12px 28px rgba(255,122,0,.18)!important;
+}
+.btn-secondary{color:#4f5863!important;background:#f7f8fa!important;border-color:#dfe4e9!important}
+
+/* ---------- MOBILE: keep sidebar LEFT ---------- */
+@media(max-width:700px){
+  #dashboard{padding:0!important}
+  #dashboard .dashboard-shell{
+    min-height:100dvh!important;
+    grid-template-columns:118px minmax(0,1fr)!important;
+    gap:0!important;
+  }
+  #dashboard .dashboard-sidebar{
+    height:100dvh!important;
+    min-height:100dvh!important;
+    padding:18px 10px 14px!important;
+    position:sticky!important;
+    top:0!important;
+  }
+  #dashboard .sidebar-brand{gap:7px;padding:0 2px!important}
+  #dashboard .sidebar-logo{width:34px!important;height:34px!important;border-radius:10px!important;font-size:10px!important}
+  #dashboard .sidebar-brand-text strong{font-size:11px!important;line-height:1.05!important}
+  #dashboard .sidebar-brand-text span{font-size:6.5px!important;line-height:1.15!important}
+  #dashboard .sidebar-divider{margin:18px 2px 16px!important}
+  #dashboard .sidebar-section-title{padding:0 3px 9px!important;font-size:9px!important;letter-spacing:.8px!important}
+  #dashboard .sidebar-menu{gap:7px!important}
+  #dashboard .sidebar-item{min-height:61px!important;padding:8px 7px!important;gap:7px!important;border-radius:11px!important}
+  #dashboard .sidebar-icon{width:29px!important;height:29px!important;border-radius:8px!important;font-size:14px!important}
+  #dashboard .sidebar-item-text strong{font-size:8.5px!important;line-height:1.1!important;display:block}
+  #dashboard .sidebar-item-text small{font-size:6.5px!important;line-height:1.1!important;display:block;margin-top:2px}
+  #dashboard .sidebar-spacer{flex:0 0 24px!important}
+  #dashboard .sidebar-user{padding:10px 2px!important;margin-bottom:6px!important;gap:6px!important}
+  #dashboard .sidebar-avatar{width:29px!important;height:29px!important;font-size:8px!important}
+  #dashboard .sidebar-user-info strong{font-size:9px!important}
+  #dashboard .sidebar-user-info span{font-size:6.5px!important}
+  #dashboard .sidebar-actions{gap:4px!important}
+  #dashboard .sidebar-action{height:34px!important;padding:0 6px!important;gap:5px!important;font-size:8px!important}
+  #dashboard .sidebar-action span{width:15px!important;font-size:13px!important}
+  #dashboard .dashboard-content{padding:18px 16px 12px!important;min-width:0!important}
+  #dashboard .dashboard-topbar{padding-bottom:14px!important}
+  #dashboard .welcome-block{padding:28px 2px 22px!important}
+  #dashboard .welcome-label{font-size:8px!important;letter-spacing:1.1px!important;margin-bottom:7px!important}
+  #dashboard .welcome-title{font-size:28px!important;letter-spacing:-.8px!important}
+  #dashboard .welcome-sub{font-size:10px!important;line-height:1.5!important;margin-top:9px!important}
+  #dashboard .dashboard-overview{grid-template-columns:1fr!important;gap:9px!important}
+  #dashboard .overview-card{padding:13px!important;gap:10px!important;border-radius:12px!important}
+  #dashboard .overview-card strong{font-size:11px!important}
+  #dashboard .overview-card p{font-size:8px!important;line-height:1.4!important}
+  #dashboard .overview-icon{width:30px!important;height:30px!important;font-size:15px!important}
+  #dashboard .dashboard-footer{font-size:6px!important;padding-top:7px!important}
+
+  #loginPage{padding:14px!important}
+  #loginPage .login-card{padding:25px 20px!important;border-radius:22px!important}
+  #loginPage .brand h1{font-size:28px!important}
+  #loginPage .brand p{font-size:12px!important}
+  #loginPage .input-group label{font-size:9px!important}
+  #loginPage .input{height:48px!important;font-size:14px!important}
+  #loginPage .btn{height:48px!important;font-size:12px!important}
+
+  #inventoryPage .inventory-top,
+  #dataBsdPage .data-bsd-topbar{height:58px!important;min-height:58px!important;padding:0 12px!important}
+  #inventoryPage .inventory-brand strong,
+  #dataBsdPage .data-bsd-brand strong{font-size:11px!important}
+  #inventoryPage .inventory-brand span,
+  #dataBsdPage .data-bsd-brand span{font-size:7px!important}
+  #inventoryPage .back-button,
+  #dataBsdPage .data-bsd-back,
+  #dataBsdPage .data-bsd-refresh{height:32px!important;padding:0 9px!important;font-size:9px!important}
+  #inventoryPage .inventory-card{padding:20px 14px 28px!important}
+  #inventoryPage .inventory-heading h1{font-size:23px!important}
+  #inventoryPage .inventory-heading p{font-size:10px!important}
+  #inventoryPage .inventory-input{font-size:16px!important}
+  #inventoryPage .send-button{height:50px!important}
+  #dataBsdPage .data-bsd-body{padding:13px!important}
+  #dataBsdPage .data-page-title{font-size:21px!important}
+  #dataBsdPage .data-page-subtitle{font-size:9px!important}
+  #dataBsdPage .data-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  #dataBsdPage .data-stat{min-height:80px!important;padding:11px!important}
+  #dataBsdPage .data-stat-label{font-size:8px!important}
+  #dataBsdPage .data-stat-value{font-size:18px!important}
+  #dataBsdPage .data-stat-desc{font-size:8px!important}
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style id="FINAL-PRO-DASHBOARD-POLISH">
+/* FINAL — PROFESSIONAL WHITE DASHBOARD */
+#dashboard .dashboard-sidebar{
+  background:#fff!important;
+  border-right:1px solid #e1e5e9!important;
+  box-shadow:6px 0 24px rgba(15,23,42,.055)!important;
+  padding-bottom:30px!important;
+}
+#dashboard .dashboard-shell{background:#f5f7fa!important}
+#dashboard .sidebar-menu{gap:7px!important}
+#dashboard .sidebar-item,
+#dashboard .sidebar-item.blue,
+#dashboard .sidebar-item.green{
+  min-height:62px!important;
+  background:linear-gradient(145deg,#fffaf5,#fff)!important;
+  border:1px solid #f2d8c0!important;
+  box-shadow:0 5px 15px rgba(255,122,0,.045)!important;
+}
+#dashboard .sidebar-item:hover,
+#dashboard .sidebar-item.active,
+#dashboard .sidebar-item.blue:hover,
+#dashboard .sidebar-item.green:hover{
+  background:linear-gradient(145deg,#fff1e4,#fff8f2)!important;
+  border-color:#ffc27f!important;
+  box-shadow:0 8px 20px rgba(255,122,0,.11)!important;
+  transform:translateX(2px);
+}
+#dashboard .sidebar-icon,
+#dashboard .sidebar-icon.blue,
+#dashboard .sidebar-icon.green{
+  background:#fff0e1!important;
+  border-color:#ffd0a4!important;
+  color:#f17400!important;
+  box-shadow:0 4px 12px rgba(255,122,0,.08)!important;
+}
+#dashboard .sidebar-item-text strong{font-size:13px!important}
+#dashboard .sidebar-item-text small{font-size:9px!important}
+#dashboard .sidebar-spacer{
+  flex:0 0 34px!important;
+  min-height:0!important;
+}
+#dashboard .sidebar-user{
+  padding:10px 4px!important;
+  margin-bottom:7px!important;
+}
+#dashboard .sidebar-actions{gap:6px!important}
+#dashboard .sidebar-action{
+  height:40px!important;
+  border:1px solid #e2e6ea!important;
+  border-radius:11px!important;
+  font-size:11px!important;
+}
+#dashboard .sidebar-action:hover{
+  background:#fff6ed!important;
+  border-color:#ffc98f!important;
+}
+#dashboard .dashboard-content{
+  background:#f7f8fa!important;
+  padding:24px 34px 26px!important;
+}
+#dashboard .dashboard-topbar{
+  min-height:38px!important;
+  padding-bottom:14px!important;
+}
+#dashboard .welcome-block{
+  padding:24px 4px 22px!important;
+}
+#dashboard .welcome-label{margin-bottom:8px!important;font-size:11px!important}
+#dashboard .welcome-title{font-size:40px!important;line-height:1.05!important}
+#dashboard .welcome-sub{margin-top:10px!important;font-size:13px!important;line-height:1.5!important}
+#dashboard .dashboard-overview{
+  margin-top:4px!important;
+  gap:12px!important;
+  max-width:900px!important;
+}
+#dashboard .overview-card{
+  min-height:82px!important;
+  padding:15px 17px!important;
+  border-radius:14px!important;
+}
+#dashboard .overview-card strong{font-size:15px!important}
+#dashboard .overview-card p{font-size:11px!important}
+#dashboard .dashboard-footer{padding-top:12px!important;font-size:8px!important}
+
+/* RESET DATA = same size & shape as KIRIM DATA */
+#inventoryPage .reset-row{
+  width:100%!important;
+  margin:8px 0 0!important;
+  display:block!important;
+}
+#inventoryPage .reset-button{
+  width:100%!important;
+  min-width:0!important;
+  height:54px!important;
+  min-height:54px!important;
+  padding:0 16px!important;
+  border-radius:14px!important;
+  border:1px solid #ffc48a!important;
+  background:#fff7ef!important;
+  color:#e86d00!important;
+  font-size:12px!important;
+  font-weight:950!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:none!important;
+}
+#inventoryPage .reset-button:hover{
+  background:#fff0e1!important;
+  border-color:#ffb56b!important;
+  color:#d95f00!important;
+}
+
+@media(max-width:800px){
+  #dashboard .dashboard-sidebar{padding:15px 9px 28px!important}
+  #dashboard .sidebar-spacer{flex-basis:30px!important}
+  #dashboard .sidebar-menu{gap:6px!important}
+  #dashboard .sidebar-item{min-height:59px!important;padding:8px 7px!important}
+  #dashboard .sidebar-icon{width:30px!important;height:30px!important;font-size:14px!important}
+  #dashboard .sidebar-item-text strong{font-size:9.5px!important}
+  #dashboard .sidebar-item-text small{font-size:6.8px!important}
+  #dashboard .sidebar-user{padding:8px 3px!important;margin-bottom:6px!important}
+  #dashboard .sidebar-action{height:38px!important;font-size:9px!important}
+  #dashboard .dashboard-content{padding:13px 14px 18px!important}
+  #dashboard .dashboard-topbar{min-height:34px!important;padding-bottom:10px!important}
+  #dashboard .system-status{font-size:8px!important;padding:6px 9px!important}
+  #dashboard .welcome-block{padding:18px 2px 17px!important}
+  #dashboard .welcome-label{font-size:8.5px!important;margin-bottom:6px!important}
+  #dashboard .welcome-title{font-size:28px!important}
+  #dashboard .welcome-sub{font-size:10px!important;line-height:1.45!important}
+  #dashboard .dashboard-overview{grid-template-columns:1fr!important;gap:8px!important;margin-top:2px!important}
+  #dashboard .overview-card{min-height:72px!important;padding:12px 13px!important}
+  #dashboard .overview-icon{width:34px!important;height:34px!important;font-size:15px!important}
+  #dashboard .overview-card strong{font-size:11px!important}
+  #dashboard .overview-card p{font-size:8.5px!important}
+  #dashboard .dashboard-footer{padding-top:10px!important;font-size:6.5px!important}
+  #inventoryPage .reset-button{height:50px!important;min-height:50px!important;border-radius:13px!important;font-size:11px!important}
+  #inventoryPage .reset-row{margin-top:7px!important}
+}
+@media(max-width:430px){
+  #dashboard .dashboard-shell{grid-template-columns:145px minmax(0,1fr)!important}
+  #dashboard .dashboard-sidebar{padding:14px 8px 26px!important}
+  #dashboard .sidebar-spacer{flex-basis:27px!important}
+  #dashboard .sidebar-item{min-height:57px!important}
+  #dashboard .sidebar-item-text strong{font-size:9px!important}
+  #dashboard .sidebar-item-text small{font-size:6.4px!important}
+  #dashboard .dashboard-content{padding:12px 11px 17px!important}
+  #dashboard .welcome-block{padding-top:15px!important}
+  #dashboard .welcome-title{font-size:25px!important}
+  #dashboard .welcome-sub{font-size:9px!important}
+}
+</style>
+<style id="final-ui-patch">
+/* =========================================================
+   FINAL UI PATCH — THE BUTCHER
+   Sidebar compact + Safari scroll + centered inventory + BSD colors
+========================================================= */
+html,body{margin:0;min-height:100%;background:#f5f7fa;color:#20242b}
+body{overflow-x:hidden}
+
+/* ---------- DASHBOARD / SIDEBAR ---------- */
+#dashboard{padding:0!important;width:100%;height:100dvh;min-height:100vh;overflow:hidden!important;background:#f5f7fa!important}
+#dashboard .dashboard-shell{width:100%;height:100dvh;min-height:100vh;display:grid;grid-template-columns:clamp(220px,24vw,270px) minmax(0,1fr);gap:0;margin:0;max-width:none;background:#f5f7fa}
+#dashboard .dashboard-sidebar{height:100dvh;min-height:0;position:sticky;top:0;overflow:hidden!important;box-sizing:border-box;padding:18px 14px;background:#fff;border-right:1px solid #e5e7eb;box-shadow:5px 0 20px rgba(15,23,42,.055);z-index:10}
+#dashboard .sidebar-divider{display:none}
+#dashboard .sidebar-brand{padding:0 5px;gap:9px}
+#dashboard .sidebar-logo{width:36px;height:36px;border-radius:10px;font-size:10px}
+#dashboard .sidebar-brand-text strong{font-size:14px}
+#dashboard .sidebar-brand-text span{font-size:8px;margin-top:2px}
+#dashboard .sidebar-section-title{padding:0 7px 8px;margin-top:20px;font-size:10px}
+#dashboard .sidebar-menu{gap:6px}
+#dashboard .sidebar-item{min-height:50px;height:50px;padding:7px 9px;gap:9px;border:1px solid rgba(255,122,0,.20);border-left:3px solid rgba(255,122,0,.45);border-radius:10px;background:#fff;color:#252a31;box-shadow:0 3px 10px rgba(255,122,0,.045)}
+#dashboard .sidebar-item:hover,#dashboard .sidebar-item.active{background:#fff7ef;border-color:rgba(255,122,0,.34);border-left-color:#ff7a00;box-shadow:0 5px 13px rgba(255,122,0,.09);transform:none}
+#dashboard .sidebar-icon,#dashboard .sidebar-icon.blue,#dashboard .sidebar-icon.green{width:30px;height:30px;border-radius:8px;font-size:14px;background:#fff0e4;border:1px solid #ffd8b7}
+#dashboard .sidebar-item-text strong{font-size:10.5px}
+#dashboard .sidebar-item-text small{font-size:7.5px;margin-top:2px}
+#dashboard .sidebar-spacer{flex:1;min-height:18px}
+#dashboard .sidebar-user{padding:9px 6px;margin-bottom:6px;border-top:1px solid #edf0f2}
+#dashboard .sidebar-avatar{width:30px;height:30px;font-size:8px}
+#dashboard .sidebar-user-info strong{font-size:10px}
+#dashboard .sidebar-user-info span{font-size:7px}
+#dashboard .sidebar-actions{gap:5px}
+#dashboard .sidebar-action{height:34px;min-height:34px;padding:0 9px;border-radius:9px;font-size:8.5px}
+#dashboard .dashboard-content{height:100dvh;min-height:0;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;padding:20px 28px 18px;background:#f7f8fa;-webkit-overflow-scrolling:touch;overscroll-behavior-x:none}
+#dashboard .dashboard-topbar{height:30px;min-height:30px;display:flex;align-items:center;justify-content:flex-end}
+#dashboard .system-status{font-size:8px;padding:6px 9px}
+#dashboard .welcome-block{margin:14px 0 18px!important}
+#dashboard .welcome-label{font-size:8px}
+#dashboard .welcome-title{font-size:36px;line-height:1.02;margin:3px 0 0}
+#dashboard .welcome-sub{font-size:10px;line-height:1.4;margin-top:7px;max-width:650px}
+#dashboard .dashboard-overview{gap:9px}
+#dashboard .overview-card{min-height:72px;padding:11px 12px}
+#dashboard .dashboard-footer{margin-top:18px;padding-top:8px;font-size:7px}
+
+/* ---------- INVENTORY: CENTERED ---------- */
+#inventoryPage{background:#f7f8fa!important;color:#20242b!important}
+#inventoryPage.opname{background:#f7f8fa!important}
+#inventoryPage .inventory-top{background:#fff!important;border-bottom:1px solid #e6e9ee!important;backdrop-filter:none;color:#20242b}
+#inventoryPage .inventory-brand strong{color:#20242b}
+#inventoryPage .inventory-brand span{color:#8a919c}
+#inventoryPage .back-button{background:#fff;color:#4b5563;border-color:#dfe3e8}
+#inventoryPage .inventory-card{background:transparent;color:#20242b;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+#inventoryPage .inventory-heading{text-align:center!important;display:flex;flex-direction:column;align-items:center;margin:8px 0 18px!important}
+#inventoryPage .inventory-heading-icon{margin:0 0 9px!important}
+#inventoryPage .inventory-heading h1{color:#20242b!important}
+#inventoryPage .inventory-heading p{color:#7b8490!important}
+#inventoryPage .inventory-form-grid{justify-items:stretch}
+#inventoryPage .inventory-input-group label{text-align:center;color:#69727e!important}
+#inventoryPage .inventory-input{background:#fff!important;color:#20242b!important;border-color:#dfe3e8!important;box-shadow:0 2px 8px rgba(15,23,42,.035)}
+#inventoryPage .inventory-input::placeholder{color:#a3aab4!important}
+#inventoryPage .product-name{background:#f0fbf5!important;color:#15945a!important;border-color:#cfeedd!important}
+#inventoryPage .send-button,#inventoryPage .reset-button{width:100%!important;height:46px!important;min-height:46px!important;border-radius:12px!important;box-sizing:border-box}
+#inventoryPage .reset-row{margin-top:8px!important;display:flex!important}
+#inventoryPage .reset-button{padding:0 16px!important;border:1px solid #e0e4e9!important;background:#fff!important;color:#d85f17!important;font-size:12px!important;font-weight:950!important;box-shadow:0 5px 14px rgba(15,23,42,.045)}
+#inventoryPage .history-section{margin-top:20px!important;padding-top:16px!important;border-top:1px solid #e5e8ec!important}
+#inventoryPage .history-header{justify-content:center!important;flex-direction:column;gap:3px;text-align:center}
+#inventoryPage .history-header strong{font-size:12px;color:#20242b}
+#inventoryPage .history-header span{font-size:8px;color:#7d8692}
+#inventoryPage .history-list{overflow-y:auto;-webkit-overflow-scrolling:touch}
+#inventoryPage .history-item{background:#fff;border-color:#e7eaee;color:#20242b}
+#inventoryPage .history-name{color:#737c87}
+#inventoryPage .inventory-message{color:#4b5563}
+
+/* ---------- DATA BSD: WHITE + SAFARI-SAFE SCROLL ---------- */
+#dataBsdPage{background:#f7f8fa!important;color:#20242b!important}
+#dataBsdPage .data-bsd-topbar{height:58px;background:#fff!important;color:#20242b;border-bottom:1px solid #e5e8ed;backdrop-filter:none}
+#dataBsdPage .data-bsd-brand strong{color:#20242b}
+#dataBsdPage .data-bsd-brand span{color:#8a919c}
+#dataBsdPage .data-bsd-back,#dataBsdPage .data-bsd-refresh{background:#fff;color:#4b5563;border-color:#dfe3e8}
+#dataBsdPage .data-bsd-body{height:auto;flex:1;min-height:0;overflow-y:auto!important;overflow-x:hidden!important;padding:14px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+#dataBsdPage .data-dashboard{max-width:1500px;margin:0 auto;min-width:0}
+#dataBsdPage .data-page-heading{text-align:center;margin-bottom:13px}
+#dataBsdPage .data-page-title{color:#20242b;font-size:22px}
+#dataBsdPage .data-page-subtitle{color:#7d8692}
+#dataBsdPage .data-stats{gap:9px}
+#dataBsdPage .data-stat{background:#fff;border-color:#e2e6eb;box-shadow:0 5px 16px rgba(15,23,42,.045)}
+#dataBsdPage .data-stat-label{color:#737c87}
+#dataBsdPage .data-stat-desc{color:#9299a3}
+#dataBsdPage #bsdNegativeValue{color:#e53935!important}
+#dataBsdPage #bsdLowValue{color:#e59a00!important}
+#dataBsdPage .data-table-container{background:#fff;border-color:#e2e6eb;box-shadow:0 8px 22px rgba(15,23,42,.05);overflow:hidden}
+#dataBsdPage .data-table-header{border-bottom-color:#e8ebef}
+#dataBsdPage .data-table-title{color:#20242b}
+#dataBsdPage .data-info{color:#7d8692}
+#dataBsdPage .bsd-search{background:#fff;color:#20242b;border-color:#dfe3e8}
+#dataBsdPage .data-table-scroll{width:100%;max-width:100%;overflow-x:auto!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;overscroll-behavior:contain;max-height:calc(100dvh - 270px)}
+#dataBsdPage .data-table{min-width:720px;background:#fff}
+#dataBsdPage .data-table th{background:#f7f8fa;color:#5f6874;position:sticky;top:0;z-index:2}
+#dataBsdPage .data-table td{color:#303640;background:#fff;border-color:#edf0f3}
+#dataBsdPage .bsd-empty{color:#7d8692!important}
+#dataBsdPage #bsdNavigation{display:flex!important;gap:6px!important;margin-top:10px!important;justify-content:center!important;flex-wrap:wrap!important}
+#dataBsdPage #bsdNavigation button{height:32px!important;min-height:32px!important;padding:0 12px!important;border:1px solid #ffd5ae!important;border-radius:9px!important;background:#fff!important;color:#d66a12!important;font-size:9px!important;font-weight:900!important;box-shadow:0 3px 9px rgba(255,122,0,.06)!important;cursor:pointer}
+#dataBsdPage #bsdNavigation button:hover,#dataBsdPage #bsdNavigation button:active{background:#fff4e9!important;border-color:#ffb978!important;color:#c85b05!important}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:700px){
+  #dashboard .dashboard-shell{grid-template-columns:minmax(92px,28vw) minmax(0,72vw)}
+  #dashboard .dashboard-sidebar{padding:13px 8px}
+  #dashboard .sidebar-brand{gap:6px;padding:0 2px}
+  #dashboard .sidebar-logo{width:32px;height:32px;border-radius:8px;font-size:9px}
+  #dashboard .sidebar-brand-text strong{font-size:10px;letter-spacing:.3px}
+  #dashboard .sidebar-brand-text span{font-size:5.5px;letter-spacing:.4px}
+  #dashboard .sidebar-section-title{font-size:8px;padding:0 4px 6px;margin-top:15px}
+  #dashboard .sidebar-menu{gap:5px}
+  #dashboard .sidebar-item{height:45px;min-height:45px;padding:6px 5px;gap:6px;border-radius:8px;border-left-width:2px}
+  #dashboard .sidebar-icon,#dashboard .sidebar-icon.blue,#dashboard .sidebar-icon.green{width:25px;height:25px;border-radius:7px;font-size:12px}
+  #dashboard .sidebar-item-text strong{font-size:7.8px;line-height:1.05}
+  #dashboard .sidebar-item-text small{font-size:5.4px;margin-top:2px}
+  #dashboard .sidebar-spacer{min-height:12px}
+  #dashboard .sidebar-user{padding:7px 2px;margin-bottom:4px;gap:6px}
+  #dashboard .sidebar-avatar{width:25px;height:25px;font-size:7px}
+  #dashboard .sidebar-user-info strong{font-size:7.5px}
+  #dashboard .sidebar-user-info span{font-size:5.2px}
+  #dashboard .sidebar-actions{gap:4px}
+  #dashboard .sidebar-action{height:29px;min-height:29px;padding:0 5px;border-radius:7px;font-size:6.8px}
+  #dashboard .dashboard-content{height:100dvh;padding:12px 10px 14px}
+  #dashboard .dashboard-topbar{height:25px;min-height:25px}
+  #dashboard .system-status{font-size:6.5px;padding:5px 6px}
+  #dashboard .welcome-block{margin:9px 0 13px!important}
+  #dashboard .welcome-label{font-size:6.5px}
+  #dashboard .welcome-title{font-size:27px}
+  #dashboard .welcome-sub{font-size:8px;line-height:1.35;margin-top:5px}
+  #dashboard .overview-card{min-height:61px;padding:9px 8px}
+  #dashboard .overview-card strong{font-size:8.5px}
+  #dashboard .overview-card p{font-size:6.5px}
+  #dashboard .dashboard-footer{margin-top:12px;padding-top:6px;font-size:5.8px}
+
+  #inventoryPage .inventory-top{height:52px;min-height:52px;padding:0 10px}
+  #inventoryPage .inventory-logo{width:30px;height:30px;border-radius:8px;font-size:9px}
+  #inventoryPage .inventory-brand strong{font-size:10px}
+  #inventoryPage .inventory-brand span{font-size:6px}
+  #inventoryPage .back-button{height:30px;padding:0 8px;font-size:8px}
+  #inventoryPage .inventory-card{padding:15px 11px 25px}
+  #inventoryPage .inventory-heading{margin:4px 0 15px!important}
+  #inventoryPage .inventory-heading-icon{width:38px;height:38px;margin-bottom:7px!important;font-size:17px}
+  #inventoryPage .inventory-heading h1{font-size:21px}
+  #inventoryPage .inventory-heading p{font-size:8px}
+  #inventoryPage .inventory-form-grid{grid-template-columns:1fr!important;gap:0}
+  #inventoryPage .inventory-input-group{margin-bottom:10px}
+  #inventoryPage .inventory-input-group label{font-size:8px;margin-bottom:5px}
+  #inventoryPage .inventory-input{height:45px;font-size:16px!important}
+  #inventoryPage .send-button,#inventoryPage .reset-button{height:44px!important;min-height:44px!important;font-size:10px!important}
+  #inventoryPage .history-section{margin-top:17px!important;padding-top:13px!important}
+
+  #dataBsdPage .data-bsd-topbar{height:50px;padding:0 8px}
+  #dataBsdPage .data-bsd-logo{width:30px;height:30px;border-radius:8px}
+  #dataBsdPage .data-bsd-brand strong{font-size:10px}
+  #dataBsdPage .data-bsd-brand span{font-size:6px}
+  #dataBsdPage .data-bsd-actions{gap:5px}
+  #dataBsdPage .data-bsd-back,#dataBsdPage .data-bsd-refresh{height:29px;padding:0 7px;font-size:7px}
+  #dataBsdPage .data-bsd-body{padding:9px}
+  #dataBsdPage .data-page-title{font-size:18px}
+  #dataBsdPage .data-page-subtitle{font-size:7px}
+  #dataBsdPage .data-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  #dataBsdPage .data-stat{min-height:62px;padding:9px;border-radius:10px}
+  #dataBsdPage .data-stat-label{font-size:6.5px}
+  #dataBsdPage .data-stat-value{font-size:18px}
+  #dataBsdPage .data-stat-desc{font-size:6.5px}
+  #dataBsdPage #bsdNavigation button{height:29px!important;min-height:29px!important;padding:0 8px!important;font-size:7px!important}
+  #dataBsdPage .data-table-scroll{max-height:calc(100dvh - 255px);overflow-x:auto!important;overflow-y:auto!important}
+}
+
+</style>
+
+<style id="DASHBOARD-SIDEBAR-ANIMATION">
+/* =========================================================
+   THE BUTCHER — COMPACT / SMOOTH SIDEBAR
+========================================================= */
+#dashboard .dashboard-shell{
+  grid-template-columns:190px minmax(0,1fr)!important;
+  transition:grid-template-columns .28s ease;
+}
+#dashboard .dashboard-sidebar{
+  position:sticky!important;
+  top:0!important;
+  width:190px!important;
+  overflow:hidden!important;
+  transition:width .28s ease,box-shadow .28s ease!important;
+}
+#dashboard .dashboard-sidebar .sidebar-brand{
+  flex:none;
+}
+#dashboard .dashboard-toggle{
+  width:100%;
+  height:38px;
+  margin:16px 0 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border:1px solid #e7eaee;
+  border-radius:10px;
+  background:#fff;
+  color:#4e5762;
+  font-family:Poppins,sans-serif;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.7px;
+  cursor:pointer;
+  transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+#dashboard .dashboard-toggle:hover{
+  background:#fff6ed;
+  border-color:#ffd0a2;
+  color:#e96e00;
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(255,122,0,.08);
+}
+#dashboard .dashboard-toggle:active{transform:scale(.98)}
+#dashboard .dashboard-toggle-icon{font-size:14px;line-height:1}
+#dashboard .dashboard-toggle-text{white-space:nowrap}
+
+/* CLOSED: branding remains visible, operations/account are tucked away */
+#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-menu,
+#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-section-title,
+#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-divider,
+#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-spacer,
+#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-user,
+#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-actions{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+#dashboard .dashboard-shell:not(.sidebar-open) .sidebar-brand-text{
+  opacity:1;
+}
+#dashboard .dashboard-shell:not(.sidebar-open) .dashboard-toggle{
+  background:#fff8f1;
+  border-color:#ffd9b5;
+  color:#e96e00;
+}
+
+/* OPEN */
+#dashboard .dashboard-shell.sidebar-open{
+  grid-template-columns:270px minmax(0,1fr)!important;
+}
+#dashboard .dashboard-shell.sidebar-open .dashboard-sidebar{
+  width:270px!important;
+  box-shadow:8px 0 30px rgba(15,23,42,.09)!important;
+}
+#dashboard .dashboard-shell.sidebar-open .sidebar-menu,
+#dashboard .dashboard-shell.sidebar-open .sidebar-section-title,
+#dashboard .dashboard-shell.sidebar-open .sidebar-divider,
+#dashboard .dashboard-shell.sidebar-open .sidebar-spacer,
+#dashboard .dashboard-shell.sidebar-open .sidebar-user,
+#dashboard .dashboard-shell.sidebar-open .sidebar-actions{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transition:opacity .22s ease .06s,visibility 0s linear 0s;
+}
+#dashboard .dashboard-shell.sidebar-open .sidebar-item{
+  animation:sideItemIn .25s ease both;
+}
+#dashboard .dashboard-shell.sidebar-open .sidebar-item:nth-child(2){animation-delay:.04s}
+#dashboard .dashboard-shell.sidebar-open .sidebar-item:nth-child(3){animation-delay:.08s}
+@keyframes sideItemIn{
+  from{opacity:0;transform:translateX(-8px)}
+  to{opacity:1;transform:translateX(0)}
+}
+#dashboard .dashboard-shell.sidebar-open .dashboard-toggle-icon{transform:rotate(90deg)}
+#dashboard .dashboard-toggle-icon{transition:transform .28s ease}
+
+/* Prevent hidden sidebar content from creating accidental horizontal scroll */
+#dashboard .dashboard-sidebar>*{max-width:100%}
+
+@media(max-width:800px){
+  #dashboard .dashboard-shell{
+    grid-template-columns:112px minmax(0,1fr)!important;
+  }
+  #dashboard .dashboard-shell.sidebar-open{
+    grid-template-columns:220px minmax(0,1fr)!important;
+  }
+  #dashboard .dashboard-sidebar{width:112px!important;padding:14px 8px 12px!important}
+  #dashboard .dashboard-shell.sidebar-open .dashboard-sidebar{width:220px!important}
+  #dashboard .sidebar-brand{gap:7px!important;padding:0 2px!important}
+  #dashboard .sidebar-logo{width:34px!important;height:34px!important}
+  #dashboard .sidebar-brand-text strong{font-size:10px!important}
+  #dashboard .sidebar-brand-text span{font-size:6px!important}
+  #dashboard .dashboard-toggle{height:34px;margin-top:12px;font-size:8px;gap:6px}
+  #dashboard .dashboard-toggle-icon{font-size:12px}
+  #dashboard .dashboard-toggle-text{font-size:8px}
+}
+@media(max-width:430px){
+  #dashboard .dashboard-shell{
+    grid-template-columns:88px minmax(0,1fr)!important;
+  }
+  #dashboard .dashboard-shell.sidebar-open{
+    grid-template-columns:205px minmax(0,1fr)!important;
+  }
+  #dashboard .dashboard-sidebar{width:88px!important;padding:12px 6px 10px!important}
+  #dashboard .dashboard-shell.sidebar-open .dashboard-sidebar{width:205px!important}
+  #dashboard .sidebar-brand-text{display:none!important}
+  #dashboard .dashboard-shell.sidebar-open .sidebar-brand-text{display:block!important}
+  #dashboard .sidebar-logo{width:32px!important;height:32px!important;margin:auto}
+  #dashboard .dashboard-toggle{height:32px;margin-top:10px;padding:0 4px;font-size:7px}
+  #dashboard .dashboard-toggle-icon{font-size:11px}
+  #dashboard .dashboard-toggle-text{font-size:7px}
+}
+</style>
+</head><body><section id="loginPage"><div class="login-card"><div class="brand"><div class="brand-logo"><span>T B</span></div><h1>THE BUTCHER</h1><p>Management System Bsd </p></div><div class="input-group"><label>USERNAME / EMAIL</label><input id="loginIdentity" class="input" type="text" autocomplete="username" placeholder="Masukkan username atau email" ></div><div class="input-group"><label>PASSWORD</label><input id="loginPassword" class="input" type="password" autocomplete="current-password" placeholder="Masukkan password" ></div><button id="loginButton" class="btn btn-primary" onclick="login()" > LOGIN </button><div class="login-actions"><button class="text-button" onclick="openModal('forgotModal')" > Lupa Password? </button><button class="text-button" onclick="openModal('signupModal')" > Buat Akun </button></div><div id="loginMessage" class="message" ></div></div></section><section id="dashboard" class="hidden"><div class="dashboard-shell"><aside class="dashboard-sidebar" id="dashboardSidebar"><div class="sidebar-brand"><div class="sidebar-logo">TB</div><div class="sidebar-brand-text"><strong>THE BUTCHER</strong><span>INVENTORY SYSTEM</span></div></div><button type="button" class="dashboard-toggle" id="dashboardToggle" onclick="toggleDashboardSidebar()" aria-expanded="false" aria-controls="dashboardSidebar"><span class="dashboard-toggle-icon">☰</span><span class="dashboard-toggle-text">DASHBOARD</span></button><div class="sidebar-divider"></div><div class="sidebar-section-title">OPERATIONS</div><div class="sidebar-menu"><button class="sidebar-item active" onclick="openInventory('stockloss')"><span class="sidebar-icon">📉</span><span class="sidebar-item-text"><strong>STOCK LOSS</strong><small>Stock Loss BSD</small></span></button><button class="sidebar-item" onclick="openInventory('opname')"><span class="sidebar-icon blue">📦</span><span class="sidebar-item-text"><strong>STOCK OPNAME</strong><small>Stock Opname BSD</small></span></button><button class="sidebar-item" onclick="openDataBSD()"><span class="sidebar-icon green">📊</span><span class="sidebar-item-text"><strong>DATA BSD</strong><small>Monitoring Data</small></span></button></div><div class="sidebar-spacer"></div><div class="sidebar-user"><div id="avatar" class="sidebar-avatar">TB</div><div class="sidebar-user-info"><strong id="userName">User</strong><span>Active User</span></div></div><div class="sidebar-actions"><button class="sidebar-action" onclick="openSettings()"><span>⚙</span> SETTINGS</button><button class="sidebar-action logout-action" onclick="logout()"><span>⇥</span> LOGOUT</button></div></aside><main class="dashboard-content"><div class="dashboard-topbar"><div id="connectionStatus" class="system-status"><span class="status-dot"></span> SYSTEM ONLINE</div></div><div class="welcome-block"><span class="welcome-label">INVENTORY MANAGEMENT</span><h1 id="welcomeName" class="welcome-title">WELCOME</h1><p class="welcome-sub">Kelola stock loss, stock opname, dan monitoring data stock BSD melalui satu sistem.</p></div><div class="dashboard-overview"><div class="overview-card"><span class="overview-icon">📋</span><div><strong>Inventory Operations</strong><p>Pilih menu di sidebar untuk mulai bekerja.</p></div></div><div class="overview-card"><span class="overview-icon green">●</span><div><strong>System Status</strong><p>Sistem siap digunakan dan terhubung.</p></div></div></div><div class="dashboard-footer"><span>THE BUTCHER • INVENTORY MANAGEMENT</span><span>v1.0</span></div></main></div></section><section id="inventoryPage"><div class="inventory-center"><div class="inventory-top"><div class="inventory-brand"><div class="inventory-logo"> TB </div><div><strong> THE BUTCHER </strong><span> INVENTORY SYSTEM </span></div></div><button class="back-button" onclick="backToDashboard()" > ← Dashboard </button></div><div class="inventory-card"><div class="inventory-heading"><div id="inventoryIcon" class="inventory-heading-icon" > 📦 </div><h1 id="inventoryTitle"> STOCK OPNAME </h1><p id="inventorySubtitle"> Input data inventory </p></div><div class="inventory-form-grid"><div class="inventory-input-group"><label> BARCODE / ARTICLE </label><input id="barcode" class="inventory-input" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Scan atau masukkan barcode / article" ><div id="suggestions" class="suggestions" ></div><div id="productName" class="product-name" ></div></div><div class="inventory-input-group"><label> QUANTITY </label><input id="qty" class="inventory-input" type="text" inputmode="decimal" autocomplete="off" placeholder="Masukan Qty" ></div></div><button id="sendButton" class="send-button" onclick="saveInventory()" > KIRIM DATA </button><div class="reset-row"><button class="reset-button" onclick="resetInventory()" > ↻ RESET DATA </button></div><div id="inventoryMessage" class="inventory-message" ></div><div class="history-section"><div class="history-header"><strong> RIWAYAT INPUT </strong><span id="historyMode"> - </span></div><div class="history-summary"><div id="pendingCounter" class="history-counter pending" > ⏳ 0 MENGIRIM </div><div id="sentCounter" class="history-counter sent" > ✓ 0 TERKIRIM </div><div id="failedCounter" class="history-counter failed" > ✕ 0 GAGAL </div></div><div id="historyList" class="history-list" ><div class="history-empty"> Belum ada data </div></div></div></div></div></section><section id="dataBsdPage"><div class="data-bsd-topbar"><div class="data-bsd-brand"><div class="data-bsd-logo"> TB </div><div><strong> DATA BSD </strong><span> STOCK MONITORING </span></div></div><div class="data-bsd-actions"><button class="data-bsd-refresh" id="bsdRefreshButton" onclick="refreshBSD()" > ↻ Refresh </button><button class="data-bsd-back" onclick="closeDataBSD()" > ← Dashboard </button></div></div><div class="data-bsd-body"><div class="data-dashboard"><div class="data-page-heading"><div class="data-page-title" id="bsdPageTitle" > MEAT </div><div class="data-page-subtitle"> Monitoring stock BSD </div></div><section class="data-stats"><div class="data-stat"><div class="data-stat-label"> SHEET </div><div class="data-stat-value" id="bsdSheetValue" > MEAT </div><div class="data-stat-desc"> Sheet aktif </div></div><div id="bsdNegativeCard" class="data-stat clickable" onclick="bsdShowNegative()" ><div class="data-stat-label"> NEGATIVE STOCK </div><div class="data-stat-value" id="bsdNegativeValue" > 0 </div><div class="data-stat-desc"> Klik untuk melihat </div></div><div class="data-stat"><div class="data-stat-label"> UPDATE </div><div class="data-stat-value" id="bsdUpdateValue" style="font-size:10px;" > — </div><div class="data-stat-desc"> Informasi update </div></div><div id="bsdLowCard" class="data-stat clickable" onclick="bsdShowLow()" ><div class="data-stat-label"> LOW STOCK </div><div class="data-stat-value" id="bsdLowValue" > 0 </div><div class="data-stat-desc"> Klik untuk melihat </div></div></section><section class="data-table-container"><div class="data-table-header"><div><div class="data-table-title" id="bsdTableTitle" > Semua Barang </div><div class="data-info" id="bsdDataInfo" > 0 data </div></div><div class="data-table-actions"><button id="bsdAllBtn" class="bsd-all-btn" onclick="bsdShowAll()" > ← Semua Barang </button><input id="bsdSearch" class="bsd-search" type="text" placeholder="Cari barang..." oninput="bsdFilter()" ></div></div><div class="data-table-scroll"><table class="data-table"><thead><tr id="bsdTableHead"><th>#</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead><tbody id="bsdTableBody"><tr><td colspan="8" class="bsd-empty" > Memuat data... </td></tr></tbody></table></div></section></div></div></section><div id="signupModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Buat Akun </h2><button class="modal-close" onclick="closeModal('signupModal')" > × </button></div><div class="input-group"><label> USERNAME </label><input id="signupUsername" class="input" type="text" placeholder="username" ></div><div class="input-group"><label> EMAIL </label><input id="signupEmail" class="input" type="email" placeholder="email" ></div><div class="input-group"><label> PASSWORD </label><input id="signupPassword" class="input" type="password" placeholder="Minimal 6 karakter" ></div><div class="input-group"><label> KONFIRMASI PASSWORD </label><input id="signupConfirm" class="input" type="password" placeholder="Ulangi password" ></div><button class="btn btn-primary" onclick="signup()" > DAFTAR </button><div id="signupMessage" class="message" ></div></div></div><div id="verifyModal" class="modal" ><div class="modal-card verify-card"><div class="verify-icon"> ✓ </div><div class="brand verify-brand"><div class="brand-logo"><span>TB</span></div><h1> VERIFIKASI EMAIL </h1><p> THE BUTCHER • INVENTORY SYSTEM </p></div><div class="verify-content"><div class="verify-title"> PENDAFTARAN BERHASIL </div><div class="verify-text"> Link verifikasi telah dikirim ke: </div><div id="verifyEmail" class="verify-email" > — </div><div class="verify-info"> 📧 Silakan buka email Anda, lalu klik link verifikasi yang dikirim oleh <b>THE BUTCHER</b>. <br><br> Setelah selesai, kembali ke sini dan klik <b>CEK VERIFIKASI</b>. </div><div id="verifyStatus" class="verify-status" > MENUNGGU VERIFIKASI EMAIL </div><button id="checkVerifyBtn" class="btn btn-primary" onclick="checkEmailVerification()" > ✓ CEK VERIFIKASI </button><button id="resendVerifyBtn" class="btn btn-secondary" style="margin-top:8px" onclick="resendVerificationEmail()" > ↻ KIRIM ULANG EMAIL </button><button class="back-login-button" onclick="backToLoginFromVerify()" > ← KEMBALI KE LOGIN </button></div></div></div><div id="forgotModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Reset Password </h2><button class="modal-close" onclick="closeModal('forgotModal')" > × </button></div><div class="input-group"><label> EMAIL </label><input id="forgotEmail" class="input" type="email" placeholder="Masukkan email" ></div><button class="btn btn-primary" onclick="forgotPassword()" > KIRIM LINK RESET </button><div id="forgotMessage" class="message" ></div></div></div><div id="settingsModal" class="modal" ><div class="modal-card"><div class="modal-head"><h2> Settings </h2><button class="modal-close" onclick="closeModal('settingsModal')" > × </button></div><div class="profile-box"><div class="profile-row"><span class="profile-label"> Username </span><span id="settingsUsername" class="profile-value" > - </span></div><div class="profile-row"><span class="profile-label"> Email </span><span id="settingsEmail" class="profile-value" > - </span></div><div class="profile-row"><span class="profile-label"> Role </span><span id="settingsRole" class="profile-value" > - </span></div></div><button class="btn btn-secondary" onclick="resetOwnPassword()" > KIRIM RESET PASSWORD </button><div id="adminSection" class="admin-section hidden" ><h3> USER MENUNGGU PERSETUJUAN </h3><div id="pendingList" class="pending-list" ><div class="history-empty"> Tidak ada user pending </div></div></div></div></div><div id="toastContainer"></div><script type="module">  
+  
+/* =====================================================  
+   FIREBASE IMPORT  
+===================================================== */  
+  
+import {  
+  initializeApp  
+}  
+from  
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";  
+  
+import {  
+  getAuth,  
+  createUserWithEmailAndPassword,  
+  signInWithEmailAndPassword,  
+  sendEmailVerification,  
+  sendPasswordResetEmail,  
+  onAuthStateChanged,  
+  signOut  
+}  
+from  
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";  
+  
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+  onSnapshot,
+  deleteDoc,
+  writeBatch,
+  orderBy,
+  limit
+}
+from
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+/* =====================================================  
+   FIREBASE  
+===================================================== */  
+  
+const firebaseConfig={  
+  
+  apiKey:  
+    "AIzaSyAEll_xXB59TB59N--5wjG1C2bxYg7yqps",  
+  
+  authDomain:  
+    "stockloss-bsd-web.firebaseapp.com",  
+  
+  projectId:  
+    "stockloss-bsd-web",  
+  
+  storageBucket:  
+    "stockloss-bsd-web.firebasestorage.app",  
+  
+  messagingSenderId:  
+    "825716539347",  
+  
+  appId:  
+    "1:825716539347:web:4f919eca31a71e72f57926",  
+  
+  measurementId:  
+    "G-X0YY0849JH"  
+  
+};  
+  
+const app=  
+  initializeApp(firebaseConfig);  
+  
+const auth=  
+  getAuth(app);  
+  
+const db=  
+  getFirestore(app);  
+  
+const URL_SCRIPT=  
+"https://script.google.com/macros/s/AKfycbyYp-CRc2wUKF-OQ8VFb3NApejjOSpIDbdlVxcsvgDtY8YHEwGdysxaHU1ruQATXOIS-w/exec";  
+  
+const DATA_BSD_API=  
+"https://script.google.com/macros/s/AKfycbyjRNaLlSbZZRlvf59Ctzro9NloalUdkP4ML8-VdxfJ5PmS9hpanUEo_NwqT8jB07s/exec";  
+  
+/* =====================================================  
+   GLOBAL  
+===================================================== */  
+  
+let currentUser=null;  
+let currentProfile=null;  
+let currentMode="opname";  
+  
+let masterData=[];  
+let selectedHistoryItem=null;  
+let historyRows=[];
+let historyRequestVersion=0;
+let historyUnsubscribe=null;
+let historyFirebaseReady=false;  
+  
+const MASTER_CACHE_KEY=  
+  "TB_MASTER_DATA_V2";  
+  
+const HISTORY_CACHE_PREFIX=  
+  "TB_HISTORY_V2_";  
+  
+const HISTORY_LIMIT=  
+  40;  
+  
+/* =====================================================  
+   HELPER  
+===================================================== */  
+  
+function $(id){  
+  return document.getElementById(id)  
+}  
+  
+function escapeHtml(value){  
+  
+  return String(value??"")  
+    .replace(/&/g,"&amp;")  
+    .replace(/</g,"&lt;")  
+    .replace(/>/g,"&gt;")  
+    .replace(/"/g,"&quot;")  
+    .replace(/'/g,"&#039;");  
+  
+}  
+  
+function normalizeBarcode(value){  
+  
+  return String(value??"")  
+    .trim()  
+    .replace(/\s+/g,"");  
+  
+}  
+  
+function barcodeKey(value){  
+  
+  return normalizeBarcode(value)  
+    .toLowerCase();  
+  
+}  
+  
+/* =====================================================  
+   CACHE  
+===================================================== */  
+  
+function historyCacheKey(mode){  
+  
+  return HISTORY_CACHE_PREFIX+  
+    mode;  
+  
+}  
+  
+function saveMasterCache(){  
+  
+  try{  
+  
+    localStorage.setItem(  
+      MASTER_CACHE_KEY,  
+      JSON.stringify(masterData)  
+    );  
+  
+  }catch(e){  
+  
+    console.warn(  
+      "Master cache gagal:",  
+      e  
+    );  
+  
+  }  
+  
+}  
+  
+function readMasterCache(){  
+  
+  try{  
+  
+    const raw=  
+      localStorage.getItem(  
+        MASTER_CACHE_KEY  
+      );  
+  
+    if(!raw)return false;  
+  
+    const data=  
+      JSON.parse(raw);  
+  
+    if(  
+      !Array.isArray(data)||  
+      !data.length  
+    )  
+      return false;  
+  
+    masterData=data;  
+  
+    return true;  
+  
+  }catch(e){  
+  
+    return false;  
+  
+  }  
+  
+}  
+  
+function saveHistoryCache(){  
+  
+  try{  
+  
+    const clean=  
+      historyRows  
+        .filter(  
+          x=>  
+            x &&  
+            !x.__tempDeleting  
+        )  
+        .slice(  
+          0,  
+          HISTORY_LIMIT  
+        );  
+  
+    localStorage.setItem(  
+      historyCacheKey(currentMode),  
+      JSON.stringify(clean)  
+    );  
+  
+  }catch(e){  
+  
+    console.warn(  
+      "History cache gagal:",  
+      e  
+    );  
+  
+  }  
+  
+}  
+  
+function readHistoryCache(mode){  
+  
+  try{  
+  
+    const raw=  
+      localStorage.getItem(  
+        historyCacheKey(mode)  
+      );  
+  
+    if(!raw)return [];  
+  
+    const data=  
+      JSON.parse(raw);  
+  
+    return Array.isArray(data)  
+      ? data.slice(  
+          0,  
+          HISTORY_LIMIT  
+        )  
+      : [];  
+  
+  }catch(e){  
+  
+    return [];  
+  
+  }  
+  
+}  
+  
+/* =====================================================  
+   PRODUCT UNIT  
+===================================================== */  
+  
+function getProductUnit(product){  
+  
+  if(!product)return "";  
+  
+  const candidates=[  
+  
+    product.unit,  
+    product.satuan,  
+    product.sat,  
+    product.unitName,  
+    product.satuanProduk,  
+    product.uom,  
+    product.Unit,  
+    product.Satuan,  
+    product.SATUAN,  
+    product.UOM  
+  
+  ];  
+  
+  for(  
+    const value  
+    of candidates  
+  ){  
+  
+    const text=  
+      String(value??"")  
+        .trim();  
+  
+    if(text){  
+      return text;  
+    }  
+  
+  }  
+  
+  return "";  
+  
+}  
+  
+function normalizeUnit(unit){  
+  
+  let text=  
+    String(unit??"")  
+      .trim();  
+  
+  if(!text)return "";  
+  
+  const lower=  
+    text.toLowerCase();  
+  
+  if(  
+    lower==="kg"||  
+    lower==="kgs"||  
+    lower==="kilogram"||  
+    lower==="kilograms"  
+  )  
+    return "KG";  
+  
+  if(  
+    lower==="ea"||  
+    lower==="e.a"||  
+    lower==="pcs"||  
+    lower==="pc"||  
+    lower==="piece"||  
+    lower==="pieces"  
+  )  
+    return "EA";  
+  
+  if(  
+    lower.includes("100") &&  
+    lower.includes("gr")  
+  )  
+    return "100 GR";  
+  
+  if(  
+    lower==="gr"||  
+    lower==="gram"||  
+    lower==="grams"  
+  )  
+    return "GR";  
+  
+  return text;  
+  
+}  
+  
+function findProduct(barcode){  
+  
+  const code=  
+    barcodeKey(barcode);  
+  
+  if(!code)return null;  
+  
+  return masterData.find(  
+    item=>  
+      barcodeKey(item.barcode)===code  
+  )||null;  
+  
+}  
+  
+function getUnitForBarcode(barcode){  
+  
+  const product=  
+    findProduct(barcode);  
+  
+  return normalizeUnit(  
+    getProductUnit(product)  
+  );  
+  
+}  
+  
+/* =====================================================  
+   PRODUCT NAME  
+===================================================== */  
+  
+function clearProductName(){  
+  
+  const box=  
+    $("productName");  
+  
+  if(!box)return;  
+  
+  box.textContent="";  
+  
+  box.classList.remove(  
+    "show"  
+  );  
+  
+}  
+  
+function updateProductName(barcode){  
+  
+  const box=  
+    $("productName");  
+  
+  if(!box)return null;  
+  
+  const product=  
+    findProduct(barcode);  
+  
+  if(  
+    product &&  
+    product.nama  
+  ){  
+  
+    const unit=  
+      getProductUnit(product);  
+  
+    const unitText=  
+      normalizeUnit(unit);  
+  
+    box.textContent=  
+      product.nama+  
+      (  
+        unitText  
+          ? " • "+unitText  
+          : ""  
+      );  
+  
+    box.classList.add(  
+      "show"  
+    );  
+  
+    return product;  
+  
+  }  
+  
+  clearProductName();  
+  
+  return null;  
+  
+}  
+  
+/* =====================================================  
+   TOAST  
+===================================================== */  
+  
+function showToast(  
+  text,  
+  type="success"  
+){  
+  
+  const container=  
+    $("toastContainer");  
+  
+  const toast=  
+    document.createElement(  
+      "div"  
+    );  
+  
+  toast.className=  
+    "toast "+type;  
+  
+  toast.textContent=text;  
+  
+  container.appendChild(  
+    toast  
+  );  
+  
+  setTimeout(  
+    ()=>toast.remove(),  
+    2800  
+  );  
+  
+}  
+  
+/* =====================================================  
+   ONLINE  
+===================================================== */  
+  
+function updateOnlineStatus(){  
+  
+  const status=  
+    $("connectionStatus");  
+  
+  if(!status)return;  
+  
+  status.classList.remove(  
+    "offline",  
+    "checking"  
+  );  
+  
+  if(navigator.onLine){  
+  
+    status.innerHTML=  
+      `<span class="status-dot"></span>SYSTEM ONLINE`;  
+  
+  }else{  
+  
+    status.classList.add(  
+      "offline"  
+    );  
+  
+    status.innerHTML=  
+      `<span class="status-dot"></span>SYSTEM OFFLINE`;  
+  
+  }  
+  
+}  
+  
+window.addEventListener(  
+  "online",  
+  updateOnlineStatus  
+);  
+  
+window.addEventListener(  
+  "offline",  
+  updateOnlineStatus  
+);  
+  
+/* =====================================================  
+   MODAL  
+===================================================== */  
+  
+window.openModal=function(id){  
+  
+  $(id)?.classList.add(  
+    "show"  
+  );  
+  
+};  
+  
+window.closeModal=function(id){  
+  
+  $(id)?.classList.remove(  
+    "show"  
+  );  
+  
+};  
+  
+document  
+  .querySelectorAll(".modal")  
+  .forEach(modal=>{  
+  
+    modal.addEventListener(  
+      "click",  
+      e=>{  
+  
+        if(e.target===modal)  
+          modal.classList.remove(  
+            "show"  
+          );  
+  
+      }  
+    );  
+  
+  });  
+  
+/* =====================================================  
+   FIREBASE ERROR  
+===================================================== */  
+  
+function firebaseErrorMessage(error){  
+  
+  const code=  
+    error?.code||"";  
+  
+  if(  
+    code.includes(  
+      "email-already-in-use"  
+    )  
+  )  
+    return "Email sudah digunakan.";  
+  
+  if(  
+    code.includes(  
+      "invalid-credential"  
+    ) ||  
+    code.includes(  
+      "wrong-password"  
+    ) ||  
+    code.includes(  
+      "user-not-found"  
+    )  
+  )  
+    return "Username atau password salah.";  
+  
+  if(  
+    code.includes(  
+      "invalid-email"  
+    )  
+  )  
+    return "Format email tidak valid.";  
+  
+  if(  
+    code.includes(  
+      "weak-password"  
+    )  
+  )  
+    return "Password terlalu lemah.";  
+  
+  if(  
+    code.includes(  
+      "network"  
+    )  
+  )  
+    return "Koneksi internet bermasalah.";  
+  
+  if(  
+    error?.message===  
+    "Username tidak ditemukan."  
+  )  
+    return error.message;  
+  
+  if(  
+    error?.message===  
+    "Data user tidak ditemukan."  
+  )  
+    return error.message;  
+  
+  if(  
+    error?.message===  
+    "Profil user tidak ditemukan."  
+  )  
+    return error.message;  
+  
+  return(  
+    error?.message||  
+    "Terjadi kesalahan."  
+  );  
+  
+}  
+  
+/* =====================================================
+   SIGNUP
+===================================================== */
+
+let verificationUser=null;
+let verificationEmail="";
+let authFlowBusy=false;
+
+window.signup=async function(){
+  const username=$("signupUsername").value.trim().toLowerCase(),email=$("signupEmail").value.trim().toLowerCase(),password=$("signupPassword").value,confirm=$("signupConfirm").value,message=$("signupMessage"),button=document.querySelector('#signupModal .btn-primary');
+  message.className="message";message.textContent="";
+  if(username.length<3)return signupMsg(message,"Username minimal 3 karakter.");
+  if(!/^[a-z0-9._-]+$/.test(username))return signupMsg(message,"Username hanya boleh huruf kecil, angka, titik, underscore, dan strip.");
+  if(!email)return signupMsg(message,"Email wajib diisi.");
+  if(password.length<6)return signupMsg(message,"Password minimal 6 karakter.");
+  if(password!==confirm)return signupMsg(message,"Konfirmasi password tidak sama.");
+  authFlowBusy=true;
+  if(button){button.disabled=true;button.innerHTML='<span class="action-loading"><span class="action-spinner"></span> MEMBUAT AKUN...</span>'}
+  try{
+    const usernameRef=doc(db,"usernames",username),usernameSnap=await getDoc(usernameRef);
+    if(usernameSnap.exists())throw new Error("Username sudah digunakan.");
+    const credential=await createUserWithEmailAndPassword(auth,email,password),user=credential.user;
+    verificationUser=user;verificationEmail=email;
+    await setDoc(doc(db,"users",user.uid),{username,email,role:"user",status:"pending",emailVerified:false,createdAt:new Date()});
+    await setDoc(usernameRef,{uid:user.uid,email});
+    await sendEmailVerification(user);
+    $("signupUsername").value=$("signupEmail").value=$("signupPassword").value=$("signupConfirm").value="";
+    closeModal("signupModal");
+    $("verifyEmail").textContent=email;
+    $("verifyStatus").className="verify-status success";
+    $("verifyStatus").textContent="✓ EMAIL VERIFIKASI BERHASIL DIKIRIM";
+    $("checkVerifyBtn").disabled=false;$("checkVerifyBtn").textContent="✓ CEK VERIFIKASI";
+    $("resendVerifyBtn").disabled=false;$("resendVerifyBtn").textContent="↻ KIRIM ULANG EMAIL";
+    openModal("verifyModal");
+  }catch(error){
+    console.error("Signup error:",error);
+    message.className="message error";message.textContent=firebaseErrorMessage(error);
+    if(verificationUser&&verificationUser.email===email){
+      try{
+        await sendEmailVerification(verificationUser);
+        closeModal("signupModal");$("verifyEmail").textContent=email;
+        $("verifyStatus").className="verify-status success";
+        $("verifyStatus").textContent="✓ EMAIL VERIFIKASI DIKIRIM";
+        openModal("verifyModal");
+      }catch(e){console.error("Verification fallback error:",e)}
+    }
+  }finally{
+    authFlowBusy=false;
+    if(button){button.disabled=false;button.textContent="DAFTAR"}
+  }
+};
+function signupMsg(message,text){message.className="message error";message.textContent=text;}
+
+/* =====================================================
+   CHECK EMAIL VERIFICATION
+===================================================== */
+
+window.checkEmailVerification=async function(){
+  const status=$("verifyStatus"),button=$("checkVerifyBtn");
+  if(!verificationUser){status.className="verify-status error";status.textContent="Sesi verifikasi tidak ditemukan. Silakan login kembali.";return}
+  button.disabled=true;button.textContent="MEMERIKSA...";
+  try{
+    await verificationUser.reload();
+    if(!verificationUser.emailVerified){status.className="verify-status error";status.textContent="EMAIL BELUM DIVERIFIKASI";return}
+    await updateDoc(doc(db,"users",verificationUser.uid),{emailVerified:true});
+    status.className="verify-status success";status.textContent="✓ EMAIL BERHASIL DIVERIFIKASI";button.textContent="✓ TERVERIFIKASI";
+    setTimeout(async()=>{
+      closeModal("verifyModal");
+      const snap=await getDoc(doc(db,"users",verificationUser.uid)),profile=snap.exists()?snap.data():null;
+      if(profile?.status==="approved"){
+        currentUser=verificationUser;currentProfile=profile;verificationUser=null;verificationEmail="";showDashboard();
+      }else{
+        await signOut(auth);verificationUser=null;verificationEmail="";
+        $("loginMessage").className="message success";
+        $("loginMessage").textContent="Email berhasil diverifikasi. Akun masih menunggu persetujuan admin.";
+      }
+    },900);
+  }catch(error){console.error("Verification error:",error);status.className="verify-status error";status.textContent=firebaseErrorMessage(error)}
+  finally{if(!verificationUser?.emailVerified){button.disabled=false;button.textContent="✓ CEK VERIFIKASI"}}
+};
+
+/* =====================================================
+   RESEND VERIFICATION EMAIL
+===================================================== */
+
+window.resendVerificationEmail=async function(){
+  const status=$("verifyStatus"),button=$("resendVerifyBtn");
+  if(!verificationUser){status.className="verify-status error";status.textContent="Sesi verifikasi tidak ditemukan. Silakan login kembali.";return}
+  button.disabled=true;button.textContent="MENGIRIM...";
+  try{await sendEmailVerification(verificationUser);status.className="verify-status success";status.textContent="✓ EMAIL VERIFIKASI DIKIRIM ULANG"}
+  catch(error){console.error("Resend error:",error);status.className="verify-status error";status.textContent=error?.code==="auth/too-many-requests"?"Terlalu banyak permintaan. Coba lagi beberapa saat.":firebaseErrorMessage(error)}
+  finally{setTimeout(()=>{button.disabled=false;button.textContent="↻ KIRIM ULANG EMAIL"},700)}
+};
+
+/* =====================================================
+   BACK TO LOGIN FROM VERIFY
+===================================================== */
+
+window.backToLoginFromVerify=async function(){
+  closeModal("verifyModal");try{await signOut(auth)}catch(e){console.warn(e)}
+  verificationUser=null;verificationEmail="";
+  $("loginMessage").className="message";$("loginMessage").textContent="";$("loginIdentity").focus();
+};
+
+  
+/* =====================================================  
+   LOGIN  
+===================================================== */  
+  
+window.login=async function(){
+  const identity=$("loginIdentity").value.trim().toLowerCase(),password=$("loginPassword").value,message=$("loginMessage"),button=$("loginButton");
+  message.className="message";message.textContent="";
+  if(!identity||!password){message.className="message error";message.textContent="Username/email dan password wajib diisi.";return}
+  authFlowBusy=true;button.disabled=true;button.innerHTML='<span class="action-loading"><span class="action-spinner"></span> LOGIN...</span>';
+  try{
+    let email=identity;
+    if(!identity.includes("@")){
+      const usernameSnap=await getDoc(doc(db,"usernames",identity));
+      if(!usernameSnap.exists()){
+        message.className="message error";
+        message.textContent="Username tidak ditemukan.";
+        return;
+      }
+
+      const usernameData=usernameSnap.data();
+      if(!usernameData?.uid){
+        message.className="message error";
+        message.textContent="Data username tidak valid.";
+        return;
+      }
+
+      if(!usernameData?.email){
+        message.className="message error";
+        message.textContent="Email username tidak ditemukan. Silakan login dengan email atau buat akun ulang.";
+        return;
+      }
+
+      email=String(usernameData.email).trim().toLowerCase();
+    }
+    const credential=await signInWithEmailAndPassword(auth,email,password),user=credential.user;
+    await user.reload();
+    if(!user.emailVerified){
+      verificationUser=user;verificationEmail=user.email||email;
+      $("verifyEmail").textContent=verificationEmail;
+      $("verifyStatus").className="verify-status error";$("verifyStatus").textContent="EMAIL BELUM DIVERIFIKASI";
+      $("checkVerifyBtn").disabled=false;$("checkVerifyBtn").textContent="✓ CEK VERIFIKASI";
+      $("resendVerifyBtn").disabled=false;$("resendVerifyBtn").textContent="↻ KIRIM ULANG EMAIL";
+      openModal("verifyModal");return;
+    }
+    const profileSnap=await getDoc(doc(db,"users",user.uid));
+    if(!profileSnap.exists())throw new Error("Profil user tidak ditemukan.");
+    const profile=profileSnap.data();
+    if(profile.status!=="approved"){
+      await signOut(auth);message.className="message error";
+      message.textContent="Email sudah diverifikasi, tetapi akun masih menunggu persetujuan admin.";return;
+    }
+    currentUser=user;currentProfile=profile;verificationUser=null;verificationEmail="";showDashboard();
+  }catch(error){console.error("Login error:",error);message.className="message error";message.textContent=firebaseErrorMessage(error)}
+  finally{authFlowBusy=false;button.disabled=false;button.textContent="LOGIN"}
+};  
+  
+/* =====================================================  
+   AUTH  
+===================================================== */  
+  
+onAuthStateChanged(auth,async user=>{
+  if(authFlowBusy)return;
+  if(!user){showLogin();return}
+  try{
+    await user.reload();
+    if(!user.emailVerified){
+      if(verificationUser?.uid===user.uid){$("verifyEmail").textContent=user.email||verificationEmail;openModal("verifyModal");return}
+      await signOut(auth);showLogin();return
+    }
+    const snap=await getDoc(doc(db,"users",user.uid));
+    if(!snap.exists()){await signOut(auth);showLogin();return}
+    const profile=snap.data();
+    if(profile.status!=="approved"){await signOut(auth);showLogin();return}
+    currentUser=user;currentProfile=profile;showDashboard();
+  }catch(error){console.error("Auth state error:",error);try{await signOut(auth)}catch(e){}showLogin()}
+});
+
+/* =====================================================  
+   SHOW LOGIN  
+===================================================== */  
+  
+function showLogin(){  
+  
+  $("loginPage")  
+    .classList.remove(  
+      "hidden"  
+    );  
+  
+  $("dashboard")  
+    .classList.add(  
+      "hidden"  
+    );  
+  
+  $("inventoryPage")  
+    .classList.remove(  
+      "show"  
+    );  
+  
+  $("dataBsdPage")  
+    .classList.remove(  
+      "show"  
+    );  
+  
+}  
+  
+/* =====================================================  
+   DASHBOARD  
+===================================================== */  
+  
+function showDashboard(){  
+  
+  $("loginPage")  
+    .classList.add(  
+      "hidden"  
+    );  
+  
+  $("dashboard")  
+    .classList.remove(  
+      "hidden"  
+    );  
+  
+  $("inventoryPage")  
+    .classList.remove(  
+      "show"  
+    );  
+  
+  $("dataBsdPage")  
+    .classList.remove(  
+      "show"  
+    );  
+  
+  updateOnlineStatus();  
+  
+  const username=  
+    currentProfile?.username||  
+    currentUser?.email||  
+    "USER";  
+  
+  $("userName")  
+    .textContent=  
+    username;  
+  
+  $("welcomeName")  
+    .innerHTML=  
+      `WELCOME<br><span>${escapeHtml(username)}</span>`;  
+  
+  const initials=  
+    username  
+      .split(  
+        /[ ._-]+/  
+      )  
+      .filter(Boolean)  
+      .slice(0,2)  
+      .map(  
+        x=>x[0]  
+      )  
+      .join("")  
+      .toUpperCase();  
+  
+  $("avatar")  
+    .textContent=  
+    initials||  
+    "TB";  
+  
+}  
+  
+/* =====================================================  
+   LOGOUT  
+===================================================== */  
+  
+window.logout=async function(){  
+  
+  try{  
+  
+    await signOut(auth);  
+  
+    currentUser=null;  
+  
+    currentProfile=null;  
+  
+    showLogin();  
+  
+  }catch(error){  
+  
+    console.error(error);  
+  
+  }  
+  
+};  
+  
+/* =====================================================  
+   SETTINGS  
+===================================================== */  
+  
+window.openSettings=function(){  
+  
+  if(!currentUser)  
+    return;  
+  
+  $("settingsUsername")  
+    .textContent=  
+      currentProfile?.username||  
+      "-";  
+  
+  $("settingsEmail")  
+    .textContent=  
+      currentProfile?.email||  
+      currentUser.email||  
+      "-";  
+  
+  $("settingsRole")  
+    .textContent=  
+      currentProfile?.role||  
+      "user";  
+  
+  if(  
+    currentProfile?.role===  
+    "admin"  
+  ){  
+  
+    $("adminSection")  
+      .classList.remove(  
+        "hidden"  
+      );  
+  
+    loadPendingUsers();  
+  
+  }else{  
+  
+    $("adminSection")  
+      .classList.add(  
+        "hidden"  
+      );  
+  
+  }  
+  
+  openModal(  
+    "settingsModal"  
+  );  
+  
+};  
+  
+/* =====================================================  
+   RESET PASSWORD  
+===================================================== */  
+  
+window.resetOwnPassword=  
+async function(){  
+  
+  if(!currentUser)  
+    return;  
+  
+  try{  
+  
+    await sendPasswordResetEmail(  
+      auth,  
+      currentUser.email  
+    );  
+  
+    showToast(  
+      "Link reset password dikirim.",  
+      "success"  
+    );  
+  
+  }catch(error){  
+  
+    showToast(  
+      firebaseErrorMessage(  
+        error  
+      ),  
+      "error"  
+    );  
+  
+  }  
+  
+};  
+  
+/* =====================================================  
+   PENDING  
+===================================================== */  
+  
+async function loadPendingUsers(){  
+  
+  const list=  
+    $("pendingList");  
+  
+  list.innerHTML=  
+    `<div class="history-empty">Loading...</div>`;  
+  
+  try{  
+  
+    const q=  
+      query(  
+        collection(  
+          db,  
+          "users"  
+        ),  
+        where(  
+          "status",  
+          "==",  
+          "pending"  
+        )  
+      );  
+  
+    const snapshot=  
+      await getDocs(q);  
+  
+    if(snapshot.empty){  
+  
+      list.innerHTML=  
+        `<div class="history-empty">Tidak ada user pending</div>`;  
+  
+      return;  
+    }  
+  
+    list.innerHTML="";  
+  
+    snapshot.forEach(  
+      userDoc=>{  
+  
+        const data=  
+          userDoc.data();  
+  
+        const div=  
+          document.createElement(  
+            "div"  
+          );  
+  
+        div.className=  
+          "pending-user";  
+  
+        div.innerHTML=`  
+  
+          <div class="pending-user-name">  
+            ${escapeHtml(data.username||"-")}  
+          </div>  
+  
+          <div class="pending-user-email">  
+            ${escapeHtml(data.email||"-")}  
+          </div>  
+  
+          <div class="pending-actions">  
+  
+            <button  
+              class="small-btn approve-btn"  
+              data-uid="${userDoc.id}"  
+              data-action="approve"  
+            >  
+              APPROVE  
+            </button>  
+  
+            <button  
+              class="small-btn reject-btn"  
+              data-uid="${userDoc.id}"  
+              data-action="reject"  
+            >  
+              REJECT  
+            </button>  
+  
+          </div>  
+  
+        `;  
+  
+        list.appendChild(  
+          div  
+        );  
+  
+      }  
+    );  
+  
+    list  
+      .querySelectorAll(  
+        ".small-btn"  
+      )  
+      .forEach(  
+        button=>{  
+  
+          button.addEventListener(  
+            "click",  
+            async()=>{  
+  
+              await updateUserStatus(  
+                button.dataset.uid,  
+                button.dataset.action  
+              );  
+  
+            }  
+          );  
+  
+        }  
+      );  
+  
+  }catch(error){  
+  
+    console.error(error);  
+  
+    list.innerHTML=  
+      `<div class="history-empty">Gagal memuat user.</div>`;  
+  
+  }  
+  
+}  
+  
+async function updateUserStatus(  
+  uid,  
+  action  
+){  
+  
+  if(  
+    currentProfile?.role!=="admin"  
+  )  
+    return;  
+  
+  try{  
+  
+    await updateDoc(  
+      doc(  
+        db,  
+        "users",  
+        uid  
+      ),  
+      {  
+        status:  
+          action==="approve"  
+            ? "approved"  
+            : "rejected"  
+      }  
+    );  
+  
+    showToast(  
+      action==="approve"  
+        ? "User disetujui."  
+        : "User ditolak.",  
+      "success"  
+    );  
+  
+    loadPendingUsers();  
+  
+  }catch(error){  
+  
+    console.error(error);  
+  
+    showToast(  
+      "Gagal mengubah status user.",  
+      "error"  
+    );  
+  
+  }  
+  
+}  
+  
+/* =====================================================  
+   FORGOT  
+===================================================== */  
+  
+window.forgotPassword=  
+async function(){  
+  
+  const email=  
+    $("forgotEmail")  
+      .value  
+      .trim()  
+      .toLowerCase();  
+  
+  const message=  
+    $("forgotMessage");  
+  
+  message.className=  
+    "message";  
+  
+  if(!email){  
+  
+    message.classList.add(  
+      "error"  
+    );  
+  
+    message.textContent=  
+      "Email wajib diisi.";  
+  
+    return;  
+  }  
+  
+  try{  
+  
+    await sendPasswordResetEmail(  
+      auth,  
+      email  
+    );  
+  
+    message.classList.add(  
+      "success"  
+    );  
+  
+    message.textContent=  
+      "Link reset password sudah dikirim.";  
+  
+  }catch(error){  
+  
+    message.classList.add(  
+      "error"  
+    );  
+  
+    message.textContent=  
+      firebaseErrorMessage(  
+        error  
+      );  
+  
+  }  
+  
+};  
+  
+/* =====================================================  
+   INVENTORY OPEN  
+===================================================== */  
+  
+window.openInventory=  
+function(mode){  
+  
+  currentMode=  
+    mode==="stockloss"  
+      ? "stockloss"  
+      : "opname";  
+  
+  selectedHistoryItem=null;  
+  
+  $("dashboard")  
+    .classList.add(  
+      "hidden"  
+    );  
+  
+  $("dataBsdPage")  
+    .classList.remove(  
+      "show"  
+    );  
+  
+  const page=  
+    $("inventoryPage");  
+  
+  page.classList.remove(  
+    "stockloss",  
+    "opname"  
+  );  
+  
+  page.classList.add(  
+    currentMode  
+  );  
+  
+  if(  
+    currentMode===  
+    "stockloss"  
+  ){  
+  
+    $("inventoryTitle")  
+      .textContent=  
+      "STOCK LOSS";  
+  
+    $("inventorySubtitle")  
+      .textContent=  
+      "Input data stock loss";  
+  
+    $("inventoryIcon")  
+      .textContent=  
+      "📉";  
+  
+  }else{  
+  
+    $("inventoryTitle")  
+      .textContent=  
+      "STOCK OPNAME";  
+  
+    $("inventorySubtitle")  
+      .textContent=  
+      "Input data stock opname";  
+  
+    $("inventoryIcon")  
+      .textContent=  
+      "📦";  
+  
+  }  
+  
+  $("historyMode")  
+    .textContent=  
+      currentMode===  
+      "stockloss"  
+        ? "STOCK LOSS"  
+        : "STOCK OPNAME";  
+  
+  $("inventoryMessage")  
+    .textContent="";  
+  
+  $("inventoryMessage")  
+    .className=  
+      "inventory-message";  
+  
+  $("barcode").value="";  
+  
+  $("qty").value="";  
+  
+  $("suggestions")  
+    .style.display=  
+      "none";  
+  
+  clearProductName();  
+  
+  page.classList.add(  
+    "show"  
+  );  
+  
+  historyRows=  
+    readHistoryCache(  
+      currentMode  
+    );  
+  
+  renderHistory();  
+  
+  if(!masterData.length){  
+  
+    readMasterCache();  
+  
+  }  
+  
+  loadMasterData(true);  
+  
+  stopHistoryRealtime();
+  startHistoryRealtime(currentMode);
+  loadHistoryFromSheetAndSeed(currentMode);  
+  
+  setTimeout(  
+    ()=>{  
+      $("barcode").focus();  
+    },  
+    60  
+  );  
+  
+};  
+  
+/* =====================================================  
+   BACK DASHBOARD  
+===================================================== */  
+  
+window.backToDashboard=  
+function(){  
+  
+  $("inventoryPage")  
+    .classList.remove(  
+      "show"  
+    );  
+  
+  $("inventoryPage")  
+    .classList.remove(  
+      "stockloss",  
+      "opname"  
+    );  
+  
+  $("dashboard")  
+    .classList.remove(  
+      "hidden"  
+    );  
+  
+  $("suggestions")  
+    .style.display=  
+      "none";  
+  
+  clearProductName();  
+  
+  selectedHistoryItem=null;  
+  
+  updateOnlineStatus();  
+  
+};  
+  
+/* =====================================================  
+   MASTER DATA  
+===================================================== */  
+  
+async function loadMasterData(  
+  background=false  
+){  
+  
+  if(  
+    masterData.length &&  
+    !background  
+  )  
+    return;  
+  
+  if(!masterData.length)  
+    readMasterCache();  
+  
+  if(  
+    masterData.length &&  
+    !background  
+  )  
+    return;  
+  
+  try{  
+  
+    const response=  
+      await fetch(  
+        URL_SCRIPT,  
+        {  
+          method:"POST",  
+  
+          body:  
+            JSON.stringify({  
+              action:  
+                "getAllBarcode"  
+            })  
+        }  
+      );  
+  
+    const data=  
+      await response.json();  
+  
+    let rows=[];  
+  
+    if(  
+      Array.isArray(data)  
+    ){  
+  
+      rows=data;  
+  
+    }else if(  
+      Array.isArray(data.data)  
+    ){  
+  
+      rows=data.data;  
+  
+    }  
+  
+    if(rows.length){  
+  
+      masterData=  
+        rows.map(  
+          item=>({  
+  
+            ...item,  
+  
+            barcode:  
+              normalizeBarcode(  
+                item.barcode  
+              ),  
+  
+            nama:  
+              String(  
+                item.nama||""  
+              )  
+  
+          })  
+        );  
+  
+      saveMasterCache();  
+  
+      if(  
+        $("inventoryPage")  
+          .classList  
+          .contains("show")  
+      ){  
+  
+        const currentBarcode=  
+          normalizeBarcode(  
+            $("barcode").value  
+          );  
+  
+        if(currentBarcode){  
+  
+          updateProductName(  
+            currentBarcode  
+          );  
+  
+        }  
+  
+      }  
+  
+    }  
+  
+  }catch(error){  
+  
+    console.warn(  
+      "Master background error:",  
+      error  
+    );  
+  
+  }  
+  
+}  
+  
+/* =====================================================  
+   BARCODE INPUT  
+===================================================== */  
+  
+$("barcode")  
+  .addEventListener(  
+    "input",  
+    function(){  
+  
+      const rawValue=  
+        String(  
+          this.value||""  
+        ).trim();  
+  
+      if(!rawValue){  
+  
+        $("suggestions")  
+          .innerHTML="";  
+  
+        $("suggestions")  
+          .style.display=  
+          "none";  
+  
+        clearProductName();  
+  
+        return;  
+      }  
+  
+      const barcodeValue=  
+        normalizeBarcode(  
+          rawValue  
+        );  
+  
+      if(  
+        barcodeValue.length===13 &&  
+        /^20\d{11}$/.test(  
+          barcodeValue  
+        )  
+      ){  
+  
+        processWeighedBarcode(  
+          barcodeValue  
+        );  
+  
+        return;  
+      }  
+  
+      if(!masterData.length){  
+  
+        $("suggestions")  
+          .innerHTML="";  
+  
+        $("suggestions")  
+          .style.display=  
+          "none";  
+  
+        clearProductName();  
+  
+        return;  
+      }  
+  
+      const searchName=  
+        rawValue  
+          .toLowerCase()  
+          .replace(  
+            /\s+/g,  
+            " "  
+          )  
+          .trim();  
+  
+      const searchBarcode=  
+        barcodeKey(  
+          barcodeValue  
+        );  
+  
+      const result=  
+        masterData  
+          .filter(  
+            item=>{  
+  
+              const itemBarcode=  
+                barcodeKey(  
+                  item.barcode  
+                );  
+  
+              const itemName=  
+                String(  
+                  item.nama||""  
+                )  
+                  .toLowerCase()  
+                  .replace(  
+                    /\s+/g,  
+                    " "  
+                  )  
+                  .trim();  
+  
+              return(  
+                itemBarcode.includes(  
+                  searchBarcode  
+                )||  
+                itemName.includes(  
+                  searchName  
+                )  
+              );  
+  
+            }  
+          )  
+          .slice(  
+            0,  
+            20  
+          );  
+  
+      if(!result.length){  
+  
+        $("suggestions")  
+          .innerHTML="";  
+  
+        $("suggestions")  
+          .style.display=  
+          "none";  
+  
+        updateProductName(  
+          barcodeValue  
+        );  
+  
+        return;  
+      }  
+  
+      const exact=  
+        result.find(  
+          item=>  
+            barcodeKey(  
+              item.barcode  
+            )===  
+            searchBarcode  
+        );  
+  
+      if(exact){  
+  
+        updateProductName(  
+          exact.barcode  
+        );  
+  
+      }else{  
+  
+        clearProductName();  
+  
+      }  
+  
+      $("suggestions")  
+        .innerHTML=  
+          result  
+            .map(  
+              item=>`  
+  
+                <div  
+                  class="suggestion-item"  
+                  data-barcode="${escapeHtml(item.barcode)}"  
+                >  
+  
+                  <div class="suggestion-barcode">  
+                    ${escapeHtml(item.barcode)}  
+                  </div>  
+  
+                  <div class="suggestion-name">  
+  
+                    ${escapeHtml(item.nama)}  
+  
+                    ${  
+                      getProductUnit(item)  
+                        ? ` • ${escapeHtml(  
+                            normalizeUnit(  
+                              getProductUnit(item)  
+                            )  
+                          )}`  
+                        : ""  
+                    }  
+  
+                  </div>  
+  
+                </div>  
+  
+              `  
+            )  
+            .join("");  
+  
+      $("suggestions")  
+        .style.display=  
+          "block";  
+  
+      $("suggestions")  
+        .querySelectorAll(  
+          ".suggestion-item"  
+        )  
+        .forEach(  
+          el=>{  
+  
+            el.addEventListener(  
+              "click",  
+              ()=>{  
+  
+                const selectedBarcode=  
+                  el.dataset.barcode;  
+  
+                $("barcode")  
+                  .value=  
+                  selectedBarcode;  
+  
+                $("suggestions")  
+                  .innerHTML="";  
+  
+                $("suggestions")  
+                  .style.display=  
+                    "none";  
+  
+                updateProductName(  
+                  selectedBarcode  
+                );  
+  
+                $("qty").focus();  
+  
+              }  
+            );  
+  
+          }  
+        );  
+  
+    }  
+  );  
+  
+/* =====================================================  
+   BARCODE ENTER  
+===================================================== */  
+  
+$("barcode")  
+  .addEventListener(  
+    "keydown",  
+    function(e){  
+  
+      if(e.key!=="Enter")  
+        return;  
+  
+      e.preventDefault();  
+  
+      const value=  
+        normalizeBarcode(  
+          this.value  
+        );  
+  
+      if(  
+        value.length===13 &&  
+        /^20\d{11}$/.test(  
+          value  
+        )  
+      ){  
+  
+        processWeighedBarcode(  
+          value  
+        );  
+  
+        setTimeout(  
+          ()=>$("qty").focus(),  
+          20  
+        );  
+  
+        return;  
+      }  
+  
+      updateProductName(  
+        value  
+      );  
+  
+      $("suggestions")  
+        .style.display=  
+          "none";  
+  
+      $("qty").focus();  
+  
+    }  
+  );  
+  
+/* =====================================================  
+   WEIGHT BARCODE  
+===================================================== */  
+  
+function processWeighedBarcode(  
+  value  
+){  
+  
+  if(  
+    !value||  
+    value.length!==13||  
+    !/^\d{13}$/.test(value)||  
+    !value.startsWith("20")  
+  )  
+    return false;  
+  
+  const productBarcode=  
+    value.substring(  
+      2,  
+      7  
+    );  
+  
+  const rawQty=  
+    value.substring(  
+      7,  
+      12  
+    );  
+  
+  const grams=  
+    parseInt(  
+      rawQty,  
+      10  
+    );  
+  
+  if(  
+    !Number.isFinite(  
+      grams  
+    )  
+  )  
+    return false;  
+  
+  const qty=  
+    grams/1000;  
+  
+  $("barcode").value=  
+    productBarcode;  
+  
+  let qtyDisplay=  
+    qty  
+      .toFixed(3)  
+      .replace(  
+        /\.?0+$/,  
+        ""  
+      )  
+      .replace(  
+        ".",  
+        ","  
+      );  
+  
+  $("qty").value=  
+    qtyDisplay;  
+  
+  $("suggestions")  
+    .style.display=  
+      "none";  
+  
+  const product=  
+    updateProductName(  
+      productBarcode  
+    );  
+  
+  showToast(  
+    (  
+      product?.nama||  
+      "Kode "+productBarcode  
+    )+  
+    " • "+  
+    qtyDisplay+  
+    " KG",  
+    "success"  
+  );  
+  
+  return true;  
+  
+}  
+  
+/* =====================================================  
+   QTY  
+===================================================== */  
+  
+function parseQty(value){  
+  
+  let text=  
+    String(value??"")  
+      .trim()  
+      .replace(  
+        /\s/g,  
+        ""  
+      );  
+  
+  if(!text)  
+    return NaN;  
+  
+  if(  
+    text.includes(",")&&  
+    text.includes(".")  
+  ){  
+  
+    if(  
+      text.lastIndexOf(",")>  
+      text.lastIndexOf(".")  
+    ){  
+  
+      text=  
+        text  
+          .replace(  
+            /\./g,  
+            ""  
+          )  
+          .replace(  
+            ",",  
+            "."  
+          );  
+  
+    }else{  
+  
+      text=  
+        text.replace(  
+          /,/g,  
+          ""  
+        );  
+  
+    }  
+  
+  }else if(  
+    text.includes(",")  
+  ){  
+  
+    text=  
+      text.replace(  
+        ",",  
+        "."  
+      );  
+  
+  }  
+  
+  return Number(text);  
+  
+}  
+  
+/* =====================================================  
+   HISTORY STATUS  
+===================================================== */  
+  
+const SEND_STALE_MS=15000;
+
+function historyStatus(item){
+  if(!item) return "sent";
+  if(item.__status==="pending" && isStalePending(item)) return "stale";
+  return item.__status||"sent";
+}
+
+function isStalePending(item){
+  if(!item || item.__status!=="pending") return false;
+  const t=Number(item.createdAt||item.timestampMs||item.syncedAt||0);
+  return !!t && (Date.now()-t)>=SEND_STALE_MS;
+}
+
+function getTransactionId(item){
+  return String(
+    item?.transactionId||
+    item?.txId||
+    item?.__transactionId||
+    ""
+  ).trim();
+}
+
+function historyUnit(item){  
+  
+  let unit=  
+    item?.__unit||  
+    item?.unit||  
+    item?.satuan||  
+    item?.sat||  
+    item?.uom||  
+    "";  
+  
+  unit=  
+    normalizeUnit(  
+      unit  
+    );  
+  
+  if(unit)  
+    return unit;  
+  
+  const barcode=  
+    item?.barcode||  
+    item?.kode||  
+    item?.article||  
+    "";  
+  
+  if(  
+    String(barcode).length===13&&  
+    String(barcode).startsWith("20")  
+  )  
+    return "KG";  
+  
+  return getUnitForBarcode(  
+    barcode  
+  );  
+  
+}  
+  
+function historyQty(item){  
+  
+  return item?.qty??  
+    item?.quantity??  
+    item?.Qty??  
+    "-";  
+  
+}  
+  
+function historyName(item){  
+  
+  return item?.nama||  
+    item?.name||  
+    findProduct(  
+      item?.barcode||  
+      item?.kode||  
+      item?.article||  
+      ""  
+    )?.nama||  
+    "";  
+  
+}  
+  
+/* =====================================================  
+   RENDER HISTORY  
+===================================================== */  
+  
+function renderHistory(){
+
+  const list=$("historyList");
+  if(!list) return;
+
+  const pending=historyRows.filter(x=>historyStatus(x)==="pending").length;
+  const stale=historyRows.filter(x=>historyStatus(x)==="stale").length;
+  const sent=historyRows.filter(x=>historyStatus(x)==="sent").length;
+  const failed=historyRows.filter(x=>historyStatus(x)==="failed").length;
+
+  $("pendingCounter").textContent="⏳ "+(pending+stale)+" MENGIRIM";
+  $("sentCounter").textContent="✓ "+sent+" TERKIRIM";
+  $("failedCounter").textContent="✕ "+failed+" GAGAL";
+
+  if(!historyRows.length){
+    list.innerHTML=`<div class="history-empty">Belum ada data</div>`;
+    return;
+  }
+
+  list.innerHTML=historyRows.slice(0,HISTORY_LIMIT).map((item,index)=>{
+    const barcode=item.barcode||item.kode||item.article||"-";
+    const qty=historyQty(item);
+    const unit=historyUnit(item);
+    const name=historyName(item);
+    const status=historyStatus(item);
+    const selected=selectedHistoryItem===index ? " selected" : "";
+    let statusHtml="";
+    let actions="";
+
+    if(status==="pending"){
+      statusHtml=`<span class="history-status pending"><span class="history-spinner"></span>MENGIRIM...</span>`;
+    }else if(status==="stale"){
+      statusHtml=`<span class="history-status stale">⚠ BELUM SELESAI</span>`;
+      actions=`<button class="history-retry" type="button" data-history-index="${index}">↻ KIRIM ULANG</button>`;
+    }else if(status==="failed"){
+      statusHtml=`<span class="history-status failed">✕ GAGAL</span>`;
+      actions=`<button class="history-retry" type="button" data-history-index="${index}">↻ KIRIM ULANG</button>`;
+    }else{
+      statusHtml=`<span class="history-status sent">✓ TERKIRIM</span>`;
+    }
+
+    return `
+      <div class="history-item ${status}${selected}" data-history-index="${index}">
+        <div class="history-main">
+          <div class="history-code">${escapeHtml(barcode)}</div>
+          <div class="history-name">${escapeHtml(name)}</div>
+          <div class="history-meta">${statusHtml}</div>
+          <div class="history-actions">
+            ${actions}
+            <button class="history-delete" type="button" data-history-index="${index}">🗑 HAPUS DATA</button>
+          </div>
+        </div>
+        <div class="history-qty">
+          ${escapeHtml(String(qty))}
+          ${unit ? ` ${escapeHtml(unit)}` : ""}
+        </div>
+      </div>`;
+  }).join("");
+
+  list.querySelectorAll(".history-item").forEach(item=>{
+    item.addEventListener("click",()=>{
+      const index=Number(item.dataset.historyIndex);
+      selectedHistoryItem=selectedHistoryItem===index ? null : index;
+      renderHistory();
+    });
+  });
+
+  list.querySelectorAll(".history-delete").forEach(button=>{
+    button.addEventListener("click",async e=>{
+      e.stopPropagation();
+      await deleteHistoryItem(Number(button.dataset.historyIndex));
+    });
+  });
+
+  list.querySelectorAll(".history-retry").forEach(button=>{
+    button.addEventListener("click",async e=>{
+      e.stopPropagation();
+      await retryHistoryItem(Number(button.dataset.historyIndex));
+    });
+  });
+}
+
+/* =====================================================
+   FIREBASE REAL-TIME HISTORY
+===================================================== */
+
+function historyCollection(mode=currentMode){
+  return collection(db,"inventoryHistory",mode,"items");
+}
+
+function historyFirebaseId(item){
+  const tx=getTransactionId(item);
+  if(tx) return "tx_"+btoa(unescape(encodeURIComponent(tx)))
+    .replace(/[^a-zA-Z0-9_-]/g,"")
+    .slice(0,140);
+
+  const raw=[item.row,item.timestamp,item.barcode,item.qty].join("_");
+  return "r_"+btoa(unescape(encodeURIComponent(raw)))
+    .replace(/[^a-zA-Z0-9_-]/g,"")
+    .slice(0,140);
+}
+
+function stopHistoryRealtime(){
+  if(historyUnsubscribe){
+    historyUnsubscribe();
+    historyUnsubscribe=null;
+  }
+  historyFirebaseReady=false;
+}
+
+function startHistoryRealtime(mode=currentMode){
+  stopHistoryRealtime();
+
+  const q=query(
+    historyCollection(mode),
+    orderBy("timestampMs","desc"),
+    limit(HISTORY_LIMIT)
+  );
+
+  historyUnsubscribe=onSnapshot(
+    q,
+    snapshot=>{
+      if(mode!==currentMode) return;
+
+      const rows=snapshot.docs.map(docSnap=>{
+        const data=docSnap.data();
+        return {
+          ...data,
+          __firebaseId:docSnap.id,
+          __status:data.status==="pending" ? "pending" : "sent"
+        };
+      });
+
+      const firebaseIds=new Set(rows.map(item=>item.__firebaseId));
+
+      const localPending=historyRows.filter(item=>
+        item.__localId &&
+        item.__status==="pending" &&
+        !firebaseIds.has(item.__firebaseId) &&
+        !firebaseIds.has(item.__localId)
+      );
+
+      const localFailed=historyRows.filter(item=>
+        item.__localId &&
+        item.__status==="failed" &&
+        !firebaseIds.has(item.__firebaseId)
+      );
+
+      historyRows=[...localPending,...localFailed,...rows].slice(0,HISTORY_LIMIT);
+      historyFirebaseReady=true;
+
+      const historyList=$("historyList");
+      const historyScrollTop=historyList ? historyList.scrollTop : 0;
+
+      selectedHistoryItem=null;
+      saveHistoryCache();
+      renderHistory();
+
+      requestAnimationFrame(()=>{
+        const list=$("historyList");
+        if(list) list.scrollTop=historyScrollTop;
+      });
+    },
+    error=>{
+      console.warn("Firebase history sync error:",error);
+      historyFirebaseReady=false;
+    }
+  );
+}
+
+async function seedHistoryToFirebase(rows,mode=currentMode){
+  if(mode!==currentMode) return;
+
+  for(const item of rows.slice(0,HISTORY_LIMIT)){
+    if(!item || !item.barcode) continue;
+
+    const transactionId=getTransactionId(item);
+    const id=transactionId ? historyFirebaseId(item) : historyFirebaseId(item);
+    const ref=doc(historyCollection(mode),id);
+
+    try{
+      await setDoc(ref,{
+        row:Number(item.row)||0,
+        timestamp:String(item.timestamp||""),
+        timestampMs:Date.parse(item.timestamp||"")||0,
+        barcode:String(item.barcode||""),
+        searchBarcode:String(item.searchBarcode||item.barcode||""),
+        nama:String(item.nama||""),
+        qty:Number(item.qty)||0,
+        mode,
+        transactionId:transactionId,
+        status:"sent",
+        syncedAt:Date.now()
+      },{merge:true});
+    }catch(error){
+      console.warn("Seed history Firebase gagal:",error);
+    }
+  }
+}
+
+async function loadHistoryFromSheetAndSeed(mode=currentMode){
+  const requestVersion=++historyRequestVersion;
+  const requestMode=mode;
+
+  try{
+    const response=await fetch(URL_SCRIPT,{
+      method:"POST",
+      body:JSON.stringify({
+        action:"getHistory",
+        mode:requestMode
+      })
+    });
+
+    const data=await response.json();
+    if(requestVersion!==historyRequestVersion || requestMode!==currentMode) return;
+
+    let rows=[];
+    if(Array.isArray(data)) rows=data;
+    else if(Array.isArray(data.data)) rows=data.data;
+
+    await seedHistoryToFirebase(rows,requestMode);
+  }catch(error){
+    console.warn("Load history sheet error:",error);
+  }
+}
+
+async function loadHistory(background=false){
+  if(!background){
+    const cached=readHistoryCache(currentMode);
+    if(cached.length){
+      historyRows=cached;
+      renderHistory();
+    }
+  }
+
+  startHistoryRealtime(currentMode);
+  await loadHistoryFromSheetAndSeed(currentMode);
+}
+
+/* =====================================================  
+   SAVE INVENTORY  
+===================================================== */  
+  
+window.saveInventory=  
+function(){  
+  
+  const barcode=  
+    normalizeBarcode(  
+      $("barcode").value  
+    );  
+  
+  const qty=  
+    parseQty(  
+      $("qty").value  
+    );  
+  
+  const message=  
+    $("inventoryMessage");  
+  
+  message.className=  
+    "inventory-message";  
+  
+  message.textContent="";  
+  
+  if(!barcode){  
+  
+    message.classList.add(  
+      "error"  
+    );  
+  
+    message.textContent=  
+      "Barcode wajib diisi.";  
+  
+    $("barcode").focus();  
+  
+    return;  
+  }  
+  
+  if(  
+    !Number.isFinite(qty)||  
+    qty<=0  
+  ){  
+  
+    message.classList.add(  
+      "error"  
+    );  
+  
+    message.textContent=  
+      "Quantity harus lebih dari 0.";  
+  
+    $("qty").focus();  
+  
+    return;  
+  }  
+  
+  const product=  
+    findProduct(  
+      barcode  
+    );  
+  
+  const unit=  
+    historyUnit({  
+  
+      barcode,  
+  
+      unit:  
+        product  
+          ? getProductUnit(product)  
+          : ""  
+  
+    });  
+  
+  const now=Date.now();
+  const transactionId=
+    "TX_"+
+    now+
+    "_"+
+    Math.random().toString(36).slice(2,10);
+
+  const localItem={
+    __localId:transactionId,
+    __transactionId:transactionId,
+    transactionId:transactionId,
+    __status:"pending",
+    barcode,
+    qty,
+    nama:product?.nama||"",
+    unit,
+    mode:currentMode,
+    createdAt:now,
+    timestampMs:now
+  };  
+  
+  historyRows=[  
+  
+    localItem,  
+  
+    ...historyRows  
+  
+  ].slice(  
+    0,  
+    HISTORY_LIMIT  
+  );  
+  
+  saveHistoryCache();  
+  
+  renderHistory();  
+  
+  $("barcode").value="";  
+  $("qty").value="";  
+  
+  $("suggestions")  
+    .style.display=  
+      "none";  
+  
+  clearProductName();  
+  
+  selectedHistoryItem=  
+    null;  
+  
+  setTimeout(  
+    ()=>$("barcode").focus(),  
+    0  
+  );  
+  
+  /*
+    Kirim ke Firebase SEGERA saat masih pending.
+    User lain yang sedang online langsung melihat item ini.
+  */
+  publishPendingHistory(localItem);
+
+  sendInventoryQueueItem(
+    localItem
+  );  
+  
+};  
+  
+/* =====================================================
+   PUBLISH PENDING HISTORY — REALTIME
+===================================================== */
+
+async function publishPendingHistory(localItem){
+  try{
+    const transactionId=getTransactionId(localItem);
+    const firebaseId=historyFirebaseId(localItem);
+    const pendingRef=doc(historyCollection(localItem.mode),firebaseId);
+
+    localItem.__firebaseId=firebaseId;
+
+    await setDoc(
+      pendingRef,
+      {
+        row:0,
+        timestamp:new Date(localItem.createdAt||Date.now()).toISOString(),
+        timestampMs:Number(localItem.createdAt)||Date.now(),
+        createdAt:Number(localItem.createdAt)||Date.now(),
+        barcode:String(localItem.barcode||""),
+        searchBarcode:String(localItem.barcode||""),
+        nama:String(localItem.nama||""),
+        qty:Number(localItem.qty)||0,
+        mode:localItem.mode,
+        transactionId:transactionId,
+        status:"pending",
+        syncedAt:Date.now()
+      },
+      {merge:true}
+    );
+  }catch(error){
+    console.warn("Firebase pending history gagal:",error);
+  }
+}
+
+/* =====================================================
+   SEND QUEUE
+===================================================== */  
+  
+async function sendInventoryQueueItem(localItem){
+  if(!localItem) return;
+
+  const transactionId=getTransactionId(localItem);
+  if(!transactionId){
+    localItem.__status="failed";
+    renderHistory();
+    showToast("Transaction ID tidak ditemukan.","error");
+    return;
+  }
+
+  localItem.__status="pending";
+  localItem.createdAt=Number(localItem.createdAt)||Date.now();
+  localItem.timestampMs=Number(localItem.timestampMs)||localItem.createdAt;
+  saveHistoryCache();
+  renderHistory();
+
+  try{
+    const response=await fetch(URL_SCRIPT,{
+      method:"POST",
+      body:JSON.stringify({
+        action:"saveData",
+        barcode:localItem.barcode,
+        qty:localItem.qty,
+        mode:localItem.mode,
+        transactionId:transactionId
+      })
+    });
+
+    const text=(await response.text()).trim();
+    console.log("Save response:",text);
+
+    let result=null;
+    try{ result=JSON.parse(text); }catch(_){ }
+
+    const success=
+      result &&
+      result.success===true &&
+      (result.status==="success" || result.status==="already_saved");
+
+    if(!success){
+      throw new Error(result?.message||text||"Gagal menyimpan data.");
+    }
+
+    localItem.__status="sent";
+    localItem.row=Number(result.row)||localItem.row||0;
+    localItem.timestamp=result.timestamp||localItem.timestamp||new Date().toISOString();
+    localItem.timestampMs=Date.parse(localItem.timestamp)||localItem.timestampMs||Date.now();
+    localItem.transactionId=transactionId;
+    localItem.__transactionId=transactionId;
+
+    saveHistoryCache();
+    renderHistory();
+
+    try{
+      const firebaseId=localItem.__firebaseId||historyFirebaseId(localItem);
+      localItem.__firebaseId=firebaseId;
+
+      await setDoc(
+        doc(historyCollection(localItem.mode),firebaseId),
+        {
+          row:Number(result.row)||0,
+          timestamp:localItem.timestamp,
+          timestampMs:localItem.timestampMs,
+          barcode:String(localItem.barcode||""),
+          searchBarcode:String(localItem.barcode||""),
+          nama:String(localItem.nama||""),
+          qty:Number(localItem.qty)||0,
+          mode:localItem.mode,
+          transactionId:transactionId,
+          status:"sent",
+          syncedAt:Date.now()
+        },
+        {merge:true}
+      );
+    }catch(firebaseError){
+      console.warn("Firebase save history gagal:",firebaseError);
+    }
+
+    showToast(
+      result.status==="already_saved"
+        ? "Data sudah tersimpan. Tidak dibuat duplikat."
+        : "Data berhasil dikirim.",
+      "success"
+    );
+
+  }catch(error){
+    console.error("Send queue error:",error);
+    localItem.__status="failed";
+    saveHistoryCache();
+    renderHistory();
+    showToast("Data gagal dikirim. Tekan KIRIM ULANG.","error");
+  }
+}
+
+/* =====================================================  
+   UPDATE LOCAL STATUS  
+===================================================== */  
+  
+function markLocalItemStatus(localId,status){
+  const item=historyRows.find(x=>
+    x.__localId===localId ||
+    getTransactionId(x)===String(localId||"")
+  );
+
+  if(!item) return;
+
+  item.__status=status;
+  saveHistoryCache();
+  renderHistory();
+}
+
+/* =====================================================
+   RETRY — BISA DARI AKUN MANA PUN
+===================================================== */
+
+async function retryHistoryItem(index){
+  const item=historyRows[index];
+  if(!item) return;
+
+  const status=historyStatus(item);
+  if(status!=="failed" && status!=="stale") return;
+
+  const button=document.querySelector(
+    `[data-history-index="${index}"].history-retry`
+  );
+
+  if(button){
+    button.disabled=true;
+    button.innerHTML=`<span class="action-loading"><span class="action-spinner"></span>MENGIRIM...</span>`;
+  }
+
+  item.__status="pending";
+  item.createdAt=Number(item.createdAt)||Number(item.timestampMs)||Date.now();
+  saveHistoryCache();
+  renderHistory();
+
+  await sendInventoryQueueItem(item);
+}
+
+/* =====================================================  
+   DELETE HISTORY  
+===================================================== */  
+  
+async function deleteHistoryItem(index){
+  const item=historyRows[index];
+  if(!item) return;
+
+  const status=historyStatus(item);
+
+  /*
+    Pending yang masih aktif tidak boleh dihapus.
+    Pending yang sudah stale / failed boleh ditangani.
+  */
+  if(status==="pending"){
+    showToast("Data masih sedang dikirim.","error");
+    return;
+  }
+
+  /*
+    Untuk transaksi pending-stale/failed, cek dulu ke Sheet.
+    Kalau belum tersimpan, cukup hapus dokumen Firebase.
+    Kalau ternyata sudah tersimpan, gunakan deleteData agar tidak
+    meninggalkan data di Spreadsheet.
+  */
+  if(status==="stale" || status==="failed"){
+    const transactionId=getTransactionId(item);
+    const itemElement=document.querySelector(`[data-history-index="${index}"]`);
+
+    if(!transactionId){
+      if(item.__firebaseId){
+        try{ await deleteDoc(doc(historyCollection(currentMode),item.__firebaseId)); }catch(e){ console.warn(e); }
+      }
+      historyRows.splice(index,1);
+      selectedHistoryItem=null;
+      saveHistoryCache();
+      renderHistory();
+      showToast("Antrean dihapus.","success");
+      return;
+    }
+
+    try{
+      const checkResponse=await fetch(URL_SCRIPT,{
+        method:"POST",
+        body:JSON.stringify({
+          action:"checkTransaction",
+          mode:item.mode||currentMode,
+          transactionId:transactionId
+        })
+      });
+
+      const checkText=(await checkResponse.text()).trim();
+      let check=null;
+      try{ check=JSON.parse(checkText); }catch(_){ }
+
+      if(!check || check.success!==true){
+        throw new Error(check?.message||checkText||"Gagal mengecek transaksi.");
+      }
+
+      if(!check.exists){
+        if(item.__firebaseId){
+          await deleteDoc(doc(historyCollection(currentMode),item.__firebaseId));
+        }
+        historyRows.splice(index,1);
+        selectedHistoryItem=null;
+        saveHistoryCache();
+        renderHistory();
+        showToast("Antrean dihapus.","success");
+        return;
+      }
+
+      const confirmed=confirm(
+        "Data ini ternyata sudah masuk Spreadsheet.\n\n"+
+        "Barcode: "+(check.barcode||item.barcode||"")+"\n"+
+        "Quantity: "+(check.qty??item.qty)+"\n\n"+
+        "Hapus juga data yang sudah tersimpan?"
+      );
+      if(!confirmed) return;
+
+      const password=prompt("Masukkan password admin untuk menghapus data:");
+      if(password===null) return;
+      if(!password){
+        showToast("Password wajib diisi.","error");
+        return;
+      }
+
+      const response=await fetch(URL_SCRIPT,{
+        method:"POST",
+        body:JSON.stringify({
+          action:"deleteData",
+          mode:item.mode||currentMode,
+          row:Number(check.row),
+          barcode:check.barcode||item.barcode,
+          qty:Number(check.qty??item.qty),
+          transactionId:transactionId,
+          password:password
+        })
+      });
+
+      const text=(await response.text()).trim();
+      const lower=text.toLowerCase();
+      if(!(lower.includes("delete berhasil")||lower.includes("berhasil")||lower.includes("success"))){
+        showToast(text||"Gagal menghapus data.","error");
+        return;
+      }
+
+      if(item.__firebaseId){
+        try{ await deleteDoc(doc(historyCollection(currentMode),item.__firebaseId)); }catch(e){ console.warn("Firebase delete history gagal:",e); }
+      }
+
+      historyRows.splice(index,1);
+      selectedHistoryItem=null;
+      saveHistoryCache();
+      renderHistory();
+      showToast("Data berhasil dihapus.","success");
+      return;
+
+    }catch(error){
+      console.error("Delete stale transaction error:",error);
+      showToast("Gagal memeriksa transaksi. Coba lagi.","error");
+      return;
+    }
+  }
+
+  /* =====================================================
+     SENT — mekanisme delete lama dipertahankan
+  ===================================================== */
+
+  const barcode=item.barcode||item.kode||item.article||"";
+  const qty=historyQty(item);
+  const row=item.row;
+
+  if(!Number.isInteger(Number(row))){
+    showToast("Nomor baris data tidak ditemukan.","error");
+    return;
+  }
+
+  const confirmed=confirm(
+    "Hapus data ini?\n\n"+
+    "Barcode: "+barcode+
+    "\nQuantity: "+qty+
+    (historyUnit(item)?" "+historyUnit(item):"")
+  );
+  if(!confirmed) return;
+
+  const password=prompt("Masukkan password admin untuk menghapus data:");
+  if(password===null) return;
+  if(!password){
+    showToast("Password wajib diisi.","error");
+    return;
+  }
+
+  const itemElement=document.querySelector(`[data-history-index="${index}"]`);
+  const deleteButton=itemElement?.querySelector(".history-delete");
+
+  if(itemElement) itemElement.classList.add("deleting");
+  if(deleteButton){
+    deleteButton.disabled=true;
+    deleteButton.classList.add("loading");
+    deleteButton.innerHTML=`<span class="action-loading"><span class="action-spinner"></span>MENGHAPUS...</span>`;
+  }
+
+  item.__tempDeleting=true;
+
+  try{
+    const response=await fetch(URL_SCRIPT,{
+      method:"POST",
+      body:JSON.stringify({
+        action:"deleteData",
+        mode:currentMode,
+        row:Number(row),
+        barcode,
+        qty,
+        transactionId:getTransactionId(item),
+        password
+      })
+    });
+
+    const text=await response.text();
+    const lower=text.toLowerCase();
+
+    if(lower.includes("delete berhasil")||lower.includes("berhasil")||lower.includes("success")){
+      if(itemElement){
+        itemElement.style.transition="opacity .3s ease, transform .3s ease";
+        itemElement.style.opacity="0";
+        itemElement.style.transform="translateX(20px)";
+        await new Promise(resolve=>setTimeout(resolve,300));
+      }
+
+      try{
+        if(item.__firebaseId){
+          await deleteDoc(doc(historyCollection(currentMode),item.__firebaseId));
+        }else{
+          const firebaseQuery=query(
+            historyCollection(currentMode),
+            where("row","==",Number(row)),
+            where("barcode","==",String(barcode)),
+            where("qty","==",Number(qty))
+          );
+          const firebaseSnapshot=await getDocs(firebaseQuery);
+          if(!firebaseSnapshot.empty){
+            const batch=writeBatch(db);
+            firebaseSnapshot.forEach(docSnap=>batch.delete(docSnap.ref));
+            await batch.commit();
+          }
+        }
+      }catch(firebaseError){
+        console.error("Firebase delete history gagal:",firebaseError);
+        item.__tempDeleting=false;
+        renderHistory();
+        showToast("Data Sheet berhasil dihapus, tetapi sinkronisasi Firebase gagal.","error");
+        return;
+      }
+
+      historyRows.splice(index,1);
+      selectedHistoryItem=null;
+      saveHistoryCache();
+      renderHistory();
+      showToast("Data berhasil dihapus.","success");
+    }else{
+      item.__tempDeleting=false;
+      if(itemElement) itemElement.classList.remove("deleting");
+      renderHistory();
+      showToast(text||"Gagal menghapus data.","error");
+    }
+  }catch(error){
+    console.error(error);
+    item.__tempDeleting=false;
+    if(itemElement) itemElement.classList.remove("deleting");
+    renderHistory();
+    showToast("Gagal menghapus data.","error");
+  }
+}
+
+/* =====================================================
+   DOUBLE CLICK = RETRY STALE / FAILED
+===================================================== */
+
+document.addEventListener("dblclick",e=>{
+  const el=e.target.closest(".history-item");
+  if(!el) return;
+  const index=Number(el.dataset.historyIndex);
+  const status=historyStatus(historyRows[index]);
+  if(status==="failed"||status==="stale") retryHistoryItem(index);
+});
+
+/* =====================================================  
+   RESET  
+===================================================== */  
+  
+window.resetInventory=
+async function(){
+
+  const confirmation=prompt("Masukkan password reset:");
+  if(confirmation===null) return;
+
+  if(!confirmation.trim()){
+    showToast("Password wajib diisi.","error");
+    return;
+  }
+
+  const resetButton=document.querySelector(".reset-button");
+  const originalText=resetButton.innerHTML;
+
+  resetButton.disabled=true;
+  resetButton.classList.add("loading");
+  resetButton.innerHTML=
+    `<span class="action-loading"><span class="action-spinner"></span>RESETTING...</span>`;
+
+  try{
+    const response=await fetch(URL_SCRIPT,{
+      method:"POST",
+      body:JSON.stringify({
+        action:"reset",
+        password:confirmation,
+        mode:currentMode
+      })
+    });
+
+    const text=(await response.text()).trim();
+    const lower=text.toLowerCase();
+
+    if(lower.includes("password salah")){
+      showToast("Password salah.","error");
+      return;
+    }
+
+    if(
+      lower.includes("reset berhasil")||
+      lower.includes("berhasil")||
+      lower.includes("success")
+    ){
+
+      /* Batalkan request Sheet lama. */
+      historyRequestVersion++;
+
+      historyRows=[];
+      selectedHistoryItem=null;
+
+      localStorage.removeItem(
+        historyCacheKey(currentMode)
+      );
+
+      renderHistory();
+
+      /*
+        Firebase adalah history real-time.
+        Menghapus collection mode aktif akan memicu
+        onSnapshot() pada semua user yang sedang online.
+      */
+      try{
+        const snapshot=await getDocs(
+          historyCollection(currentMode)
+        );
+
+        if(!snapshot.empty){
+          const batch=writeBatch(db);
+
+          snapshot.forEach(docSnap=>{
+            batch.delete(docSnap.ref);
+          });
+
+          await batch.commit();
+        }
+      }catch(firebaseError){
+        console.warn(
+          "Firebase reset history gagal:",
+          firebaseError
+        );
+      }
+
+      $("barcode").value="";
+      $("qty").value="";
+      clearProductName();
+      $("suggestions").innerHTML="";
+      $("suggestions").style.display="none";
+
+      showToast(
+        "Data berhasil di-reset.",
+        "success"
+      );
+
+      setTimeout(
+        ()=>$("barcode").focus(),
+        100
+      );
+
+      return;
+    }
+
+    showToast(
+      text||"Reset gagal.",
+      "error"
+    );
+
+  }catch(error){
+
+    console.error(
+      "Reset error:",
+      error
+    );
+
+    showToast(
+      "Gagal melakukan reset.",
+      "error"
+    );
+
+  }finally{
+
+    resetButton.disabled=false;
+    resetButton.classList.remove("loading");
+    resetButton.innerHTML=originalText;
+
+  }
+
+};
+
+/* =====================================================  
+   DATA BSD  
+===================================================== */  
+  
+let bsdCurrentSheet=  
+  "MEAT";  
+  
+let bsdData={  
+  
+  MEAT:null,  
+  
+  SEAFOOD:null,  
+  
+  DELICATE:null  
+  
+};  
+  
+let bsdHeaders=[];  
+  
+let bsdTableMode=  
+  "all";  
+  
+let bsdLoaded=  
+  false;  
+  
+/* =====================================================  
+   OPEN DATA BSD  
+===================================================== */  
+  
+window.openDataBSD=  
+async function(){  
+  
+  $("dashboard")  
+    .classList.add(  
+      "hidden"  
+    );  
+  
+  $("inventoryPage")  
+    .classList.remove(  
+      "show"  
+    );  
+  
+  $("dataBsdPage")  
+    .classList.add(  
+      "show"  
+    );  
+  
+  createBSDNavigation();  
+  
+  if(!bsdLoaded){  
+  
+    await bsdLoadAll();  
+  
+  }else{  
+  
+    bsdDisplayCurrent();  
+  
+  }  
+  
+  setTimeout(  
+    ()=>{  
+  
+      const nav=  
+        $("bsdNavigation");  
+  
+      if(nav){  
+  
+        nav  
+          .querySelectorAll(  
+            "button"  
+          )  
+          .forEach(  
+            button=>{  
+  
+              const active=  
+                button.dataset  
+                  .bsdSheet===  
+                bsdCurrentSheet;  
+  
+              button.style.background=  
+                active  
+                  ? "rgba(0,150,255,.16)"  
+                  : "rgba(255,255,255,.045)";  
+  
+              button.style.color=  
+                active  
+                  ? "#fff"  
+                  : "rgba(255,255,255,.65)";  
+  
+            }  
+          );  
+  
+      }  
+  
+    },  
+    50  
+  );  
+  
+};  
+  
+/* =====================================================  
+   CLOSE DATA BSD  
+===================================================== */  
+  
+window.closeDataBSD=  
+function(){  
+  
+  $("dataBsdPage")  
+    .classList.remove(  
+      "show"  
+    );  
+  
+  $("dashboard")  
+    .classList.remove(  
+      "hidden"  
+    );  
+  
+  updateOnlineStatus();  
+  
+};  
+  
+/* =====================================================  
+   BSD LOAD  
+===================================================== */  
+  
+async function bsdLoadAll(){  
+  
+  const body=  
+    $("bsdTableBody");  
+  
+  body.innerHTML=  
+    `<tr>  
+      <td colspan="8" class="bsd-empty">  
+        Memuat data...  
+      </td>  
+    </tr>`;  
+  
+  try{  
+  
+    const response=  
+      await fetch(  
+        DATA_BSD_API+  
+        "?all=true&t="+  
+        Date.now()  
+      );  
+  
+    if(!response.ok)  
+      throw new Error(  
+        "HTTP "+  
+        response.status  
+      );  
+  
+    const result=  
+      await response.json();  
+  
+    if(!result.success)  
+      throw new Error(  
+        result.message||  
+        "Gagal mengambil data"  
+      );  
+  
+    bsdData.MEAT=  
+      result.sheets.MEAT;  
+  
+    bsdData.SEAFOOD=  
+      result.sheets.SEAFOOD;  
+  
+    bsdData.DELICATE=  
+      result.sheets.DELICATE;  
+  
+    bsdLoaded=  
+      true;  
+  
+    bsdDisplayCurrent();  
+  
+  }catch(error){  
+  
+    console.error(  
+      "DATA BSD:",  
+      error  
+    );  
+  
+    body.innerHTML=  
+      `<tr>  
+        <td colspan="8" class="bsd-empty">  
+  
+          Gagal memuat DATA BSD.  
+  
+          <br><br>  
+  
+          ${escapeHtml(error.message)}  
+  
+        </td>  
+      </tr>`;  
+  
+  }  
+  
+}  
+  
+/* =====================================================  
+   BSD DISPLAY  
+===================================================== */  
+  
+function bsdDisplayCurrent(){  
+  
+  const sheetData=  
+    bsdData[  
+      bsdCurrentSheet  
+    ];  
+  
+  if(!sheetData)  
+    return;  
+  
+  bsdHeaders=  
+    sheetData.headers||  
+    [];  
+  
+  bsdTableMode=  
+    "all";  
+  
+  $("bsdSearch").value="";  
+  
+  $("bsdAllBtn")  
+    .style.display=  
+      "none";  
+  
+  $("bsdTableTitle")  
+    .textContent=  
+      "Semua Barang";  
+  
+  $("bsdPageTitle")  
+    .textContent=  
+      bsdCurrentSheet;  
+  
+  $("bsdSheetValue")  
+    .textContent=  
+      bsdCurrentSheet;  
+  
+  $("bsdUpdateValue")  
+    .textContent=  
+      sheetData.update||  
+      "—";  
+  
+  const data=  
+    sheetData.data||  
+    [];  
+  
+  const low=  
+    bsdGetLow(data);  
+  
+  const negative=  
+    bsdGetNegative(data);  
+  
+  $("bsdLowValue")  
+    .textContent=  
+      low.length;  
+  
+  $("bsdNegativeValue")  
+    .textContent=  
+      negative.length;  
+  
+  bsdUpdateCards();  
+  
+  bsdRenderHeader();  
+  
+  bsdRenderTable();  
+  
+}  
+  
+/* =====================================================  
+   BSD LOW  
+===================================================== */  
+  
+function bsdIsLow(item){  
+  
+  const rawStock=  
+    String(item.D??"")  
+      .replace(  
+        ",",  
+        "."  
+      )  
+      .trim();  
+  
+  const unit=  
+    String(item.E??"")  
+      .trim()  
+      .toLowerCase();  
+  
+  const stock=  
+    parseFloat(  
+      rawStock  
+    );  
+  
+  if(isNaN(stock))  
+    return false;  
+  
+  if(unit==="kg")  
+    return stock<=1.8;  
+  
+  if(  
+    unit==="ea"||  
+    unit==="e.a"  
+  )  
+    return stock<=10;  
+  
+  return false;  
+  
+}  
+  
+/* =====================================================  
+   BSD NEGATIVE  
+===================================================== */  
+  
+function bsdIsNegative(item){  
+  
+  const stock=  
+    parseFloat(  
+      String(item.D??"")  
+        .replace(  
+          ",",  
+          "."  
+        )  
+        .trim()  
+    );  
+  
+  if(isNaN(stock))  
+    return false;  
+  
+  return stock<0;  
+  
+}  
+  
+function bsdGetLow(data){  
+  
+  return data.filter(  
+    item=>  
+      bsdIsLow(item)  
+  );  
+  
+}  
+  
+function bsdGetNegative(data){  
+  
+  return data.filter(  
+    item=>  
+      bsdIsNegative(item)  
+  );  
+  
+}  
+  
+/* =====================================================  
+   BSD FILTER MODE  
+===================================================== */  
+  
+window.bsdShowLow=  
+function(){  
+  
+  bsdTableMode=  
+    "low";  
+  
+  $("bsdSearch").value="";  
+  
+  $("bsdAllBtn")  
+    .style.display=  
+      "inline-block";  
+  
+  $("bsdTableTitle")  
+    .textContent=  
+      "Stock Menipis";  
+  
+  bsdUpdateCards();  
+  
+  bsdRenderTable();  
+  
+};  
+  
+window.bsdShowNegative=  
+function(){  
+  
+  bsdTableMode=  
+    "negative";  
+  
+  $("bsdSearch").value="";  
+  
+  $("bsdAllBtn")  
+    .style.display=  
+      "inline-block";  
+  
+  $("bsdTableTitle")  
+    .textContent=  
+      "Negative Stock";  
+  
+  bsdUpdateCards();  
+  
+  bsdRenderTable();  
+  
+};  
+  
+window.bsdShowAll=  
+function(){  
+  
+  bsdTableMode=  
+    "all";  
+  
+  $("bsdSearch").value="";  
+  
+  $("bsdAllBtn")  
+    .style.display=  
+      "none";  
+  
+  $("bsdTableTitle")  
+    .textContent=  
+      "Semua Barang";  
+  
+  bsdUpdateCards();  
+  
+  bsdRenderTable();  
+  
+};  
+  
+/* =====================================================  
+   BSD CARDS  
+===================================================== */  
+  
+function bsdUpdateCards(){  
+  
+  $("bsdNegativeCard")  
+    .classList.remove(  
+      "selected"  
+    );  
+  
+  $("bsdLowCard")  
+    .classList.remove(  
+      "selected"  
+    );  
+  
+  if(  
+    bsdTableMode===  
+    "negative"  
+  )  
+    $("bsdNegativeCard")  
+      .classList.add(  
+        "selected"  
+      );  
+  
+  if(  
+    bsdTableMode===  
+    "low"  
+  )  
+    $("bsdLowCard")  
+      .classList.add(  
+        "selected"  
+      );  
+  
+}  
+  
+/* =====================================================  
+   BSD HEADER  
+===================================================== */  
+  
+function bsdRenderHeader(){  
+  
+  const head=  
+    $("bsdTableHead");  
+  
+  let html=  
+    "<th>#</th>";  
+  
+  bsdHeaders.forEach(  
+    header=>{  
+  
+      html+=  
+        `<th>  
+          ${escapeHtml(  
+            header||"—"  
+          )}  
+        </th>`;  
+  
+    }  
+  );  
+  
+  head.innerHTML=  
+    html;  
+  
+}  
+  
+/* =====================================================  
+   BSD TABLE  
+===================================================== */  
+  
+function bsdRenderTable(){  
+  
+  const sheetData=  
+    bsdData[  
+      bsdCurrentSheet  
+    ];  
+  
+  if(!sheetData)  
+    return;  
+  
+  let data=  
+    sheetData.data||  
+    [];  
+  
+  if(  
+    bsdTableMode===  
+    "low"  
+  )  
+    data=  
+      bsdGetLow(data);  
+  
+  if(  
+    bsdTableMode===  
+    "negative"  
+  )  
+    data=  
+      bsdGetNegative(data);  
+  
+  const search=  
+    $("bsdSearch")  
+      .value  
+      .trim()  
+      .toLowerCase();  
+  
+  if(search){  
+  
+    data=  
+      data.filter(  
+        item=>{  
+  
+          return[  
+  
+            item.A,  
+            item.B,  
+            item.C,  
+            item.D,  
+            item.E,  
+            item.F,  
+            item.G  
+  
+          ].some(  
+            value=>  
+              String(  
+                value??""  
+              )  
+                .toLowerCase()  
+                .includes(  
+                  search  
+                )  
+          );  
+  
+        }  
+      );  
+  
+  }  
+  
+  $("bsdDataInfo")  
+    .textContent=  
+      data.length+  
+      " data";  
+  
+  const body=  
+    $("bsdTableBody");  
+  
+  if(!data.length){  
+  
+    body.innerHTML=  
+      `<tr>  
+        <td  
+          colspan="8"  
+          class="bsd-empty"  
+        >  
+          Tidak ada data.  
+        </td>  
+      </tr>`;  
+  
+    return;  
+  
+  }  
+  
+  body.innerHTML=  
+    data  
+      .map(  
+        item=>{  
+  
+          const negative=  
+            bsdIsNegative(  
+              item  
+            );  
+  
+          const low=  
+            bsdIsLow(  
+              item  
+            );  
+  
+          let rowClass="";  
+  
+          let qtyClass="";  
+  
+          if(negative){  
+  
+            rowClass=  
+              "bsd-negative-row";  
+  
+            qtyClass=  
+              "bsd-negative-value";  
+  
+          }else if(low){  
+  
+            rowClass=  
+              "bsd-low-row";  
+  
+            qtyClass=  
+              "bsd-low-value";  
+  
+          }  
+  
+          return`  
+  
+            <tr  
+              class="${rowClass}"  
+            >  
+  
+              <td class="bsd-row-number">  
+                ${escapeHtml(item.row)}  
+              </td>  
+  
+              <td>  
+                ${bsdValue(item.A)}  
+              </td>  
+  
+              <td>  
+                ${bsdValue(item.B)}  
+              </td>  
+  
+              <td>  
+                ${bsdValue(item.C)}  
+              </td>  
+  
+              <td class="${qtyClass}">  
+                ${bsdValue(item.D)}  
+              </td>  
+  
+              <td>  
+                ${bsdValue(item.E)}  
+              </td>  
+  
+              <td>  
+                ${bsdValue(item.F)}  
+              </td>  
+  
+              <td>  
+                ${bsdValue(item.G)}  
+              </td>  
+  
+            </tr>  
+  
+          `;  
+  
+        }  
+      )  
+      .join("");  
+  
+}  
+  
+/* =====================================================  
+   BSD VALUE  
+===================================================== */  
+  
+function bsdValue(value){  
+  
+  const text=  
+    String(value??"")  
+      .trim();  
+  
+  if(text==="")  
+    return "—";  
+  
+  return escapeHtml(  
+    text  
+  );  
+  
+}  
+  
+window.bsdFilter=  
+function(){  
+  
+  bsdRenderTable();  
+  
+};  
+  
+/* =====================================================  
+   BSD SHEET  
+===================================================== */  
+  
+window.bsdChangeSheet=  
+function(sheet){  
+  
+  if(!bsdData[sheet])  
+    return;  
+  
+  bsdCurrentSheet=  
+    sheet;  
+  
+  bsdDisplayCurrent();  
+  
+};  
+  
+window.changeBSDSheet=  
+function(sheet){  
+  
+  bsdChangeSheet(  
+    sheet  
+  );  
+  
+};  
+  
+/* =====================================================  
+   BSD NAVIGATION  
+===================================================== */  
+  
+function createBSDNavigation(){  
+  
+  if(  
+    document.getElementById(  
+      "bsdNavigation"  
+    )  
+  )  
+    return;  
+  
+  const heading=  
+    document.querySelector(  
+      ".data-page-heading"  
+    );  
+  
+  if(!heading)  
+    return;  
+  
+  const nav=  
+    document.createElement(  
+      "div"  
+    );  
+  
+  nav.id=  
+    "bsdNavigation";  
+  
+  nav.style.cssText=  
+    `  
+      display:flex;  
+      gap:6px;  
+      margin-top:12px;  
+      flex-wrap:wrap;  
+    `;  
+  
+  [  
+    "MEAT",  
+    "SEAFOOD",  
+    "DELICATE"  
+  ].forEach(  
+    sheet=>{  
+  
+      const button=  
+        document.createElement(  
+          "button"  
+        );  
+  
+      button.textContent=  
+        sheet;  
+  
+      button.dataset.bsdSheet=  
+        sheet;  
+  
+      button.style.cssText=  
+        `  
+          border:1px solid rgba(255,255,255,.09);  
+          border-radius:8px;  
+          padding:7px 11px;  
+          background:rgba(255,255,255,.045);  
+          color:rgba(255,255,255,.65);  
+          font-size:9px;  
+          font-weight:800;  
+        `;  
+  
+      button.addEventListener(  
+        "click",  
+        ()=>{  
+  
+          bsdCurrentSheet=  
+            sheet;  
+  
+          bsdDisplayCurrent();  
+  
+          document  
+            .querySelectorAll(  
+              "#bsdNavigation button"  
+            )  
+            .forEach(  
+              b=>{  
+  
+                b.style.background=  
+                  b.dataset.bsdSheet===  
+                  sheet  
+  
+                    ? "rgba(0,150,255,.16)"  
+  
+                    : "rgba(255,255,255,.045)";  
+  
+                b.style.color=  
+                  b.dataset.bsdSheet===  
+                  sheet  
+  
+                    ? "#fff"  
+  
+                    : "rgba(255,255,255,.65)";  
+  
+              }  
+            );  
+  
+        }  
+      );  
+  
+      nav.appendChild(  
+        button  
+      );  
+  
+    }  
+  );  
+  
+  heading.appendChild(  
+    nav  
+  );  
+  
+  nav  
+    .querySelector(  
+      `[data-bsd-sheet="${bsdCurrentSheet}"]`  
+    )  
+    ?.click();  
+  
+}  
+  
+/* =====================================================  
+   BSD REFRESH  
+===================================================== */  
+  
+window.refreshBSD=  
+async function(){  
+  
+  const button=  
+    $("bsdRefreshButton");  
+  
+  button.disabled=  
+    true;  
+  
+  button.textContent=  
+    "Loading...";  
+  
+  try{  
+  
+    bsdLoaded=  
+      false;  
+  
+    await bsdLoadAll();  
+  
+    showToast(  
+      "DATA BSD berhasil diperbarui.",  
+      "success"  
+    );  
+  
+  }catch(error){  
+  
+    console.error(  
+      error  
+    );  
+  
+  }finally{  
+  
+    button.disabled=  
+      false;  
+  
+    button.textContent=  
+      "↻ Refresh";  
+  
+  }  
+  
+};  
+  
+/* =====================================================  
+   ENTER  
+===================================================== */  
+  
+$("loginPassword")  
+  .addEventListener(  
+    "keydown",  
+    e=>{  
+  
+      if(e.key==="Enter")  
+        login();  
+  
+    }  
+  );  
+  
+$("qty")  
+  .addEventListener(  
+    "keydown",  
+    e=>{  
+  
+      if(e.key==="Enter"){  
+  
+        e.preventDefault();  
+  
+        saveInventory();  
+  
+      }  
+  
+    }  
+  );  
+  
+/* =====================================================  
+   ESC  
+===================================================== */  
+  
+document.addEventListener(  
+  "keydown",  
+  e=>{  
+  
+    if(e.key!=="Escape")  
+      return;  
+  
+    document  
+      .querySelectorAll(  
+        ".modal.show"  
+      )  
+      .forEach(  
+        modal=>{  
+  
+          modal.classList.remove(  
+            "show"  
+          );  
+  
+        }  
+      );  
+  
+  }  
+);  
+  
+/* =====================================================  
+   CLOSE SUGGESTIONS  
+===================================================== */  
+  
+document.addEventListener(  
+  "click",  
+  e=>{  
+  
+    if(  
+  
+      !e.target.closest(  
+        "#barcode"  
+      )&&  
+  
+      !e.target.closest(  
+        "#suggestions"  
+      )  
+  
+    ){  
+  
+      $("suggestions")  
+        .style.display=  
+          "none";  
+  
+    }  
+  
+  }  
+);  
+  
+/* =====================================================  
+   INITIAL CACHE  
+===================================================== */  
+  
+readMasterCache();  
+  
+console.log(  
+  "THE BUTCHER READY • CACHE + QUEUE + UNIT SYSTEM"  
+);  
+  
+</script>
+<script>
+function toggleDashboardSidebar(force){
+  const shell=document.querySelector('#dashboard .dashboard-shell');
+  const btn=document.getElementById('dashboardToggle');
+  if(!shell)return;
+  const open=typeof force==='boolean'?force:!shell.classList.contains('sidebar-open');
+  shell.classList.toggle('sidebar-open',open);
+  if(btn){
+    btn.setAttribute('aria-expanded',String(open));
+    const icon=btn.querySelector('.dashboard-toggle-icon');
+    const text=btn.querySelector('.dashboard-toggle-text');
+    if(icon)icon.textContent=open?'✕':'☰';
+    if(text)text.textContent=open?'CLOSE':'DASHBOARD';
+  }
+}
+</script>
+</body></html>
