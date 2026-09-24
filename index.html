@@ -5359,6 +5359,71 @@ console.log(
 </script>
 
 
+
+<style id="THE-BUTCHER-ANDROID-OLD-PDT-SIDEBAR-FIX">
+/* =========================================================
+   ANDROID LAMA / PDT — SIDEBAR SCROLL FIX
+   Hanya memperbaiki area sidebar agar semua menu sampai
+   SETTINGS / LOGOUT dapat discroll pada layar pendek.
+   Tidak mengubah fungsi menu atau layout halaman lain.
+========================================================= */
+#dashboard .dashboard-sidebar{
+  height:100vh!important;
+  height:100dvh!important;
+  min-height:0!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-y:contain!important;
+  touch-action:pan-y!important;
+  scrollbar-width:thin;
+}
+#dashboard .dashboard-sidebar::-webkit-scrollbar{
+  width:4px;
+}
+#dashboard .dashboard-sidebar::-webkit-scrollbar-thumb{
+  background:rgba(120,130,140,.28);
+  border-radius:10px;
+}
+#dashboard .dashboard-sidebar .sidebar-menu,
+#dashboard .dashboard-sidebar .sidebar-actions{
+  flex:none!important;
+}
+#dashboard .dashboard-sidebar .sidebar-spacer{
+  flex:0 0 18px!important;
+  min-height:18px!important;
+}
+
+/* Layar Android/PDT yang pendek: kecilkan jarak kosong supaya
+   Settings dan Logout lebih cepat terlihat, tetapi tetap bisa scroll. */
+@media (max-height:700px){
+  #dashboard .dashboard-sidebar{
+    padding-top:10px!important;
+    padding-bottom:10px!important;
+  }
+  #dashboard .sidebar-divider{
+    margin-top:10px!important;
+    margin-bottom:10px!important;
+  }
+  #dashboard .sidebar-menu{
+    gap:5px!important;
+  }
+  #dashboard .sidebar-item{
+    min-height:52px!important;
+  }
+  #dashboard .sidebar-spacer{
+    flex-basis:10px!important;
+    min-height:10px!important;
+  }
+  #dashboard .sidebar-user{
+    margin-bottom:5px!important;
+  }
+  #dashboard .sidebar-actions{
+    gap:4px!important;
+  }
+}
+</style>
+
 <style id="THE-BUTCHER-INCOMING-INTEGRATION">
 #incomingPage{display:none;position:fixed;inset:0;z-index:120;background:#f7f8fa;color:#20242b;overflow:hidden;}
 #incomingPage.show{display:flex;flex-direction:column;}
@@ -5378,7 +5443,7 @@ console.log(
   <div class="incoming-topbar">
     <div class="incoming-brand">
       <div class="incoming-logo">TB</div>
-      <div><strong>INCOMING</strong><span>SYSTEM CONTROL</span></div>
+      <div><strong>INCOMING</strong><span>RECEIVING CONTROL</span></div>
     </div>
     <div class="incoming-actions">
       <button type="button" class="incoming-back" onclick="closeIncoming()">← Dashboard</button>
@@ -7598,7 +7663,7 @@ body&gt;.app .sup,body&gt;.app .date{color:#7d8692!important;}
 
 &lt;main id="form" class="page"&gt;
 
-&lt;div class="hero"&gt;&lt;div class="ey"&gt;NEW INCOMING&lt;/div&gt;&lt;h2 id="formTitle"&gt;Incoming Baru&lt;/h2&gt;&lt;p&gt;Data PO hanya dicatat sekali. Produk 1 – 4 mempunyai Nama, Qty, dan Suhu masing-masing.&lt;/p&gt;&lt;button class="back" onclick="page('home')"&gt;‹ Kembali&lt;/button&gt;&lt;/div&gt;&lt;div id="incomingTypeInfo" class="incoming-type-info halal"&gt;
+&lt;div class="hero"&gt;&lt;div class="ey"&gt;NEW INCOMING&lt;/div&gt;&lt;h2 id="formTitle"&gt;Incoming Baru&lt;/h2&gt;&lt;p&gt;Data PO hanya dicatat sekali. Produk 1–5 mempunyai Nama, Qty, dan Suhu masing-masing.&lt;/p&gt;&lt;button class="back" onclick="page('home')"&gt;‹ Kembali&lt;/button&gt;&lt;/div&gt;&lt;div id="incomingTypeInfo" class="incoming-type-info halal"&gt;
   &lt;div class="type-info-icon"&gt;✓&lt;/div&gt;
   &lt;div&gt;
     &lt;strong class="type-info-title"&gt;INCOMING HALAL&lt;/strong&gt;
